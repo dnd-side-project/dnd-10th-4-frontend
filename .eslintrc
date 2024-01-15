@@ -34,11 +34,12 @@
         ],
         "pathGroups": [
           {
-            "pattern": "react",
+            "pattern": "react*",
             "group": "external",
             "position": "before",
           },
         ],
+        "pathGroupsExcludedImportTypes": ["react*"],
       },
     ],
     "max-depth": ["error", 4],
