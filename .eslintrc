@@ -11,6 +11,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier", // 반드시 마지막에 위치해서 다른 설정을 덮어쓰도록 해야 함 (prettier와 충돌하는 ESLint 규칙을 끄는 설정)
   ],
   "settings": {
