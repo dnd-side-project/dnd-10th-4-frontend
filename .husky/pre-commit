@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$current_branch" = "main" ]; then
+  echo "주의! main 브랜치에서 작업 중입니다. 서브 브랜치에서 커밋해주세요."
+  exit 1
+fi
+
+npm run lint-staged
