@@ -1,0 +1,53 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2020": true, "node": true },
+  "ignorePatterns": ["dist", ".eslintrc", ".prettierrc"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react-refresh"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier", // 반드시 마지막에 위치해서 다른 설정을 덮어쓰도록 해야 함 (prettier와 충돌하는 ESLint 규칙을 끄는 설정)
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": true,
+      "typescript": true,
+    },
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "external", // 외부 라이브러리
+          "builtin", // Node.js 내장 모듈
+          "internal", // 경로 별칭 (@)
+          "parent", // 부모 경로 (..)
+          "sibling", // 같은 경로 (./)
+          "index", // 현재 디렉토리 (./)
+          "object",
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before",
+          },
+        ],
+      },
+    ],
+    "max-depth": ["error", 4],
+    "complexity": ["error", 20],
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true },
+    ],
+    "import/no-unresolved": "off",
+    "react/react-in-jsx-scope": "off",
+  },
+}
