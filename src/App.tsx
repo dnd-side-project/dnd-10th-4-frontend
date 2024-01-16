@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <h1>Hello World</h1>
-      <EmotionTestButton>이모션 테스트</EmotionTestButton>
+      <EmotionTestButton size="small">이모션 테스트</EmotionTestButton>
       <Link to={ROUTER_PATHS.TEST_CONSTANT}>Test Constant Page</Link>
       <Link to={ROUTER_PATHS.TEST_VARIABLE('5')}>Test 5 Page</Link>
       <Outlet />
