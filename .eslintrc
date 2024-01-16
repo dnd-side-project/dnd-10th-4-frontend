@@ -1,7 +1,7 @@
 {
   "root": true,
   "env": { "browser": true, "es2020": true, "node": true },
-  "ignorePatterns": ["dist", ".eslintrc", ".prettierrc"],
+  "ignorePatterns": ["dist", ".eslintrc", ".prettierrc", ".commitlintrc"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-refresh"],
   "extends": [
@@ -12,13 +12,13 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
-    "prettier", // 반드시 마지막에 위치해서 다른 설정을 덮어쓰도록 해야 함 (prettier와 충돌하는 ESLint 규칙을 끄는 설정)
+    "prettier" // 반드시 마지막에 위치해서 다른 설정을 덮어쓰도록 해야 함 (prettier와 충돌하는 ESLint 규칙을 끄는 설정)
   ],
   "settings": {
     "import/resolver": {
       "node": true,
       "typescript": true,
-    },
+    }
   },
   "rules": {
     "import/order": [
@@ -31,27 +31,27 @@
           "parent", // 부모 경로 (..)
           "sibling", // 같은 경로 (./)
           "index", // 현재 디렉토리 (./)
-          "object",
+          "object"
         ],
         "pathGroups": [
           {
             "pattern": "react*",
             "group": "external",
             "position": "before",
-          },
+          }
         ],
         "pathGroupsExcludedImportTypes": ["react*"],
-      },
+      }
     ],
     "max-depth": ["error", 4],
     "complexity": ["error", 20],
     "react-refresh/only-export-components": [
       "warn",
-      { "allowConstantExport": true },
+      { "allowConstantExport": true }
     ],
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
-    "react/no-unescaped-entities": "off",
-  },
+    "react/no-unescaped-entities": "off"
+  }
 }
