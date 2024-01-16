@@ -2,7 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 import EmotionTestButton from '@/components/EmotionTestButton';
 import { ROUTER_PATHS } from './constants/routerPaths';
 
-function App() {
+const App = () => {
   return (
     <>
       <h1>Hello World</h1>
@@ -12,6 +12,6 @@ function App() {
       <Outlet />
     </>
   );
-}
+};
 
 export default App;
