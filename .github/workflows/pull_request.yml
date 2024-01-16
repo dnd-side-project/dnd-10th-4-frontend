@@ -1,11 +1,11 @@
-name: Build Test On Pull Request
+name: Pull Request
 
 on:
   pull_request:
     branches: ['main']
 
 jobs:
-  build:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -30,7 +30,7 @@ jobs:
 
       - name: React 빌드
         run: npm run build --if-present
-  chromatic:
+  chromatic-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
