@@ -6,7 +6,7 @@ env:
 
 on:
   push:
-    branches: ['chore/#8/vercel-deploy']
+    branches: ['main']
 
 jobs:
   chromatic:
