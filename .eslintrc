@@ -47,10 +47,11 @@
     "complexity": ["error", 20],
     "react-refresh/only-export-components": [
       "warn",
-      { "allowConstantExport": true },
+      { "allowConstantExport": true }
     ],
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/no-unescaped-entities": "off"
   }
 }
