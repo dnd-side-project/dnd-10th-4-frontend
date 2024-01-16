@@ -8,7 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Node.js 설치
         uses: actions/setup-node@v4
@@ -29,3 +30,40 @@ jobs:
 
       - name: React 빌드
         run: npm run build --if-present
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 의존성 캐싱
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: 의존성 설치
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Chromatic에 배포
+        id: chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyChanged: true
+          autoAcceptChanges: true
+
+      - name: PR 코멘트로 Storybook 링크 작성
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: '🚀 storybook 보러가기: ${{ steps.chromatic.outputs.storybookUrl }}'
