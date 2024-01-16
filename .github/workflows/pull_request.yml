@@ -1,4 +1,7 @@
 name: Build Test On Pull Request
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   pull_request:
@@ -45,3 +48,18 @@ jobs:
 
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+      - run: sleep 30
+
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          vercel_project_id: ${{ env.VERCEL_PROJECT_ID }}
+
+      - name: PR 코멘트로 Vercel Preview URL 작성
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: '🚀 React Preview 보러가기: https://${{ steps.vercel_preview_url.outputs.preview_url }}'
