@@ -10,27 +10,29 @@ interface EmotionTestButtonProps
   size?: 'small' | 'medium' | 'large';
 }
 
+const styles = {
+  button: (size: 'small' | 'medium' | 'large') =>
+    css({
+      color: 'hotpink',
+      '&:hover': {
+        color: 'blue',
+      },
+      padding: clsx({
+        '1rem': size === 'small',
+        '2rem': size === 'medium',
+        '3rem': size === 'large',
+      }),
+    }),
+};
+
 /** TODO: emotion 테스트용 컴포넌트입니다. 추후에 삭제해도 좋습니다. */
 const EmotionTestButton = ({
   children,
-  size,
+  size = 'medium',
   ...props
 }: EmotionTestButtonProps) => {
   return (
-    <button
-      {...props}
-      css={css({
-        color: 'hotpink',
-        '&:hover': {
-          color: 'blue',
-        },
-        padding: clsx({
-          '1rem': size === 'small',
-          '2rem': size === 'medium',
-          '3rem': size === 'large',
-        }),
-      })}
-    >
+    <button {...props} css={styles.button(size)}>
       {children}
     </button>
   );
