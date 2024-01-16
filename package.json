@@ -16,12 +16,12 @@
     "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-query": "^5.17.12",
     "axios": "^1.6.5",
-    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
     "react-router-dom": "^6.21.2",
     "recoil": "^0.7.7",
+    "reset-css": "^5.0.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
