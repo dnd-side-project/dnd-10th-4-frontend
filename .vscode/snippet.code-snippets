@@ -1,0 +1,18 @@
+{
+  "React Component": {
+    "prefix": ["!comp"],
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface ${1:${TM_FILENAME_BASE}}Props {}",
+      "",
+      "const $1 = ({}: $1Props) => {",
+      "\treturn <></>;",
+      "};",
+      "",
+      "export default $1;",
+      "",
+    ],
+    "description": "리액트 함수 컴포넌트",
+  },
+}
