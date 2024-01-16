@@ -5,7 +5,7 @@ env:
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ['chore/#3/chromatic-setup']
 
 jobs:
   build:
