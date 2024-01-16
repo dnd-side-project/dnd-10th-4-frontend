@@ -1,11 +1,12 @@
-name: Pull Request
+name: Preview
+
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   pull_request:
-    branches: ['chore/#3/chromatic-setup']
+    branches: ['main']
 
 jobs:
   build:
@@ -102,9 +103,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [chromatic-preview, vercel-preview]
     steps:
-      - name: PR 코멘트로 Storybook 링크 작성
+      - name: PR 코멘트로 Preview URL 남기기
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            🚀 storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
+            🚀 Storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
             🚀 React Preview 보러가기: https://${{ needs.vercel-preview.outputs.vercel_url }}
