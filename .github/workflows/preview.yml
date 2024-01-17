@@ -85,12 +85,12 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        id: vercel-output
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > vercel-output.txt
 
       - run: sleep 30
 
-      - run: cat ${{ steps.vercel-output.outputs }}
+      - run: ls -al
+      - run: cat vercel-output.txt
       - run: vercel alias --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: vercel-preview-url
