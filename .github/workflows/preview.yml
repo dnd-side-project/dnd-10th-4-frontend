@@ -87,7 +87,7 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
-      - run: sleep 60
+      - run: sleep 30
 
       - name: vercel-preview-url
         uses: zentered/vercel-preview-url@v1.1.9
