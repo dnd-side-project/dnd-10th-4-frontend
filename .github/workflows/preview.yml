@@ -78,46 +78,19 @@ jobs:
       - name: Vercel CLI 설치
         run: npm install --global vercel@latest
 
-      - name: Pull Vercel Environment Information
+      - name: Vercel 환경 변수 가져오기
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Build Project Artifacts
+      - name: Project Artifacts 빌드하기
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Deploy Project Artifacts to Vercel
-        id: preview_url
+      - name: Vercel에 Project Artifacts 배포하기
+        id: deploy
         run: |
           vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > vercel-output.txt
-          echo "PREVIEW_URL=$(cat vercel-output.txt)" >> $GITHUB_OUTPUT
-
-      # - run: sleep 30
-
-      # - name: Set Vercel URL Output
-      #   id: set_vercel_url
-      #   run: echo "VERCEL_URL=${{ env.VERCEL_URL }}" >> $GITHUB_ENV
-
-      # - name: Show Vercel URL
-      #   run: |
-      #     echo "Vercel URL: ${{ env.VERCEL_URL }}"
-
-      # - id: vercel_url
-      #   run: cat vercel-output.txt >> $GITHUB_OUTPUT
-
-      # - id: vercel_url
-      #   run: echo vercel-output.txt
-
-      # - name: vercel-preview-url
-      #   uses: zentered/vercel-preview-url@v1.1.9
-      #   id: vercel_preview_url
-      #   env:
-      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      #   with:
-      #     vercel_project_id: ${{ env.VERCEL_PROJECT_ID }}
+          echo "preview_url=$(cat vercel-output.txt)" >> $GITHUB_OUTPUT
     outputs:
-      vercel_url: ${{ steps.preview_url.outputs.PREVIEW_URL }}
-      # vercel_url: ${{ env.VERCEL_URL }}
-      # vercel_url: ${{ steps.vercel_url.outputs }}
-      # vercel_url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+      vercel_url: ${{ steps.deploy.outputs.preview_url }}
 
   github-bot:
     runs-on: ubuntu-latest
