@@ -61,7 +61,8 @@
     "prettier": "3.2.2",
     "storybook": "^7.6.8",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-turbosnap": "^1.0.3"
   },
   "lint-staged": {
     "*.{cjs,mjs,js,jsx,ts,tsx}": [
