@@ -85,19 +85,20 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
+        id: preview_url
         run: |
           vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > vercel-output.txt
-          echo "VERCEL_URL=$(cat vercel-output.txt)" >> $GITHUB_ENV
+          echo "PREVIEW_URL=$(cat vercel-output.txt)" >> $GITHUB_OUTPUT
 
-      - run: sleep 30
+      # - run: sleep 30
 
-      - name: Set Vercel URL Output
-        id: set_vercel_url
-        run: echo "VERCEL_URL=${{ env.VERCEL_URL }}" >> $GITHUB_ENV
+      # - name: Set Vercel URL Output
+      #   id: set_vercel_url
+      #   run: echo "VERCEL_URL=${{ env.VERCEL_URL }}" >> $GITHUB_ENV
 
-      - name: Show Vercel URL
-        run: |
-          echo "Vercel URL: ${{ env.VERCEL_URL }}"
+      # - name: Show Vercel URL
+      #   run: |
+      #     echo "Vercel URL: ${{ env.VERCEL_URL }}"
 
       # - id: vercel_url
       #   run: cat vercel-output.txt >> $GITHUB_OUTPUT
@@ -113,7 +114,8 @@ jobs:
       #   with:
       #     vercel_project_id: ${{ env.VERCEL_PROJECT_ID }}
     outputs:
-      vercel_url: ${{ env.VERCEL_URL }}
+      vercel_url: ${{ steps.preview_url.outputs.PREVIEW_URL }}
+      # vercel_url: ${{ env.VERCEL_URL }}
       # vercel_url: ${{ steps.vercel_url.outputs }}
       # vercel_url: ${{ steps.vercel_preview_url.outputs.preview_url }}
 
@@ -126,4 +128,4 @@ jobs:
         with:
           message: |
             🚀 Storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
-            🚀 React Preview 보러가기: https://${{ needs.vercel-preview.outputs.vercel_url }}
+            🚀 React Preview 보러가기: ${{ needs.vercel-preview.outputs.vercel_url }}
