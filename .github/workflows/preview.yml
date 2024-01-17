@@ -85,23 +85,24 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > vercel-output.txt
+        id: vercel_url
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > $GITHUB_OUTPUT
 
       - run: sleep 30
 
-      - run: ls -al
-      - run: cat vercel-output.txt
-      - run: vercel alias --token=${{ secrets.VERCEL_TOKEN }}
+      # - id: vercel_url
+      #   run: echo vercel-output.txt
 
-      - name: vercel-preview-url
-        uses: zentered/vercel-preview-url@v1.1.9
-        id: vercel_preview_url
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        with:
-          vercel_project_id: ${{ env.VERCEL_PROJECT_ID }}
+      # - name: vercel-preview-url
+      #   uses: zentered/vercel-preview-url@v1.1.9
+      #   id: vercel_preview_url
+      #   env:
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      #   with:
+      #     vercel_project_id: ${{ env.VERCEL_PROJECT_ID }}
     outputs:
-      vercel_url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+      vercel_url: ${{ steps.vercel_url.outputs }}
+      # vercel_url: ${{ steps.vercel_preview_url.outputs.preview_url }}
 
   github-bot:
     runs-on: ubuntu-latest
