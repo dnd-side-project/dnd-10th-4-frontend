@@ -85,9 +85,13 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
+        id: vercel-output
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
       - run: sleep 30
+
+      - run: cat ${{ steps.vercel-output.outputs }}
+      - run: vercel alias --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: vercel-preview-url
         uses: zentered/vercel-preview-url@v1.1.9
