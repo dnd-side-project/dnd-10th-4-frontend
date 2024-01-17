@@ -1,0 +1,104 @@
+name: Preview
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: 의존성 캐싱
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: 의존성 설치
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: React 빌드
+        run: npm run build --if-present
+
+  chromatic-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 의존성 캐싱
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: 의존성 설치
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Chromatic에 배포
+        id: chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyChanged: true
+          autoAcceptChanges: true
+    outputs:
+      storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
+
+  vercel-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vercel CLI 설치
+        run: npm install --global vercel@latest
+
+      - name: Vercel 환경 변수 가져오기
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Project Artifacts 빌드하기
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Vercel에 Project Artifacts 배포하기
+        id: deploy
+        run: |
+          vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > vercel-output.txt
+          echo "preview_url=$(cat vercel-output.txt)" >> $GITHUB_OUTPUT
+    outputs:
+      vercel_url: ${{ steps.deploy.outputs.preview_url }}
+
+  github-bot:
+    runs-on: ubuntu-latest
+    needs: [chromatic-preview, vercel-preview]
+    steps:
+      - name: PR 코멘트로 Preview URL 남기기
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            🚀 Storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
+            🚀 React Preview 보러가기: ${{ needs.vercel-preview.outputs.vercel_url }}
