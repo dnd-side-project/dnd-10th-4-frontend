@@ -1,4 +1,8 @@
-name: Pull Request
+name: Preview
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   pull_request:
@@ -30,7 +34,8 @@ jobs:
 
       - name: React 빌드
         run: npm run build --if-present
-  chromatic-deploy:
+
+  chromatic-preview:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -62,8 +67,45 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           onlyChanged: true
           autoAcceptChanges: true
+    outputs:
+      storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
 
-      - name: PR 코멘트로 Storybook 링크 작성
+  vercel-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vercel CLI 설치
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+      - run: sleep 30
+
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          vercel_project_id: ${{ env.VERCEL_PROJECT_ID }}
+    outputs:
+      vercel_url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+
+  github-bot:
+    runs-on: ubuntu-latest
+    needs: [chromatic-preview, vercel-preview]
+    steps:
+      - name: PR 코멘트로 Preview URL 남기기
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: '🚀 storybook 보러가기: ${{ steps.chromatic.outputs.storybookUrl }}'
+          message: |
+            🚀 Storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
+            🚀 React Preview 보러가기: https://${{ needs.vercel-preview.outputs.vercel_url }}
