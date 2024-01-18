@@ -43,6 +43,7 @@
         "pathGroupsExcludedImportTypes": ["react*"],
       }
     ],
+    "curly": ["error"],
     "max-depth": ["error", 4],
     "complexity": ["error", 20],
     "react-refresh/only-export-components": [
@@ -52,6 +53,6 @@
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
   }
 }
