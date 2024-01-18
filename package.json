@@ -74,7 +74,7 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{css,tsx}": [
+    "*.{css,ts,tsx}": [
       "stylelint --ignore-path .gitignore --fix"
     ]
   },
