@@ -1,0 +1,10 @@
+{
+  "plugins": ["stylelint-order"],
+  "extends": ["stylelint-config-hudochenkov/full"],
+  "overrides": [
+    {
+      "files": ["**/*.{tsx,ts}"],
+      "customSyntax": "postcss-styled-syntax"
+    }
+  ]
+}
