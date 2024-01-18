@@ -72,7 +72,8 @@
   "lint-staged": {
     "*.{cjs,mjs,js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "stylelint --ignore-path .gitignore '**/*.(css|tsx)' --fix"
     ]
   },
   "eslintConfig": {
