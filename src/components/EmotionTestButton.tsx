@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import clsx from 'clsx';
 
 interface EmotionTestButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ComponentPropsWithoutRef<'button'> {
   /** 버튼 안에 들어갈 내용을 지정합니다. */
   children?: React.ReactNode;
   /** 버튼에 들어갈 패딩의 크기를 지정합니다. */
