@@ -1,7 +1,7 @@
 ## 배포 주소
 
-🖥️ Vercel 배포 주소: https://dnd-10th-4-frontend-sandy.vercel.app/
-🎨 Storybook 주소: https://main--65a6c73d536a3c43b7c5c9bb.chromatic.com/
+🖥️ 서비스 배포 주소 - https://dnd-10th-4-frontend-sandy.vercel.app/  
+🎨 Storybook 주소 - https://main--65a6c73d536a3c43b7c5c9bb.chromatic.com/
 
 ## 로컬 서버 실행 커맨드
 

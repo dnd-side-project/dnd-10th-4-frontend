@@ -99,6 +99,7 @@ jobs:
       - name: PR 코멘트로 Preview URL 남기기
         uses: thollander/actions-comment-pull-request@v2
         with:
+          comment_tag: ${{github.event.number}}
           message: |
             🚀 Storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
             🚀 React Preview 보러가기: ${{ needs.vercel-preview.outputs.vercel_url }}

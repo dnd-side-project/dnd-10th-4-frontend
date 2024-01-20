@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:css": "stylelint --ignore-path .gitignore '**/*.(css|tsx)'",
     "preview": "vite preview",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
@@ -57,8 +58,13 @@
     "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
+    "postcss": "^8.4.33",
+    "postcss-styled-syntax": "^0.6.4",
     "prettier": "3.2.2",
     "storybook": "^7.6.8",
+    "stylelint": "^16.1.0",
+    "stylelint-config-hudochenkov": "^10.0.0",
+    "stylelint-order": "^6.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-plugin-turbosnap": "^1.0.3"
@@ -67,6 +73,9 @@
     "*.{cjs,mjs,js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "*.{css,ts,tsx}": [
+      "stylelint --ignore-path .gitignore --fix"
     ]
   },
   "eslintConfig": {

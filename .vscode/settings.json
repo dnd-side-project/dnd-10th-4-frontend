@@ -1,5 +1,8 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  }
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "postcss", "typescript", "typescriptreact"]
 }
