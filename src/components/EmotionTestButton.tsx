@@ -1,6 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/react';
-import clsx from 'clsx';
+import styles from './EmotionTestButton.style';
 
 interface EmotionTestButtonProps
   extends React.ComponentPropsWithoutRef<'button'> {
@@ -24,18 +23,3 @@ const EmotionTestButton = ({
 };
 
 export default EmotionTestButton;
-
-const styles = {
-  button: (size: 'small' | 'medium' | 'large') => css`
-    padding: ${clsx({
-      '1rem': size === 'small',
-      '2rem': size === 'medium',
-      '3rem': size === 'large',
-    })};
-    color: hotpink;
-
-    &:hover {
-      color: blue;
-    }
-  `,
-};
