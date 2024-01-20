@@ -40,7 +40,7 @@
     "description": "스토리북 템플릿",
   },
   "Style Template": {
-    "prefix": "!css",
+    "prefix": "!style",
     "body": [
       "import { css } from '@emotion/react';",
       "",
