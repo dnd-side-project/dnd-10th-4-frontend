@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './EmotionTestButton.style';
+import styles from './styles';
 
 interface EmotionTestButtonProps
   extends React.ComponentPropsWithoutRef<'button'> {
@@ -23,3 +23,4 @@ const EmotionTestButton = ({
 };
 
 export default EmotionTestButton;
+export { default as emotionTestButtonStyles } from './styles';

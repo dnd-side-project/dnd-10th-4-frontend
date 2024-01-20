@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import EmotionTestButton from './EmotionTestButton';
+import EmotionTestButton from '.';
 
 const meta = {
   title: 'Components/EmotionTestButton',
