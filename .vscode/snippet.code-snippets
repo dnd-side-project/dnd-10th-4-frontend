@@ -1,6 +1,6 @@
 {
   "React Component": {
-    "prefix": ["!comp"],
+    "prefix": "!comp",
     "body": [
       "import React from 'react';",
       "",
@@ -16,7 +16,7 @@
     "description": "리액트 함수 컴포넌트",
   },
   "Storybook Template": {
-    "prefix": ["!story"],
+    "prefix": "!story",
     "body": [
       "import type { Meta, StoryObj } from '@storybook/react';",
       "import ${1:${TM_FILENAME_BASE/\\.stories$//}} from './$1';",
@@ -38,5 +38,19 @@
       "",
     ],
     "description": "스토리북 템플릿",
+  },
+  "Style Template": {
+    "prefix": "!css",
+    "body": [
+      "import { css } from '@emotion/react';",
+      "",
+      "const styles = {",
+      "$1",
+      "};",
+      "",
+      "export default styles;",
+      "",
+    ],
+    "description": "스타일 템플릿",
   },
 }
