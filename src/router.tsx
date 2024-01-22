@@ -1,6 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { ROUTER_PATHS } from './constants/routerPaths';
 import App from './App';
+
+const ROUTER_PATHS = {
+  ROOT: '/',
+  TEST_CONSTANT: '/test/const',
+  TEST_VARIABLE: (variableId: string) => `/test/variable/${variableId}`,
+} as const;
 
 const router = createBrowserRouter([
   {
@@ -19,4 +24,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router;
+export { ROUTER_PATHS, router };

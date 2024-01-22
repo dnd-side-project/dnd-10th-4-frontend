@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import EmotionTestButton from '@/components/EmotionTestButton';
-import { ROUTER_PATHS } from './constants/routerPaths';
+import { ROUTER_PATHS } from '@/router';
 
 const App = () => {
   return (
