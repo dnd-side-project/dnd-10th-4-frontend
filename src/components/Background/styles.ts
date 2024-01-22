@@ -2,6 +2,10 @@ import { css } from '@emotion/react';
 
 const style = {
   background: (imageUrl: string) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100svh;
     background-image: url(${imageUrl});
     background-position: center center;
