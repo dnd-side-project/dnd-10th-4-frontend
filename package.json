@@ -70,6 +70,7 @@
     "stylelint-order": "^6.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
+    "vite-plugin-svgr": "^4.2.0",
     "vite-plugin-turbosnap": "^1.0.3"
   },
   "lint-staged": {
