@@ -7,7 +7,11 @@ interface BackgroundProps extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 const Background = ({ imageUrl, children }: BackgroundProps) => {
-  return <div css={styles.background(imageUrl)}>{children}</div>;
+  return (
+    <div css={styles.background(imageUrl)}>
+      <div css={styles.wrapper}>{children}</div>
+    </div>
+  );
 };
 
 export default Background;
