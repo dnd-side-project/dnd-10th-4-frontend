@@ -5,7 +5,7 @@ const style = {
     height: 100svh;
     background-image: url(${imageUrl});
     background-position: center center;
-    background-size: 40rem 100%;
+    background-size: 37.5rem 100%;
     background-repeat: repeat-x;
 
     @media (max-width: 768px) {
@@ -22,7 +22,6 @@ const style = {
     max-width: 600px;
     height: 100%;
     margin: 0 auto;
-    padding-inline: 1rem;
   `,
 };
 
