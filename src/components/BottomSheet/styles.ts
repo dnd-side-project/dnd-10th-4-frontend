@@ -4,9 +4,8 @@ const style = {
   paper: {
     borderRadius: '16px 16px 0px 0px',
     margin: '0 auto',
-    overflowY: 'hidden' as const,
     maxWidth: '600px',
-    '@media (max-width: 600px)': {
+    '@media (maxWidth: 600px)': {
       width: '100%',
     },
   },
@@ -21,6 +20,8 @@ const style = {
   content: css`
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
   `,
 };
 
