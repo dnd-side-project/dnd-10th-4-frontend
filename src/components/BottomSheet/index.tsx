@@ -2,7 +2,7 @@ import React from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import styles from './styles';
 
-interface BottomSheetProps extends React.ComponentPropsWithoutRef<'div'> {
+interface BottomSheetProps {
   /** 바텀시트의 열림(true), 닫힘(false) 상태입니다. */
   open: boolean;
   /** 바텀 시트를 닫을 때 실행될 함수 입니다. */
@@ -21,7 +21,7 @@ const BottomSheet = ({ open, onClose, onOpen, children }: BottomSheetProps) => {
       onClose={onClose}
       onOpen={onOpen}
       transitionDuration={400}
-      PaperProps={{ style: styles.paper }}
+      PaperProps={{ sx: styles.paper }}
     >
       <div css={styles.header} />
       <div css={styles.content}>{children}</div>

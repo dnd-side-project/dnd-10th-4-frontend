@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { SxProps } from '@mui/material';
 
 const style = {
   paper: {
@@ -8,7 +9,7 @@ const style = {
     '@media (maxWidth: 600px)': {
       width: '100%',
     },
-  },
+  } satisfies SxProps,
   header: css`
     width: 60px;
     height: 4px;
