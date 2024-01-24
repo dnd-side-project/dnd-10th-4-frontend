@@ -28,15 +28,22 @@ const variantStyles = {
         rgb(255 255 255 / 0.7) 0%,
         rgb(255 255 255 / 0.1) 100%
       );
+      background-clip: padding-box;
     `,
     trigger: css`
+      margin: -1px;
       padding: 0.75rem 1rem;
-      border: none;
+      border: 1px solid transparent;
       border-radius: 0.75rem;
       background: none;
       color: #828282;
 
+      &:focus {
+        outline: none;
+      }
+
       &[data-state='active'] {
+        border: 1px solid rgb(255 255 255 / 0.3);
         background: linear-gradient(
           100deg,
           rgb(255 255 255 / 0.5) 6.09%,

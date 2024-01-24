@@ -19,7 +19,7 @@ export const Primary: Story = {
     <div
       css={css`
         padding: 1.25rem;
-        background-color: #94d1f5;
+        background-color: #8acef5;
       `}
     >
       <Tabs {...args} />
@@ -70,7 +70,7 @@ export const 보관함: Story = {
     <div
       css={css`
         padding: 1.25rem;
-        background-color: #94d1f5;
+        background-color: #8acef5;
       `}
     >
       <Tabs {...args} />
