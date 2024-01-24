@@ -16,6 +16,7 @@ interface BottomSheetProps {
 const BottomSheet = ({ open, onClose, onOpen, children }: BottomSheetProps) => {
   return (
     <SwipeableDrawer
+      aria-autocomplete="inline"
       anchor="bottom"
       open={open}
       onClose={onClose}
