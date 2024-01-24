@@ -17,6 +17,11 @@ const style = {
     border-radius: 100px;
     background-color: var(--Gray-5, #e0e0e0);
   `,
+
+  content: css`
+    display: flex;
+    flex-direction: column;
+  `,
 };
 
 export default style;
