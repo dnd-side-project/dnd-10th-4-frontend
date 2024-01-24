@@ -4,7 +4,7 @@ import Background from '@/components/Background';
 import BackgroundImg from '@/assets/ocean.jpeg';
 import EmotionTestButton from '@/components/EmotionTestButton';
 import { ROUTER_PATHS } from '@/router';
-import BottomSheet from './components/BottomSheet';
+import BottomSheet from '@/components/BottomSheet';
 
 const App = () => {
   const [open, setOpen] = useState(false);

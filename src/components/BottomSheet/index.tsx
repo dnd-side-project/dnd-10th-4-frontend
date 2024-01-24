@@ -19,7 +19,7 @@ const BottomSheet = ({ open, onClose, onOpen, children }: BottomSheetProps) => {
       transitionDuration={400}
       PaperProps={{ style: styles.paper }}
     >
-      <div />
+      <div css={styles.header} />
       <div>{children}</div>
     </SwipeableDrawer>
   );
