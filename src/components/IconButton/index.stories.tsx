@@ -14,6 +14,8 @@ const meta = {
 
 export default meta;
 
+type Story = StoryObj<typeof meta>;
+
 const styles = {
   iconContainer: css`
     display: flex;
@@ -21,7 +23,15 @@ const styles = {
   `,
 };
 
-export const 상단_하단_아이콘_버튼: StoryObj = {
+export const Primary: Story = {
+  args: {
+    variant: 'header',
+    children: <Person />,
+  },
+};
+
+export const 아이콘_버튼: StoryObj = {
+  storyName: '아이콘 버튼(상단, 하단, 오른쪽, 왼쪽 화살표)',
   render: () => (
     <div css={styles.iconContainer}>
       <IconButton>
@@ -30,13 +40,6 @@ export const 상단_하단_아이콘_버튼: StoryObj = {
       <IconButton variant="bottom">
         <Heart />
       </IconButton>
-    </div>
-  ),
-};
-
-export const 화살표_아이콘_버튼: StoryObj = {
-  render: () => (
-    <div css={styles.iconContainer}>
       <IconButton variant="leftArrow">
         <LeftArrow />
       </IconButton>
