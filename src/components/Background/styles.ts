@@ -8,7 +8,7 @@ const style = {
     background-size: 37.5rem 100%;
     background-repeat: repeat-x;
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
