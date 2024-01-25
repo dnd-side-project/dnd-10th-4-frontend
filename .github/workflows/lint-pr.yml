@@ -1,0 +1,24 @@
+name: 'Lint PR'
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  main:
+    name: Title Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR 타이틀 체크
+        run: |
+          title=$(jq -r .pull_request.title "$GITHUB_EVENT_PATH")
+          valid_types=("✨ feat: " "🚑 fix: " "💄 design: " "📝 style: " "🔨 refactor: " "💡 comment: " "📚 docs: " "✅ test: " "📦 chore: " "🚚 rename: " "➖ remove: " "🚀 deploy: " "🎉 init: ")
+          regex="^($(IFS=\|; echo "${valid_types[*]}"))"
+
+          echo "PR 타이틀: $title"
+          echo "유효한 정규식: $regex"
+
+          if [[ ! $title =~ $regex ]]; then
+            echo "error: PR 타이틀은 다음 문자열중 하나로 시작해야 해요: ${valid_types[*]}"
+            exit 1
+          fi
