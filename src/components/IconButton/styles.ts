@@ -1,6 +1,10 @@
 import { css } from '@emotion/react';
 
-export type ButtonVariant = 'header' | 'leftArrow' | 'rightArrow' | 'bottom';
+export type ButtonVariant =
+  | 'header'
+  | 'leftCarousel'
+  | 'rightCarousel'
+  | 'bottom';
 
 const style = {
   button: (variant: ButtonVariant) => css`
@@ -32,7 +36,7 @@ const variants = {
     hoverBackground: 'rgba(255, 255, 255, 0.4)',
     activeBackground: 'rgba(255, 255, 255, 0.5)',
   },
-  leftArrow: {
+  leftCarousel: {
     border: '1px solid rgba(255, 255, 255, 0.30)',
     background:
       'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)',
@@ -41,7 +45,7 @@ const variants = {
     activeBackground:
       'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.70) 100%)',
   },
-  rightArrow: {
+  rightCarousel: {
     border: '1px solid rgba(255, 255, 255, 0.30)',
     background:
       'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.51) 38.5%, rgba(255, 255, 255, 0.20) 100%)',
