@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import Modal from '@/components/Modal';
 import HourGlass from '@/assets/icons/hourGlass.svg?react';
 import CaretDown from '@/assets/icons/caretDown.svg?react';
@@ -11,6 +11,7 @@ import styles from './styles';
 /** TODO: 모달 확인용 페이지입니다. 추후 제거해도 좋습니다. */
 const ModalTestPage = () => {
   const modal = useModal();
+  const backgroundRef = useRef<HTMLDivElement>(null);
   const { open, close } = modal;
 
   return (
@@ -28,7 +29,11 @@ const ModalTestPage = () => {
               <Siren />
             </IconButton>
           </div>
-          <section css={styles.mainSection}>
+          <section
+            css={styles.mainSection}
+            ref={backgroundRef}
+            onClick={(e) => e.target === backgroundRef.current && close()}
+          >
             <div css={styles.card}>
               <h2>
                 <span css={styles.from}>From.</span>
