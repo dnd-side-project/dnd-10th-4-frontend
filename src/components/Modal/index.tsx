@@ -1,24 +1,10 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { css } from '@emotion/react';
 import useModal from '@/hooks/useModal';
-
-const styles = {
-  container: css`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0 0 0 / 0.6);
-  `,
-  content: css`
-    max-width: 600px;
-    margin: 0 auto;
-  `,
-};
+import styles from './styles';
 
 interface ModalProps extends ReturnType<typeof useModal> {
+  /** 모달 컨텐츠 영역에 보여줄 컨텐츠입니다. */
   children: React.ReactNode;
 }
 
