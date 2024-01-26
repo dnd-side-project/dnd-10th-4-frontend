@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import useModal from '@/hooks/useModal';
 import styles from './styles';
 
@@ -20,16 +21,20 @@ const Modal = ({ isOpen, close, children }: ModalProps) => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
-  return (
-    <>
-      {isOpen &&
-        createPortal(
-          <div css={styles.container}>
-            <div css={styles.content}>{children}</div>
-          </div>,
-          document.body,
-        )}
-    </>
+  return createPortal(
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          css={styles.container}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div css={styles.content}>{children}</div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body,
   );
 };
 
