@@ -65,6 +65,7 @@ const styles = {
   `,
   bottomCard: css`
     display: flex;
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
     padding: 1.25rem;
