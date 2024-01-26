@@ -89,6 +89,14 @@ const styles = {
 const meta = {
   title: 'Components/Modal',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '모달 컴포넌트입니다.\nESC 키를 누르거나, 모달 바깥을 클릭하면 모달이 닫힙니다.',
+      },
+    },
+  },
   argTypes: {},
 } satisfies Meta<typeof Modal>;
 
