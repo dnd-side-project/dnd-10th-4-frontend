@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import useModal from '@/hooks/useModal';
@@ -100,6 +100,7 @@ export const 편지_작성_모달: Story = {
   render: () => {
     const ModalTestPage = () => {
       const modal = useModal();
+      const backgroundRef = useRef<HTMLDivElement>(null);
       const { open, close } = modal;
 
       return (
@@ -117,7 +118,11 @@ export const 편지_작성_모달: Story = {
                   <Siren />
                 </IconButton>
               </div>
-              <section css={styles.mainSection}>
+              <section
+                css={styles.mainSection}
+                ref={backgroundRef}
+                onClick={(e) => e.target === backgroundRef.current && close()}
+              >
                 <div css={styles.card}>
                   <h2>
                     <span css={styles.from}>From.</span>
