@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import useModal from '@/hooks/useModal';
@@ -10,6 +10,8 @@ interface ModalProps extends ReturnType<typeof useModal> {
 }
 
 const Modal = ({ isOpen, close, children }: ModalProps) => {
+  const containerRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -19,19 +21,21 @@ const Modal = ({ isOpen, close, children }: ModalProps) => {
 
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
-  }, [isOpen]);
+  }, [isOpen, close]);
 
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <motion.aside
           css={styles.container}
+          ref={containerRef}
+          onClick={(e) => e.target === containerRef.current && close()}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <div css={styles.content}>{children}</div>
-        </motion.div>
+        </motion.aside>
       )}
     </AnimatePresence>,
     document.body,

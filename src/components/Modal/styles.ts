@@ -8,6 +8,7 @@ const styles = {
     width: 100%;
     min-height: 100%;
     background-color: rgb(0 0 0 / 0.6);
+    user-select: none;
   `,
   content: css`
     max-width: 600px;
