@@ -14,7 +14,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "commitlint": "commitlint --edit",
-    "svgr": "@svgr/cli --out-dir src/assets/icons --ignore-existing -- src/assets/icons"
+    "svgr": "npx @svgr/cli --out-dir src/assets/icons -- src/assets/icons/raw"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
