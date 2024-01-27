@@ -1,16 +1,21 @@
 import * as React from 'react';
 import type { SVGProps } from 'react';
-const SvgHeart = ({ ...props }: SVGProps<SVGSVGElement>) => (
+const SvgHeart = ({
+  width = 24,
+  height = 24,
+  stroke = '#000',
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
+    width={width}
+    height={height}
     fill="none"
     {...props}
   >
     <g clipPath="url(#heart_svg__a)">
       <path
-        stroke="#000"
+        stroke={stroke}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}

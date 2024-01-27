@@ -1,15 +1,20 @@
 import * as React from 'react';
 import type { SVGProps } from 'react';
-const SvgHourGlass = ({ ...props }: SVGProps<SVGSVGElement>) => (
+const SvgHourGlass = ({
+  width = 24,
+  height = 24,
+  stroke = '#828282',
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
+    width={width}
+    height={height}
     fill="none"
     {...props}
   >
     <path
-      stroke="#828282"
+      stroke={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
