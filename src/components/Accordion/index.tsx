@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import DownArrow from '@/assets/icons/downArrow.svg?react';
 import formatDate from '@/utils/dateUtils';
 import useCheckTextLines from '@/hooks/useCheckTextLines';
-import style from './styles';
+import style, { accordionType } from './styles';
 
 interface AccordionProps {
   /** Accordion 컴포넌트의 id 값 입니다. */
@@ -14,9 +14,21 @@ interface AccordionProps {
   date: Date;
   /** Accordion 컴포넌트의 표시될 줄 개수 입니다. */
   line?: number;
+  /** Accordion 컴포넌트의 타입 입니다. (보관함/편지 보내기) */
+  type?: accordionType;
+  /** Accordion 컴포넌트에 들어가는 사진 URL 입니다. */
+  imgUrl?: string;
 }
 
-const Accordion = ({ id, text, date, line = 3 }: AccordionProps) => {
+const Accordion = ({
+  id,
+  text,
+  date,
+  line = 3,
+  type = 'inbox',
+  imgUrl = '',
+  ...props
+}: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const textContainerRef = useRef<HTMLDivElement>(null);
   const showButton = useCheckTextLines(textContainerRef, text, line);
@@ -44,6 +56,14 @@ const Accordion = ({ id, text, date, line = 3 }: AccordionProps) => {
               }}
             >
               <div>{text}</div>
+              {type !== 'inbox' && imgUrl && (
+                <img
+                  {...props}
+                  css={style.img}
+                  src={imgUrl}
+                  alt="편지와 함께 보낸 이미지"
+                />
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -53,7 +73,7 @@ const Accordion = ({ id, text, date, line = 3 }: AccordionProps) => {
           </div>
         )}
       </div>
-      <p css={style.date}>{formatDate(date)}</p>
+      <p css={style.date(type)}>{formatDate(date)}</p>
       {showButton && (
         <div css={style.bottom}>
           <div css={style.line} />

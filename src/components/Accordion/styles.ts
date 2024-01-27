@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+export type accordionType = 'inbox' | 'send';
+
 const style = {
   container: css`
     display: flex;
@@ -22,12 +24,13 @@ const style = {
     -webkit-line-clamp: ${line};
     -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
   `,
-  date: css`
+  date: (type: accordionType) => css`
     color: #888;
     font-weight: 400;
     font-style: normal;
     font-size: 12px;
     line-height: 16px;
+    text-align: ${type === 'send' ? 'end' : 'start'};
   `,
   arrow: (isOpen: boolean) => css`
     width: 24px;
@@ -57,6 +60,18 @@ const style = {
     font-size: 14px;
     line-height: 16px;
     cursor: pointer;
+  `,
+  img: css`
+    position: relative;
+    top: 60px;
+    left: 20px;
+    width: 50px;
+    height: 60px;
+    padding: 5.182px 5.182px 15.547px;
+    border: 0.486px solid var(--Gray-5, #e0e0e0);
+    border-radius: 2.591px;
+    background: #fff;
+    transform: rotate(-15deg);
   `,
 };
 
