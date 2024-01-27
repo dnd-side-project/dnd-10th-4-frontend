@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgKakaoLogo = ({
   width = 24,
   height = 24,
-  fill = '#000',
+  fill = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg
