@@ -31,7 +31,7 @@ export const Primary: Story = {
 };
 
 export const 아이콘_버튼: StoryObj = {
-  storyName: '아이콘 버튼(상단, 하단, 오른쪽, 왼쪽 화살표)',
+  name: '아이콘 버튼(상단, 하단, 오른쪽, 왼쪽 화살표)',
   render: () => (
     <div css={styles.iconContainer}>
       <IconButton>
