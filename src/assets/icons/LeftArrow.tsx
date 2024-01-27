@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgLeftArrow = ({
   width = 24,
   height = 24,
-  fill = '#fff',
+  stroke = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg
@@ -15,7 +15,7 @@ const SvgLeftArrow = ({
     {...props}
   >
     <path
-      stroke={fill}
+      stroke={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

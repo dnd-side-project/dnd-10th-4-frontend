@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgTreasureChestOutline = ({
   width = 24,
   height = 24,
-  fill = '#4f4f4f',
+  fill = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg

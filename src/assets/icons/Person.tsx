@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgPerson = ({
   width = 24,
   height = 24,
-  fill = '#fff',
+  fill = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg

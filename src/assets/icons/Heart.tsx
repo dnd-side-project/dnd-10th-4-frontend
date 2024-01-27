@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgHeart = ({
   width = 24,
   height = 24,
-  stroke = '#000',
+  stroke = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg

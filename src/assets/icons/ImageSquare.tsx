@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgImageSquare = ({
   width = 24,
   height = 24,
-  stroke = '#4F4F4F',
+  stroke = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg

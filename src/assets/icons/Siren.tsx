@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgSiren = ({
   width = 24,
   height = 24,
-  stroke = '#fff',
+  stroke = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg

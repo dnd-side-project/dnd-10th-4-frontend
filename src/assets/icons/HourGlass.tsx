@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgHourGlass = ({
   width = 24,
   height = 24,
-  stroke = '#828282',
+  stroke = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg

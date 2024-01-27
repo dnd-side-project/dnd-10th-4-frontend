@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 const SvgCaretDown = ({
   width = 24,
   height = 24,
-  stroke = '#BDBDBD',
+  stroke = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg
