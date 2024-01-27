@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DownArrow from '@/assets/icons/downArrow.svg?react';
-import formatDate from '@/utils/dateUtils';
+import { inboxDate, sendDate } from '@/utils/dateUtils';
 import useCheckTextLines from '@/hooks/useCheckTextLines';
 import style, { accordionType } from './styles';
 
@@ -46,7 +46,9 @@ const Accordion = ({
         textContainerRef={textContainerRef}
         {...props}
       />
-      <p css={style.date(type)}>{formatDate(date)}</p>
+      <p css={style.date(type)}>
+        {type === 'inbox' ? inboxDate(date) : sendDate(date)}
+      </p>
       {showButton && (
         <Bottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
       )}
