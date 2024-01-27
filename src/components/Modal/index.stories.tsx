@@ -2,9 +2,7 @@ import { Fragment, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import useModal from '@/hooks/useModal';
-import HourGlass from '@/assets/icons/hourGlass.svg?react';
-import CaretDown from '@/assets/icons/caretDown.svg?react';
-import Siren from '@/assets/icons/siren.svg?react';
+import { HourGlass, CaretDown, Siren } from '@/assets/icons';
 import IconButton from '../IconButton';
 import Button from '../Button';
 import Modal from '.';
@@ -119,11 +117,11 @@ export const 편지_작성_모달: Story = {
             <section css={styles.container}>
               <div css={styles.header}>
                 <div css={styles.glassLabel}>
-                  <HourGlass />
+                  <HourGlass color="#828282" />
                   <span>26h</span>
                 </div>
                 <IconButton variant="header">
-                  <Siren />
+                  <Siren color="white" />
                 </IconButton>
               </div>
               <section
