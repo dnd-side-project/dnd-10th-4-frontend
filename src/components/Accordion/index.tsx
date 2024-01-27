@@ -12,12 +12,14 @@ interface AccordionProps {
   text: string;
   /** Accordion 컴포넌트에 들어갈 날짜 입니다. */
   date: Date;
+  /** Accordion 컴포넌트의 표시될 줄 개수 입니다. */
+  line?: number;
 }
 
-const Accordion = ({ id, text, date }: AccordionProps) => {
+const Accordion = ({ id, text, date, line = 3 }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const textContainerRef = useRef<HTMLDivElement>(null);
-  const showButton = useCheckTextLines(textContainerRef, text);
+  const showButton = useCheckTextLines(textContainerRef, text, line);
 
   const toggleAccordion = () => setIsOpen(!isOpen);
 
@@ -46,7 +48,7 @@ const Accordion = ({ id, text, date }: AccordionProps) => {
           )}
         </AnimatePresence>
         {!isOpen && (
-          <div ref={textContainerRef} css={style.originalText}>
+          <div ref={textContainerRef} css={style.originalText(line)}>
             {text}
           </div>
         )}

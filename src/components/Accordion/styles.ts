@@ -5,6 +5,7 @@ const style = {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    overflow-y: hidden;
     padding-inline: 10px;
   `,
   contentText: css`
@@ -14,11 +15,11 @@ const style = {
     font-size: 14px;
     line-height: 140%;
   `,
-  originalText: css`
+  originalText: (line: number) => css`
     display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: ${line};
     -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
   `,
   date: css`
@@ -40,7 +41,8 @@ const style = {
     align-items: center;
   `,
   line: css`
-    width: 303px;
+    width: 100%;
+    max-width: 600px;
     height: 1px;
     background: #e0e0e0;
   `,

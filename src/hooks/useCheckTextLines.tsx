@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, RefObject } from 'react';
 const useCheckTextLines = (
   textContainerRef: RefObject<HTMLDivElement>,
   text: string,
+  line: number,
 ): boolean => {
   const [showButton, setShowButton] = useState(false);
 
@@ -13,9 +14,9 @@ const useCheckTextLines = (
         window.getComputedStyle(element).lineHeight,
       );
       const lines = element.scrollHeight / lineHeight;
-      setShowButton(lines > 3.5);
+      setShowButton(lines > line + 0.5);
     }
-  }, [textContainerRef]);
+  }, [textContainerRef, line]);
 
   useEffect(() => {
     if (textContainerRef.current) {
