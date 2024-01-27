@@ -16,6 +16,7 @@ const style = {
     line-height: 140%;
   `,
   originalText: css`
+    /* stylelint-disable-next-line property-no-unknown */
     display: box;
     overflow: hidden;
     text-overflow: ellipsis;
