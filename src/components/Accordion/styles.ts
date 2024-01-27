@@ -8,6 +8,7 @@ const style = {
     flex-direction: column;
     gap: 8px;
     overflow-y: hidden;
+    height: 100%;
     padding-inline: 10px;
   `,
   contentText: css`
@@ -65,8 +66,8 @@ const style = {
     position: relative;
     top: 60px;
     left: 20px;
-    width: 50px;
-    height: 60px;
+    width: 55px;
+    height: 65px;
     padding: 5.182px 5.182px 15.547px;
     border: 0.486px solid var(--Gray-5, #e0e0e0);
     border-radius: 2.591px;
