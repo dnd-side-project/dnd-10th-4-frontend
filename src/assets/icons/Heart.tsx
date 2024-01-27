@@ -11,6 +11,7 @@ const SvgHeart = ({
     width={width}
     height={height}
     fill="none"
+    viewBox="0 0 24 24"
     {...props}
   >
     <g clipPath="url(#heart_svg__a)">

@@ -11,6 +11,7 @@ const SvgRightArrow = ({
     width={width}
     height={height}
     fill="none"
+    viewBox="0 0 24 24"
     {...props}
   >
     <path

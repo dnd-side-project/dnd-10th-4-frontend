@@ -3,4 +3,5 @@ module.exports = {
   ignoreExisting: true,
   typescript: true,
   prettier: true,
+  dimensions: false,
 };
