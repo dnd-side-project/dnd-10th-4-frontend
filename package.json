@@ -13,7 +13,8 @@
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "svgr": "@svgr/cli --out-dir src/assets/icons --ignore-existing -- src/assets/icons"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -43,6 +44,7 @@
     "@storybook/react": "^7.6.8",
     "@storybook/react-vite": "^7.6.8",
     "@storybook/test": "^7.6.8",
+    "@svgr/cli": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^5.17.7",
     "@tanstack/react-query-devtools": "^5.17.12",
     "@types/node": "^20.11.2",

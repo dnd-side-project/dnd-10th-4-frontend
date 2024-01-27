@@ -1,0 +1,5 @@
+{
+  "ignoreExisting": true,
+  "typescript": true,
+  "prettier": true
+}
