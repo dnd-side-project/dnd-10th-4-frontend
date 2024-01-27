@@ -7,6 +7,14 @@ import * as icons from '.';
 const meta = {
   title: 'Assets/Icons',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '현재 앱에서 사용할 수 있는 모든 SVG 아이콘을 보여줍니다.\n\n아이콘에 마우스를 hover하면 아이콘의 이름이 표시됩니다.',
+      },
+    },
+  },
   argTypes: {
     color: {
       control: {
@@ -43,7 +51,7 @@ export const Primary: Story = {
   render: (args) => (
     <div css={styles.container}>
       {Object.keys(icons).map((iconName) => (
-        <div key={iconName}>
+        <div key={iconName} title={iconName}>
           {React.createElement(icons[iconName as keyof typeof icons], {
             ...args,
             width: args.size,
