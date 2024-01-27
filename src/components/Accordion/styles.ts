@@ -16,12 +16,11 @@ const style = {
     line-height: 140%;
   `,
   originalText: css`
-    /* stylelint-disable-next-line property-no-unknown */
-    display: box;
+    display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
   `,
   date: css`
     color: #888;
