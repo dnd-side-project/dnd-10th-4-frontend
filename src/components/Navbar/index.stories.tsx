@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import ImageSquare from '@/assets/icons/imageSquare.svg?react';
-import PencilLine from '@/assets/icons/pencilLine.svg?react';
-import TreasureChestOutline from '@/assets/icons/treasureChestOutline.svg?react';
+import { ImageSquare, PencilLine, TreasureChestOutline } from '@/assets/icons';
 import KakaoLoginButton from '../KakaoLoginButton';
 import Button, { buttonStyles } from '../Button';
 import Navbar from './';
@@ -39,7 +37,7 @@ export const 내게_온_답장: Story = {
     <Navbar css={styles.navbar}>
       <Button variant="primary-unaccent">닫기</Button>
       <Button variant="primary">
-        <TreasureChestOutline />
+        <TreasureChestOutline color="#828282" />
         보관하기
       </Button>
     </Navbar>
@@ -78,7 +76,7 @@ export const 편지_작성하기: Story = {
           `,
         ]}
       >
-        <ImageSquare width={20} />
+        <ImageSquare width={24} color="#4F4F4F" />
       </div>
     </Navbar>
   ),
