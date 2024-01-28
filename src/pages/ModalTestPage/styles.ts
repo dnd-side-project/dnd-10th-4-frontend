@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 const styles = {
   container: css`
@@ -25,7 +26,7 @@ const styles = {
     line-height: 1.5rem;
   `,
   nickname: css`
-    color: var(--gray2, #4f4f4f);
+    color: ${COLORS.gray2};
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1rem;

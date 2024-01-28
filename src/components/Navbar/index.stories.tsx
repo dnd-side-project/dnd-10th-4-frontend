@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import { ImageSquare, PencilLine, TreasureChestOutline } from '@/assets/icons';
+import COLORS from '@/constants/colors';
 import KakaoLoginButton from '../KakaoLoginButton';
 import Button, { buttonStyles } from '../Button';
 import Navbar from './';
@@ -76,7 +77,7 @@ export const 편지_작성하기: Story = {
           `,
         ]}
       >
-        <ImageSquare width={24} color="#4F4F4F" />
+        <ImageSquare width={24} color={COLORS.gray2} />
       </div>
     </Navbar>
   ),

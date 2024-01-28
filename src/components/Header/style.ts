@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 export type HeaderVariant = 'primary' | 'secondary' | 'none';
 
@@ -53,7 +54,7 @@ const secondary = {
   header: css`
     border-bottom: 1px solid rgb(255 255 255 / 0.12);
     background: rgb(255 255 255 / 0.75);
-    color: var(--gray2, #4f4f4f);
+    color: ${COLORS.gray2};
     backdrop-filter: blur(40px);
   `,
 };
