@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export type HeaderVariant = 'primary' | 'secondary';
+export type HeaderVariant = 'primary' | 'secondary' | 'none';
 
 const styles = {
   header: (variant: HeaderVariant) => css`
@@ -10,8 +10,11 @@ const styles = {
     align-items: center;
     width: 100%;
     height: 3.75rem;
+    font-weight: 700;
+    font-size: 0.875rem;
 
     ${variant === 'primary' && primary.header}
+    ${variant === 'secondary' && secondary.header}
   `,
   left: css`
     position: absolute;
@@ -42,9 +45,16 @@ const primary = {
       rgb(255 255 255 / 0.1) 98%
     );
     color: white;
-    font-weight: 700;
-    font-size: 0.875rem;
     backdrop-filter: blur(4px);
+  `,
+};
+
+const secondary = {
+  header: css`
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+    background: rgb(255 255 255 / 0.75);
+    color: var(--gray2, #4f4f4f);
+    backdrop-filter: blur(40px);
   `,
 };
 

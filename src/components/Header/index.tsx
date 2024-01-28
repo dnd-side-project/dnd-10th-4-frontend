@@ -23,7 +23,7 @@ interface HeaderProps {
 
 const Header = ({
   className,
-  variant = 'primary',
+  variant = 'none',
   left,
   leftStyle,
   center,
