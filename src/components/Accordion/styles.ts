@@ -11,14 +11,33 @@ const style = {
     height: 100%;
     padding-inline: 10px;
   `,
-  contentText: css`
+  contentText: (
+    isOpen: boolean,
+    line: number,
+    currentLine: number,
+    imgUrl?: string,
+  ) => css`
+    position: relative;
+    height: ${isOpen ? `${currentLine * 19.6}px` : `${line * 19.6}px`};
+    margin-bottom: ${imgUrl && isOpen && '60px'};
     color: var(--kakao-logo, #000);
     font-weight: 400;
     font-style: normal;
     font-size: 14px;
     line-height: 140%;
+    transition: height 0.5s ease-in-out;
+  `,
+  openText: css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   `,
   originalText: (line: number) => css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
     display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
     overflow: hidden;
     text-overflow: ellipsis;
@@ -62,9 +81,9 @@ const style = {
     line-height: 16px;
     cursor: pointer;
   `,
-  img: css`
+  img: (currentLine: number) => css`
     position: relative;
-    top: 60px;
+    top: ${currentLine * 20 + 20}px;
     left: 20px;
     width: 55px;
     height: 65px;

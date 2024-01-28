@@ -31,7 +31,11 @@ const Accordion = ({
 }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const textContainerRef = useRef<HTMLDivElement>(null);
-  const showButton = useCheckTextLines(textContainerRef, text, line);
+  const [showButton, currentLine] = useCheckTextLines(
+    textContainerRef,
+    text,
+    line,
+  );
 
   const toggleAccordion = () => setIsOpen(!isOpen);
 
@@ -44,6 +48,7 @@ const Accordion = ({
         type={type}
         line={line}
         textContainerRef={textContainerRef}
+        currentLine={currentLine}
         {...props}
       />
       <p css={style.date(type)}>
@@ -63,6 +68,7 @@ interface ContentTextProps {
   type: accordionType;
   line: number;
   textContainerRef: React.RefObject<HTMLDivElement>;
+  currentLine: number;
 }
 
 const ContentText = ({
@@ -72,6 +78,7 @@ const ContentText = ({
   type,
   line,
   textContainerRef,
+  currentLine,
   ...props
 }: ContentTextProps) => {
   const variants = {
@@ -80,7 +87,7 @@ const ContentText = ({
   };
 
   return (
-    <div css={style.contentText}>
+    <div css={style.contentText(isOpen, line, currentLine, imgUrl)}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -89,15 +96,15 @@ const ContentText = ({
             exit="collapsed"
             variants={variants}
             transition={{
-              opacity: { duration: 1.5 },
-              height: { duration: 0.5 },
+              opacity: { duration: 1 },
+              height: { duration: 1 },
             }}
           >
-            <div>{text}</div>
+            <div css={style.openText}>{text}</div>
             {type !== 'inbox' && imgUrl && (
               <img
                 {...props}
-                css={style.img}
+                css={style.img(currentLine)}
                 src={imgUrl}
                 alt="편지와 함께 보낸 이미지"
               />
