@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import KakaoLogo from '@/assets/icons/kakaoLogo.svg?react';
+import { KakaoLogo } from '@/assets/icons';
 import styles from './styles';
 
 interface KakaoLoginButtonProps extends React.ComponentProps<'button'> {}

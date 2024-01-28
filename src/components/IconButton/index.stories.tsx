@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import Person from '@/assets/icons/person.svg?react';
-import RightArrow from '@/assets/icons/rightArrow.svg?react';
-import LeftArrow from '@/assets/icons/leftArrow.svg?react';
-import Heart from '@/assets/icons/heart.svg?react';
+import { Person, RightArrow, LeftArrow, Heart } from '@/assets/icons';
 import IconButton from './';
 
 const meta = {
@@ -26,25 +23,25 @@ const styles = {
 export const Primary: Story = {
   args: {
     variant: 'header',
-    children: <Person />,
+    children: <Person color="white" />,
   },
 };
 
 export const 아이콘_버튼: StoryObj = {
-  storyName: '아이콘 버튼(상단, 하단, 오른쪽, 왼쪽 화살표)',
+  name: '아이콘 버튼(상단, 하단, 오른쪽, 왼쪽 화살표)',
   render: () => (
     <div css={styles.iconContainer}>
       <IconButton>
-        <Person />
+        <Person color="white" />
       </IconButton>
       <IconButton variant="bottom">
-        <Heart />
+        <Heart color="white" />
       </IconButton>
       <IconButton variant="leftCarousel">
-        <LeftArrow />
+        <LeftArrow color="white" />
       </IconButton>
       <IconButton variant="rightCarousel">
-        <RightArrow />
+        <RightArrow color="white" />
       </IconButton>
     </div>
   ),
