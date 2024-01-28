@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import LeftArrow from '@/assets/icons/leftArrow.svg?react';
-import Siren from '@/assets/icons/siren.svg?react';
-import HourGlass from '@/assets/icons/hourGlass.svg?react';
+import { LeftArrow, Siren, HourGlass } from '@/assets/icons';
 import IconButton from '../IconButton';
 import Header from './';
 
@@ -28,7 +26,7 @@ const styles = {
     justify-content: center;
     align-items: center;
     margin-left: 0.25rem;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 6.25rem;
     background-color: #fff;
     color: black;
@@ -64,14 +62,14 @@ export const 흘러온_편지: Story = {
         <>
           <LeftArrow css={styles.icon} />
           <div css={styles.chip}>
-            <HourGlass />
+            <HourGlass color="#828282" />
             <p>26h</p>
           </div>
         </>
       }
       right={
         <IconButton>
-          <Siren />
+          <Siren color="white" />
         </IconButton>
       }
     />
