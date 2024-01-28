@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 export type ButtonVariant = 'primary' | 'primary-unaccent' | 'white';
 
@@ -35,7 +36,7 @@ const variantStyles = {
       rgb(255 255 255 / 0.7) 0%,
       rgb(255 255 255 / 0.28) 100%
     );
-    color: #828282;
+    color: ${COLORS.gray3};
   `,
   white: css`
     background-color: white;

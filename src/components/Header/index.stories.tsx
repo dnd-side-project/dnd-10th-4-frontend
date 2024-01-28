@@ -8,6 +8,7 @@ import {
   Person,
   TreasureChestOutline,
 } from '@/assets/icons';
+import COLORS from '@/constants/colors';
 import IconButton from '../IconButton';
 import Header from './';
 
@@ -128,7 +129,7 @@ export const 흘러온_편지: Story = {
         <>
           <LeftArrow css={styles.icon} strokeWidth={2} />
           <div css={styles.흘러온_편지.timeChip}>
-            <HourGlass color="#828282" />
+            <HourGlass color={COLORS.gray3} />
             <p>26h</p>
           </div>
         </>

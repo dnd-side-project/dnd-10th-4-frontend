@@ -118,7 +118,7 @@ export const 편지_작성_모달: Story = {
             <section css={styles.container}>
               <div css={styles.header}>
                 <div css={styles.glassLabel}>
-                  <HourGlass color="#828282" />
+                  <HourGlass color={COLORS.gray3} />
                   <span>26h</span>
                 </div>
                 <IconButton variant="header">

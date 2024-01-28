@@ -38,7 +38,7 @@ export const 내게_온_답장: Story = {
     <Navbar css={styles.navbar}>
       <Button variant="primary-unaccent">닫기</Button>
       <Button variant="primary">
-        <TreasureChestOutline color="#828282" />
+        <TreasureChestOutline color={COLORS.gray3} />
         보관하기
       </Button>
     </Navbar>

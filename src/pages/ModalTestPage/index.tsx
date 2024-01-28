@@ -4,6 +4,7 @@ import { HourGlass, CaretDown, Siren } from '@/assets/icons';
 import useModal from '@/hooks/useModal';
 import IconButton from '@/components/IconButton';
 import Button from '@/components/Button';
+import COLORS from '@/constants/colors';
 import styles from './styles';
 
 /** TODO: 모달 확인용 페이지입니다. 추후 제거해도 좋습니다. */
@@ -20,7 +21,7 @@ const ModalTestPage = () => {
         <section css={styles.container}>
           <div css={styles.header}>
             <div css={styles.glassLabel}>
-              <HourGlass color="#828282" />
+              <HourGlass color={COLORS.gray3} />
               <span>26h</span>
             </div>
             <IconButton variant="header">
