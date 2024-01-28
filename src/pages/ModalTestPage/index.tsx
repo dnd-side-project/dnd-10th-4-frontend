@@ -1,8 +1,6 @@
 import { Fragment, useRef } from 'react';
 import Modal from '@/components/Modal';
-import HourGlass from '@/assets/icons/hourGlass.svg?react';
-import CaretDown from '@/assets/icons/caretDown.svg?react';
-import Siren from '@/assets/icons/siren.svg?react';
+import { HourGlass, CaretDown, Siren } from '@/assets/icons';
 import useModal from '@/hooks/useModal';
 import IconButton from '@/components/IconButton';
 import Button from '@/components/Button';
@@ -22,11 +20,11 @@ const ModalTestPage = () => {
         <section css={styles.container}>
           <div css={styles.header}>
             <div css={styles.glassLabel}>
-              <HourGlass />
+              <HourGlass color="#828282" />
               <span>26h</span>
             </div>
             <IconButton variant="header">
-              <Siren />
+              <Siren color="white" />
             </IconButton>
           </div>
           <section
