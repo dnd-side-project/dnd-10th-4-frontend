@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DownArrow from '@/assets/icons/downArrow.svg?react';
+import DownArrow from '@/assets/icons/DownArrow';
 import { formatDate } from '@/utils/dateUtils';
 import useCheckTextLines from '@/hooks/useCheckTextLines';
 import style, { letterAccordionType } from './styles';
