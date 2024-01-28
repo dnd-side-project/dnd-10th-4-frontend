@@ -4,8 +4,9 @@ const useCheckTextLines = (
   textContainerRef: RefObject<HTMLDivElement>,
   text: string,
   line: number,
-): boolean => {
+): [boolean, number] => {
   const [showButton, setShowButton] = useState(false);
+  const [currentLineCount, setCurrentLineCount] = useState(0);
 
   const checkTextLines = useCallback(() => {
     if (textContainerRef.current) {
@@ -13,8 +14,10 @@ const useCheckTextLines = (
       const lineHeight = parseFloat(
         window.getComputedStyle(element).lineHeight,
       );
-      const lines = element.scrollHeight / lineHeight;
-      setShowButton(lines > line + 0.5);
+
+      const lines = Math.round(element.scrollHeight / lineHeight + 0.09);
+      setCurrentLineCount(lines);
+      setShowButton(lines > line);
     }
   }, [textContainerRef, line]);
 
@@ -26,7 +29,8 @@ const useCheckTextLines = (
     }
   }, [text, textContainerRef, checkTextLines]);
 
-  return showButton;
+  console.log(currentLineCount);
+  return [showButton, currentLineCount + 0.5];
 };
 
 export default useCheckTextLines;
