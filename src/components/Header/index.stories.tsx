@@ -60,7 +60,7 @@ export const 흘러온_편지: Story = {
       variant="primary"
       left={
         <>
-          <LeftArrow css={styles.icon} />
+          <LeftArrow css={styles.icon} strokeWidth={2} />
           <div css={styles.chip}>
             <HourGlass color="#828282" />
             <p>26h</p>
@@ -81,7 +81,7 @@ export const 보관함_편지: Story = {
   render: () => (
     <Header
       variant="primary"
-      left={<LeftArrow css={styles.icon} />}
+      left={<LeftArrow css={styles.icon} strokeWidth={2} />}
       center={<>보관함</>}
     />
   ),
