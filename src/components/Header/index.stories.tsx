@@ -41,7 +41,7 @@ const styles = {
     emptyBox: css`
       width: 1.5rem;
       height: 1.5rem;
-      background: var(--Gray-6, #f2f2f2);
+      background: ${COLORS.gray6};
     `,
     countChip: css`
       display: flex;
