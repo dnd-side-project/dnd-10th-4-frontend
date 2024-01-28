@@ -78,9 +78,9 @@ const styles = {
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    left: <>왼쪽</>,
-    center: <>가운데</>,
-    right: <>오른쪽</>,
+    leftContent: <>왼쪽</>,
+    centerContent: <>가운데</>,
+    rightContent: <>오른쪽</>,
   },
   decorators: [
     (Story) => (
@@ -95,13 +95,13 @@ export const 메인_페이지: Story = {
   render: () => (
     <Header
       variant="none"
-      left={
+      leftContent={
         <div css={styles.메인_페이지.countChip}>
           <div css={styles.메인_페이지.emptyBox} />
           <p>N개</p>
         </div>
       }
-      right={
+      rightContent={
         <>
           <IconButton variant="header">
             <SoundMaxFill color="white" />
@@ -124,7 +124,7 @@ export const 흘러온_편지: Story = {
   render: () => (
     <Header
       variant="none"
-      left={
+      leftContent={
         <>
           <LeftArrow css={styles.icon} strokeWidth={2} />
           <div css={styles.흘러온_편지.timeChip}>
@@ -133,7 +133,7 @@ export const 흘러온_편지: Story = {
           </div>
         </>
       }
-      right={
+      rightContent={
         <IconButton>
           <Siren color="white" />
         </IconButton>
@@ -147,8 +147,8 @@ export const 보관함_편지: Story = {
   render: () => (
     <Header
       variant="none"
-      left={<LeftArrow css={styles.icon} strokeWidth={2} />}
-      center={<>보관함</>}
+      leftContent={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      centerContent={<>보관함</>}
     />
   ),
 };
@@ -158,8 +158,8 @@ export const 보관함_편지_Secondary: Story = {
   render: () => (
     <Header
       variant="secondary"
-      left={<LeftArrow css={styles.icon} strokeWidth={2} />}
-      center={<>보관함</>}
+      leftContent={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      centerContent={<>보관함</>}
     />
   ),
 };
