@@ -6,12 +6,4 @@ const formatDate = (date: Date): string => {
   return `${year}년 ${month}월 ${day}일`;
 };
 
-const inboxDate = (date: Date): string => {
-  return `${formatDate(date)}에 받은 편지`;
-};
-
-const sendDate = (date: Date): string => {
-  return formatDate(date);
-};
-
-export { inboxDate, sendDate };
+export { formatDate };
