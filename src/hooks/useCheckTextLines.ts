@@ -29,7 +29,6 @@ const useCheckTextLines = (
     }
   }, [text, textContainerRef, checkTextLines]);
 
-  console.log(currentLineCount);
   return [showButton, currentLineCount + 0.5];
 };
 
