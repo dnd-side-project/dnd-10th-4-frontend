@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 const styles = {
   background: css`
     background-color: #94d1f5;
-    color: red;
+    color: white;
   `,
   icon: css`
     cursor: pointer;
@@ -94,7 +94,7 @@ export const 메인_페이지: Story = {
   ...Primary,
   render: () => (
     <Header
-      variant="primary"
+      variant="none"
       left={
         <div css={styles.메인_페이지.countChip}>
           <div css={styles.메인_페이지.emptyBox} />
@@ -123,7 +123,7 @@ export const 흘러온_편지: Story = {
   ...Primary,
   render: () => (
     <Header
-      variant="primary"
+      variant="none"
       left={
         <>
           <LeftArrow css={styles.icon} strokeWidth={2} />
@@ -146,7 +146,18 @@ export const 보관함_편지: Story = {
   ...Primary,
   render: () => (
     <Header
-      variant="primary"
+      variant="none"
+      left={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      center={<>보관함</>}
+    />
+  ),
+};
+
+export const 보관함_편지_Secondary: Story = {
+  ...Primary,
+  render: () => (
+    <Header
+      variant="secondary"
       left={<LeftArrow css={styles.icon} strokeWidth={2} />}
       center={<>보관함</>}
     />
