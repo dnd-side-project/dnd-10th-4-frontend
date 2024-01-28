@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export type accordionType = 'inbox' | 'send';
+export type letterAccordionType = 'inbox' | 'send';
 
 const style = {
   container: css`
@@ -44,7 +44,7 @@ const style = {
     -webkit-line-clamp: ${line};
     -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
   `,
-  date: (type: accordionType) => css`
+  date: (type: letterAccordionType) => css`
     color: #888;
     font-weight: 400;
     font-style: normal;

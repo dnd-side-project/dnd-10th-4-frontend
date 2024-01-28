@@ -3,24 +3,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 import DownArrow from '@/assets/icons/downArrow.svg?react';
 import { formatDate } from '@/utils/dateUtils';
 import useCheckTextLines from '@/hooks/useCheckTextLines';
-import style, { accordionType } from './styles';
+import style, { letterAccordionType } from './styles';
 
-interface AccordionProps {
-  /** Accordion 컴포넌트의 id 값 입니다. */
+interface LetterAccordionProps {
+  /** LetterAccordion 컴포넌트의 id 값 입니다. */
   id: string;
-  /** Accordion 컴포넌트에 들어갈 편지 내용입니다. */
+  /** LetterAccordion 컴포넌트에 들어갈 편지 내용입니다. */
   text: string;
-  /** Accordion 컴포넌트에 들어갈 날짜 입니다. */
+  /** LetterAccordion 컴포넌트에 들어갈 날짜 입니다. */
   date: Date;
-  /** Accordion 컴포넌트의 표시될 줄 개수 입니다. */
+  /** LetterAccordion 컴포넌트의 표시될 줄 개수 입니다. */
   line?: number;
-  /** Accordion 컴포넌트의 타입 입니다. (보관함/편지 보내기) */
-  type?: accordionType;
-  /** Accordion 컴포넌트에 들어가는 사진 URL 입니다. */
+  /** LetterAccordion 컴포넌트의 타입 입니다. (보관함/편지 보내기) */
+  type?: letterAccordionType;
+  /** LetterAccordion 컴포넌트에 들어가는 사진 URL 입니다. */
   imgUrl?: string;
 }
 
-const Accordion = ({
+const LetterAccordion = ({
   id,
   text,
   date,
@@ -28,7 +28,7 @@ const Accordion = ({
   type = 'inbox',
   imgUrl = '',
   ...props
-}: AccordionProps) => {
+}: LetterAccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const textContainerRef = useRef<HTMLDivElement>(null);
   const [showButton, currentLine] = useCheckTextLines(
@@ -41,7 +41,7 @@ const Accordion = ({
 
   return (
     <div css={style.container} id={id}>
-      <ContentText
+      <LetterContent
         isOpen={isOpen}
         text={text}
         imgUrl={imgUrl}
@@ -56,23 +56,23 @@ const Accordion = ({
         {type === 'inbox' && '에 받은 편지'}
       </p>
       {showButton && (
-        <Bottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
+        <LetterBottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
       )}
     </div>
   );
 };
 
-interface ContentTextProps {
+interface LetterContentProps {
   isOpen: boolean;
   text: string;
   imgUrl?: string;
-  type: accordionType;
+  type: letterAccordionType;
   line: number;
   textContainerRef: React.RefObject<HTMLDivElement>;
   currentLine: number;
 }
 
-const ContentText = ({
+const LetterContent = ({
   isOpen,
   text,
   imgUrl,
@@ -81,7 +81,7 @@ const ContentText = ({
   textContainerRef,
   currentLine,
   ...props
-}: ContentTextProps) => {
+}: LetterContentProps) => {
   const variants = {
     open: { opacity: 1, height: 'auto' },
     collapsed: { opacity: 0, height: 0 },
@@ -122,12 +122,12 @@ const ContentText = ({
   );
 };
 
-interface BottomProps {
+interface LetterBottomProps {
   isOpen: boolean;
   toggleAccordion: () => void;
 }
 
-const Bottom = ({ isOpen, toggleAccordion }: BottomProps) => {
+const LetterBottom = ({ isOpen, toggleAccordion }: LetterBottomProps) => {
   return (
     <div css={style.bottom}>
       <div css={style.line} />
@@ -144,4 +144,4 @@ const Bottom = ({ isOpen, toggleAccordion }: BottomProps) => {
   );
 };
 
-export default Accordion;
+export default LetterAccordion;
