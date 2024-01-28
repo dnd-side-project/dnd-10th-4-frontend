@@ -30,16 +30,13 @@ const styles = {
   icon: css`
     cursor: pointer;
   `,
-  leftStyle: css`
-    margin-left: 1rem;
-  `,
-  rightStyle: css`
-    display: flex;
-    gap: 0.5rem;
-    margin-right: 1rem;
-    color: white;
-  `,
   메인_페이지: {
+    rightStyle: css`
+      display: flex;
+      gap: 0.5rem;
+      margin-right: 1rem;
+      color: white;
+    `,
     emptyBox: css`
       width: 1.5rem;
       height: 1.5rem;
@@ -80,6 +77,7 @@ const styles = {
 
 export const Primary: Story = {
   args: {
+    variant: 'primary',
     left: <>왼쪽</>,
     center: <>가운데</>,
     right: <>오른쪽</>,
@@ -103,7 +101,6 @@ export const 메인_페이지: Story = {
           <p>N개</p>
         </div>
       }
-      leftStyle={styles.leftStyle}
       right={
         <>
           <IconButton variant="header">
@@ -117,7 +114,7 @@ export const 메인_페이지: Story = {
           </IconButton>
         </>
       }
-      rightStyle={styles.rightStyle}
+      rightStyle={styles.메인_페이지.rightStyle}
     />
   ),
 };
@@ -136,13 +133,11 @@ export const 흘러온_편지: Story = {
           </div>
         </>
       }
-      leftStyle={styles.leftStyle}
       right={
         <IconButton>
           <Siren color="white" />
         </IconButton>
       }
-      rightStyle={styles.rightStyle}
     />
   ),
 };
@@ -153,7 +148,6 @@ export const 보관함_편지: Story = {
     <Header
       variant="primary"
       left={<LeftArrow css={styles.icon} strokeWidth={2} />}
-      leftStyle={styles.leftStyle}
       center={<>보관함</>}
     />
   ),
