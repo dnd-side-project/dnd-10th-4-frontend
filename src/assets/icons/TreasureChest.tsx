@@ -1,9 +1,8 @@
 import type { SVGProps } from 'react';
-const SvgLeftArrow = ({
+const SvgTreasureChest = ({
   width = 24,
   height = 24,
-  stroke = 'currentColor',
-  strokeWidth = 1.5,
+  fill = 'currentColor',
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg
@@ -15,12 +14,9 @@ const SvgLeftArrow = ({
     {...props}
   >
     <path
-      stroke={stroke}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={strokeWidth}
-      d="M15 4.5 7.5 12l7.5 7.5"
+      fill={fill}
+      d="M5 4h14a3 3 0 0 1 3 3v4h-7v-1H9v1H2V7a3 3 0 0 1 3-3m6 7h2v2h-2zm-9 1h7v1l2 2h2l2-2v-1h7v8H2z"
     />
   </svg>
 );
-export default SvgLeftArrow;
+export default SvgTreasureChest;
