@@ -27,7 +27,7 @@ const styles = {
   from: css`
     display: inline-block;
     margin-right: 0.5rem;
-    color: var(--gray1, #333);
+    color: ${COLORS.gray1};
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.5rem;
