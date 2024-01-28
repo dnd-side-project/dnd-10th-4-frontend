@@ -101,7 +101,9 @@ const LetterContent = ({
               height: { duration: 1 },
             }}
           >
-            <div css={style.openText}>{text}</div>
+            <div ref={textContainerRef} css={style.openText}>
+              {text}
+            </div>
             {type !== 'inbox' && imgUrl && (
               <img
                 {...props}
