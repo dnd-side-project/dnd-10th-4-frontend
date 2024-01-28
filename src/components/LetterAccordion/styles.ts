@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 export type letterAccordionType = 'inbox' | 'send';
 
@@ -74,7 +75,7 @@ const style = {
     gap: 0.3125rem;
     align-items: center;
     padding-block: 0.75rem;
-    color: var(--Gray-4, #bdbdbd);
+    color: ${COLORS.gray4};
     font-weight: 500;
     font-style: normal;
     font-size: 0.875rem;

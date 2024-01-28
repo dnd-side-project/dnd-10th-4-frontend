@@ -66,7 +66,7 @@ const styles = {
     line-height: 1.5rem;
   `,
   date: css`
-    color: var(--gray4, #bdbdbd);
+    color: ${COLORS.gray4};
     font-size: 0.75rem;
     line-height: 1rem;
     text-align: right;
@@ -79,7 +79,7 @@ const styles = {
     padding: 1.25rem;
     border-radius: 0.5rem;
     background-color: white;
-    color: var(--gray4, #bdbdbd);
+    color: ${COLORS.gray4};
     cursor: pointer;
     user-select: none;
   `,
