@@ -6,10 +6,10 @@ const style = {
   container: css`
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
     overflow-y: hidden;
     height: 100%;
-    padding-inline: 10px;
+    padding-inline: 0.625rem;
   `,
   contentText: (
     isOpen: boolean,
@@ -18,14 +18,14 @@ const style = {
     imgUrl?: string,
   ) => css`
     position: relative;
-    height: ${isOpen ? `${currentLine * 19.6}px` : `${line * 19.6}px`};
-    margin-bottom: ${imgUrl && isOpen && '60px'};
+    height: ${isOpen ? `${currentLine * 1.225}rem` : `${line * 1.225}rem`};
+    margin-bottom: ${imgUrl && isOpen && '3.75rem'};
     color: var(--kakao-logo, #000);
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 140%;
-    transition: height 0.5s ease-in-out;
+    transition: height 1s ease-in-out;
   `,
   openText: css`
     position: absolute;
@@ -48,13 +48,13 @@ const style = {
     color: #888;
     font-weight: 400;
     font-style: normal;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
     text-align: ${type === 'send' ? 'end' : 'start'};
   `,
   arrow: (isOpen: boolean) => css`
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     transition: transform 1s;
     transform: ${isOpen ? 'rotate(180deg)' : 'none'};
   `,
@@ -65,31 +65,31 @@ const style = {
   `,
   line: css`
     width: 100%;
-    max-width: 600px;
-    height: 1px;
+    max-width: 37.5rem;
+    height: 0.0625rem;
     background: #e0e0e0;
   `,
   button: css`
     display: flex;
-    gap: 5px;
+    gap: 0.3125rem;
     align-items: center;
-    padding-block: 12px;
+    padding-block: 0.75rem;
     color: var(--Gray-4, #bdbdbd);
     font-weight: 500;
     font-style: normal;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 0.875rem;
+    line-height: 1rem;
     cursor: pointer;
   `,
   img: (currentLine: number) => css`
     position: relative;
-    top: ${currentLine * 20 + 20}px;
-    left: 20px;
-    width: 55px;
-    height: 65px;
-    padding: 5.182px 5.182px 15.547px;
-    border: 0.486px solid var(--Gray-5, #e0e0e0);
-    border-radius: 2.591px;
+    top: ${currentLine * 1.25 + 1.25}rem;
+    left: 1rem;
+    width: 3.4375rem;
+    height: 4.0625rem;
+    padding: 0.324rem 0.324rem 0.972rem;
+    border: 0.030375rem solid var(--Gray-5, #e0e0e0);
+    border-radius: 0.162rem;
     background: #fff;
     transform: rotate(-15deg);
   `,
