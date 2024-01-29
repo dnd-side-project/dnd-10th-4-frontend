@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import useModal from '@/hooks/useModal';
 import { HourGlass, CaretDown, Siren } from '@/assets/icons';
+import COLORS from '@/constants/colors';
 import IconButton from '../IconButton';
 import Button from '../Button';
 import Modal from '.';
@@ -26,13 +27,13 @@ const styles = {
   from: css`
     display: inline-block;
     margin-right: 0.5rem;
-    color: var(--gray1, #333);
+    color: ${COLORS.gray1};
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.5rem;
   `,
   nickname: css`
-    color: var(--gray2, #4f4f4f);
+    color: ${COLORS.gray2};
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1rem;
@@ -65,7 +66,7 @@ const styles = {
     line-height: 1.5rem;
   `,
   date: css`
-    color: var(--gray4, #bdbdbd);
+    color: ${COLORS.gray4};
     font-size: 0.75rem;
     line-height: 1rem;
     text-align: right;
@@ -78,7 +79,7 @@ const styles = {
     padding: 1.25rem;
     border-radius: 0.5rem;
     background-color: white;
-    color: var(--gray4, #bdbdbd);
+    color: ${COLORS.gray4};
     cursor: pointer;
     user-select: none;
   `,
@@ -117,7 +118,7 @@ export const 편지_작성_모달: Story = {
             <section css={styles.container}>
               <div css={styles.header}>
                 <div css={styles.glassLabel}>
-                  <HourGlass color="#828282" />
+                  <HourGlass color={COLORS.gray3} />
                   <span>26h</span>
                 </div>
                 <IconButton variant="header">

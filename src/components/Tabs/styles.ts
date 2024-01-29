@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 export type TabsVariant = 'primary';
 
@@ -36,7 +37,7 @@ const variantStyles = {
       border: 1px solid transparent;
       border-radius: 0.75rem;
       background: none;
-      color: #828282;
+      color: ${COLORS.gray3};
 
       &:focus {
         outline: none;

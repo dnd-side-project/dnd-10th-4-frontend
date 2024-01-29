@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 export type letterAccordionType = 'inbox' | 'send';
 
@@ -67,14 +68,14 @@ const style = {
     width: 100%;
     max-width: 37.5rem;
     height: 0.0625rem;
-    background: #e0e0e0;
+    background: ${COLORS.gray5};
   `,
   button: css`
     display: flex;
     gap: 0.3125rem;
     align-items: center;
     padding-block: 0.75rem;
-    color: var(--Gray-4, #bdbdbd);
+    color: ${COLORS.gray4};
     font-weight: 500;
     font-style: normal;
     font-size: 0.875rem;
@@ -88,7 +89,7 @@ const style = {
     width: 3.4375rem;
     height: 4.0625rem;
     padding: 0.324rem 0.324rem 0.972rem;
-    border: 0.030375rem solid var(--Gray-5, #e0e0e0);
+    border: 0.030375rem solid ${COLORS.gray5};
     border-radius: 0.162rem;
     background: #fff;
     transform: rotate(-15deg);
