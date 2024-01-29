@@ -7,7 +7,12 @@ const meta = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+      description: '버튼의 비활성화 여부입니다.',
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -17,12 +22,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     variant: 'primary',
-    children: (
-      <>
-        <PencilLine />
-        <p>button</p>
-      </>
-    ),
+    size: 'md',
+    children: 'button',
+    disabled: false,
   },
 };
 
@@ -93,7 +95,7 @@ export const SemiTransparent: Story = {
         <PencilLine />
         <p>button</p>
       </Button>
-      <Button disabled variant="semi-transparent">
+      <Button variant="semi-transparent">
         <PencilLine />
         <p>button</p>
       </Button>
