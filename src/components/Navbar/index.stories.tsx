@@ -22,13 +22,26 @@ const styles = {
     width: 390px;
     background-color: #fcecd0;
   `,
+  편지_작성하기: {
+    iconContainer: css`
+      flex-grow: 0;
+      margin-left: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+    `,
+  },
 };
 
 export const 흘러온_편지: Story = {
   render: () => (
     <Navbar css={styles.navbar}>
-      <Button variant="primary-unaccent">다시 흘려보내기</Button>
-      <Button variant="primary">답장하기</Button>
+      <Button variant="secondary" size="sm">
+        다시 흘려보내기
+      </Button>
+      <Button variant="primary" size="sm">
+        답장하기
+      </Button>
     </Navbar>
   ),
 };
@@ -36,9 +49,11 @@ export const 흘러온_편지: Story = {
 export const 내게_온_답장: Story = {
   render: () => (
     <Navbar css={styles.navbar}>
-      <Button variant="primary-unaccent">닫기</Button>
-      <Button variant="primary">
-        <TreasureChestOutline color={COLORS.gray3} />
+      <Button variant="semi-transparent-unaccent" size="sm">
+        닫기
+      </Button>
+      <Button variant="semi-transparent" size="sm">
+        <TreasureChestOutline />
         보관하기
       </Button>
     </Navbar>
@@ -54,8 +69,12 @@ export const 사진: Story = {
         backdrop-filter: blur(2px);
       `}
     >
-      <Button variant="primary-unaccent">닫기</Button>
-      <Button variant="primary">저장</Button>
+      <Button variant="semi-transparent-unaccent" size="sm">
+        닫기
+      </Button>
+      <Button variant="semi-transparent" size="sm">
+        저장
+      </Button>
     </Navbar>
   ),
 };
@@ -63,21 +82,19 @@ export const 사진: Story = {
 export const 편지_작성하기: Story = {
   render: () => (
     <Navbar css={styles.navbar}>
-      <Button variant="primary-unaccent">뒤로</Button>
-      <Button variant="primary">답장 보내기</Button>
+      <Button variant="secondary" size="sm">
+        뒤로
+      </Button>
+      <Button variant="primary" size="sm">
+        답장 보내기
+      </Button>
       <div
         css={[
-          buttonStyles.button('primary'),
-          css`
-            flex: 0;
-            width: 1rem;
-            margin-left: 0.75rem;
-            padding: 0.625rem;
-            border-radius: 0.5rem;
-          `,
+          buttonStyles.button('semi-transparent', 'sm'),
+          styles.편지_작성하기.iconContainer,
         ]}
       >
-        <ImageSquare width={24} color={COLORS.gray2} />
+        <ImageSquare color={COLORS.gray2} />
       </div>
     </Navbar>
   ),
@@ -86,39 +103,10 @@ export const 편지_작성하기: Story = {
 export const 편지_쓰기: Story = {
   render: () => (
     <Navbar css={styles.navbar}>
-      <Button
-        css={css`
-          font-weight: 700;
-          line-height: 2rem;
-        `}
-        variant="white"
-      >
-        <PencilLine width="20" />
-        편지 쓰기
+      <Button variant="primary">
+        <PencilLine />
+        편지 쓰러 가기
       </Button>
-    </Navbar>
-  ),
-};
-
-export const 온보딩: Story = {
-  render: () => (
-    <Navbar css={styles.navbar}>
-      <div
-        css={css`
-          width: 12.5rem;
-        `}
-      >
-        <Button
-          css={css`
-            width: 100%;
-            font-weight: 700;
-            line-height: 2rem;
-          `}
-          variant="white"
-        >
-          시작하기
-        </Button>
-      </div>
     </Navbar>
   ),
 };
