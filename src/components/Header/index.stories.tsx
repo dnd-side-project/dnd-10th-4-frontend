@@ -8,6 +8,7 @@ import {
   Person,
   TreasureChestOutline,
 } from '@/assets/icons';
+import COLORS from '@/constants/colors';
 import IconButton from '../IconButton';
 import Header from './';
 
@@ -40,7 +41,7 @@ const styles = {
     emptyBox: css`
       width: 1.5rem;
       height: 1.5rem;
-      background: var(--Gray-6, #f2f2f2);
+      background: ${COLORS.gray6};
     `,
     countChip: css`
       display: flex;
@@ -128,7 +129,7 @@ export const 흘러온_편지: Story = {
         <>
           <LeftArrow css={styles.icon} strokeWidth={2} />
           <div css={styles.흘러온_편지.timeChip}>
-            <HourGlass color="#828282" />
+            <HourGlass color={COLORS.gray3} />
             <p>26h</p>
           </div>
         </>
