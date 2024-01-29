@@ -104,7 +104,7 @@ export const 고민_종류_칩: StoryObj = {
   },
 };
 
-export const 아이콘_칩: StoryObj = {
+export const 물병_칩: StoryObj = {
   render: () => (
     <div css={styles.chipContainer}>
       <Chip variant="bottle-tag">

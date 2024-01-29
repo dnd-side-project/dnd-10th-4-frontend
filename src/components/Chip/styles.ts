@@ -89,9 +89,9 @@ const variants = {
     &::after {
       content: '';
       position: absolute;
-      top: 25px;
-      right: 22px;
-      border-width: 8px;
+      top: 1.5625rem;
+      right: 1.375rem;
+      border-width: 0.5rem;
       border-style: solid;
       border-color: white transparent transparent;
     }
