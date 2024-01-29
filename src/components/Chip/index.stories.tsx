@@ -37,7 +37,7 @@ const styles = {
   `,
   formContainer: css`
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
   `,
   formChip: css`
     flex: 1;
