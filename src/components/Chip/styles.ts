@@ -73,7 +73,7 @@ const variants = {
     ${baseChipStyle};
     background: white;
     font-weight: 500;
-    gap: 0.5rem;
+    gap: 0.25rem;
     padding: 0.25rem 0.75rem;
     font-size: 0.875rem;
     line-height: 1rem;

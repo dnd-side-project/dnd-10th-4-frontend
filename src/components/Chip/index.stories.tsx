@@ -108,7 +108,7 @@ export const 아이콘_칩: StoryObj = {
   render: () => (
     <div css={styles.chipContainer}>
       <Chip variant="bottle-tag">
-        <HourGlass color="#828282" width={14} />
+        <HourGlass color="#828282" width={14} height={14} />
         <p>26h</p>
       </Chip>
       <Chip variant="bottle-tag">NEW</Chip>
