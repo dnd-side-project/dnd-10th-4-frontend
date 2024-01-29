@@ -90,7 +90,7 @@ export const 고민_종류_칩: StoryObj = {
                 key={label}
                 variant={getVariant(label)}
                 onClick={() => handleChipClick(label)}
-                chipStyle={styles.chip}
+                css={styles.chip}
               >
                 {label}
               </Chip>
@@ -131,15 +131,15 @@ export const 폼_칩: StoryObj = {
   render: () => (
     <div css={{ backgroundColor: 'white', padding: '0.625rem' }}>
       <div css={styles.formContainer}>
-        <Chip variant="form-selected" chipStyle={styles.formChip}>
+        <Chip variant="form-selected" css={styles.formChip}>
           모두에게 보내기
         </Chip>
-        <Chip variant="form" chipStyle={styles.formChip}>
+        <Chip variant="form" css={styles.formChip}>
           나와 같은 성별에게 보내기
         </Chip>
       </div>
       <div>
-        <Chip variant="form" chipStyle={styles.formChip}>
+        <Chip variant="form" css={styles.formChip}>
           일·직장
         </Chip>
       </div>
