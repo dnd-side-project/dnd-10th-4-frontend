@@ -6,6 +6,7 @@ export type VariantType =
   | 'primary-selected'
   | 'primary-disabled'
   | 'bottle-tag'
+  | 'bottle-tag-bubble'
   | 'filter'
   | 'form'
   | 'form-selected';
@@ -42,6 +43,17 @@ const formChipStyles = css`
   color: ${COLORS.gray1};
 `;
 
+const bottleTagStyles = css`
+  ${baseChipStyle};
+  background: white;
+  font-weight: 500;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.3);
+`;
+
 const variants = {
   primary: css`
     ${baseChipStyle};
@@ -70,14 +82,19 @@ const variants = {
     color: ${COLORS.gray4};
   `,
   'bottle-tag': css`
-    ${baseChipStyle};
-    background: white;
-    font-weight: 500;
-    gap: 0.25rem;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1rem;
-    border: 1px solid rgb(255 255 255 / 0.3);
+    ${bottleTagStyles};
+  `,
+  'bottle-tag-bubble': css`
+    ${bottleTagStyles}
+    &::after {
+      content: '';
+      position: absolute;
+      top: 25px;
+      right: 22px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: white transparent transparent;
+    }
   `,
   filter: css`
     ${baseChipStyle};

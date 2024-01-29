@@ -112,6 +112,7 @@ export const 아이콘_칩: StoryObj = {
         <p>26h</p>
       </Chip>
       <Chip variant="bottle-tag">NEW</Chip>
+      <Chip variant="bottle-tag-bubble">답장이 도착했어요</Chip>
     </div>
   ),
 };
