@@ -10,6 +10,7 @@ export { default as LeftArrow } from './LeftArrow';
 export { default as PencilLine } from './PencilLine';
 export { default as Person } from './Person';
 export { default as RightArrow } from './RightArrow';
+export { default as Shuffle } from './Shuffle';
 export { default as Siren } from './Siren';
 export { default as SoundMaxFill } from './SoundMaxFill';
 export { default as TreasureChest } from './TreasureChest';
