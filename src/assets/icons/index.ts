@@ -3,6 +3,7 @@ export { default as CaretDown } from './CaretDown';
 export { default as DownArrow } from './DownArrow';
 export { default as Heart } from './Heart';
 export { default as HourGlass } from './HourGlass';
+export { default as HourGlassLow } from './HourGlassLow';
 export { default as ImageSquare } from './ImageSquare';
 export { default as KakaoLogo } from './KakaoLogo';
 export { default as LeftArrow } from './LeftArrow';
