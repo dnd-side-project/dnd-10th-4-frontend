@@ -14,5 +14,6 @@ export { default as Setting } from './Setting';
 export { default as Shuffle } from './Shuffle';
 export { default as Siren } from './Siren';
 export { default as SoundMaxFill } from './SoundMaxFill';
+export { default as SoundOn } from './SoundOn';
 export { default as TreasureChest } from './TreasureChest';
 export { default as TreasureChestOutline } from './TreasureChestOutline';
