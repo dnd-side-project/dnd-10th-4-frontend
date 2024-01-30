@@ -16,3 +16,4 @@ export { default as Siren } from './Siren';
 export { default as SoundOn } from './SoundOn';
 export { default as TreasureChest } from './TreasureChest';
 export { default as TreasureChestOutline } from './TreasureChestOutline';
+export { default as User } from './User';
