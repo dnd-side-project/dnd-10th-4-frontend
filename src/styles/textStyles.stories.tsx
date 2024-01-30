@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import Button from '@/components/Button';
-import textStyles, { type TextVariant } from './textStyles';
+import textStyles from './textStyles';
 
 const meta = {
   title: 'Styles/Text',
@@ -14,39 +13,58 @@ const meta = {
       },
     },
   },
-} satisfies Meta<{ variant: TextVariant }>;
+} satisfies Meta;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 const styles = {
-  buttonBackground: css`
+  container: css`
     display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #fcecd0;
+    flex-direction: column;
+    gap: 2.5rem;
+  `,
+  textSection: css`
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   `,
 };
 
-export const 모든_속성_보기: Story = {
+export const 모든_텍스트_보기: Story = {
   args: {},
   render: () => (
-    <>
-      <h1 css={textStyles('heading')}>누구에게 보낼까요?</h1>
-      <p css={textStyles('thin')}>
-        여기까지가 끝인가 보오 이제 나는 돌아서겠소 억지 노력으로 인연을 거슬러
-        괴롭히지는 않겠소
-      </p>
-      <div css={styles.buttonBackground}>
-        <Button variant="primary" css={textStyles('button')}>
-          선택 완료
-        </Button>
-        <Button variant="white" css={textStyles('button-bold')}>
-          시작하기
-        </Button>
+    <div css={styles.container}>
+      <div css={styles.textSection}>
+        <h1 css={textStyles.t1}>Title / T1-24px(sb)</h1>
+        <h1 css={textStyles.t2}>Title / T2-20px(sb)</h1>
+        <h1 css={textStyles.t3}>Title / T3-16px(sb)</h1>
+        <h1 css={textStyles.t4}>Title / T4-14px(sb)</h1>
       </div>
-      <p css={textStyles('description')}>24년 01월 20일에 받은 편지</p>
-    </>
+      <div css={styles.textSection}>
+        <p css={textStyles.b1m}>body / b1-24px(m)</p>
+        <p css={textStyles.b2m}>body / b2-20px(m)</p>
+        <p css={textStyles.b3m}>body / b3-18px(m)</p>
+        <p css={textStyles.b4m}>body / b4-14px(m)</p>
+      </div>
+      <div css={styles.textSection}>
+        <p css={textStyles.b1R}>body / b1-24px(R)</p>
+        <p css={textStyles.b2R}>body / b2-20px(R)</p>
+        <p css={textStyles.b3R}>body / b3-18px(R)</p>
+        <p css={textStyles.b4R}>body / b4-14px(R)</p>
+      </div>
+      <div css={styles.textSection}>
+        <p css={textStyles.c1sb}>caption / c1-12px(sb)</p>
+        <p css={textStyles.c1m}>caption / c1-12px(m)</p>
+        <p css={textStyles.c1r}>caption / c1-12px(r)</p>
+      </div>
+      <div css={styles.textSection}>
+        <p css={textStyles.l1m}>letter / l1-14px(m)</p>
+      </div>
+      <div css={styles.textSection}>
+        <p css={textStyles.description}>24년 01월 20일</p>
+      </div>
+    </div>
   ),
 };

@@ -53,10 +53,13 @@ export const 바텀시트: StoryObj = {
               <h2>누구에게 보낼까요?</h2>
             </div>
             <Navbar css={styles.navbar}>
-              <Button variant="primary-unaccent" onClick={toggleDrawer(false)}>
+              <Button
+                variant="semi-transparent-unaccent"
+                onClick={toggleDrawer(false)}
+              >
                 닫기
               </Button>
-              <Button variant="primary" onClick={toggleDrawer(false)}>
+              <Button variant="semi-transparent" onClick={toggleDrawer(false)}>
                 완료
               </Button>
             </Navbar>
