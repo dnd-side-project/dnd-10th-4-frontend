@@ -12,15 +12,9 @@ const style = {
     height: 100%;
     padding-inline: 0.625rem;
   `,
-  contentText: (
-    isOpen: boolean,
-    line: number,
-    currentLine: number,
-    imgUrl?: string,
-  ) => css`
+  contentText: (isOpen: boolean, line: number) => css`
     position: relative;
-    height: ${isOpen ? `${currentLine * 1.225}rem` : `${line * 1.225}rem`};
-    margin-bottom: ${imgUrl && isOpen && '3.75rem'};
+    height: ${isOpen ? `18.2rem` : `${line * 1.225}rem`};
     color: var(--kakao-logo, #000);
     font-weight: 400;
     font-style: normal;
@@ -74,7 +68,7 @@ const style = {
     display: flex;
     gap: 0.3125rem;
     align-items: center;
-    padding-block: 0.75rem;
+    padding-top: 0.75rem;
     color: ${COLORS.gray4};
     font-weight: 500;
     font-style: normal;
@@ -82,9 +76,9 @@ const style = {
     line-height: 1rem;
     cursor: pointer;
   `,
-  img: (currentLine: number) => css`
+  img: css`
     position: relative;
-    top: ${currentLine * 1.25 + 1.25}rem;
+    top: 15rem;
     left: 1rem;
     width: 3.4375rem;
     height: 4.0625rem;
