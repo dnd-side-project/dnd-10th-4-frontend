@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import {
-  LeftArrow,
+  CaretLeft,
   Siren,
   HourGlass,
-  SoundMaxFill,
-  Person,
+  SoundOn,
+  User,
   TreasureChestOutline,
 } from '@/assets/icons';
 import COLORS from '@/constants/colors';
@@ -105,10 +105,10 @@ export const 메인_페이지: Story = {
       rightContent={
         <>
           <IconButton variant="header">
-            <SoundMaxFill color="white" />
+            <SoundOn color="white" />
           </IconButton>
           <IconButton variant="header">
-            <Person color="white" />
+            <User color="white" />
           </IconButton>
           <IconButton variant="header">
             <TreasureChestOutline color="white" />
@@ -127,7 +127,7 @@ export const 흘러온_편지: Story = {
       variant="none"
       leftContent={
         <>
-          <LeftArrow css={styles.icon} strokeWidth={2} />
+          <CaretLeft css={styles.icon} strokeWidth={2} />
           <div css={styles.흘러온_편지.timeChip}>
             <HourGlass color={COLORS.gray3} />
             <p>26h</p>
@@ -148,7 +148,7 @@ export const 보관함_편지: Story = {
   render: () => (
     <Header
       variant="none"
-      leftContent={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
       centerContent={<>보관함</>}
     />
   ),
@@ -159,7 +159,7 @@ export const 보관함_편지_Secondary: Story = {
   render: () => (
     <Header
       variant="secondary"
-      leftContent={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
       centerContent={<>보관함</>}
     />
   ),
