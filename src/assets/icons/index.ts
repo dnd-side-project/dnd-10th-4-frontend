@@ -8,7 +8,6 @@ export { default as ImageSquare } from './ImageSquare';
 export { default as KakaoLogo } from './KakaoLogo';
 export { default as LeftArrow } from './LeftArrow';
 export { default as PencilLine } from './PencilLine';
-export { default as Person } from './Person';
 export { default as RightArrow } from './RightArrow';
 export { default as Setting } from './Setting';
 export { default as Shuffle } from './Shuffle';

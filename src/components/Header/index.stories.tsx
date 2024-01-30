@@ -5,7 +5,7 @@ import {
   Siren,
   HourGlass,
   SoundOn,
-  Person,
+  User,
   TreasureChestOutline,
 } from '@/assets/icons';
 import COLORS from '@/constants/colors';
@@ -108,7 +108,7 @@ export const 메인_페이지: Story = {
             <SoundOn color="white" />
           </IconButton>
           <IconButton variant="header">
-            <Person color="white" />
+            <User color="white" />
           </IconButton>
           <IconButton variant="header">
             <TreasureChestOutline color="white" />
