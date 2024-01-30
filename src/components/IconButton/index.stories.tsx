@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import { User, RightArrow, LeftArrow, Heart } from '@/assets/icons';
+import { User, CaretRight, CaretLeft, Heart } from '@/assets/icons';
 import IconButton from './';
 
 const meta = {
@@ -38,10 +38,10 @@ export const 아이콘_버튼: StoryObj = {
         <Heart color="white" />
       </IconButton>
       <IconButton variant="leftCarousel">
-        <LeftArrow color="white" />
+        <CaretLeft color="white" />
       </IconButton>
       <IconButton variant="rightCarousel">
-        <RightArrow color="white" />
+        <CaretRight color="white" />
       </IconButton>
     </div>
   ),

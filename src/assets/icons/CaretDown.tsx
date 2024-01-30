@@ -7,24 +7,24 @@ const SvgCaretDown = ({
 }: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={width}
-    height={height}
     fill="none"
     viewBox="0 0 24 24"
+    width={width}
+    height={height}
     {...props}
   >
-    <g clipPath="url(#caretDown_svg__a)">
+    <g clipPath="url(#downArrow_svg__a)">
       <path
         stroke={stroke}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={1.5}
-        d="M4.5 15 12 7.5l7.5 7.5"
+        d="M19.5 9 12 16.5 4.5 9"
       />
     </g>
     <defs>
-      <clipPath id="caretDown_svg__a">
-        <path fill="#fff" d="M24 24H0V0h24z" />
+      <clipPath id="downArrow_svg__a">
+        <path fill="#fff" d="M0 0h24v24H0z" />
       </clipPath>
     </defs>
   </svg>

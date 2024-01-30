@@ -1,9 +1,8 @@
 import type { SVGProps } from 'react';
-const SvgLeftArrow = ({
+const SvgCaretRight = ({
   width = 24,
   height = 24,
   stroke = 'currentColor',
-  strokeWidth = 1.5,
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg
@@ -18,9 +17,9 @@ const SvgLeftArrow = ({
       stroke={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={strokeWidth}
-      d="M15 4.5 7.5 12l7.5 7.5"
+      strokeWidth={1.5}
+      d="m9 19.5 7.5-7.5L9 4.5"
     />
   </svg>
 );
-export default SvgLeftArrow;
+export default SvgCaretRight;

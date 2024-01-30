@@ -2,7 +2,7 @@ import { Fragment, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import useModal from '@/hooks/useModal';
-import { HourGlass, CaretDown, Siren } from '@/assets/icons';
+import { HourGlass, CaretUp, Siren } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import IconButton from '../IconButton';
 import Button from '../Button';
@@ -156,7 +156,7 @@ export const 편지_작성_모달: Story = {
               </section>
               <div css={styles.bottomCard} onClick={close}>
                 <span>접기</span>
-                <CaretDown />
+                <CaretUp />
               </div>
             </section>
           </Modal>

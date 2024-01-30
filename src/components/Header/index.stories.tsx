@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import {
-  LeftArrow,
+  CaretLeft,
   Siren,
   HourGlass,
   SoundOn,
@@ -127,7 +127,7 @@ export const 흘러온_편지: Story = {
       variant="none"
       leftContent={
         <>
-          <LeftArrow css={styles.icon} strokeWidth={2} />
+          <CaretLeft css={styles.icon} strokeWidth={2} />
           <div css={styles.흘러온_편지.timeChip}>
             <HourGlass color={COLORS.gray3} />
             <p>26h</p>
@@ -148,7 +148,7 @@ export const 보관함_편지: Story = {
   render: () => (
     <Header
       variant="none"
-      leftContent={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
       centerContent={<>보관함</>}
     />
   ),
@@ -159,7 +159,7 @@ export const 보관함_편지_Secondary: Story = {
   render: () => (
     <Header
       variant="secondary"
-      leftContent={<LeftArrow css={styles.icon} strokeWidth={2} />}
+      leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
       centerContent={<>보관함</>}
     />
   ),
