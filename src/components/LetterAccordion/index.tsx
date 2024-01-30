@@ -1,8 +1,7 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CaretDown from '@/assets/icons/CaretDown';
 import { formatDate } from '@/utils/dateUtils';
-import useCheckTextLines from '@/hooks/useCheckTextLines';
 import style, { letterAccordionType } from './styles';
 
 interface LetterAccordionProps {
@@ -18,6 +17,10 @@ interface LetterAccordionProps {
   type?: letterAccordionType;
   /** LetterAccordion 컴포넌트에 들어가는 사진 URL 입니다. */
   imgUrl?: string;
+  /** LetterAccordion 컴포넌트의 open 여부 입니다. */
+  isOpen?: boolean;
+  /** LetterAccordion 컴포넌트의 onToggle 함수입니다. */
+  onToggle?: () => void;
 }
 
 const LetterAccordion = ({
@@ -27,17 +30,12 @@ const LetterAccordion = ({
   line = 3,
   type = 'inbox',
   imgUrl = '',
+  isOpen = false,
+  onToggle = () => {},
   ...props
 }: LetterAccordionProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const textContainerRef = useRef<HTMLDivElement>(null);
-  const [showButton, currentLine] = useCheckTextLines(
-    textContainerRef,
-    text,
-    line,
-  );
-
-  const toggleAccordion = () => setIsOpen(!isOpen);
+  const toggleAccordion = onToggle;
 
   return (
     <div css={style.container} id={id}>
@@ -48,16 +46,13 @@ const LetterAccordion = ({
         type={type}
         line={line}
         textContainerRef={textContainerRef}
-        currentLine={currentLine}
         {...props}
       />
       <p css={style.date(type)}>
         {formatDate(date)}
         {type === 'inbox' && '에 받은 편지'}
       </p>
-      {showButton && (
-        <LetterBottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
-      )}
+      <LetterBottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
     </div>
   );
 };
@@ -69,7 +64,6 @@ interface LetterContentProps {
   type: letterAccordionType;
   line: number;
   textContainerRef: React.RefObject<HTMLDivElement>;
-  currentLine: number;
 }
 
 const LetterContent = ({
@@ -79,7 +73,6 @@ const LetterContent = ({
   type,
   line,
   textContainerRef,
-  currentLine,
   ...props
 }: LetterContentProps) => {
   const variants = {
@@ -88,7 +81,7 @@ const LetterContent = ({
   };
 
   return (
-    <div css={style.contentText(isOpen, line, currentLine, imgUrl)}>
+    <div css={style.contentText(isOpen, line)}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -107,7 +100,7 @@ const LetterContent = ({
             {type !== 'inbox' && imgUrl && (
               <img
                 {...props}
-                css={style.img(currentLine)}
+                css={style.img}
                 src={imgUrl}
                 alt="편지와 함께 보낸 이미지"
               />
