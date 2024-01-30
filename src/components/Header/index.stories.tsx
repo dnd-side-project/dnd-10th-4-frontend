@@ -4,7 +4,7 @@ import {
   LeftArrow,
   Siren,
   HourGlass,
-  SoundMaxFill,
+  SoundOn,
   Person,
   TreasureChestOutline,
 } from '@/assets/icons';
@@ -105,7 +105,7 @@ export const 메인_페이지: Story = {
       rightContent={
         <>
           <IconButton variant="header">
-            <SoundMaxFill color="white" />
+            <SoundOn color="white" />
           </IconButton>
           <IconButton variant="header">
             <Person color="white" />
