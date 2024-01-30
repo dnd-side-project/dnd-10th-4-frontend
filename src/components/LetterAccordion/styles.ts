@@ -62,14 +62,14 @@ const style = {
     width: 100%;
     max-width: 37.5rem;
     height: 0.0625rem;
-    background: ${COLORS.gray5};
+    background: ${COLORS.gray4};
   `,
   button: css`
     display: flex;
     gap: 0.3125rem;
     align-items: center;
     padding-top: 0.75rem;
-    color: ${COLORS.gray4};
+    color: ${COLORS.gray3};
     font-weight: 500;
     font-style: normal;
     font-size: 0.875rem;
