@@ -1,3 +1,4 @@
+export { default as ArrowClockWise } from './ArrowClockWise';
 export { default as CaretDown } from './CaretDown';
 export { default as DownArrow } from './DownArrow';
 export { default as Heart } from './Heart';
