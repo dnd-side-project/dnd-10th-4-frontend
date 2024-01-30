@@ -7,7 +7,6 @@ interface CardProps {
   background?: Backgroundtype;
   /** Card 안에 들어갈 내용입니다. */
   children?: React.ReactNode;
-  onClick?: () => void;
 }
 
 const LetterCard = ({
