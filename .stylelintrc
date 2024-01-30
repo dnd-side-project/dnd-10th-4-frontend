@@ -8,6 +8,7 @@
     }
   ],
   "rules": {
-    "selector-max-type": null
+    "selector-max-type": null,
+    "no-descending-specificity": null
   }
 }
