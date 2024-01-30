@@ -191,7 +191,7 @@ const styles = {
 
 export const 모달_카드: StoryObj = {
   render: () => {
-    const ModalTestPage = () => {
+    const ModalCard = () => {
       const modal = useModal();
       const backgroundRef = useRef<HTMLDivElement>(null);
       const { open, close } = modal;
@@ -215,7 +215,7 @@ export const 모달_카드: StoryObj = {
                 ref={backgroundRef}
                 onClick={(e) => e.target === backgroundRef.current && close()}
               >
-                <LetterCard isOpen={true}>
+                <LetterCard isOpen={true} background="white">
                   <h2>
                     <span css={styles.from}>From.</span>
                     <span css={styles.nickname}>낯선고양이</span>
@@ -247,6 +247,6 @@ export const 모달_카드: StoryObj = {
       );
     };
 
-    return <ModalTestPage />;
+    return <ModalCard />;
   },
 };

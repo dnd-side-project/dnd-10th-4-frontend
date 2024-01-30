@@ -1,13 +1,26 @@
 import React from 'react';
-import style from './styles';
-
+import style, { Backgroundtype } from './styles';
 interface CardProps {
+  /** Card의 펼쳐진 상태입니다. */
   isOpen?: boolean;
-  children: React.ReactNode;
+  /** Card의 배경입니다. */
+  background?: Backgroundtype;
+  /** Card 안에 들어갈 내용입니다. */
+  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
-const LetterCard = ({ isOpen = false, children }: CardProps) => {
-  return <div css={style.card(isOpen)}>{children}</div>;
+const LetterCard = ({
+  isOpen = false,
+  background = 'primary',
+  children,
+  ...props
+}: CardProps) => {
+  return (
+    <div css={style.card(isOpen, background)} {...props}>
+      {children}
+    </div>
+  );
 };
 
 export default LetterCard;
