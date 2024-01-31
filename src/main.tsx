@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 });
 
 async function enableMocking() {
-  if (process.env.NODE_ENV !== 'development') {
+  if (import.meta.env.VITE_MSW !== 'on') {
     return;
   }
 
