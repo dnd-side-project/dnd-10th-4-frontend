@@ -8,7 +8,7 @@ const testOptions = {
   detail: (testId: string) =>
     queryOptions({
       queryKey: [...testOptions.all, testId] as const,
-      queryFn: () => testAPI.getTestDetail(testId),
+      queryFn: () => testAPI.getTestDetail(testId || '0'),
     }),
 };
 
