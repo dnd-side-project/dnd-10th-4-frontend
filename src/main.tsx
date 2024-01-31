@@ -8,7 +8,7 @@ import { router } from '@/router';
 import 'reset-css';
 import './main.css';
 
-async function enableMocking() {
+const enableMocking = async () => {
   if (import.meta.env.VITE_MSW !== 'on') {
     return;
   }
@@ -16,7 +16,7 @@ async function enableMocking() {
   const { worker } = await import('@/mocks/browser');
 
   return worker.start();
-}
+};
 
 enableMocking().then(() =>
   ReactDOM.createRoot(document.getElementById('root')!).render(
