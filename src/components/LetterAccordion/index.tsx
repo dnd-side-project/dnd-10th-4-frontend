@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DownArrow from '@/assets/icons/DownArrow';
 import { formatDate } from '@/utils/dateUtils';
+import Polaroid from '../Polaroid';
 import style, { letterAccordionType } from './styles';
 
 interface LetterAccordionProps {
@@ -81,7 +82,7 @@ const LetterContent = ({
   };
 
   return (
-    <div css={style.contentText(isOpen, line)}>
+    <div css={style.contentText(isOpen, line)} {...props}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -97,14 +98,7 @@ const LetterContent = ({
             <div ref={textContainerRef} css={style.openText}>
               {text}
             </div>
-            {type !== 'inbox' && imgUrl && (
-              <img
-                {...props}
-                css={style.img}
-                src={imgUrl}
-                alt="편지와 함께 보낸 이미지"
-              />
-            )}
+            {type !== 'inbox' && imgUrl && <Polaroid imgUrl={imgUrl} />}
           </motion.div>
         )}
       </AnimatePresence>
