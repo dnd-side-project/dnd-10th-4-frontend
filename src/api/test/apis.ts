@@ -11,6 +11,10 @@ const testAPI = {
     const { data } = await baseInstance.get<Test>(`/test/${testId}`);
     return data;
   },
+  postTest: async (test: Test) => {
+    const { data } = await baseInstance.post<string>('/test', test);
+    return data;
+  },
 };
 
 export default testAPI;

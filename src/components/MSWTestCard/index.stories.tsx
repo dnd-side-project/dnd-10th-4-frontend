@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import testAPI from '@/api/test/apis';
 import testOptions from '@/api/test/queryOptions';
 import MSWTestCard from '.';
 
@@ -48,5 +49,29 @@ export const 목록: Story = {
     };
 
     return <ListComponent />;
+  },
+};
+
+export const 생성: Story = {
+  ...Primary,
+  name: '생성 (POST /tests)',
+  render: () => {
+    const Component = () => {
+      const { mutateAsync } = useMutation({ mutationFn: testAPI.postTest });
+
+      const handleClick = async () => {
+        const data = await mutateAsync({
+          id: '2',
+          name: 'test',
+          content: 'test',
+        });
+
+        alert(data);
+      };
+
+      return <button onClick={handleClick}>POST /tests 생성하기</button>;
+    };
+
+    return <Component />;
   },
 };
