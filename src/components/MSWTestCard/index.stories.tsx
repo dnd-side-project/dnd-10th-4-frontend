@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import testOptions from '@/api/test/queryOptions';
-import MSWTestCard from './';
+import MSWTestCard from '.';
 
 const meta = {
   title: 'Examples/MSWTestCard',
