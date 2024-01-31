@@ -1,5 +1,5 @@
 import testHandler from './test';
 
-const handlers = [...testHandler];
+const mockHandlers = [...testHandler];
 
-export default handlers;
+export default mockHandlers;

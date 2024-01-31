@@ -67,6 +67,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "msw": "^2.1.5",
+    "msw-storybook-addon": "^2.0.0--canary.122.b3ed3b1.0",
     "postcss": "^8.4.33",
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "3.2.2",
