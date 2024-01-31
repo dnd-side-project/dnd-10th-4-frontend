@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DownArrow from '@/assets/icons/DownArrow';
+import CaretDown from '@/assets/icons/CaretDown';
 import { formatDate } from '@/utils/dateUtils';
 import Polaroid from '../Polaroid';
 import style, { letterAccordionType } from './styles';
@@ -127,7 +127,7 @@ const LetterBottom = ({ isOpen, toggleAccordion }: LetterBottomProps) => {
         css={style.button}
       >
         {isOpen ? '접기' : '펼치기'}
-        <DownArrow css={style.arrow(isOpen)} />
+        <CaretDown css={style.arrow(isOpen)} />
       </div>
     </div>
   );
