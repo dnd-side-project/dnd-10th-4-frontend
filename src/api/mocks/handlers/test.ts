@@ -1,7 +1,8 @@
 import { http, HttpResponse, delay } from 'msw';
+import { baseURL } from '../baseURL';
 
 const testHandler = [
-  http.get('/test/:id', async (req) => {
+  http.get(baseURL('/test/:id'), async (req) => {
     await delay(300);
 
     return HttpResponse.json({
