@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-// import { css } from '@emotion/react';
 import LetterCard from '../LetterCard';
 import Polaroid from '.';
 
