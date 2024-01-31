@@ -5,6 +5,12 @@ import testAPI from './apis';
 const testOptions = {
   all: ['test'] as const,
 
+  list: () =>
+    queryOptions({
+      queryKey: testOptions.all,
+      queryFn: () => testAPI.getTestList(),
+    }),
+
   detail: (testId: string) =>
     queryOptions({
       queryKey: [...testOptions.all, testId] as const,
