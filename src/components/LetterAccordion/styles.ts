@@ -76,18 +76,6 @@ const style = {
     line-height: 1rem;
     cursor: pointer;
   `,
-  img: css`
-    position: relative;
-    top: 15rem;
-    left: 1rem;
-    width: 3.4375rem;
-    height: 4.0625rem;
-    padding: 0.324rem 0.324rem 0.972rem;
-    border: 0.030375rem solid ${COLORS.gray5};
-    border-radius: 0.162rem;
-    background: #fff;
-    transform: rotate(-15deg);
-  `,
 };
 
 export default style;
