@@ -1,6 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 import testAPI from './apis';
 
+/** @NOTE: API 통신 예시용 임시 코드입니다. */
 const testOptions = {
   all: ['test'] as const,
 
