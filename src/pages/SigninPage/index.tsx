@@ -1,4 +1,3 @@
-import React from 'react';
 import KakaoLoginButton from '@/components/KakaoLoginButton';
 import Header from '@/components/Header';
 import IconButton from '@/components/IconButton';
@@ -36,7 +35,9 @@ const SigninPage = () => {
         <h1 css={textStyles.logo}>내 마음 속 바다</h1>
       </section>
 
-      <KakaoLoginButton css={styles.loginButton} href={KAKAO_URL} />
+      <section css={styles.buttonSection}>
+        <KakaoLoginButton css={styles.loginButton} href={KAKAO_URL} />
+      </section>
     </main>
   );
 };

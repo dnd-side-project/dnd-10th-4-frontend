@@ -5,6 +5,7 @@ const styles = {
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     box-sizing: border-box;
     width: 100%;
     min-height: 100%;
@@ -18,11 +19,12 @@ const styles = {
     margin-top: 10rem;
     color: white;
   `,
-  loginButton: css`
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  buttonSection: css`
     margin-bottom: 1.25rem;
+    padding: 0 1rem;
+  `,
+  loginButton: css`
+    width: calc(100% - 2rem);
   `,
 };
 
