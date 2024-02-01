@@ -26,7 +26,7 @@ const Tooltip = ({
   triggerContent,
   children,
 }: TooltipProps) => {
-  const [isOpen, setIsOpen] = useState(delay > 0 ? true : false);
+  const [isOpen, setIsOpen] = useState(delay > 0);
 
   useTimeout(() => setIsOpen(false), delay);
 
