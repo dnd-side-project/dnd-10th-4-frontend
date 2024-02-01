@@ -7,6 +7,10 @@ import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import styles from './styles';
 
+const CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID;
+const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+
 const SigninPage = () => {
   return (
     <main css={styles.page}>
@@ -32,7 +36,7 @@ const SigninPage = () => {
         <h1 css={textStyles.logo}>내 마음 속 바다</h1>
       </section>
 
-      <KakaoLoginButton css={styles.loginButton} />
+      <KakaoLoginButton css={styles.loginButton} href={KAKAO_URL} />
     </main>
   );
 };
