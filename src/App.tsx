@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import Background from '@/components/Background';
-import BackgroundImg from '@/assets/ocean.jpeg';
+import BackgroundImg from '@/assets/background.png';
 import EmotionTestButton from '@/components/EmotionTestButton';
 import { ROUTER_PATHS } from '@/router';
 

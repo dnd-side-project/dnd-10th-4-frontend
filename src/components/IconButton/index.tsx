@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import style, { ButtonVariant } from './styles';
 
 interface IconButtonProps extends React.ComponentProps<'button'> {
@@ -8,16 +8,16 @@ interface IconButtonProps extends React.ComponentProps<'button'> {
   children: React.ReactNode;
 }
 
-const IconButton = ({
-  variant = 'header',
-  children,
-  ...props
-}: IconButtonProps) => {
-  return (
-    <button {...props} css={style.button(variant)}>
-      {children}
-    </button>
-  );
-};
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  ({ variant = 'header', children, ...props }, ref) => {
+    return (
+      <button {...props} ref={ref} css={style.button(variant)}>
+        {children}
+      </button>
+    );
+  },
+);
+
+IconButton.displayName = 'IconButton';
 
 export default IconButton;
