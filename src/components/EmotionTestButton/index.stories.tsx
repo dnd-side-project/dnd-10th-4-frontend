@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import EmotionTestButton from '.';
 
 const meta = {
-  title: 'Components/EmotionTestButton',
+  title: 'Examples/EmotionTestButton',
   component: EmotionTestButton,
   tags: ['autodocs'],
   argTypes: {

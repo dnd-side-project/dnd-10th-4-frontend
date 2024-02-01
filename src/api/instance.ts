@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { BACKEND_ENDPOINT } from '@/constants/endpoint';
 
 const baseInstance = axios.create({
-  baseURL: 'http://localhost:3000', // TODO: 백엔드 URI로 변경 및 환경 변수로 관리
+  baseURL: BACKEND_ENDPOINT,
   timeout: 30000,
   withCredentials: true,
 });
