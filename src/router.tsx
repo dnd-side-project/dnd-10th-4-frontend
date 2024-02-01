@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ModalTestPage from './pages/ModalTestPage';
 import SigninPage from './pages/SigninPage';
+import SigninKakaoPage from './pages/SigninKakaoPage';
+import OnboardingPage from './pages/OnboardingPage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -9,6 +11,8 @@ const ROUTER_PATHS = {
   TEST_VARIABLE: (variableId: string) => `/test/variable/${variableId}`,
   MODAL_TEST: '/modal-test',
   SIGNIN: '/signin',
+  SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
+  ONBOARDING: '/onboarding',
 } as const;
 
 const router = createBrowserRouter([
@@ -31,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.SIGNIN,
         element: <SigninPage />,
+      },
+      {
+        path: ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO,
+        element: <SigninKakaoPage />,
+      },
+      {
+        path: ROUTER_PATHS.ONBOARDING,
+        element: <OnboardingPage />,
       },
     ],
   },
