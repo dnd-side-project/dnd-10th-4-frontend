@@ -13,6 +13,10 @@ const style = {
     height: 2.5rem;
     margin-top: 1.25rem;
     margin-bottom: 1rem;
+
+    & > div:nth-of-type(1) {
+      cursor: pointer;
+    }
   `,
   contentWrapper: css`
     display: flex;
@@ -25,7 +29,7 @@ const style = {
     display: flex;
     align-items: center;
 
-    p {
+    span {
       ${textStyles.t4};
     }
   `,
@@ -41,7 +45,7 @@ const style = {
     letter-spacing: -0.0035rem;
     cursor: pointer;
 
-    p {
+    span {
       color: ${COLORS.gray3};
       ${textStyles.b4m};
     }
@@ -62,11 +66,11 @@ const style = {
     justify-content: flex-end;
 
     ${textStyles.c1m}
-    & > p:nth-of-type(1) {
+    & > span:nth-of-type(1) {
       color: ${COLORS.gray1};
     }
 
-    & > p:nth-of-type(2) {
+    & > span:nth-of-type(2) {
       color: ${COLORS.gray4};
     }
   `,
@@ -77,6 +81,9 @@ const style = {
     ${textStyles.c1r}
     color: ${COLORS.gray4};
   `,
+  bottomSheetContainer: css`
+    padding-inline: 1rem;
+  `,
   bottomSheetTitle: css`
     display: flex;
     justify-content: space-between;
@@ -84,7 +91,7 @@ const style = {
     height: 2.75rem;
 
     h2 {
-      ${textStyles.t2}
+      ${textStyles.t2};
     }
 
     svg {
@@ -143,6 +150,7 @@ const style = {
     display: flex;
 
     button {
+      cursor: pointer;
       flex: 1;
       padding: 12px 20px;
       border: 0;
@@ -158,6 +166,15 @@ const style = {
       background-color: ${COLORS.primary};
       color: white;
     }
+  `,
+  navbar: css`
+    padding-inline: 0;
+  `,
+  iconContainer: css`
+    flex-grow: 0;
+    margin-left: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
   `,
 };
 

@@ -3,17 +3,13 @@ import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import style from '../styles';
+import { BottomSheetProps } from './LetterWriteContent';
 import { AgeSlider, GenderSelect, ConcernSelect } from '.';
-
-interface LetterReceiverSelectProps {
-  isBottomSheetOpen: boolean;
-  toggleBottomSheet: (state: boolean) => () => void;
-}
 
 const LetterReceiverSelect = ({
   isBottomSheetOpen,
   toggleBottomSheet,
-}: LetterReceiverSelectProps) => {
+}: BottomSheetProps) => {
   const [value, setValue] = useState<number[]>([17, 39]);
 
   const handleChange = (e: Event, newValue: number | number[]) => {
@@ -37,7 +33,7 @@ const LetterReceiverSelect = ({
       onClose={toggleBottomSheet(false)}
       onOpen={toggleBottomSheet(true)}
     >
-      <div css={{ paddingInline: '1rem' }}>
+      <div css={style.bottomSheetContainer}>
         <div css={style.bottomSheetTitle}>
           <h2>누구에게 보낼까요?</h2>
           <ArrowClockWise color={COLORS.gray2} />

@@ -10,10 +10,10 @@ const LetterWritePage = () => {
         css={style.header}
         leftContent={<CaretLeft strokeWidth={2.5} color="white" />}
       />
-      <div css={style.contentWrapper}>
+      <main css={style.contentWrapper}>
         <LetterWriteContent />
         <LetterWriteBottom />
-      </div>
+      </main>
     </div>
   );
 };

@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { LetterPaper, LetterReceiverSelect } from '.';
 
+export interface BottomSheetProps {
+  isBottomSheetOpen: boolean;
+  toggleBottomSheet: (state: boolean) => () => void;
+}
+
 const LetterWriteContent = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 

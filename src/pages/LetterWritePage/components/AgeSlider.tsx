@@ -8,7 +8,7 @@ const AgeSlider = ({
   value: number[];
   handleChange: (e: Event, newValue: number | number[]) => void;
 }) => (
-  <div>
+  <section>
     <h3 css={style.label}>나이</h3>
     <Slider
       getAriaLabel={() => 'Minimum distance'}
@@ -21,10 +21,10 @@ const AgeSlider = ({
       css={style.slider}
     />
     <div css={style.age}>
-      <p>{value[0]}세 이상</p>
-      <p>{value[1]}세 이하</p>
+      <span>{value[0]}세 이상</span>
+      <span>{value[1]}세 이하</span>
     </div>
-  </div>
+  </section>
 );
 
 export default AgeSlider;

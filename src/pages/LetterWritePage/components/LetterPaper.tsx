@@ -3,17 +3,13 @@ import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
 import textStyles from '@/styles/textStyles';
 import style from '../styles';
+import { BottomSheetProps } from './LetterWriteContent';
 import { LetterReceiverContainer } from '.';
-
-interface LetterPaperProps {
-  isBottomSheetOpen: boolean;
-  toggleBottomSheet: (state: boolean) => () => void;
-}
 
 const LetterPaper = ({
   isBottomSheetOpen,
   toggleBottomSheet,
-}: LetterPaperProps) => {
+}: BottomSheetProps) => {
   const [letterContent, setLetterContent] = useState('');
 
   return (
@@ -33,11 +29,11 @@ const LetterPaper = ({
         {letterContent}
       </textarea>
       <div css={style.textCount}>
-        <p>{letterContent.length}</p>
-        <p>&nbsp;/ 300</p>
+        <span>{letterContent.length}</span>
+        <span>&nbsp;/ 300</span>
       </div>
       <div css={style.date}>
-        <p>{formatDate(new Date())}</p>
+        <span>{formatDate(new Date())}</span>
       </div>
     </LetterCard>
   );
