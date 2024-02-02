@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTER_PATHS } from '@/router';
 import oauth2API from '@/api/oauth2/apis';
@@ -13,6 +13,7 @@ const SigninKakaoPage = () => {
   useEffect(() => {
     (async () => {
       if (!code) {
+        navigate(ROUTER_PATHS.SIGNIN);
         return;
       }
 
@@ -25,10 +26,6 @@ const SigninKakaoPage = () => {
       }
     })();
   }, []);
-
-  if (!code) {
-    return <Navigate to={ROUTER_PATHS.SIGNIN} />;
-  }
 
   return <div>Loading...</div>;
 };
