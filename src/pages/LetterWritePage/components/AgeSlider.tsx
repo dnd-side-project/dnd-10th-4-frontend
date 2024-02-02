@@ -11,13 +11,13 @@ const AgeSlider = ({
   <section>
     <h3 css={style.label}>나이</h3>
     <Slider
-      getAriaLabel={() => 'Minimum distance'}
+      getAriaLabel={() => 'Age range'}
       value={value}
       onChange={handleChange}
       valueLabelDisplay="auto"
       disableSwap
       min={15}
-      max={50}
+      max={40}
       css={style.slider}
     />
     <div css={style.age}>

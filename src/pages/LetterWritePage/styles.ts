@@ -103,7 +103,7 @@ const style = {
     ${textStyles.t3};
   `,
   slider: css`
-    color: #0c8ce9;
+    color: ${COLORS.primary};
 
     .MuiSlider-rail {
       color: ${COLORS.gray5};
@@ -115,6 +115,31 @@ const style = {
       border: 1px solid ${COLORS.gray4};
       background: ${COLORS.gray6};
     }
+
+    .MuiSlider-valueLabel {
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0;
+      border-radius: 50% 50% 50% 0;
+      background: unset;
+      background-color: ${COLORS.primary};
+      font-size: 0.8rem;
+      line-height: 1.5;
+      transform: translate(50%, -100%) rotate(-45deg) scale(0);
+      transform-origin: bottom left;
+
+      &::before {
+        display: none;
+      }
+
+      &.MuiSlider-valueLabelOpen {
+        transform: translate(50%, -100%) rotate(-45deg) scale(1);
+      }
+
+      & > * {
+        transform: rotate(45deg);
+      }
+    }
   `,
   age: css`
     display: flex;
@@ -122,8 +147,8 @@ const style = {
     margin-bottom: 1rem;
     color: ${COLORS.gray3};
     font-weight: 500;
-    font-size: 12px;
-    line-height: 24px;
+    font-size: 0.75rem;
+    line-height: 1.5rem;
   `,
   genderChip: css`
     display: flex;
@@ -136,8 +161,8 @@ const style = {
       color: ${COLORS.gray1};
       font-weight: 700;
       font-style: normal;
-      font-size: 12px;
-      line-height: 16px;
+      font-size: 0.75rem;
+      line-height: 1rem;
     }
   `,
   concernChip: css`
@@ -152,7 +177,7 @@ const style = {
     button {
       cursor: pointer;
       flex: 1;
-      padding: 12px 20px;
+      padding: 0.75rem 1.25rem;
       border: 0;
       ${textStyles.t3}
     }

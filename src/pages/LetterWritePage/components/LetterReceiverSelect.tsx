@@ -10,7 +10,7 @@ const LetterReceiverSelect = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const [value, setValue] = useState<number[]>([17, 39]);
+  const [value, setValue] = useState<number[]>([17, 25]);
 
   const handleChange = (e: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
