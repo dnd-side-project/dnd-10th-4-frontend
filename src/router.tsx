@@ -1,12 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ModalTestPage from './pages/ModalTestPage';
+import LetterWritePage from './pages/LetterWritePage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
   TEST_CONSTANT: '/test/const',
   TEST_VARIABLE: (variableId: string) => `/test/variable/${variableId}`,
   MODAL_TEST: '/modal-test',
+  LETTER_WRITE: '/write',
 } as const;
 
 const router = createBrowserRouter([
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.MODAL_TEST,
         element: <ModalTestPage />,
+      },
+      {
+        path: ROUTER_PATHS.LETTER_WRITE,
+        element: <LetterWritePage />,
       },
     ],
   },
