@@ -39,7 +39,7 @@ const LetterReceiverSelect = ({
           <h2>누구에게 보낼까요?</h2>
           <ArrowClockWise color={COLORS.gray2} />
         </div>
-        <AgeSlider value={value} handleChange={handleChange} />
+        <AgeSlider value={value} onChange={handleChange} />
         <GenderSelect />
         <ConcernSelect chipLabels={chipLabels} />
       </div>

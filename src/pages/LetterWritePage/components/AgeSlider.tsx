@@ -3,17 +3,17 @@ import style from '../styles';
 
 const AgeSlider = ({
   value,
-  handleChange,
+  onChange,
 }: {
   value: number[];
-  handleChange: (e: Event, newValue: number | number[]) => void;
+  onChange: (e: Event, newValue: number | number[]) => void;
 }) => (
   <section>
     <h3 css={style.label}>나이</h3>
     <Slider
       getAriaLabel={() => 'Age range'}
       value={value}
-      onChange={handleChange}
+      onChange={onChange}
       valueLabelDisplay="auto"
       disableSwap
       min={15}

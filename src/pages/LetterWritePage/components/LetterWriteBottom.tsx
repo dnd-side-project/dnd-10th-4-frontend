@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar';
-import Button, { buttonStyles } from '@/components/Button';
+import Button from '@/components/Button';
 import { ImageSquare } from '@/assets/icons';
 import style from '../styles';
 
@@ -12,14 +12,9 @@ const LetterWriteBottom = () => {
       <Button variant="primary" size="sm">
         답장 보내기
       </Button>
-      <button
-        css={[
-          buttonStyles.button('semi-transparent', 'sm'),
-          style.iconContainer,
-        ]}
-      >
+      <Button css={style.iconContainer} variant="semi-transparent" size="sm">
         <ImageSquare />
-      </button>
+      </Button>
     </Navbar>
   );
 };
