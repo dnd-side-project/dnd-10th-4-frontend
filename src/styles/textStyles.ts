@@ -88,6 +88,13 @@ const textStyles = {
     font-size: 0.75rem;
     line-height: 1rem;
   `,
+  logo: css`
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.5rem;
+    font-family: 'Jalnan OTF';
+    line-height: 2.125rem;
+  `,
 };
 
 export default textStyles;
