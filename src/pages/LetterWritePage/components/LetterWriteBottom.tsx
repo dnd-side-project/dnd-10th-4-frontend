@@ -13,7 +13,10 @@ const LetterWriteBottom = () => {
         답장 보내기
       </Button>
       <button
-        css={[buttonStyles.button('semi-transparent'), style.iconContainer]}
+        css={[
+          buttonStyles.button('semi-transparent', 'sm'),
+          style.iconContainer,
+        ]}
       >
         <ImageSquare />
       </button>
