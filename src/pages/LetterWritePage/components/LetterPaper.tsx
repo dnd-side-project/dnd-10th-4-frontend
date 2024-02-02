@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
-import textStyles from '@/styles/textStyles';
 import style from '../styles';
 import { BottomSheetProps } from './LetterWriteContent';
 import { LetterReceiverContainer } from '.';
@@ -22,7 +21,7 @@ const LetterPaper = ({
         rows={15}
         autoFocus
         placeholder="하고싶은 이야기를 적어보세요."
-        css={[style.textarea, textStyles.l1m]}
+        css={style.textarea}
         value={letterContent}
         onChange={(e) => setLetterContent(e.target.value)}
       >

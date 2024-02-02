@@ -60,6 +60,7 @@ const style = {
     background: none;
     outline: none;
     resize: none;
+    ${textStyles.l1m}
   `,
   textCount: css`
     display: flex;

@@ -13,6 +13,7 @@ const LetterReceiverSelect = ({
   const [value, setValue] = useState<number[]>([17, 25]);
 
   const handleChange = (e: Event, newValue: number | number[]) => {
+    console.log(e.target);
     setValue(newValue as number[]);
   };
 
