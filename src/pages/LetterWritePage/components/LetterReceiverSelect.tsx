@@ -10,23 +10,21 @@ const LetterReceiverSelect = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const [value, setValue] = useState<number[]>([17, 25]);
+  const [selectAge, setSelectAge] = useState<number[]>([17, 25]);
+  const [selectGender, setSelectGender] = useState<string>('');
+  const [selectConcern, setSelectConcern] = useState<string>('');
+  const [iconRotation, setIconRotation] = useState(0);
 
-  const handleChange = (e: Event, newValue: number | number[]) => {
-    console.log(e.target);
-    setValue(newValue as number[]);
+  const onCompleteButtonClick = () => {
+    toggleBottomSheet(false)();
   };
 
-  const chipLabels = [
-    '일·직장',
-    '취업·진로',
-    '인간관계',
-    '이별·상실',
-    '연애',
-    '학업',
-    '가족',
-    '기타',
-  ];
+  const onRefreshIconClick = () => {
+    setSelectAge([17, 25]);
+    setSelectGender('');
+    setSelectConcern('');
+    setIconRotation((prev) => prev + 360);
+  };
 
   return (
     <BottomSheet
@@ -37,15 +35,28 @@ const LetterReceiverSelect = ({
       <div css={style.bottomSheetContainer}>
         <div css={style.bottomSheetTitle}>
           <h2>누구에게 보낼까요?</h2>
-          <ArrowClockWise color={COLORS.gray2} />
+          <ArrowClockWise
+            css={{
+              transform: `rotate(${iconRotation}deg)`,
+              transition: 'transform 0.5s',
+            }}
+            color={COLORS.gray2}
+            onClick={onRefreshIconClick}
+          />
         </div>
-        <AgeSlider value={value} onChange={handleChange} />
-        <GenderSelect />
-        <ConcernSelect chipLabels={chipLabels} />
+        <AgeSlider selectAge={selectAge} setSelectAge={setSelectAge} />
+        <GenderSelect
+          selectGender={selectGender}
+          setSelectGender={setSelectGender}
+        />
+        <ConcernSelect
+          selectConcern={selectConcern}
+          setSelectConcern={setSelectConcern}
+        />
       </div>
       <div css={style.buttonContainer}>
-        <button>닫기</button>
-        <button>완료</button>
+        <button onClick={toggleBottomSheet(false)}>닫기</button>
+        <button onClick={onCompleteButtonClick}>완료</button>
       </div>
     </BottomSheet>
   );

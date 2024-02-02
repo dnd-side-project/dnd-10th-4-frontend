@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
-import { formatDate } from '@/utils/dateUtils';
 import LetterCard from '@/components/LetterCard';
+import { formatDate } from '@/utils/dateUtils';
 import style from '../styles';
 import { BottomSheetProps } from './LetterWriteContent';
 import { LetterReceiverContainer } from '.';
@@ -29,6 +29,7 @@ const LetterPaper = ({
         isOpen={isBottomSheetOpen}
       />
       <textarea
+        name="content"
         rows={15}
         autoFocus
         placeholder="하고싶은 이야기를 적어보세요."
