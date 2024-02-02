@@ -2,29 +2,13 @@ import { useState } from 'react';
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
 import textStyles from '@/styles/textStyles';
-import { CaretDown } from '@/assets/icons';
 import style from '../styles';
+import { LetterReceiverContainer } from '.';
 
 interface LetterPaperProps {
   isBottomSheetOpen: boolean;
   toggleBottomSheet: (state: boolean) => () => void;
 }
-
-const ReceiverContainer = ({
-  onClick,
-  isOpen,
-}: {
-  onClick: () => void;
-  isOpen: boolean;
-}) => (
-  <div css={style.ReceiverContainer}>
-    <p>To.</p>
-    <div onClick={onClick} css={style.ReceiverBox}>
-      <p>누구에게 보낼까요?</p>
-      <CaretDown css={style.caretDown(isOpen)} />
-    </div>
-  </div>
-);
 
 const LetterPaper = ({
   isBottomSheetOpen,
@@ -34,7 +18,7 @@ const LetterPaper = ({
 
   return (
     <LetterCard isOpen={true}>
-      <ReceiverContainer
+      <LetterReceiverContainer
         onClick={toggleBottomSheet(true)}
         isOpen={isBottomSheetOpen}
       />

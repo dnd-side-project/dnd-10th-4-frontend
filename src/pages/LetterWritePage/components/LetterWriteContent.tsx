@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import LetterPaper from './LetterPaper';
-import LetterReceiver from './LetterReceiver';
+import { useState } from 'react';
+import { LetterPaper, LetterReceiverSelect } from '.';
 
 const LetterWriteContent = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
@@ -15,7 +14,7 @@ const LetterWriteContent = () => {
         isBottomSheetOpen={isBottomSheetOpen}
         toggleBottomSheet={toggleBottomSheet}
       />
-      <LetterReceiver
+      <LetterReceiverSelect
         isBottomSheetOpen={isBottomSheetOpen}
         toggleBottomSheet={toggleBottomSheet}
       />

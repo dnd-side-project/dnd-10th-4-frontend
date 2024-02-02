@@ -9,7 +9,7 @@ const style = {
     width: 100%;
     height: 100%;
   `,
-  headerStyle: css`
+  header: css`
     height: 2.5rem;
     margin-top: 1.25rem;
     margin-bottom: 1rem;

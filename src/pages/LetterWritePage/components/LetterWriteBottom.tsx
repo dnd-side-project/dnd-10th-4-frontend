@@ -1,4 +1,3 @@
-import React from 'react';
 import { css } from '@emotion/react';
 import Navbar from '@/components/Navbar';
 import Button, { buttonStyles } from '@/components/Button';

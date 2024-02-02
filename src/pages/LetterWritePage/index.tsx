@@ -1,15 +1,13 @@
-// import { useState } from 'react';
-import Header from '@/components/Header';
 import { CaretLeft } from '@/assets/icons';
+import Header from '@/components/Header';
 import style from './styles';
-import LetterWriteContent from './components/LetterWriteContent';
-import LetterWriteBottom from './components/LetterWriteBottom';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const LetterWritePage = () => {
   return (
     <div css={style.container}>
       <Header
-        css={style.headerStyle}
+        css={style.header}
         leftContent={<CaretLeft strokeWidth={2.5} color="white" />}
       />
       <div css={style.contentWrapper}>
