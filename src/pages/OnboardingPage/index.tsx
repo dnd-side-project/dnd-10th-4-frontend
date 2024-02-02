@@ -1,4 +1,5 @@
 import createFunnel from '@/components/Funnel/createFunnel';
+import { FunnelProvider } from '@/contexts/useFunnelContext';
 import FirstStep from './steps/FirstStep';
 import IntroduceStep from './steps/IntroduceStep';
 import InputNicknameStep from './steps/InputNicknameStep';
@@ -6,7 +7,7 @@ import ShowNicknameStep from './steps/ShowNicknameStep';
 import InputBirthdayStep from './steps/InputBirthdayStep';
 import InputGenderStep from './steps/InputGenderStep';
 import InputWorryStep from './steps/InputWorryStep';
-import FinalStep from './steps/FinalStep';
+import LastStep from './steps/LastStep';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'First',
@@ -16,39 +17,42 @@ const { Funnel, Step, useFunnel } = createFunnel([
   'Input_Birthday',
   'Input_Gender',
   'Input_Worry',
-  'Final',
+  'Last',
 ] as const);
 
 const OnboardingPage = () => {
-  const { step, setStep } = useFunnel();
+  const { step, setStep, toPrev, toNext, toLast } = useFunnel();
 
   return (
-    <Funnel step={step}>
-      <Step name="First">
-        <FirstStep onNext={() => setStep('Introduce')} />
-      </Step>
-      <Step name="Introduce">
-        <IntroduceStep onNext={() => setStep('Input_Nickname')} />
-      </Step>
-      <Step name="Input_Nickname">
-        <InputNicknameStep onNext={() => setStep('Show_Nickname')} />
-      </Step>
-      <Step name="Show_Nickname">
-        <ShowNicknameStep onNext={() => setStep('Input_Birthday')} />
-      </Step>
-      <Step name="Input_Birthday">
-        <InputBirthdayStep onNext={() => setStep('Input_Gender')} />
-      </Step>
-      <Step name="Input_Gender">
-        <InputGenderStep onNext={() => setStep('Input_Worry')} />
-      </Step>
-      <Step name="Input_Worry">
-        <InputWorryStep onNext={() => setStep('Final')} />
-      </Step>
-      <Step name="Final">
-        <FinalStep onNext={() => setStep('First')} />
-      </Step>
-    </Funnel>
+    <FunnelProvider value={{ toPrev, toNext, toLast }}>
+      <Funnel step={step}>
+        <Step name="First">
+          <FirstStep />
+        </Step>
+        <Step name="Introduce">
+          <IntroduceStep />
+        </Step>
+        <Step name="Input_Nickname">
+          <InputNicknameStep />
+        </Step>
+        <Step name="Show_Nickname">
+          <ShowNicknameStep />
+        </Step>
+        <Step name="Input_Birthday">
+          <InputBirthdayStep />
+        </Step>
+        <Step name="Input_Gender">
+          <InputGenderStep />
+        </Step>
+        <Step name="Input_Worry">
+          <InputWorryStep />
+        </Step>
+        <Step name="Last">
+          {/* TODO: 임시로 첫 스텝으로 이동시킴 */}
+          <LastStep onNext={() => setStep('First')} />
+        </Step>
+      </Funnel>
+    </FunnelProvider>
   );
 };
 

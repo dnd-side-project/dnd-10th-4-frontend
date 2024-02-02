@@ -1,15 +1,14 @@
 import Button from '@/components/Button';
+import { useFunnelContext } from '@/contexts/useFunnelContext';
 import StepTemplate from '../components/StepTemplate';
 
-interface InputGenderStepProps {
-  onNext: VoidFunction;
-}
+const InputGenderStep = () => {
+  const { toNext } = useFunnelContext();
 
-const InputGenderStep = ({ onNext }: InputGenderStepProps) => {
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={onNext}>
+        <Button variant="primary" onClick={toNext}>
           선택 완료
         </Button>
       }

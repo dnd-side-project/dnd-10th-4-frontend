@@ -1,11 +1,11 @@
 import Button from '@/components/Button';
 import StepTemplate from '../components/StepTemplate';
 
-interface FinalStepProps {
-  onNext: VoidFunction;
+interface LastStepProps {
+  onNext: () => void;
 }
 
-const FinalStep = ({ onNext }: FinalStepProps) => {
+const LastStep = ({ onNext }: LastStepProps) => {
   return (
     <StepTemplate
       buttonContent={
@@ -19,4 +19,4 @@ const FinalStep = ({ onNext }: FinalStepProps) => {
   );
 };
 
-export default FinalStep;
+export default LastStep;

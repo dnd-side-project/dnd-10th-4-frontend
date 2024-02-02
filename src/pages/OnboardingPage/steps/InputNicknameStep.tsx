@@ -1,15 +1,14 @@
 import Button from '@/components/Button';
+import { useFunnelContext } from '@/contexts/useFunnelContext';
 import StepTemplate from '../components/StepTemplate';
 
-interface InputNicknameStepProps {
-  onNext: VoidFunction;
-}
+const InputNicknameStep = () => {
+  const { toNext } = useFunnelContext();
 
-const InputNicknameStep = ({ onNext }: InputNicknameStepProps) => {
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={onNext}>
+        <Button variant="primary" onClick={toNext}>
           다음
         </Button>
       }

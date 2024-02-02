@@ -1,15 +1,14 @@
 import Button from '@/components/Button';
+import { useFunnelContext } from '@/contexts/useFunnelContext';
 import StepTemplate from '../components/StepTemplate';
 
-interface InputBirthdayStepProps {
-  onNext: VoidFunction;
-}
+const InputBirthdayStep = () => {
+  const { toNext } = useFunnelContext();
 
-const InputBirthdayStep = ({ onNext }: InputBirthdayStepProps) => {
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={onNext}>
+        <Button variant="primary" onClick={toNext}>
           선택 완료
         </Button>
       }
