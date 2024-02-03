@@ -1,17 +1,11 @@
+import { useFormContext } from 'react-hook-form';
 import Chip from '@/components/Chip';
 import style from '../styles';
 
-interface GenderSelectProps {
-  selectGender: string;
-  setSelectGender: (gender: string) => void;
-}
+const GenderSelect = () => {
+  const { setValue, watch } = useFormContext();
 
-const GenderSelect = ({ selectGender, setSelectGender }: GenderSelectProps) => {
   const chipLabels: string[] = ['모두에게 보내기', '나와 같은 성별에게 보내기'];
-
-  const handleChipClick = (label: string) => {
-    setSelectGender(label === selectGender ? '' : label);
-  };
 
   return (
     <section>
@@ -20,8 +14,8 @@ const GenderSelect = ({ selectGender, setSelectGender }: GenderSelectProps) => {
         {chipLabels.map((label) => (
           <Chip
             key={label}
-            variant={label === selectGender ? 'form-selected' : 'form'}
-            onClick={() => handleChipClick(label)}
+            variant={watch('gender') === label ? 'form-selected' : 'form'}
+            onClick={() => setValue('gender', label)}
           >
             {label}
           </Chip>

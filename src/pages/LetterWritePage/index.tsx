@@ -1,20 +1,43 @@
+import { useForm, FormProvider } from 'react-hook-form';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const LetterWritePage = () => {
+  const methods = useForm({
+    defaultValues: {
+      content: '',
+      age: [15, 40],
+    },
+  });
+
+  const onSubmit = (inputData: object) => {
+    const currentDate = new Date();
+
+    const data = {
+      ...inputData,
+      date: currentDate,
+    };
+
+    console.log(data);
+  };
+
   return (
-    <div css={style.container}>
-      <Header
-        css={style.header}
-        leftContent={<CaretLeft strokeWidth={2.5} color="white" />}
-      />
-      <main css={style.contentWrapper}>
-        <LetterWriteContent />
-        <LetterWriteBottom />
-      </main>
-    </div>
+    <FormProvider {...methods}>
+      <div css={style.container}>
+        <Header
+          css={style.header}
+          leftContent={<CaretLeft strokeWidth={2.5} color="white" />}
+        />
+        <main css={style.contentWrapper}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <LetterWriteContent />
+            <LetterWriteBottom />
+          </form>
+        </main>
+      </div>
+    </FormProvider>
   );
 };
 export default LetterWritePage;

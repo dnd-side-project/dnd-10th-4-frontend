@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
 import COLORS from '@/constants/colors';
@@ -10,9 +11,7 @@ const LetterReceiverSelect = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const [selectAge, setSelectAge] = useState<number[]>([17, 25]);
-  const [selectGender, setSelectGender] = useState<string>('');
-  const [selectConcern, setSelectConcern] = useState<string>('');
+  const { setValue } = useFormContext();
   const [iconRotation, setIconRotation] = useState(0);
 
   const onCompleteButtonClick = () => {
@@ -20,9 +19,9 @@ const LetterReceiverSelect = ({
   };
 
   const onRefreshIconClick = () => {
-    setSelectAge([17, 25]);
-    setSelectGender('');
-    setSelectConcern('');
+    setValue('age', [15, 40]);
+    setValue('gender', '');
+    setValue('concern', '');
     setIconRotation((prev) => prev + 360);
   };
 
@@ -44,15 +43,9 @@ const LetterReceiverSelect = ({
             onClick={onRefreshIconClick}
           />
         </div>
-        <AgeSlider selectAge={selectAge} setSelectAge={setSelectAge} />
-        <GenderSelect
-          selectGender={selectGender}
-          setSelectGender={setSelectGender}
-        />
-        <ConcernSelect
-          selectConcern={selectConcern}
-          setSelectConcern={setSelectConcern}
-        />
+        <AgeSlider />
+        <GenderSelect />
+        <ConcernSelect />
       </div>
       <div css={style.buttonContainer}>
         <button onClick={toggleBottomSheet(false)}>닫기</button>

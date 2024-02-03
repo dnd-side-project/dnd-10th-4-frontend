@@ -1,16 +1,11 @@
+import { useFormContext } from 'react-hook-form';
 import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
 import style from '../styles';
 
-interface ConcernSelectProps {
-  selectConcern: string;
-  setSelectConcern: (concern: string) => void;
-}
+const ConcernSelect = () => {
+  const { setValue, watch } = useFormContext();
 
-const ConcernSelect = ({
-  selectConcern,
-  setSelectConcern,
-}: ConcernSelectProps) => {
   const chipLabels: string[] = [
     '일·직장',
     '취업·진로',
@@ -22,10 +17,6 @@ const ConcernSelect = ({
     '기타',
   ];
 
-  const handleChipClick = (label: string) => {
-    setSelectConcern(label === selectConcern ? '' : label);
-  };
-
   return (
     <section>
       <h3 css={[style.label, { paddingBottom: '4px' }]}>고민</h3>
@@ -36,8 +27,8 @@ const ConcernSelect = ({
         {chipLabels.map((label) => (
           <Chip
             key={label}
-            variant={label === selectConcern ? 'form-selected' : 'form'}
-            onClick={() => handleChipClick(label)}
+            variant={watch('concern') === label ? 'form-selected' : 'form'}
+            onClick={() => setValue('concern', label)}
           >
             {label}
           </Chip>

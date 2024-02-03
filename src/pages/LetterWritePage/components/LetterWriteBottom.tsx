@@ -1,18 +1,49 @@
+import { useFormContext } from 'react-hook-form';
+import { useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { ImageSquare } from '@/assets/icons';
 import style from '../styles';
 
 const LetterWriteBottom = () => {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const { setValue } = useFormContext();
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+    setValue('file', file);
+  };
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
     <Navbar css={style.navbar}>
-      <Button variant="secondary" size="sm">
+      <Button type="button" variant="secondary" size="sm">
         뒤로
       </Button>
-      <Button variant="primary" size="sm">
+      <Button type="submit" variant="primary" size="sm">
         답장 보내기
       </Button>
-      <Button css={style.iconContainer} variant="semi-transparent" size="sm">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
+      <Button
+        type="button"
+        css={style.iconContainer}
+        variant="semi-transparent"
+        size="sm"
+        onClick={handleButtonClick}
+      >
         <ImageSquare />
       </Button>
     </Navbar>
