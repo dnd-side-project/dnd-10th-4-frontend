@@ -30,12 +30,13 @@ const LetterWritePage = () => {
           css={style.header}
           leftContent={<CaretLeft strokeWidth={2.5} color="white" />}
         />
-        <main css={style.contentWrapper}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <LetterWriteContent />
-            <LetterWriteBottom />
-          </form>
-        </main>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          css={style.contentWrapper}
+        >
+          <LetterWriteContent />
+          <LetterWriteBottom />
+        </form>
       </div>
     </FormProvider>
   );

@@ -1,7 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { ChangeEvent } from 'react';
-import { formatDate } from '@/utils/dateUtils';
 import LetterCard from '@/components/LetterCard';
+import { formatDate } from '@/utils/dateUtils';
+import Polaroid from '@/components/Polaroid';
 import style from '../styles';
 import { BottomSheetProps } from './LetterWriteContent';
 import { LetterReceiverContainer } from '.';
@@ -45,6 +46,15 @@ const LetterPaper = ({
       <div css={style.date}>
         <span>{formatDate(new Date())}</span>
       </div>
+      {watch('image') && (
+        <Polaroid
+          topPosition={5.5}
+          leftPosition={1}
+          cancelButton={true}
+          onClickCancel={() => setValue('image', null)}
+          imgUrl={URL.createObjectURL(watch('image'))}
+        />
+      )}
     </LetterCard>
   );
 };

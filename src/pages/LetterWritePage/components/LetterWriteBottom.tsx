@@ -13,7 +13,7 @@ const LetterWriteBottom = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     console.log(file);
-    setValue('file', file);
+    setValue('image', file);
   };
 
   const handleButtonClick = () => {
