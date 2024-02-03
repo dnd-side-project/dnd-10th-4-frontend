@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
+import textStyles from '@/styles/textStyles';
 import StepTemplate from '../components/StepTemplate';
 
 const FirstStep = () => {
@@ -13,7 +14,7 @@ const FirstStep = () => {
         </Button>
       }
     >
-      <h1>환영해요</h1>
+      <h3 css={textStyles.t3}>환영해요</h3>
     </StepTemplate>
   );
 };

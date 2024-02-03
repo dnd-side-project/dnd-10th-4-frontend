@@ -25,6 +25,7 @@ const StepTemplate = ({
           <Tooltip
             side="bottom"
             align="end"
+            delay={1000}
             triggerContent={
               <IconButton>
                 <SoundOff color="white" />
@@ -51,9 +52,16 @@ const styles = {
     width: 100%;
     min-height: 100%;
     color: white;
+    text-align: center;
   `,
   main: css`
+    display: flex;
     flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10rem;
   `,
   buttonSection: css`
     width: 100%;
