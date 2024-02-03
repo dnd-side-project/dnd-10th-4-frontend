@@ -7,17 +7,18 @@ import { SoundOff } from '@/assets/icons';
 
 interface StepTemplateProps {
   children: React.ReactNode;
+  navHeaderContent?: React.ReactNode;
   buttonContent?: React.ReactNode;
 }
 
-const StepTemplate = ({ children, buttonContent }: StepTemplateProps) => {
+const StepTemplate = ({
+  children,
+  navHeaderContent,
+  buttonContent,
+}: StepTemplateProps) => {
   return (
     <div css={styles.container}>
-      <Header
-        leftContent={<div>뒤로</div>}
-        centerContent={<div>게이지바</div>}
-        rightContent={<div>건너뛰기</div>}
-      />
+      {navHeaderContent ? navHeaderContent : <Header />}
       <Header
         rightContent={
           <Tooltip
