@@ -7,11 +7,6 @@ const InputWorryStep = () => {
 
   return (
     <StepTemplate
-      navHeaderProps={{
-        progressValue: 4,
-        showBackButton: true,
-        showSkipButton: true,
-      }}
       buttonContent={
         <Button variant="primary" onClick={toNext}>
           선택 완료

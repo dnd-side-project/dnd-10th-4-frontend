@@ -9,11 +9,6 @@ const InputGenderStep = () => {
 
   return (
     <StepTemplate
-      navHeaderProps={{
-        progressValue: 3,
-        showBackButton: true,
-        showSkipButton: true,
-      }}
       buttonContent={
         <Button variant="primary" onClick={toNext}>
           선택 완료

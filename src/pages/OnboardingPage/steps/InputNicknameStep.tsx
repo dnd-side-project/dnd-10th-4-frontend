@@ -13,10 +13,6 @@ const InputNicknameStep = () => {
 
   return (
     <StepTemplate
-      navHeaderProps={{
-        progressValue: 1,
-        showBackButton: true,
-      }}
       buttonContent={
         <Button variant="primary" onClick={toNext}>
           다음
