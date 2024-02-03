@@ -63,7 +63,7 @@ const styles = {
     flex-wrap: wrap;
     gap: 0.4375rem;
     justify-content: center;
-    width: 20rem;
+    max-width: 20rem;
   `,
   chip: css`
     margin-bottom: 0.875rem;
