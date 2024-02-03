@@ -1,12 +1,14 @@
-import { useFormContext } from 'react-hook-form';
 import Slider from '@mui/material/Slider';
 import style from '../styles';
 
-const AgeSlider = () => {
-  const { setValue, watch } = useFormContext();
+interface ageSliderProps {
+  age: number[];
+  setAge: (age: number[]) => void;
+}
 
+const AgeSlider = ({ age, setAge }: ageSliderProps) => {
   const handleChange = (_e: Event, newValue: number | number[]) => {
-    setValue('age', newValue as number[]);
+    setAge(newValue as number[]);
   };
 
   return (
@@ -14,7 +16,7 @@ const AgeSlider = () => {
       <h3 css={style.label}>나이</h3>
       <Slider
         getAriaLabel={() => 'Age range'}
-        value={watch('age')}
+        value={age}
         onChange={handleChange}
         valueLabelDisplay="auto"
         disableSwap
@@ -23,8 +25,8 @@ const AgeSlider = () => {
         css={style.slider}
       />
       <div css={style.age}>
-        <span>{watch('age')[0]}세 이상</span>
-        <span>{watch('age')[1]}세 이하</span>
+        <span>{age[0]}세 이상</span>
+        <span>{age[1]}세 이하</span>
       </div>
     </section>
   );

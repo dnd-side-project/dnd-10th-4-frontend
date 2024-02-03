@@ -8,7 +8,6 @@ const LetterWritePage = () => {
   const methods = useForm({
     defaultValues: {
       content: '',
-      age: [15, 40],
     },
   });
 

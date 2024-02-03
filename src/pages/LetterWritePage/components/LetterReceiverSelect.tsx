@@ -12,16 +12,27 @@ const LetterReceiverSelect = ({
   toggleBottomSheet,
 }: BottomSheetProps) => {
   const { setValue } = useFormContext();
+
+  const [age, setAge] = useState([15, 40]);
+  const [gender, setGender] = useState<string | undefined>(undefined);
+  const [concern, setConcern] = useState<string | undefined>(undefined);
+
   const [iconRotation, setIconRotation] = useState(0);
 
   const onCompleteButtonClick = () => {
+    setValue('age', age);
+    setValue('concern', concern);
+    setValue('gender', gender);
     toggleBottomSheet(false)();
   };
 
   const onRefreshIconClick = () => {
-    setValue('age', [15, 40]);
-    setValue('gender', '');
-    setValue('concern', '');
+    setValue('age', undefined);
+    setValue('gender', undefined);
+    setValue('concern', undefined);
+    setAge([15, 45]);
+    setGender(undefined);
+    setConcern(undefined);
     setIconRotation((prev) => prev + 360);
   };
 
@@ -43,9 +54,9 @@ const LetterReceiverSelect = ({
             onClick={onRefreshIconClick}
           />
         </div>
-        <AgeSlider />
-        <GenderSelect />
-        <ConcernSelect />
+        <AgeSlider age={age} setAge={setAge} />
+        <GenderSelect gender={gender} setGender={setGender} />
+        <ConcernSelect concern={concern} setConcern={setConcern} />
       </div>
       <div css={style.buttonContainer}>
         <button onClick={toggleBottomSheet(false)}>닫기</button>
