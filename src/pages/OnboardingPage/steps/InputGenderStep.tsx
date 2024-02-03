@@ -1,7 +1,10 @@
+import React from 'react';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
+import { Female, Male } from '@/assets/icons';
+import COLORS from '@/constants/colors';
 import StepTemplate from '../components/StepTemplate';
 
 const InputGenderStep = () => {
@@ -21,9 +24,15 @@ const InputGenderStep = () => {
       <h3 css={textStyles.t3}>성별을 알려주세요</h3>
       <section css={styles.genderSection}>
         <div css={styles.genderCard}>
+          <div css={styles.iconCircle}>
+            <Male width={36} height={36} color={COLORS.gray3} />
+          </div>
           <p css={textStyles.b4m}>남성</p>
         </div>
         <div css={styles.genderCard}>
+          <div css={styles.iconCircle}>
+            <Female width={36} height={36} color={COLORS.gray3} />
+          </div>
           <p css={textStyles.b4m}>여성</p>
         </div>
       </section>
@@ -45,6 +54,7 @@ const styles = {
   genderCard: css`
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -57,6 +67,18 @@ const styles = {
       rgb(255 255 255 / 0.4) 100%
     );
     color: black;
+    cursor: pointer;
+    user-select: none;
     backdrop-filter: blur(7.5px);
+  `,
+  iconCircle: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: 50%;
+    backdrop-filter: blur(2px);
   `,
 };
