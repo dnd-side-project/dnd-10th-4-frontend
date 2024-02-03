@@ -14,8 +14,8 @@ const LetterReceiverSelect = ({
   const { setValue } = useFormContext();
 
   const [age, setAge] = useState([15, 40]);
-  const [gender, setGender] = useState<string | undefined>(undefined);
-  const [concern, setConcern] = useState<string | undefined>(undefined);
+  const [gender, setGender] = useState('');
+  const [concern, setConcern] = useState('');
 
   const [iconRotation, setIconRotation] = useState(0);
 
@@ -27,12 +27,12 @@ const LetterReceiverSelect = ({
   };
 
   const onRefreshIconClick = () => {
-    setValue('age', undefined);
-    setValue('gender', undefined);
-    setValue('concern', undefined);
-    setAge([15, 45]);
-    setGender(undefined);
-    setConcern(undefined);
+    setValue('age', []);
+    setValue('gender', '');
+    setValue('concern', '');
+    setAge([15, 40]);
+    setGender('');
+    setConcern('');
     setIconRotation((prev) => prev + 360);
   };
 

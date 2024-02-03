@@ -51,7 +51,7 @@ const LetterPaper = ({
           topPosition={5.5}
           leftPosition={1}
           cancelButton={true}
-          onClickCancel={() => setValue('image', null)}
+          onClickCancel={() => setValue('image', undefined)}
           imgUrl={URL.createObjectURL(watch('image'))}
         />
       )}

@@ -18,18 +18,18 @@ const ReceiverContainer = ({
   return (
     <div css={style.ReceiverContainer}>
       <span>To.</span>
-      {age !== undefined ? (
+      {age.length !== 0 ? (
         <div onClick={onClick} css={style.ReceiverBoxSelect}>
           <div>
             <span>
               {age[0]}~{age[1]}
             </span>
-            {gender !== undefined && (
+            {gender !== '' && (
               <span>
                 {gender === '모두에게 보내기' ? '모두에게' : '동성에게'}
               </span>
             )}
-            {concern !== undefined && <span>{concern}</span>}
+            {concern !== '' && <span>{concern}</span>}
           </div>
           <CaretDown css={style.caretDown(isOpen)} />
         </div>
