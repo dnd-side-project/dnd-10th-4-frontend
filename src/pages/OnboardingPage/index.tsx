@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { css } from '@emotion/react';
 import createFunnel from '@/components/Funnel/createFunnel';
 import { FunnelProvider } from '@/contexts/useFunnelContext';
 import Header from '@/components/Header';
-import Tooltip from '@/components/Tooltip';
-import IconButton from '@/components/IconButton';
-import { SoundOff } from '@/assets/icons';
+import MusicButton from '@/components/MusicButton';
 import FirstStep from './steps/FirstStep';
 import IntroduceStep from './steps/IntroduceStep';
 import InputNicknameStep from './steps/InputNicknameStep';
@@ -15,6 +12,7 @@ import InputGenderStep from './steps/InputGenderStep';
 import InputWorryStep from './steps/InputWorryStep';
 import LastStep from './steps/LastStep';
 import NavHeader from './components/NavHeader';
+import styles from './styles';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'First',
@@ -42,22 +40,7 @@ const OnboardingPage = () => {
     <FunnelProvider value={{ toPrev, toNext, toFirst, toLast }}>
       <div css={styles.container}>
         <NavHeader {...progress} />
-        <Header
-          rightContent={
-            <Tooltip
-              side="bottom"
-              align="end"
-              delay={5000}
-              triggerContent={
-                <IconButton>
-                  <SoundOff color="white" />
-                </IconButton>
-              }
-            >
-              소리를 켜 바다를 느껴보세요
-            </Tooltip>
-          }
-        />
+        <Header rightContent={<MusicButton />} />
         <Funnel step={step}>
           <Step
             name="First"
@@ -144,15 +127,3 @@ const OnboardingPage = () => {
 };
 
 export default OnboardingPage;
-
-const styles = {
-  container: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    min-height: 100%;
-    color: white;
-    text-align: center;
-  `,
-};

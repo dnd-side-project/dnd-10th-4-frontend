@@ -2,6 +2,15 @@ import { css } from '@emotion/react';
 import textStyles from '@/styles/textStyles';
 
 const styles = {
+  container: css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    color: white;
+    text-align: center;
+  `,
   input: css`
     border-radius: 0.75rem;
     padding: 0.8125rem 1rem;
