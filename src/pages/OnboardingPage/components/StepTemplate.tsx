@@ -4,21 +4,22 @@ import Header from '@/components/Header';
 import Tooltip from '@/components/Tooltip';
 import IconButton from '@/components/IconButton';
 import { SoundOff } from '@/assets/icons';
+import NavHeader from './NavHeader';
 
 interface StepTemplateProps {
   children: React.ReactNode;
-  navHeaderContent?: React.ReactNode;
+  navHeaderProps?: React.ComponentProps<typeof NavHeader>;
   buttonContent?: React.ReactNode;
 }
 
 const StepTemplate = ({
   children,
-  navHeaderContent,
+  navHeaderProps,
   buttonContent,
 }: StepTemplateProps) => {
   return (
     <div css={styles.container}>
-      {navHeaderContent ? navHeaderContent : <Header />}
+      <NavHeader {...navHeaderProps} />
       <Header
         rightContent={
           <Tooltip

@@ -1,16 +1,17 @@
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import StepTemplate from '../components/StepTemplate';
-import NavHeader from '../components/NavHeader';
 
 const InputBirthdayStep = () => {
   const { toNext } = useFunnelContext();
 
   return (
     <StepTemplate
-      navHeaderContent={
-        <NavHeader progressValue={2} showBackButton showSkipButton />
-      }
+      navHeaderProps={{
+        progressValue: 2,
+        showBackButton: true,
+        showSkipButton: true,
+      }}
       buttonContent={
         <Button variant="primary" onClick={toNext}>
           선택 완료

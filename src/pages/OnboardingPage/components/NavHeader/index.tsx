@@ -5,7 +5,7 @@ import { CaretLeft } from '@/assets/icons';
 import Progress from '../Progress';
 import styles from './styles';
 
-export interface NavHeaderProps {
+interface NavHeaderProps {
   /** 뒤로 가기 보여주기 On/Off */
   showBackButton?: boolean;
   /** 건너 뛰기 보여주기 On/Off */
