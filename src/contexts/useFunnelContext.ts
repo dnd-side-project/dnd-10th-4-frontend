@@ -3,6 +3,7 @@ import { createContext, useContext } from 'react';
 const FunnelContext = createContext({
   toNext: () => {},
   toPrev: () => {},
+  toFirst: () => {},
   toLast: () => {},
 });
 

@@ -28,7 +28,7 @@ const { Funnel, Step, useFunnel } = createFunnel([
 ] as const);
 
 const OnboardingPage = () => {
-  const { step, setStep, toPrev, toNext, toLast } = useFunnel();
+  const { step, toPrev, toNext, toFirst, toLast } = useFunnel();
 
   const [progress, setProgress] = useState<
     React.ComponentProps<typeof NavHeader>
@@ -39,7 +39,7 @@ const OnboardingPage = () => {
   });
 
   return (
-    <FunnelProvider value={{ toPrev, toNext, toLast }}>
+    <FunnelProvider value={{ toPrev, toNext, toFirst, toLast }}>
       <div css={styles.container}>
         <NavHeader {...progress} />
         <Header
@@ -135,8 +135,7 @@ const OnboardingPage = () => {
               })
             }
           >
-            {/* TODO: 임시로 첫 스텝으로 이동시킴 */}
-            <LastStep onNext={() => setStep('First')} />
+            <LastStep />
           </Step>
         </Funnel>
       </div>
