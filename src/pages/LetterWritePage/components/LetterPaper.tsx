@@ -1,34 +1,18 @@
 import { useFormContext } from 'react-hook-form';
-import { ChangeEvent } from 'react';
+import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
+import textStyles from '@/styles/textStyles';
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
-import Polaroid from '@/components/Polaroid';
-import Modal from '@/components/Modal';
-import useModal from '@/hooks/useModal';
-import Button from '@/components/Button';
-import style from '../styles';
 import { BottomSheetProps } from './LetterWriteContent';
-import { LetterReceiverContainer } from '.';
+import { LetterReceiverContainer, LetterTextarea, PolaroidImage } from '.';
 
 const LetterPaper = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const { register, setValue, watch } = useFormContext();
+  const { watch } = useFormContext();
   const MAX_CONTENT = 300;
-
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const inputValue = event.target.value;
-
-    if (inputValue.length <= MAX_CONTENT) {
-      setValue('content', inputValue);
-    } else {
-      setValue('content', inputValue.slice(0, MAX_CONTENT - 1));
-    }
-  };
-
-  const modal = useModal();
-  const { open, close } = modal;
 
   return (
     <LetterCard isOpen={true}>
@@ -36,15 +20,7 @@ const LetterPaper = ({
         onClick={toggleBottomSheet(true)}
         isOpen={isBottomSheetOpen}
       />
-      <textarea
-        {...register('content')}
-        name="content"
-        rows={15}
-        autoFocus
-        placeholder="하고싶은 이야기를 적어보세요."
-        css={style.textarea}
-        onChange={handleChange}
-      />
+      <LetterTextarea />
       <div css={style.textCount}>
         <span>{watch('content').length}</span>
         <span>&nbsp;/ {MAX_CONTENT}</span>
@@ -52,33 +28,32 @@ const LetterPaper = ({
       <div css={style.date}>
         <span>{formatDate(new Date())}</span>
       </div>
-      {watch('image') && (
-        <>
-          <Polaroid
-            onClick={open}
-            topPosition={5.5}
-            leftPosition={1}
-            cancelButton={true}
-            onClickCancel={() => setValue('image', undefined)}
-            imgUrl={URL.createObjectURL(watch('image'))}
-          />
-          <Modal {...modal}>
-            <div css={style.modalContainer}>
-              <Polaroid
-                imgUrl={URL.createObjectURL(watch('image'))}
-                size="lg"
-              />
-              <div onClick={close}>
-                <Button variant="secondary" size="sm">
-                  닫기
-                </Button>
-              </div>
-            </div>
-          </Modal>
-        </>
-      )}
+      {watch('image') && <PolaroidImage />}
     </LetterCard>
   );
 };
 
 export default LetterPaper;
+
+const style = {
+  textCount: css`
+    display: flex;
+    justify-content: flex-end;
+
+    ${textStyles.c1m}
+    & > span:nth-of-type(1) {
+      color: ${COLORS.gray1};
+    }
+
+    & > span:nth-of-type(2) {
+      color: ${COLORS.gray4};
+    }
+  `,
+  date: css`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2.5rem;
+    ${textStyles.c1r}
+    color: ${COLORS.gray4};
+  `,
+};

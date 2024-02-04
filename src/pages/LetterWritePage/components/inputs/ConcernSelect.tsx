@@ -1,6 +1,6 @@
+import { css } from '@emotion/react';
 import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
-import style from '../styles';
 
 interface concernSelectProps {
   concern: string | undefined;
@@ -41,3 +41,16 @@ const ConcernSelect = ({ concern, setConcern }: concernSelectProps) => {
 };
 
 export default ConcernSelect;
+
+const style = {
+  label: css`
+    padding-block: 0.5rem;
+    ${textStyles.t3};
+  `,
+  concernChip: css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-block: 1rem;
+  `,
+};

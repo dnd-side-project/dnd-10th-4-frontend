@@ -1,5 +1,7 @@
+import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
+import textStyles from '@/styles/textStyles';
 import Chip from '@/components/Chip';
-import style from '../styles';
 
 interface genderSelectProps {
   gender: string | undefined;
@@ -28,3 +30,25 @@ const GenderSelect = ({ gender, setGender }: genderSelectProps) => {
 };
 
 export default GenderSelect;
+
+const style = {
+  label: css`
+    padding-block: 0.5rem;
+    ${textStyles.t3};
+  `,
+  genderChip: css`
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+
+    button {
+      flex: 1;
+      color: ${COLORS.gray1};
+      font-weight: 700;
+      font-style: normal;
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  `,
+};

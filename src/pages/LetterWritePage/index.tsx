@@ -6,8 +6,8 @@ import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWriteMsg } from '@/constants/errorMessage';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const schema = z.object({
   age: z.array(z.number()).min(2, { message: letterWriteMsg.age }),
