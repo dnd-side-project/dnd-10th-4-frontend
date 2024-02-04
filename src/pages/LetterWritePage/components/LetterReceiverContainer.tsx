@@ -2,13 +2,12 @@ import { useFormContext } from 'react-hook-form';
 import { CaretDown } from '@/assets/icons';
 import style from '../styles';
 
-const ReceiverContainer = ({
-  onClick,
-  isOpen,
-}: {
+interface ReceiverContainerProps {
   onClick: () => void;
   isOpen: boolean;
-}) => {
+}
+
+const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
   const { watch } = useFormContext();
 
   const age = watch('age');

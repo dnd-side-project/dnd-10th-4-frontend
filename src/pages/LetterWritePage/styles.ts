@@ -109,10 +109,31 @@ const style = {
     ${textStyles.c1r}
     color: ${COLORS.gray4};
   `,
+  modalContainer: css`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 1rem;
+    margin-top: 3rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    button {
+      padding-inline: 40px;
+    }
+  `,
   bottomSheetContainer: css`
     padding-inline: 1rem;
   `,
-  bottomSheetTitle: css`
+  bottomSheetTitle: (rotaion: number) => css`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,6 +145,8 @@ const style = {
 
     svg {
       cursor: pointer;
+      transition: transform 0.5s;
+      transform: rotate(${rotaion}deg);
     }
   `,
   label: css`

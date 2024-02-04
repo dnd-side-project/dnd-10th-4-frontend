@@ -1,5 +1,5 @@
 import { Close } from '@/assets/icons';
-import style from './styles';
+import style, { PolaroidSize } from './styles';
 
 interface PolaroidProps {
   /** Polaroid 컴포넌트 사진입니다.  */
@@ -14,6 +14,8 @@ interface PolaroidProps {
   cancelButton?: boolean;
   /** 폴라로이드 엑스버튼의 클릭 이벤트 입니다. */
   onClickCancel?: () => void;
+  /** 폴라로이드의 크기 입니다. */
+  size?: PolaroidSize;
 }
 
 const Polaroid = ({
@@ -22,13 +24,14 @@ const Polaroid = ({
   leftPosition = 0,
   cancelButton = false,
   onClickCancel,
+  size = 'sm',
   ...props
 }: PolaroidProps) => {
   return (
     <>
       <img
         {...props}
-        css={style.img(topPosition, leftPosition)}
+        css={style.img(topPosition, leftPosition, size)}
         src={imgUrl}
         alt="편지와 함께 보낸 이미지"
       />

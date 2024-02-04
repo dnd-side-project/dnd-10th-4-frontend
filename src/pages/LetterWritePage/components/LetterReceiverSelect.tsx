@@ -43,16 +43,9 @@ const LetterReceiverSelect = ({
       onOpen={toggleBottomSheet(true)}
     >
       <div css={style.bottomSheetContainer}>
-        <div css={style.bottomSheetTitle}>
+        <div css={style.bottomSheetTitle(iconRotation)}>
           <h2>누구에게 보낼까요?</h2>
-          <ArrowClockWise
-            css={{
-              transform: `rotate(${iconRotation}deg)`,
-              transition: 'transform 0.5s',
-            }}
-            color={COLORS.gray2}
-            onClick={onRefreshIconClick}
-          />
+          <ArrowClockWise color={COLORS.gray2} onClick={onRefreshIconClick} />
         </div>
         <AgeSlider age={age} setAge={setAge} />
         <GenderSelect gender={gender} setGender={setGender} />
