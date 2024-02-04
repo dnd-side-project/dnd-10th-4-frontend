@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import { CaretDown } from '@/assets/icons';
+import { type Inputs } from '..';
 
 interface ReceiverContainerProps {
   onClick: () => void;
@@ -10,7 +11,7 @@ interface ReceiverContainerProps {
 }
 
 const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
-  const { watch } = useFormContext();
+  const { watch } = useFormContext<Inputs>();
 
   const age = watch('age');
   const gender = watch('gender');

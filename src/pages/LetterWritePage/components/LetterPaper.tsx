@@ -4,6 +4,8 @@ import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
+import { letterWrite } from '@/constants/schemaLiteral';
+import { type Inputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
 import { LetterReceiverContainer, LetterTextarea, PolaroidImage } from '.';
 
@@ -11,8 +13,7 @@ const LetterPaper = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const { watch } = useFormContext();
-  const MAX_CONTENT = 300;
+  const { watch } = useFormContext<Inputs>();
 
   return (
     <LetterCard isOpen={true}>
@@ -23,7 +24,7 @@ const LetterPaper = ({
       <LetterTextarea />
       <div css={style.textCount}>
         <span>{watch('content').length}</span>
-        <span>&nbsp;/ {MAX_CONTENT}</span>
+        <span>&nbsp;/ {letterWrite.content.max.value}</span>
       </div>
       <div css={style.date}>
         <span>{formatDate(new Date())}</span>

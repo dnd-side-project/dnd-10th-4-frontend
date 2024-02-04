@@ -5,6 +5,7 @@ import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
+import { type Inputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
 import { AgeSlider, GenderSelect, ConcernSelect } from '.';
 
@@ -12,7 +13,7 @@ const LetterReceiverSelect = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const { setValue } = useFormContext();
+  const { setValue } = useFormContext<Inputs>();
 
   const [age, setAge] = useState([15, 40]);
   const [gender, setGender] = useState('');

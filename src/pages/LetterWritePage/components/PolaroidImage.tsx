@@ -4,9 +4,11 @@ import Polaroid from '@/components/Polaroid';
 import Modal from '@/components/Modal';
 import useModal from '@/hooks/useModal';
 import Button from '@/components/Button';
+import { Inputs } from '..';
 
 const PolaroidImage = () => {
-  const { setValue, watch } = useFormContext();
+  const { setValue, watch } = useFormContext<Inputs>();
+  const imgUrl = URL.createObjectURL(watch('image'));
 
   const modal = useModal();
   const { open, close } = modal;
@@ -19,11 +21,11 @@ const PolaroidImage = () => {
         leftPosition={1}
         cancelButton={true}
         onClickCancel={() => setValue('image', undefined)}
-        imgUrl={URL.createObjectURL(watch('image'))}
+        imgUrl={imgUrl}
       />
       <Modal {...modal}>
         <div css={style.modalContainer}>
-          <Polaroid imgUrl={URL.createObjectURL(watch('image'))} size="lg" />
+          <Polaroid imgUrl={imgUrl} size="lg" />
           <div onClick={close}>
             <Button variant="secondary" size="sm">
               닫기

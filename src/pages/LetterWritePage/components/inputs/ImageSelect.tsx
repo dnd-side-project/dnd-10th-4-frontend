@@ -3,9 +3,10 @@ import { useFormContext } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { ImageSquare } from '@/assets/icons';
+import { Inputs } from '../..';
 
 const ImageSelect = () => {
-  const { setValue } = useFormContext();
+  const { setValue } = useFormContext<Inputs>();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

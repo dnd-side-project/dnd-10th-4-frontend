@@ -5,22 +5,29 @@ import z from 'zod';
 import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
-import { letterWriteMsg } from '@/constants/errorMessage';
-import { LetterWriteContent, LetterWriteBottom } from './components';
+import { letterWrite } from '@/constants/schemaLiteral';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
+
+const L = letterWrite;
 
 const schema = z.object({
-  age: z.array(z.number()).min(2, { message: letterWriteMsg.age }),
-  content: z.string().min(10, { message: letterWriteMsg.content }).max(300),
-  gender: z.string().min(1, { message: letterWriteMsg.gender }),
-  concern: z.string().min(1, { message: letterWriteMsg.concern }),
-  image: z.undefined().or(z.instanceof(File)),
+  age: z.array(z.number()).min(L.age.value, { message: L.age.message }),
+  content: z
+    .string()
+    .min(L.content.min.value, { message: L.content.min.message })
+    .max(L.content.max.value, { message: L.content.max.message }),
+  gender: z.string().min(L.gender.value, { message: L.gender.message }),
+  concern: z.string().min(L.concern.value, { message: L.concern.message }),
+  image: z.any(),
 });
+
+export type Inputs = z.infer<typeof schema>;
 
 const LetterWritePage = () => {
   const navigate = useNavigate();
 
-  const methods = useForm({
+  const methods = useForm<Inputs>({
     resolver: zodResolver(schema),
     defaultValues: {
       age: [],
