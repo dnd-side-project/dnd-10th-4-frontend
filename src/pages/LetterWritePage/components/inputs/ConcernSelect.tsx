@@ -21,7 +21,7 @@ const ConcernSelect = ({ concern, setConcern }: concernSelectProps) => {
 
   return (
     <section>
-      <h3 css={[style.label, { paddingBottom: '4px' }]}>고민</h3>
+      <h3 css={[style.label, { paddingBottom: '0.25rem' }]}>고민</h3>
       <p css={textStyles.description}>
         고민을 선택을 하면 나와 비슷한 고민을 가진 낯선 친구에게 전달돼요
       </p>

@@ -12,7 +12,6 @@ const ImageSelect = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     setValue('image', file);
-    console.log(file);
     event.target.value = '';
   };
 
@@ -28,7 +27,7 @@ const ImageSelect = () => {
         ref={fileInputRef}
         type="file"
         accept="image/*"
-        style={{ display: 'none' }}
+        css={{ display: 'none' }}
         onChange={handleFileChange}
       />
       <Button

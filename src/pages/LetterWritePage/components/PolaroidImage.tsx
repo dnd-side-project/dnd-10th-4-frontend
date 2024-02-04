@@ -41,7 +41,7 @@ const style = {
   modalContainer: css`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
     justify-content: center;
     align-items: center;
     margin-inline: 1rem;
@@ -56,7 +56,7 @@ const style = {
     }
 
     button {
-      padding-inline: 40px;
+      padding-inline: 2.5rem;
     }
   `,
 };
