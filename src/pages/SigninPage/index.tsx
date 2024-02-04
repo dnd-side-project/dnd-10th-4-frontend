@@ -8,7 +8,7 @@ import styles from './styles';
 
 const SigninPage = () => {
   return (
-    <main css={styles.page}>
+    <div css={styles.page}>
       <Header />
       <Header
         rightContent={
@@ -26,10 +26,10 @@ const SigninPage = () => {
         }
       />
 
-      <section css={styles.main}>
+      <main css={styles.main}>
         <p css={textStyles.b3R}>아무도에게도 말 못한 마음 속 편지</p>
         <h1 css={textStyles.logo}>내 마음 속 바다</h1>
-      </section>
+      </main>
 
       <section css={styles.buttonSection}>
         <KakaoLoginButton
@@ -37,7 +37,7 @@ const SigninPage = () => {
           href={import.meta.env.VITE_KAKAO_URL}
         />
       </section>
-    </main>
+    </div>
   );
 };
 

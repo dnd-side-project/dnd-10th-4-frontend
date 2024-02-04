@@ -58,9 +58,9 @@ const variants = {
   primary: css`
     ${baseChipStyle};
     background: radial-gradient(
-      491.85% 132.88% at 0% 12.5%,
-      rgb(255 255 255 / 0.7) 0%,
-      rgb(255 255 255 / 0.28) 100%
+      234.35% 120.74% at 6.21% 10.17%,
+      rgb(255 255 255 / 0.56) 0%,
+      rgb(255 255 255 / 0.24) 100%
     );
     padding: 0.25rem 1rem;
     border: 1px solid rgb(255 255 255 / 0.3);
