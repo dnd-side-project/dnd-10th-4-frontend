@@ -1,22 +1,11 @@
 import { useFormContext } from 'react-hook-form';
-import { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 import textStyles from '@/styles/textStyles';
+import { letterWrite } from '@/constants/schemaLiteral';
+import { type Inputs } from '../..';
 
 const LetterTextarea = () => {
-  const { register, setValue } = useFormContext();
-
-  const MAX_CONTENT = 300;
-
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const inputValue = event.target.value;
-
-    if (inputValue.length <= MAX_CONTENT) {
-      setValue('content', inputValue);
-    } else {
-      setValue('content', inputValue.slice(0, MAX_CONTENT - 1));
-    }
-  };
+  const { register } = useFormContext<Inputs>();
 
   return (
     <textarea
@@ -26,7 +15,7 @@ const LetterTextarea = () => {
       autoFocus
       placeholder="하고싶은 이야기를 적어보세요."
       css={style.textarea}
-      onChange={handleChange}
+      maxLength={letterWrite.content.max.value}
     />
   );
 };
