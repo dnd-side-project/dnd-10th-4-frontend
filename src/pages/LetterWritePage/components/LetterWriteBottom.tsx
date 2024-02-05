@@ -19,7 +19,7 @@ const LetterWriteBottom = () => {
         뒤로
       </Button>
       <Button type="submit" variant="primary" size="sm">
-        답장 보내기
+        보내기
       </Button>
       <ImageSelect />
     </Navbar>
