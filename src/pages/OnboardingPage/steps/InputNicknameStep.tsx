@@ -27,7 +27,7 @@ const InputNicknameStep = () => {
     setNickname(NICKNAMES[randomIndex]);
   };
 
-  const handleNext = async () => {
+  const handleSubmit = async () => {
     await mutateAsync({ nickname });
     toNext();
   };
@@ -35,7 +35,7 @@ const InputNicknameStep = () => {
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={handleNext} disabled={isPending}>
+        <Button variant="primary" onClick={handleSubmit} disabled={isPending}>
           {isPending ? <LoadingSpinner size="1.3rem" /> : '다음'}
         </Button>
       }

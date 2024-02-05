@@ -28,6 +28,14 @@ const memberAPI = {
     });
     return data;
   },
+
+  /** 생일 수정 */
+  patchBirthday: async (params: { birthday: string }) => {
+    const { data } = await baseInstance.patch('/api/member/birthday', {
+      params,
+    });
+    return data;
+  },
 };
 
 export default memberAPI;
