@@ -30,6 +30,12 @@ const memberHandler = [
 
     return HttpResponse.json();
   }),
+
+  http.patch(baseURL('/api/member/gender'), async () => {
+    await delay(1000);
+
+    return HttpResponse.json();
+  }),
 ];
 
 export default memberHandler;

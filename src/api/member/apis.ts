@@ -36,6 +36,14 @@ const memberAPI = {
     });
     return data;
   },
+
+  /** 성별 수정 */
+  patchGender: async (params: { gender: Gender }) => {
+    const { data } = await baseInstance.patch('/api/member/gender', {
+      params,
+    });
+    return data;
+  },
 };
 
 export default memberAPI;
