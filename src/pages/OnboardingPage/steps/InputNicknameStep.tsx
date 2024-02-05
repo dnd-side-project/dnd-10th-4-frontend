@@ -8,7 +8,7 @@ import { Shuffle } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
 import { NICKNAMES } from '@/constants/users';
-import { type Nickname } from '@/types/member';
+import { type Nickname } from '@/constants/users';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import memberAPI from '@/api/member/apis';
 import StepTemplate from '../components/StepTemplate';

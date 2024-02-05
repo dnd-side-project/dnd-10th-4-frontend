@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import { type Gender } from '@/types/member';
+import { type Gender } from '@/constants/users';
 import GenderCard from './';
 
 const meta = {

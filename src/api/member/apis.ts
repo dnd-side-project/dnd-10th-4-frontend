@@ -3,7 +3,7 @@ import {
   type Gender,
   type Role,
   type Nickname,
-} from '@/types/member';
+} from '@/constants/users';
 import baseInstance from '../instance';
 
 const memberAPI = {

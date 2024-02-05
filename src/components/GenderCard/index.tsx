@@ -1,4 +1,4 @@
-import { type Gender } from '@/types/member';
+import { GENDER_DICT, type Gender } from '@/constants/users';
 import { Female, Male } from '@/assets/icons';
 import textStyles from '@/styles/textStyles';
 import styles, { type CardVariant } from './styles';
@@ -16,11 +16,9 @@ interface GenderCardProps {
 
 const contents = {
   MALE: {
-    text: '남성',
     icon: <Male width={36} height={36} />,
   },
   FEMALE: {
-    text: '여성',
     icon: <Female width={36} height={36} />,
   },
 } as const;
@@ -37,7 +35,7 @@ const GenderCard = ({
       <div css={styles.iconCircle(variant, isSelected)}>
         {contents[gender].icon}
       </div>
-      <p css={textStyles.b4m}>{contents[gender].text}</p>
+      <p css={textStyles.b4m}>{GENDER_DICT[gender]}</p>
     </article>
   );
 };

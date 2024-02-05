@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
-import { type Gender } from '@/types/member';
+import { type Gender } from '@/constants/users';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
