@@ -18,7 +18,7 @@ import onboardingStyles from '../styles';
 const formLiteral = {
   year: {
     min: 1800,
-    max: 9999,
+    max: new Date().getFullYear(),
     length: 4,
   },
   month: {
