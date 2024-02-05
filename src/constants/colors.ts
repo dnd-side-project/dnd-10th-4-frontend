@@ -9,6 +9,7 @@ const COLORS = {
   primary: '#0C8CE9',
   primaryHover: '#096DB5',
   primaryDisabled: '#C6CFD6',
+  primaryLight: '#0C8CE91A',
 } as const;
 
 export default COLORS;

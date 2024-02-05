@@ -1,17 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import textStyles from '@/styles/textStyles';
-import { useFunnelContext } from '@/contexts/useFunnelContext';
+import { ROUTER_PATHS } from '@/router';
 import StepTemplate from '../components/StepTemplate';
 
 const LastStep = () => {
-  const { toFirst } = useFunnelContext();
+  const navigate = useNavigate();
 
   return (
     <StepTemplate
       buttonContent={
         // TODO: 임시로 첫 스텝으로 이동시킴
-        <Button variant="primary" onClick={toFirst}>
+        <Button variant="primary" onClick={() => navigate(ROUTER_PATHS.ROOT)}>
           시작하기
         </Button>
       }
