@@ -1,22 +1,35 @@
+import { useNavigate } from 'react-router-dom';
+import { css } from '@emotion/react';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
-import { ImageSquare } from '@/assets/icons';
-import style from '../styles';
+import { ROUTER_PATHS } from '@/router';
+import { ImageSelect } from '.';
 
 const LetterWriteBottom = () => {
+  const navigate = useNavigate();
+
   return (
     <Navbar css={style.navbar}>
-      <Button variant="secondary" size="sm">
+      <Button
+        onClick={() => navigate(ROUTER_PATHS.ROOT)}
+        type="button"
+        variant="secondary"
+        size="sm"
+      >
         뒤로
       </Button>
-      <Button variant="primary" size="sm">
-        답장 보내기
+      <Button type="submit" variant="primary" size="sm">
+        보내기
       </Button>
-      <Button css={style.iconContainer} variant="semi-transparent" size="sm">
-        <ImageSquare />
-      </Button>
+      <ImageSelect />
     </Navbar>
   );
 };
 
 export default LetterWriteBottom;
+
+const style = {
+  navbar: css`
+    padding-inline: 0;
+  `,
+};
