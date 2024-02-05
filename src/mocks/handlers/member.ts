@@ -36,6 +36,18 @@ const memberHandler = [
 
     return HttpResponse.json();
   }),
+
+  http.delete(baseURL('/api/member/worry'), async () => {
+    await delay(1000);
+
+    return HttpResponse.json();
+  }),
+
+  http.post(baseURL('/api/member/worry'), async () => {
+    await delay(1000);
+
+    return HttpResponse.json();
+  }),
 ];
 
 export default memberHandler;

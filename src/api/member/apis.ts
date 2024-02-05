@@ -44,6 +44,20 @@ const memberAPI = {
     });
     return data;
   },
+
+  /** 고민 삭제 */
+  deleteWorry: async () => {
+    const { data } = await baseInstance.delete('/api/member/worry');
+    return data;
+  },
+
+  /** 고민 등록 */
+  postWorry: async (params: { worries: Worry[] }) => {
+    const { data } = await baseInstance.post('/api/member/worry', {
+      params,
+    });
+    return data;
+  },
 };
 
 export default memberAPI;

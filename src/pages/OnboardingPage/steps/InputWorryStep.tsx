@@ -1,18 +1,76 @@
+import { useState } from 'react';
 import { css } from '@emotion/react';
+import { useMutation } from '@tanstack/react-query';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
 import Chip from '@/components/Chip';
+import { WORRY_DICT, type Worry } from '@/constants/users';
+import memberAPI from '@/api/member/apis';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import StepTemplate from '../components/StepTemplate';
 
+const formLiteral = {
+  worry: {
+    min: 1,
+    max: 3,
+  },
+} as const;
+
 const InputWorryStep = () => {
+  const [selectedWorries, setSelectedWorries] = useState<Worry[]>([]);
+
   const { toNext } = useFunnelContext();
+  const { mutateAsync: deleteWorry, isPending: isDeleting } = useMutation({
+    mutationFn: memberAPI.deleteWorry,
+  });
+  const { mutateAsync: postWorry, isPending: isPosting } = useMutation({
+    mutationFn: memberAPI.postWorry,
+  });
+
+  const handleToggleWorry = (worry: Worry) => {
+    if (selectedWorries.includes(worry)) {
+      setSelectedWorries(selectedWorries.filter((w) => w !== worry));
+    } else {
+      setSelectedWorries([...selectedWorries, worry]);
+    }
+  };
+
+  const getChipVariant = (worry: Worry) => {
+    if (selectedWorries.length < formLiteral.worry.max) {
+      return selectedWorries.includes(worry) ? 'primary-selected' : 'primary';
+    } else {
+      return selectedWorries.includes(worry)
+        ? 'primary-selected'
+        : 'primary-disabled';
+    }
+  };
+
+  const isSubmitting = isDeleting || isPosting;
+
+  const handleSubmit = async () => {
+    if (
+      selectedWorries.length < formLiteral.worry.min ||
+      selectedWorries.length > formLiteral.worry.max
+    ) {
+      return;
+    }
+
+    await deleteWorry();
+    await postWorry({ worries: selectedWorries });
+
+    toNext();
+  };
 
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={toNext}>
-          선택 완료
+        <Button
+          variant="primary"
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? <LoadingSpinner size="1.3rem" /> : '선택 완료'}
         </Button>
       }
     >
@@ -26,30 +84,18 @@ const InputWorryStep = () => {
         3개 까지 선택 할 수 있어요
       </p>
       <section css={styles.chipSection}>
-        <Chip css={styles.chip} variant="primary-selected">
-          일·직장
-        </Chip>
-        <Chip css={styles.chip} variant="primary-disabled">
-          취업·진로
-        </Chip>
-        <Chip css={styles.chip} variant="primary">
-          인간관계
-        </Chip>
-        <Chip css={styles.chip} variant="primary">
-          이별·상실
-        </Chip>
-        <Chip css={styles.chip} variant="primary">
-          연애
-        </Chip>
-        <Chip css={styles.chip} variant="primary">
-          학업
-        </Chip>
-        <Chip css={styles.chip} variant="primary">
-          가족
-        </Chip>
-        <Chip css={styles.chip} variant="primary">
-          기타
-        </Chip>
+        {Object.entries(WORRY_DICT).map(([key, value]) => {
+          return (
+            <Chip
+              key={key}
+              css={css({ marginBottom: '0.875rem' })}
+              variant={getChipVariant(key as Worry)}
+              onClick={() => handleToggleWorry(key as Worry)}
+            >
+              {value}
+            </Chip>
+          );
+        })}
       </section>
     </StepTemplate>
   );
@@ -64,8 +110,5 @@ const styles = {
     gap: 0.4375rem;
     justify-content: center;
     max-width: 20rem;
-  `,
-  chip: css`
-    margin-bottom: 0.875rem;
   `,
 };
