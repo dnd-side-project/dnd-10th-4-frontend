@@ -5,7 +5,11 @@ import Button from '@/components/Button';
 import { ROUTER_PATHS } from '@/router';
 import { ImageSelect } from '.';
 
-const LetterWriteBottom = () => {
+interface LetterWriteBottomProps {
+  isPosting: boolean;
+}
+
+const LetterWriteBottom = ({ isPosting }: LetterWriteBottomProps) => {
   const navigate = useNavigate();
 
   return (
@@ -18,7 +22,8 @@ const LetterWriteBottom = () => {
       >
         뒤로
       </Button>
-      <Button type="submit" variant="primary" size="sm">
+      <Button disabled={isPosting} type="submit" variant="primary" size="sm">
+        {/** isPosting 가 true 일 때 로딩스피너 보여줄 예정  */}
         보내기
       </Button>
       <ImageSelect />

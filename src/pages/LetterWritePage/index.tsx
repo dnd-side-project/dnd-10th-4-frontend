@@ -2,13 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
+import { useMutation } from '@tanstack/react-query';
 import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
-import { LetterWriteContent, LetterWriteBottom } from './components';
+import { Letter } from '@/types/letter';
+import letterAPI from '@/api/letter/apis';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const L = letterWrite;
 
@@ -45,8 +48,12 @@ const LetterWritePage = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = (data: Inputs) => {
-    const letterData = {
+  const { mutateAsync: postLetter, isPending: isPosting } = useMutation({
+    mutationFn: letterAPI.postLetter,
+  });
+
+  const onSubmit = async (data: Inputs) => {
+    const letterData: Letter = {
       content: data.content,
       equalGender: EQUAL_GENDER_DICT[data.gender],
       ageRangeStart: data.age[0],
@@ -54,7 +61,7 @@ const LetterWritePage = () => {
       worryType: data.worryType,
       image: data.image,
     };
-    console.log(letterData);
+    await postLetter(letterData);
   };
 
   return (
@@ -72,7 +79,7 @@ const LetterWritePage = () => {
         />
         <form onSubmit={handleSubmit(onSubmit)} css={style.contentWrapper}>
           <LetterWriteContent />
-          <LetterWriteBottom />
+          <LetterWriteBottom isPosting={isPosting} />
         </form>
         {/** 임시 에러 출력용 */}
         {errors.worryType && <p>{errors.worryType.message}</p>}
