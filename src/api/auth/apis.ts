@@ -1,6 +1,6 @@
 import baseInstance from '../instance';
 
-const oauth2API = {
+const authAPI = {
   // TODO: 추후 API 명세에 맞게 수정해야 합니다.
   postKakaoCode: async (code: string) => {
     const { data } = await baseInstance.post('/oauth2/authorization/kakao', {
@@ -10,4 +10,4 @@ const oauth2API = {
   },
 };
 
-export default oauth2API;
+export default authAPI;

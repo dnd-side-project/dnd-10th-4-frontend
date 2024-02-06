@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '@/utils/mswUtils';
 
-const oauth2Handler = [
+const authHandler = [
   http.post(baseURL('/oauth2/authorization/kakao'), async () => {
     await delay(300);
 
@@ -9,4 +9,4 @@ const oauth2Handler = [
   }),
 ];
 
-export default oauth2Handler;
+export default authHandler;
