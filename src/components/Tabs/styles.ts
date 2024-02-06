@@ -22,37 +22,39 @@ const styles = {
 const variantStyles = {
   primary: {
     list: css`
-      border: 1px solid rgb(255 255 255 / 0.3);
-      border-radius: 0.75rem;
-      background: radial-gradient(
-        7463.97% 124.02% at 1.68% 0%,
-        rgb(255 255 255 / 0.7) 0%,
-        rgb(255 255 255 / 0.1) 100%
+      border: 1px solid rgb(255 255 255 / 0.5);
+      border-radius: 0.5625rem;
+      background: linear-gradient(
+        91deg,
+        rgb(241 241 241 / 0.48) 19.56%,
+        rgb(241 241 241 / 0.18) 98.34%
       );
       background-clip: padding-box;
     `,
     trigger: css`
-      margin: -1px;
+      margin: 1px;
       padding: 0.75rem 1rem;
       border: 1px solid transparent;
       border-radius: 0.75rem;
       background: none;
       color: ${COLORS.gray3};
+      transition: all 0.25s ease;
 
       &:focus {
         outline: none;
       }
 
       &[data-state='active'] {
-        border: 1px solid rgb(255 255 255 / 0.3);
-        background: linear-gradient(
-          100deg,
-          rgb(255 255 255 / 0.5) 6.09%,
-          rgb(255 255 255 / 0.5) 100%,
-          rgb(255 255 255 / 0.3) 100%
-        );
+        border: 0.5px solid rgb(0 0 0 / 0.04);
+        border-radius: 0.4375rem;
+        background: white;
         color: black;
-        backdrop-filter: blur(2px);
+      }
+
+      &[data-state='active']:last-child {
+        box-shadow:
+          0 3px 1px 0 rgb(0 0 0 / 0.04),
+          0 3px 8px 0 rgb(0 0 0 / 0.12);
       }
     `,
   },
