@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import textStyles from '@/styles/textStyles';
+import COLORS from '@/constants/colors';
 
 const styles = {
   container: css`
@@ -20,10 +21,14 @@ const styles = {
       rgb(255 255 255 / 0.56) 0%,
       rgb(255 255 255 / 0.24) 100%
     );
-    color: black;
+    color: ${COLORS.gray1};
     outline: none;
     text-align: center;
     backdrop-filter: blur(7.5px);
+
+    &:focus {
+      background: rgb(255 255 255 / 0.8);
+    }
 
     ${textStyles.t3}
   `,
