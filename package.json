@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
     "dev": "vite",
     "dev:msw": "cross-env VITE_MSW=on vite",
     "build": "tsc && vite build",
@@ -79,7 +81,8 @@
     "stylelint-order": "^6.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "vite-plugin-turbosnap": "^1.0.3"
+    "vite-plugin-turbosnap": "^1.0.3",
+    "vitest": "^1.2.2"
   },
   "lint-staged": {
     "*.{cjs,mjs,js,jsx,ts,tsx}": [
