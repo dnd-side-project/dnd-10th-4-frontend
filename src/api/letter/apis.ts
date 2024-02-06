@@ -3,8 +3,8 @@ import baseInstance from '../instance';
 
 const letterAPI = {
   /** 편지 작성 */
-  postLetter: async (params: Letter) => {
-    const { data } = await baseInstance.post('/api/letter', params);
+  postLetter: async (letter: Letter) => {
+    const { data } = await baseInstance.post('/api/letter', letter);
     return data;
   },
 };
