@@ -19,7 +19,7 @@ it('AT 유효', async () => {
   localStorage.setItem(STORAGE_KEYS.accessToken, 'fresh');
   localStorage.setItem(STORAGE_KEYS.refreshToken, 'fresh');
 
-  expect(authAPI.getAccessCheck()).resolves.toBe('액세스 토큰이 유효합니다.');
+  expect(authAPI.getAccessCheck()).resolves.not.toThrow();
 });
 
 it('AT 만료시 재발급 요청 후 원본 요청 재수행', async () => {

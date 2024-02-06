@@ -2,6 +2,7 @@ import axios, { isAxiosError } from 'axios';
 import { BACKEND_ENDPOINT } from '@/constants/endpoint';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { ROUTER_PATHS } from '@/router';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import authAPI from './auth/apis';
 
 const baseInstance = axios.create({
@@ -25,13 +26,13 @@ baseInstance.interceptors.response.use(
 
     if (isAxiosError(error)) {
       switch (error.response?.data) {
-        case '액세스 토큰이 만료되었습니다.': {
+        case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
           localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
           localStorage.setItem(STORAGE_KEYS.refreshToken, res.refreshToken);
           return axios(config);
         }
-        case '리프레시 토큰이 올바르지 않습니다. 다시 로그인해주세요.': {
+        case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
           localStorage.removeItem(STORAGE_KEYS.refreshToken);
           window.location.href = ROUTER_PATHS.SIGNIN;

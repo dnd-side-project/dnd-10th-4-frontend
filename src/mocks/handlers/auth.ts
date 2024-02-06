@@ -1,5 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '@/utils/mswUtils';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 
 const authHandler = [
   http.post(baseURL('/api/oauth2/authorization/kakao'), async () => {
@@ -19,10 +20,7 @@ const authHandler = [
         refreshToken: 'renewed',
       });
     } else {
-      return new HttpResponse(
-        '리프레시 토큰이 올바르지 않습니다. 다시 로그인해주세요.',
-        { status: 401 },
-      );
+      return new HttpResponse(ERROR_RESPONSES.reissueFailed, { status: 401 });
     }
   }),
 
@@ -33,7 +31,7 @@ const authHandler = [
     if (accessToken === 'fresh') {
       return new HttpResponse('액세스 토큰이 유효합니다.');
     } else {
-      return new HttpResponse('액세스 토큰이 만료되었습니다.', {
+      return new HttpResponse(ERROR_RESPONSES.accessExpired, {
         status: 401,
       });
     }
