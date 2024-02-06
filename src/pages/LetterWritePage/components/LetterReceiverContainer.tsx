@@ -66,9 +66,8 @@ const style = {
     width: 100%;
     margin-left: 0.5rem;
     padding: 0.5rem 0.75rem;
-    border: 1px solid white;
+    border: 1px solid ${COLORS.gray2};
     border-radius: 0.5rem;
-    background: rgb(255 255 255 / 0.38);
     letter-spacing: -0.0035rem;
     cursor: pointer;
 
@@ -83,7 +82,7 @@ const style = {
     width: 100%;
     margin-left: 0.5rem;
     padding: 0.4375rem 0.75rem;
-    border: 1px solid white;
+    border: 1px solid ${COLORS.gray6};
     border-radius: 0.5rem;
     background: ${COLORS.gray6};
     letter-spacing: -0.0035rem;

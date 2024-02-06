@@ -41,7 +41,7 @@ const ImageSelect = () => {
         size="sm"
         onClick={handleButtonClick}
       >
-        <ImageSquare />
+        <ImageSquare width={24} />
       </Button>
     </>
   );
