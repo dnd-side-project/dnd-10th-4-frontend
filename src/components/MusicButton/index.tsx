@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { SoundOn, SoundOff } from '@/assets/icons';
+import useBoolean from '@/hooks/useBoolean';
 import Tooltip from '../Tooltip';
 import IconButton from '../IconButton';
 
@@ -10,11 +10,7 @@ interface MusicButtonProps {
 
 /** 바다 소리 음악을 On/Off 하는 컴포넌트입니다. */
 const MusicButton = ({ color = 'white' }: MusicButtonProps) => {
-  const [isMuted, setIsMuted] = useState(true);
-
-  const handleToggle = () => {
-    setIsMuted((prev) => !prev);
-  };
+  const { value: isMuted, toggle } = useBoolean(true);
 
   return (
     <Tooltip
@@ -22,7 +18,7 @@ const MusicButton = ({ color = 'white' }: MusicButtonProps) => {
       align="end"
       delay={5000}
       triggerContent={
-        <IconButton onClick={handleToggle}>
+        <IconButton onClick={toggle}>
           {isMuted ? <SoundOff color={color} /> : <SoundOn color={color} />}
         </IconButton>
       }
