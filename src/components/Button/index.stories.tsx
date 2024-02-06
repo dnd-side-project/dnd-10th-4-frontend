@@ -42,6 +42,9 @@ const styles = {
     padding: 1rem;
     background-color: #fcecd0;
   `,
+  cancelContainer: css`
+    display: flex;
+  `,
 };
 
 export const Primary: Story = {
@@ -99,6 +102,19 @@ export const SemiTransparent: Story = {
       <Button variant="semi-transparent">
         <PencilLine />
         <p>button</p>
+      </Button>
+    </div>
+  ),
+};
+
+export const Cancel: Story = {
+  render: () => (
+    <div css={styles.cancelContainer}>
+      <Button variant="cancel" rounded="none">
+        <p>닫기</p>
+      </Button>
+      <Button variant="primary" rounded="none">
+        <p>완료</p>
       </Button>
     </div>
   ),

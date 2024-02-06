@@ -7,7 +7,8 @@ export type ButtonVariant =
   | 'primary-outline'
   | 'secondary'
   | 'semi-transparent'
-  | 'semi-transparent-unaccent';
+  | 'semi-transparent-unaccent'
+  | 'cancel';
 
 export type ButtonSize = 'md' | 'sm';
 export type ButtonRounded = 'none' | 'sm' | 'md';
@@ -125,6 +126,21 @@ const variantStyles = {
     );
     color: ${COLORS.gray3};
     box-shadow: 0 8px 16px 0 rgb(153 153 153 / 0.2);
+  `,
+  cancel: css`
+    background: ${COLORS.gray5};
+    color: ${COLORS.gray1};
+
+    &:hover {
+      background-color: ${COLORS.gray3};
+      color: black;
+    }
+
+    &:disabled {
+      background-color: ${COLORS.gray5};
+      color: ${COLORS.gray1};
+      opacity: 0.4;
+    }
   `,
 };
 
