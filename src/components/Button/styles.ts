@@ -10,16 +10,20 @@ export type ButtonVariant =
   | 'semi-transparent-unaccent';
 
 export type ButtonSize = 'md' | 'sm';
+export type ButtonRounded = 'none' | 'sm' | 'md';
 
 const styles = {
-  button: (variant: ButtonVariant, size: ButtonSize) => css`
+  button: (
+    variant: ButtonVariant,
+    size: ButtonSize,
+    rounded: ButtonRounded,
+  ) => css`
     display: flex;
     flex: 1 0;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 6.25rem;
     cursor: pointer;
     transition: all 0.2s ease;
 
@@ -33,6 +37,7 @@ const styles = {
       cursor: not-allowed;
     }
 
+    ${roundedStyles[rounded]}
     ${textStyles.t3}
     ${sizeStyles[size]}
     ${variantStyles[variant]}
@@ -45,6 +50,18 @@ const sizeStyles = {
   `,
   md: css`
     padding: 1rem 1.25rem;
+  `,
+};
+
+const roundedStyles = {
+  none: css`
+    border-radius: none;
+  `,
+  sm: css`
+    border-radius: 0.75rem;
+  `,
+  md: css`
+    border-radius: 6.25rem;
   `,
 };
 

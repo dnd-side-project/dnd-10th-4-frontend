@@ -23,6 +23,7 @@ export const Default: Story = {
   args: {
     variant: 'primary',
     size: 'md',
+    rounded: 'md',
     children: 'button',
     disabled: false,
   },
