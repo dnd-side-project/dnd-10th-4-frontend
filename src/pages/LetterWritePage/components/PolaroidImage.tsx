@@ -47,7 +47,7 @@ const style = {
     justify-content: center;
     align-items: center;
     margin-inline: 1rem;
-    margin-top: 3rem;
+    margin-top: 15vh;
 
     div {
       display: flex;
@@ -58,7 +58,7 @@ const style = {
     }
 
     button {
-      padding-inline: 2.5rem;
+      padding-inline: 3.75rem;
     }
   `,
 };

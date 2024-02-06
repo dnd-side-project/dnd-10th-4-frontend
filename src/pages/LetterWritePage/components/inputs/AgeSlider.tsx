@@ -43,6 +43,7 @@ const style = {
     ${textStyles.t3};
   `,
   slider: css`
+    height: 0.5rem;
     color: ${COLORS.primary};
 
     .MuiSlider-rail {
@@ -50,15 +51,17 @@ const style = {
     }
 
     .MuiSlider-thumb {
-      width: 1rem;
-      height: 1rem;
-      border: 1px solid ${COLORS.gray4};
-      background: ${COLORS.gray6};
+      width: 1.25rem;
+      height: 1.25rem;
+      background: white;
+      box-shadow:
+        0 0.125rem 0.25rem 0 rgb(0 0 0 / 0.12),
+        0 0.0313rem 0.125rem 0 rgb(0 0 0 / 0.12);
     }
 
     .MuiSlider-valueLabel {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.7rem;
+      height: 1.7rem;
       padding: 0;
       border-radius: 50% 50% 50% 0;
       background: unset;

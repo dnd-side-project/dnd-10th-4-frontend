@@ -37,7 +37,7 @@ const sizeStyle = {
     justify-content: center;
     align-items: flex-start;
     align-self: stretch;
-    height: 32.75rem;
+    height: 52vh;
     padding: 1.25rem 1.25rem 5rem;
     border-radius: 0.5rem;
     background-size: cover;
