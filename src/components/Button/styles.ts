@@ -28,10 +28,13 @@ const styles = {
     cursor: pointer;
     transition: all 0.2s ease;
 
-    &:not(:disabled):active {
-      box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
-      transform: scale(0.98);
-    }
+    ${rounded !== 'none' &&
+    css`
+      &:not(:disabled):active {
+        box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
+        transform: scale(0.98);
+      }
+    `}
 
     &:disabled {
       box-shadow: none;
