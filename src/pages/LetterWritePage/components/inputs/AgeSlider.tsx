@@ -2,6 +2,7 @@ import Slider from '@mui/material/Slider';
 import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
+import { letterWrite } from '@/constants/schemaLiteral';
 
 interface ageSliderProps {
   age: number[];
@@ -22,8 +23,8 @@ const AgeSlider = ({ age, setAge }: ageSliderProps) => {
         onChange={handleChange}
         valueLabelDisplay="auto"
         disableSwap
-        min={15}
-        max={40}
+        min={letterWrite.age.min}
+        max={letterWrite.age.max}
         css={style.slider}
       />
       <div css={style.age}>

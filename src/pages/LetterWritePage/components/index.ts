@@ -1,5 +1,5 @@
 import AgeSlider from './inputs/AgeSlider';
-import ConcernSelect from './inputs/ConcernSelect';
+import WorrySelect from './inputs/WorrySelect';
 import GenderSelect from './inputs/GenderSelect';
 import LetterTextarea from './inputs/LetterTextarea';
 import ImageSelect from './inputs/ImageSelect';
@@ -12,7 +12,7 @@ import LetterWriteContent from './LetterWriteContent';
 
 export {
   AgeSlider,
-  ConcernSelect,
+  WorrySelect,
   GenderSelect,
   LetterTextarea,
   ImageSelect,

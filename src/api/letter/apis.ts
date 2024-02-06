@@ -1,15 +1,9 @@
-import { type Worry } from '@/constants/users';
+import { letter } from '@/types/letter';
 import baseInstance from '../instance';
 
 const letterAPI = {
   /** 편지 작성 */
-  postLetter: async (params: {
-    content: string;
-    equalGender: boolean;
-    ageRangeStart: number;
-    ageRangeEnd: number;
-    worryType: Worry;
-  }) => {
+  postLetter: async (params: letter) => {
     const { data } = await baseInstance.post('/api/letter', { params });
     return data;
   },

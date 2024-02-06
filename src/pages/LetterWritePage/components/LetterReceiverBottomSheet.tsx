@@ -5,9 +5,11 @@ import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
+import { letterWrite } from '@/constants/schemaLiteral';
+import { type EQUAL_GENDER, type Worry } from '@/constants/letters';
 import { type Inputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
-import { AgeSlider, GenderSelect, ConcernSelect } from '.';
+import { AgeSlider, GenderSelect, WorrySelect } from '.';
 
 const LetterReceiverSelect = ({
   isBottomSheetOpen,
@@ -15,15 +17,18 @@ const LetterReceiverSelect = ({
 }: BottomSheetProps) => {
   const { setValue } = useFormContext<Inputs>();
 
-  const [age, setAge] = useState([15, 40]);
-  const [gender, setGender] = useState('');
-  const [concern, setConcern] = useState('');
+  const [age, setAge] = useState<number[]>([
+    letterWrite.age.min,
+    letterWrite.age.max,
+  ]);
+  const [gender, setGender] = useState<EQUAL_GENDER>('');
+  const [worryType, setWorryType] = useState<Worry>('');
 
   const [iconRotation, setIconRotation] = useState(0);
 
   const onCompleteButtonClick = () => {
     setValue('age', age);
-    setValue('concern', concern);
+    setValue('worryType', worryType);
     setValue('gender', gender);
     toggleBottomSheet(false)();
   };
@@ -31,10 +36,10 @@ const LetterReceiverSelect = ({
   const onRefreshIconClick = () => {
     setValue('age', []);
     setValue('gender', '');
-    setValue('concern', '');
-    setAge([15, 40]);
+    setValue('worryType', '');
+    setAge([letterWrite.age.min, letterWrite.age.max]);
     setGender('');
-    setConcern('');
+    setWorryType('');
     setIconRotation((prev) => prev + 360);
   };
 
@@ -51,7 +56,7 @@ const LetterReceiverSelect = ({
         </div>
         <AgeSlider age={age} setAge={setAge} />
         <GenderSelect gender={gender} setGender={setGender} />
-        <ConcernSelect concern={concern} setConcern={setConcern} />
+        <WorrySelect worryType={worryType} setWorryType={setWorryType} />
       </div>
       <div css={style.buttonContainer}>
         <button onClick={toggleBottomSheet(false)}>닫기</button>

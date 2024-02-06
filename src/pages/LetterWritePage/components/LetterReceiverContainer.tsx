@@ -3,6 +3,12 @@ import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import { CaretDown } from '@/assets/icons';
+import {
+  WORRY_DICT,
+  type Worry,
+  EQUAL_GENDER_DICT,
+  type EQUAL_GENDER,
+} from '@/constants/letters';
 import { type Inputs } from '..';
 
 interface ReceiverContainerProps {
@@ -14,8 +20,8 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
   const { watch } = useFormContext<Inputs>();
 
   const age = watch('age');
-  const gender = watch('gender');
-  const concern = watch('concern');
+  const gender: EQUAL_GENDER = watch('gender');
+  const worryType: Worry = watch('worryType');
 
   return (
     <div css={style.ReceiverContainer}>
@@ -27,11 +33,9 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
               {age[0]}~{age[1]}
             </span>
             {gender !== '' && (
-              <span>
-                {gender === '모두에게 보내기' ? '모두에게' : '동성에게'}
-              </span>
+              <span>{EQUAL_GENDER_DICT[gender] ? '동성에게' : '모두에게'}</span>
             )}
-            {concern !== '' && <span>{concern}</span>}
+            {worryType !== '' && <span>{WORRY_DICT[worryType]}</span>}
           </div>
           <CaretDown css={style.caretDown(isOpen)} />
         </div>

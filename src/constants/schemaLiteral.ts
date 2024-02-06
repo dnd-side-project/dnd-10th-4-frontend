@@ -2,6 +2,8 @@ export const letterWrite = {
   age: {
     value: 2,
     message: '편지를 받을 사람의 나이를 선택해주세요.',
+    min: 10,
+    max: 40,
   },
   content: {
     min: {
@@ -17,7 +19,7 @@ export const letterWrite = {
     value: 1,
     message: '편지를 받을 사람의 성별를 선택해주세요.',
   },
-  concern: {
+  worryType: {
     value: 1,
     message: '편지의 고민을 선택해주세요.',
   },

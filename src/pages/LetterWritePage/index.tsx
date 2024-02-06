@@ -6,8 +6,9 @@ import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
-import style from './styles';
+import { EQUAL_GENDER_DICT } from '@/constants/letters';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -18,7 +19,9 @@ const schema = z.object({
     .min(L.content.min.value, { message: L.content.min.message })
     .max(L.content.max.value, { message: L.content.max.message }),
   gender: z.string().min(L.gender.value, { message: L.gender.message }),
-  concern: z.string().min(L.concern.value, { message: L.concern.message }),
+  worryType: z
+    .string()
+    .min(L.worryType.value, { message: L.worryType.message }),
   image: z.any(),
 });
 
@@ -33,7 +36,7 @@ const LetterWritePage = () => {
       age: [],
       content: '',
       gender: '',
-      concern: '',
+      worryType: '',
     },
   });
 
@@ -42,15 +45,16 @@ const LetterWritePage = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = (inputData: object) => {
-    const currentDate = new Date();
-
-    const data = {
-      ...inputData,
-      date: currentDate,
+  const onSubmit = (data: Inputs) => {
+    const letterData = {
+      content: data.content,
+      equalGender: EQUAL_GENDER_DICT[data.gender],
+      ageRangeStart: data.age[0],
+      ageRangeEnd: data.age[1],
+      worryType: data.worryType,
+      image: data.image,
     };
-
-    console.log(data);
+    console.log(letterData);
   };
 
   return (
@@ -71,7 +75,7 @@ const LetterWritePage = () => {
           <LetterWriteBottom />
         </form>
         {/** 임시 에러 출력용 */}
-        {errors.concern && <p>{errors.concern.message}</p>}
+        {errors.worryType && <p>{errors.worryType.message}</p>}
         {errors.gender && <p>{errors.gender.message}</p>}
         {errors.age && <p>{errors.age.message}</p>}
         {errors.content && <p>{errors.content.message}</p>}

@@ -1,38 +1,28 @@
 import { css } from '@emotion/react';
 import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
+import { WORRY_DICT, Worry } from '@/constants/users';
 
-interface concernSelectProps {
-  concern: string | undefined;
-  setConcern: (concern: string) => void;
+interface WorrySelectProps {
+  worryType: Worry;
+  setWorryType: (worryType: Worry) => void;
 }
 
-const ConcernSelect = ({ concern, setConcern }: concernSelectProps) => {
-  const chipLabels: string[] = [
-    '일·직장',
-    '취업·진로',
-    '인간관계',
-    '이별·상실',
-    '연애',
-    '학업',
-    '가족',
-    '기타',
-  ];
-
+const WorrySelect = ({ worryType, setWorryType }: WorrySelectProps) => {
   return (
     <section>
       <h3 css={[style.label, { paddingBottom: '0.25rem' }]}>고민</h3>
       <p css={textStyles.description}>
         고민을 선택을 하면 나와 비슷한 고민을 가진 낯선 친구에게 전달돼요
       </p>
-      <div css={style.concernChip}>
-        {chipLabels.map((label) => (
+      <div css={style.worryChip}>
+        {Object.entries(WORRY_DICT).map(([key, value]) => (
           <Chip
-            key={label}
-            variant={concern === label ? 'form-selected' : 'form'}
-            onClick={() => setConcern(label)}
+            key={value}
+            variant={worryType === key ? 'form-selected' : 'form'}
+            onClick={() => setWorryType(key)}
           >
-            {label}
+            {value}
           </Chip>
         ))}
       </div>
@@ -40,14 +30,14 @@ const ConcernSelect = ({ concern, setConcern }: concernSelectProps) => {
   );
 };
 
-export default ConcernSelect;
+export default WorrySelect;
 
 const style = {
   label: css`
     padding-block: 0.5rem;
     ${textStyles.t3};
   `,
-  concernChip: css`
+  worryChip: css`
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
