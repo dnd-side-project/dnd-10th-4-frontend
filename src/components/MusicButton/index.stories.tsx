@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import Background from '@/assets/background.mp3';
+import Audio from '../Audio';
 import MusicButton from './';
 
 const meta = {
@@ -16,4 +18,10 @@ export const Primary: Story = {
   args: {
     color: 'white',
   },
+  decorators: (Story) => (
+    <>
+      <Audio src={Background} />
+      <Story />
+    </>
+  ),
 };

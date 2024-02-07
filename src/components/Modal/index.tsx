@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import useModal from '@/hooks/useModal';
 import styles from './styles';
 
-interface ModalProps extends ReturnType<typeof useModal> {
+interface ModalProps {
+  /** 모달이 열려있는지 여부입니다. */
+  isOpen: boolean;
+  /** 모달을 닫을 때 호출되는 함수입니다. */
+  close: () => void;
   /** 모달 컨텐츠 영역에 보여줄 컨텐츠입니다. */
   children: React.ReactNode;
 }
