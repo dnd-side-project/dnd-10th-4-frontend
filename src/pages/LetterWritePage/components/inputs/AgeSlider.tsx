@@ -17,16 +17,18 @@ const AgeSlider = ({ age, setAge }: ageSliderProps) => {
   return (
     <section>
       <h3 css={style.label}>나이</h3>
-      <Slider
-        getAriaLabel={() => 'Age range'}
-        value={age}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        disableSwap
-        min={letterWrite.age.min}
-        max={letterWrite.age.max}
-        css={style.slider}
-      />
+      <div css={style.sliderContainer}>
+        <Slider
+          getAriaLabel={() => 'Age range'}
+          value={age}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          disableSwap
+          min={letterWrite.age.min}
+          max={letterWrite.age.max}
+          css={style.slider}
+        />
+      </div>
       <div css={style.age}>
         <span>{age[0]}세 이상</span>
         <span>{age[1]}세 이하</span>
@@ -41,6 +43,9 @@ const style = {
   label: css`
     padding-block: 0.5rem;
     ${textStyles.t3};
+  `,
+  sliderContainer: css`
+    padding-inline: 0.5rem;
   `,
   slider: css`
     height: 0.5rem;
