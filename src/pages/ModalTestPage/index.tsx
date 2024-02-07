@@ -1,23 +1,22 @@
 import { Fragment, useRef } from 'react';
 import Modal from '@/components/Modal';
 import { HourGlass, CaretDown, Siren } from '@/assets/icons';
-import useModal from '@/hooks/useModal';
 import IconButton from '@/components/IconButton';
 import Button from '@/components/Button';
 import COLORS from '@/constants/colors';
+import useBoolean from '@/hooks/useBoolean';
 import styles from './styles';
 
 /** TODO: 모달 확인용 페이지입니다. 추후 제거해도 좋습니다. */
 const ModalTestPage = () => {
-  const modal = useModal();
+  const { value: isOpen, on: open, off: close } = useBoolean(false);
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const { open, close } = modal;
 
   return (
     <div>
       <Button onClick={open}>모달 열기</Button>
 
-      <Modal {...modal}>
+      <Modal close={close} isOpen={isOpen}>
         <section css={styles.container}>
           <div css={styles.header}>
             <div css={styles.glassLabel}>
