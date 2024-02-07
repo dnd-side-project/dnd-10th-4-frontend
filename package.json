@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
     "dev": "vite",
     "dev:msw": "cross-env VITE_MSW=on vite",
     "build": "tsc && vite build",
@@ -22,6 +24,7 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
     "@mui/material": "^5.15.5",
+    "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tanstack/react-query": "^5.17.12",
@@ -66,6 +69,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.3",
+    "jsdom": "^24.0.0",
     "lint-staged": "^15.2.0",
     "msw": "^2.1.5",
     "msw-storybook-addon": "^2.0.0--canary.122.b3ed3b1.0",
@@ -78,7 +82,8 @@
     "stylelint-order": "^6.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "vite-plugin-turbosnap": "^1.0.3"
+    "vite-plugin-turbosnap": "^1.0.3",
+    "vitest": "^1.2.2"
   },
   "lint-staged": {
     "*.{cjs,mjs,js,jsx,ts,tsx}": [

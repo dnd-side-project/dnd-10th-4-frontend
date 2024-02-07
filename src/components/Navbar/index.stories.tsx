@@ -90,7 +90,7 @@ export const 편지_작성하기: Story = {
       </Button>
       <div
         css={[
-          buttonStyles.button('semi-transparent', 'sm'),
+          buttonStyles.button('semi-transparent', 'sm', 'md'),
           styles.편지_작성하기.iconContainer,
         ]}
       >
