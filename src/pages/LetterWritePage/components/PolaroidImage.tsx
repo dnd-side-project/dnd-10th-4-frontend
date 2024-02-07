@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Polaroid from '@/components/Polaroid';
 import Modal from '@/components/Modal';
-import useModal from '@/hooks/useModal';
+import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
 import { Inputs } from '..';
 
@@ -10,8 +10,7 @@ const PolaroidImage = () => {
   const { setValue, watch } = useFormContext<Inputs>();
   const imgUrl = URL.createObjectURL(watch('image')[0]);
 
-  const modal = useModal();
-  const { open, close } = modal;
+  const { value: isOpen, on: open, off: close } = useBoolean(false);
 
   return (
     <>
@@ -23,7 +22,7 @@ const PolaroidImage = () => {
         onClickCancel={() => setValue('image', undefined)}
         imgUrl={imgUrl}
       />
-      <Modal {...modal}>
+      <Modal close={close} isOpen={isOpen}>
         <div css={style.modalContainer}>
           <Polaroid imgUrl={imgUrl} size="lg" />
           <div onClick={close}>

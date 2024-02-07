@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import useModal from '@/hooks/useModal';
+import useBoolean from '@/hooks/useBoolean';
 import LetterCard from '../LetterCard';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -42,8 +42,7 @@ const style = {
 export const 편지지_폴라로이드: StoryObj = {
   render: () => {
     const PolaroidComponent = () => {
-      const modal = useModal();
-      const { open, close } = modal;
+      const { value: isOpen, on: open, off: close } = useBoolean(false);
 
       return (
         <>
@@ -56,7 +55,7 @@ export const 편지지_폴라로이드: StoryObj = {
               imgUrl="https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg"
             />
           </LetterCard>
-          <Modal {...modal}>
+          <Modal close={close} isOpen={isOpen}>
             <div css={style.modalContainer}>
               <Polaroid
                 imgUrl="https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg"

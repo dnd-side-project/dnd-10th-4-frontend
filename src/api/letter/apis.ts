@@ -1,5 +1,5 @@
 import { Letter } from '@/types/letter';
-import baseInstance from '../instance';
+import { baseInstance } from '../instance';
 
 const letterAPI = {
   /** 편지 작성 */
