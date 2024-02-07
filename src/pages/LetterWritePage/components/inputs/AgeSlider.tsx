@@ -2,30 +2,33 @@ import Slider from '@mui/material/Slider';
 import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
+import { letterWrite } from '@/constants/schemaLiteral';
 
 interface ageSliderProps {
-  age: number[];
-  setAge: (age: number[]) => void;
+  age: [number, number];
+  setAge: (age: [number, number]) => void;
 }
 
 const AgeSlider = ({ age, setAge }: ageSliderProps) => {
   const handleChange = (_e: Event, newValue: number | number[]) => {
-    setAge(newValue as number[]);
+    setAge(newValue as [number, number]);
   };
 
   return (
     <section>
       <h3 css={style.label}>나이</h3>
-      <Slider
-        getAriaLabel={() => 'Age range'}
-        value={age}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        disableSwap
-        min={15}
-        max={40}
-        css={style.slider}
-      />
+      <div css={style.sliderContainer}>
+        <Slider
+          getAriaLabel={() => 'Age range'}
+          value={age}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          disableSwap
+          min={letterWrite.age.min}
+          max={letterWrite.age.max}
+          css={style.slider}
+        />
+      </div>
       <div css={style.age}>
         <span>{age[0]}세 이상</span>
         <span>{age[1]}세 이하</span>
@@ -41,7 +44,11 @@ const style = {
     padding-block: 0.5rem;
     ${textStyles.t3};
   `,
+  sliderContainer: css`
+    padding-inline: 0.5rem;
+  `,
   slider: css`
+    height: 0.5rem;
     color: ${COLORS.primary};
 
     .MuiSlider-rail {
@@ -49,15 +56,17 @@ const style = {
     }
 
     .MuiSlider-thumb {
-      width: 1rem;
-      height: 1rem;
-      border: 1px solid ${COLORS.gray4};
-      background: ${COLORS.gray6};
+      width: 1.25rem;
+      height: 1.25rem;
+      background: white;
+      box-shadow:
+        0 0.125rem 0.25rem 0 rgb(0 0 0 / 0.12),
+        0 0.0313rem 0.125rem 0 rgb(0 0 0 / 0.12);
     }
 
     .MuiSlider-valueLabel {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.7rem;
+      height: 1.7rem;
       padding: 0;
       border-radius: 50% 50% 50% 0;
       background: unset;

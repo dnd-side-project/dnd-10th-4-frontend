@@ -2,26 +2,25 @@ import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import Chip from '@/components/Chip';
+import { EQUAL_GENDER_DICT, type EqualGender } from '@/constants/letters';
 
 interface genderSelectProps {
-  gender: string | undefined;
-  setGender: (gender: string) => void;
+  gender: '' | EqualGender;
+  setGender: (gender: '' | EqualGender) => void;
 }
 
 const GenderSelect = ({ gender, setGender }: genderSelectProps) => {
-  const chipLabels: string[] = ['모두에게 보내기', '나와 같은 성별에게 보내기'];
-
   return (
     <section>
       <h3 css={style.label}>성별</h3>
       <div css={style.genderChip}>
-        {chipLabels.map((label) => (
+        {EQUAL_GENDER_DICT.map((item: EqualGender) => (
           <Chip
-            key={label}
-            variant={gender === label ? 'form-selected' : 'form'}
-            onClick={() => setGender(label)}
+            key={item}
+            variant={gender === item ? 'form-selected' : 'form'}
+            onClick={() => setGender(item)}
           >
-            {label}
+            {item}
           </Chip>
         ))}
       </div>

@@ -11,12 +11,8 @@ const ImageSelect = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] as File;
-    const isImage = file.type.startsWith('image/');
-    if (isImage) {
-      setValue('image', file);
-      event.target.value = '';
-    }
+    const file = event.target.files;
+    setValue('image', file);
   };
 
   const handleButtonClick = () => {
@@ -41,7 +37,7 @@ const ImageSelect = () => {
         size="sm"
         onClick={handleButtonClick}
       >
-        <ImageSquare />
+        <ImageSquare width={24} />
       </Button>
     </>
   );

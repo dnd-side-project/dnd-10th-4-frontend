@@ -2,12 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
+import { useMutation } from '@tanstack/react-query';
 import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
-import style from './styles';
+import { EQUAL_GENDER_DICT, type Worry } from '@/constants/letters';
+import { Letter } from '@/types/letter';
+import letterAPI from '@/api/letter/apis';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -18,8 +22,20 @@ const schema = z.object({
     .min(L.content.min.value, { message: L.content.min.message })
     .max(L.content.max.value, { message: L.content.max.message }),
   gender: z.string().min(L.gender.value, { message: L.gender.message }),
-  concern: z.string().min(L.concern.value, { message: L.concern.message }),
-  image: z.any(),
+  worryType: z
+    .string()
+    .min(L.worryType.value, { message: L.worryType.message }),
+  image: z
+    .any()
+    .optional()
+    .refine(
+      (files) => !files || files[0].size <= L.image.maxFileSize.value,
+      L.image.maxFileSize.message,
+    )
+    .refine(
+      (files) => !files || L.image.acceptType.list.includes(files[0].type),
+      L.image.acceptType.message,
+    ),
 });
 
 export type Inputs = z.infer<typeof schema>;
@@ -33,7 +49,7 @@ const LetterWritePage = () => {
       age: [],
       content: '',
       gender: '',
-      concern: '',
+      worryType: '',
     },
   });
 
@@ -42,15 +58,20 @@ const LetterWritePage = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = (inputData: object) => {
-    const currentDate = new Date();
+  const { mutateAsync: postLetter, isPending: isPosting } = useMutation({
+    mutationFn: letterAPI.postLetter,
+  });
 
-    const data = {
-      ...inputData,
-      date: currentDate,
+  const onSubmit = async (data: Inputs) => {
+    const letterData: Letter = {
+      content: data.content,
+      equalGender: EQUAL_GENDER_DICT[1] === data.gender,
+      ageRangeStart: data.age[0],
+      ageRangeEnd: data.age[1],
+      worryType: data.worryType as Worry,
+      image: data.image?.[0],
     };
-
-    console.log(data);
+    await postLetter(letterData);
   };
 
   return (
@@ -68,13 +89,14 @@ const LetterWritePage = () => {
         />
         <form onSubmit={handleSubmit(onSubmit)} css={style.contentWrapper}>
           <LetterWriteContent />
-          <LetterWriteBottom />
+          <LetterWriteBottom isPosting={isPosting} />
         </form>
         {/** 임시 에러 출력용 */}
-        {errors.concern && <p>{errors.concern.message}</p>}
+        {errors.worryType && <p>{errors.worryType.message}</p>}
         {errors.gender && <p>{errors.gender.message}</p>}
         {errors.age && <p>{errors.age.message}</p>}
         {errors.content && <p>{errors.content.message}</p>}
+        {errors.image && <p>{errors.image.message?.toString()}</p>}
       </div>
     </FormProvider>
   );
