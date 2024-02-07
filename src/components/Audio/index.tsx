@@ -1,14 +1,14 @@
 import { useRef, useEffect } from 'react';
+import useMusicStore from '@/stores/useMusicStore';
 
 interface AudioProps {
   /** 재생할 음악의 URL입니다. */
   src: string;
-  /** 음악이 재생되는지 여부를 나타냅니다. */
-  isPlaying: boolean;
 }
 
-const Audio = ({ src, isPlaying }: AudioProps) => {
+const Audio = ({ src }: AudioProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const isPlaying = useMusicStore((s) => s.isPlaying);
 
   useEffect(() => {
     if (audioRef.current) {
