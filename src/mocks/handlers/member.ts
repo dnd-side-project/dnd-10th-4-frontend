@@ -2,6 +2,7 @@ import { http, HttpResponse, delay } from 'msw';
 import memberAPI from '@/api/member/apis';
 import { baseURL, type ResponseType } from '@/utils/mswUtils';
 import QUERY_STRINGS from '@/constants/queryStrings';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 
 const memberHandler = [
   http.get(baseURL('/api/member'), async () => {
@@ -12,7 +13,7 @@ const memberHandler = [
     );
 
     if (mswCase === '404') {
-      return new HttpResponse('존재하지 않는 회원입니다.', {
+      return new HttpResponse(ERROR_RESPONSES.usernameNotFound, {
         status: 404,
       });
     }
