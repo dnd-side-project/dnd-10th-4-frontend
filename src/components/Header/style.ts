@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
-import COLORS from '@/constants/colors';
 
-export type HeaderVariant = 'primary' | 'secondary' | 'none';
+export type HeaderVariant = 'primary' | 'none';
 
 const styles = {
   header: (variant: HeaderVariant) => css`
@@ -14,8 +13,7 @@ const styles = {
     font-weight: 700;
     font-size: 0.875rem;
 
-    ${variant === 'primary' && primary.header}
-    ${variant === 'secondary' && secondary.header}
+    ${variants[variant]}
   `,
   left: css`
     position: absolute;
@@ -37,26 +35,16 @@ const styles = {
   `,
 };
 
-const primary = {
-  header: css`
-    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+const variants = {
+  primary: css`
     background: linear-gradient(
-      180deg,
-      rgb(255 255 255 / 0.2) 0%,
-      rgb(255 255 255 / 0.1) 98%
+      178deg,
+      #67ccff 2.02%,
+      rgb(104 205 255 / 0) 97.99%
     );
     color: white;
-    backdrop-filter: blur(4px);
   `,
-};
-
-const secondary = {
-  header: css`
-    border-bottom: 1px solid rgb(255 255 255 / 0.12);
-    background: rgb(255 255 255 / 0.75);
-    color: ${COLORS.gray2};
-    backdrop-filter: blur(40px);
-  `,
+  none: css(),
 };
 
 export default styles;

@@ -95,7 +95,7 @@ export const 메인_페이지: Story = {
   ...Primary,
   render: () => (
     <Header
-      variant="none"
+      variant="primary"
       leftContent={
         <div css={styles.메인_페이지.countChip}>
           <div css={styles.메인_페이지.emptyBox} />
@@ -124,7 +124,7 @@ export const 흘러온_편지: Story = {
   ...Primary,
   render: () => (
     <Header
-      variant="none"
+      variant="primary"
       leftContent={
         <>
           <CaretLeft css={styles.icon} strokeWidth={2} />
@@ -147,18 +147,7 @@ export const 보관함_편지: Story = {
   ...Primary,
   render: () => (
     <Header
-      variant="none"
-      leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
-      centerContent={<>보관함</>}
-    />
-  ),
-};
-
-export const 보관함_편지_Secondary: Story = {
-  ...Primary,
-  render: () => (
-    <Header
-      variant="secondary"
+      variant="primary"
       leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
       centerContent={<>보관함</>}
     />
