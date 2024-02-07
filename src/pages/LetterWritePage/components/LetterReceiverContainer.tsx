@@ -7,7 +7,7 @@ import {
   WORRY_DICT,
   type Worry,
   EQUAL_GENDER_DICT,
-  type EQUAL_GENDER,
+  type EqualGender,
 } from '@/constants/letters';
 import { type Inputs } from '..';
 
@@ -20,8 +20,8 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
   const { watch } = useFormContext<Inputs>();
 
   const age = watch('age');
-  const gender: EQUAL_GENDER = watch('gender');
-  const worryType: Worry = watch('worryType');
+  const gender = watch('gender') as '' | EqualGender;
+  const worryType = watch('worryType') as '' | Worry;
 
   return (
     <div css={style.ReceiverContainer}>
@@ -33,7 +33,9 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
               {age[0]}~{age[1]}
             </span>
             {gender !== '' && (
-              <span>{EQUAL_GENDER_DICT[gender] ? '동성에게' : '모두에게'}</span>
+              <span>
+                {EQUAL_GENDER_DICT[0] === gender ? '모두에게' : '동성에게'}
+              </span>
             )}
             {worryType !== '' && <span>{WORRY_DICT[worryType]}</span>}
           </div>

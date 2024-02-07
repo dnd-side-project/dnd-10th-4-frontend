@@ -1,10 +1,10 @@
 import { WORRY_DICT, type Worry } from './users';
 
-export const EQUAL_GENDER_DICT: Record<string, boolean> = {
-  '모두에게 보내기': false,
-  '나와 같은 성별에게 보내기': true,
-} as const;
+export const EQUAL_GENDER_DICT = [
+  '모두에게 보내기',
+  '나와 같은 성별에게 보내기',
+] as const;
 
-export type EQUAL_GENDER = keyof typeof EQUAL_GENDER_DICT;
+export type EqualGender = (typeof EQUAL_GENDER_DICT)[number];
 
 export { WORRY_DICT, type Worry };

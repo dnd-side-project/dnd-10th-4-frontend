@@ -5,13 +5,13 @@ import textStyles from '@/styles/textStyles';
 import { letterWrite } from '@/constants/schemaLiteral';
 
 interface ageSliderProps {
-  age: number[];
-  setAge: (age: number[]) => void;
+  age: [number, number];
+  setAge: (age: [number, number]) => void;
 }
 
 const AgeSlider = ({ age, setAge }: ageSliderProps) => {
   const handleChange = (_e: Event, newValue: number | number[]) => {
-    setAge(newValue as number[]);
+    setAge(newValue as [number, number]);
   };
 
   return (

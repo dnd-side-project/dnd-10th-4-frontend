@@ -8,7 +8,7 @@ import { Inputs } from '..';
 
 const PolaroidImage = () => {
   const { setValue, watch } = useFormContext<Inputs>();
-  const imgUrl = URL.createObjectURL(watch('image'));
+  const imgUrl = URL.createObjectURL(watch('image')[0]);
 
   const modal = useModal();
   const { open, close } = modal;

@@ -2,11 +2,11 @@ import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import Chip from '@/components/Chip';
-import { EQUAL_GENDER_DICT, EQUAL_GENDER } from '@/constants/letters';
+import { EQUAL_GENDER_DICT, type EqualGender } from '@/constants/letters';
 
 interface genderSelectProps {
-  gender: EQUAL_GENDER;
-  setGender: (gender: EQUAL_GENDER) => void;
+  gender: '' | EqualGender;
+  setGender: (gender: '' | EqualGender) => void;
 }
 
 const GenderSelect = ({ gender, setGender }: genderSelectProps) => {
@@ -14,13 +14,13 @@ const GenderSelect = ({ gender, setGender }: genderSelectProps) => {
     <section>
       <h3 css={style.label}>성별</h3>
       <div css={style.genderChip}>
-        {Object.keys(EQUAL_GENDER_DICT).map((key) => (
+        {EQUAL_GENDER_DICT.map((item: EqualGender) => (
           <Chip
-            key={key}
-            variant={gender === key ? 'form-selected' : 'form'}
-            onClick={() => setGender(key as EQUAL_GENDER)}
+            key={item}
+            variant={gender === item ? 'form-selected' : 'form'}
+            onClick={() => setGender(item)}
           >
-            {key}
+            {item}
           </Chip>
         ))}
       </div>

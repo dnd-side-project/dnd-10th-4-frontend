@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
-import { WORRY_DICT, Worry } from '@/constants/users';
+import { WORRY_DICT, type Worry } from '@/constants/users';
 
 interface WorrySelectProps {
-  worryType: Worry;
-  setWorryType: (worryType: Worry) => void;
+  worryType: '' | Worry;
+  setWorryType: (worryType: '' | Worry) => void;
 }
 
 const WorrySelect = ({ worryType, setWorryType }: WorrySelectProps) => {
@@ -20,7 +20,7 @@ const WorrySelect = ({ worryType, setWorryType }: WorrySelectProps) => {
           <Chip
             key={value}
             variant={worryType === key ? 'form-selected' : 'form'}
-            onClick={() => setWorryType(key)}
+            onClick={() => setWorryType(key as Worry)}
           >
             {value}
           </Chip>

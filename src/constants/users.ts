@@ -1,4 +1,4 @@
-export const WORRY_DICT: Record<string, string> = {
+export const WORRY_DICT = {
   WORK: '일·직장',
   COURSE: '취업·진로',
   RELATIONSHIP: '인간관계',

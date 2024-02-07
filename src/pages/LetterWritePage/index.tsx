@@ -7,11 +7,11 @@ import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
-import { EQUAL_GENDER_DICT } from '@/constants/letters';
+import { EQUAL_GENDER_DICT, type Worry } from '@/constants/letters';
 import { Letter } from '@/types/letter';
 import letterAPI from '@/api/letter/apis';
-import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -25,7 +25,17 @@ const schema = z.object({
   worryType: z
     .string()
     .min(L.worryType.value, { message: L.worryType.message }),
-  image: z.any(),
+  image: z
+    .any()
+    .optional()
+    .refine(
+      (files) => !files || files[0].size <= L.image.maxFileSize.value,
+      L.image.maxFileSize.message,
+    )
+    .refine(
+      (files) => !files || L.image.acceptType.list.includes(files[0].type),
+      L.image.acceptType.message,
+    ),
 });
 
 export type Inputs = z.infer<typeof schema>;
@@ -55,11 +65,11 @@ const LetterWritePage = () => {
   const onSubmit = async (data: Inputs) => {
     const letterData: Letter = {
       content: data.content,
-      equalGender: EQUAL_GENDER_DICT[data.gender],
+      equalGender: EQUAL_GENDER_DICT[1] === data.gender,
       ageRangeStart: data.age[0],
       ageRangeEnd: data.age[1],
-      worryType: data.worryType,
-      image: data.image,
+      worryType: data.worryType as Worry,
+      image: data.image?.[0],
     };
     await postLetter(letterData);
   };
@@ -86,6 +96,7 @@ const LetterWritePage = () => {
         {errors.gender && <p>{errors.gender.message}</p>}
         {errors.age && <p>{errors.age.message}</p>}
         {errors.content && <p>{errors.content.message}</p>}
+        {errors.image && <p>{errors.image.message?.toString()}</p>}
       </div>
     </FormProvider>
   );

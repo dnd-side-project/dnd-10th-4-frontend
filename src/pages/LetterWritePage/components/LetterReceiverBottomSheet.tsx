@@ -6,7 +6,7 @@ import textStyles from '@/styles/textStyles';
 import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
 import { letterWrite } from '@/constants/schemaLiteral';
-import { type EQUAL_GENDER, type Worry } from '@/constants/letters';
+import { type Worry, type EqualGender } from '@/constants/letters';
 import { type Inputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
 import { AgeSlider, GenderSelect, WorrySelect } from '.';
@@ -17,14 +17,14 @@ const LetterReceiverSelect = ({
 }: BottomSheetProps) => {
   const { setValue } = useFormContext<Inputs>();
 
-  const [age, setAge] = useState<number[]>([
+  const [age, setAge] = useState<[number, number]>([
     letterWrite.age.min,
     letterWrite.age.max,
   ]);
-  const [gender, setGender] = useState<EQUAL_GENDER>('');
-  const [worryType, setWorryType] = useState<Worry>('');
+  const [gender, setGender] = useState<'' | EqualGender>('');
+  const [worryType, setWorryType] = useState<'' | Worry>('');
 
-  const [iconRotation, setIconRotation] = useState(0);
+  const [iconRotation, setIconRotation] = useState<number>(0);
 
   const onCompleteButtonClick = () => {
     setValue('age', age);
