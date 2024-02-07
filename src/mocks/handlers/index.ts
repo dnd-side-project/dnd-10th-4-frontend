@@ -1,7 +1,7 @@
 import testHandler from './test';
-import oauth2Handler from './oauth2';
+import authHandler from './auth';
 import memberHandler from './member';
 
-const mockHandlers = [...testHandler, ...oauth2Handler, ...memberHandler];
+const mockHandlers = [...testHandler, ...authHandler, ...memberHandler];
 
 export default mockHandlers;
