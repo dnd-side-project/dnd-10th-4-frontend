@@ -5,19 +5,25 @@ import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import authAPI from './auth/apis';
 
-const baseInstance = axios.create({
+/** 단순한 API 요청 클라이언트 */
+export const baseInstance = axios.create({
   baseURL: BACKEND_ENDPOINT,
   timeout: 30000,
-  withCredentials: true,
 });
 
-baseInstance.interceptors.request.use((config) => {
+/** 사용자 인가 권한이 필요한 API 요청 클라이언트 */
+export const authInstance = axios.create({
+  baseURL: BACKEND_ENDPOINT,
+  timeout: 30000,
+});
+
+authInstance.interceptors.request.use((config) => {
   config.headers.accessToken = localStorage.getItem(STORAGE_KEYS.accessToken);
 
   return config;
 });
 
-baseInstance.interceptors.response.use(
+authInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -46,5 +52,3 @@ baseInstance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-
-export default baseInstance;
