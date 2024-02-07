@@ -5,6 +5,7 @@ export type Backgroundtype = 'primary' | 'white';
 
 const style = {
   card: (isOpen: boolean, background: Backgroundtype) => css`
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -16,6 +17,7 @@ const style = {
     border-radius: 0.5rem;
     background-color: ${background === 'white' && 'white'};
     background-image: ${background === 'primary' && `url(${LetterBackground})`};
+    background-size: cover;
   `,
 };
 

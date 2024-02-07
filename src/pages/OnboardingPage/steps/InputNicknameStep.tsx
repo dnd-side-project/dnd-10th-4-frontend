@@ -11,8 +11,8 @@ import { NICKNAMES } from '@/constants/users';
 import { type Nickname } from '@/constants/users';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import memberAPI from '@/api/member/apis';
-import StepTemplate from '../components/StepTemplate';
 import onboardingStyles from '../styles';
+import StepTemplate from '../components/StepTemplate';
 
 const InputNicknameStep = () => {
   const [nickname, setNickname] = useState<Nickname>(NICKNAMES[0]);
@@ -62,6 +62,7 @@ export default InputNicknameStep;
 
 const styles = {
   input: css`
+    position: relative;
     box-sizing: border-box;
     width: 100%;
     max-width: 15.3rem;
