@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTER_PATHS } from '@/router';
-import oauth2API from '@/api/oauth2/apis';
+import authAPI from '@/api/auth/apis';
 
 const SigninKakaoPage = () => {
   const [searchParams] = useSearchParams();
-  const { mutateAsync } = useMutation({ mutationFn: oauth2API.postKakaoCode });
+  const { mutateAsync } = useMutation({ mutationFn: authAPI.postKakaoCode });
   const navigate = useNavigate();
   const code = searchParams.get('code');
 
