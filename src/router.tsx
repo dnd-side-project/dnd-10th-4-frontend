@@ -4,6 +4,7 @@ import ModalTestPage from './pages/ModalTestPage';
 import SigninPage from './pages/SigninPage';
 import SigninKakaoPage from './pages/SigninKakaoPage';
 import OnboardingPage from './pages/OnboardingPage';
+import LetterWritePage from './pages/LetterWritePage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -13,6 +14,7 @@ const ROUTER_PATHS = {
   SIGNIN: '/signin',
   SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
   ONBOARDING: '/onboarding',
+  LETTER_WRITE: '/write',
 } as const;
 
 const router = createBrowserRouter([
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.ONBOARDING,
         element: <OnboardingPage />,
+      },
+      {
+        path: ROUTER_PATHS.LETTER_WRITE,
+        element: <LetterWritePage />,
       },
     ],
   },

@@ -3,6 +3,7 @@ export { default as CaretDown } from './CaretDown';
 export { default as CaretLeft } from './CaretLeft';
 export { default as CaretRight } from './CaretRight';
 export { default as CaretUp } from './CaretUp';
+export { default as Close } from './Close';
 export { default as Heart } from './Heart';
 export { default as HourGlass } from './HourGlass';
 export { default as HourGlassLow } from './HourGlassLow';
