@@ -7,32 +7,41 @@ export type ButtonVariant =
   | 'primary-outline'
   | 'secondary'
   | 'semi-transparent'
-  | 'semi-transparent-unaccent';
+  | 'semi-transparent-unaccent'
+  | 'cancel';
 
 export type ButtonSize = 'md' | 'sm';
+export type ButtonRounded = 'none' | 'sm' | 'md';
 
 const styles = {
-  button: (variant: ButtonVariant, size: ButtonSize) => css`
+  button: (
+    variant: ButtonVariant,
+    size: ButtonSize,
+    rounded: ButtonRounded,
+  ) => css`
     display: flex;
     flex: 1 0;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 6.25rem;
     cursor: pointer;
     transition: all 0.2s ease;
 
-    &:not(:disabled):active {
-      box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
-      transform: scale(0.98);
-    }
+    ${rounded !== 'none' &&
+    css`
+      &:not(:disabled):active {
+        box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
+        transform: scale(0.98);
+      }
+    `}
 
     &:disabled {
       box-shadow: none;
       cursor: not-allowed;
     }
 
+    ${roundedStyles[rounded]}
     ${textStyles.t3}
     ${sizeStyles[size]}
     ${variantStyles[variant]}
@@ -45,6 +54,18 @@ const sizeStyles = {
   `,
   md: css`
     padding: 1rem 1.25rem;
+  `,
+};
+
+const roundedStyles = {
+  none: css`
+    border-radius: none;
+  `,
+  sm: css`
+    border-radius: 0.75rem;
+  `,
+  md: css`
+    border-radius: 6.25rem;
   `,
 };
 
@@ -108,6 +129,21 @@ const variantStyles = {
     );
     color: ${COLORS.gray3};
     box-shadow: 0 8px 16px 0 rgb(153 153 153 / 0.2);
+  `,
+  cancel: css`
+    background: ${COLORS.gray5};
+    color: ${COLORS.gray1};
+
+    &:hover {
+      background-color: ${COLORS.gray3};
+      color: black;
+    }
+
+    &:disabled {
+      background-color: ${COLORS.gray5};
+      color: ${COLORS.gray1};
+      opacity: 0.4;
+    }
   `,
 };
 
