@@ -44,7 +44,11 @@ const formSchema = z.object({
 type Inputs = z.infer<typeof formSchema>;
 
 const InputBirthdayStep = () => {
-  const { register, handleSubmit } = useForm<Inputs>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<Inputs>({
     resolver: zodResolver(formSchema),
   });
 
@@ -95,7 +99,7 @@ const InputBirthdayStep = () => {
           type="submit"
           variant="primary"
           onClick={handleSubmit(onSubmit, onError)}
-          disabled={isPending}
+          disabled={isPending || !isValid}
         >
           {isPending ? <LoadingSpinner size="1.3rem" /> : '다음'}
         </Button>

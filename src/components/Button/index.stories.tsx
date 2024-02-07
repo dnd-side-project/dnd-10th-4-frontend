@@ -23,6 +23,7 @@ export const Default: Story = {
   args: {
     variant: 'primary',
     size: 'md',
+    rounded: 'md',
     children: 'button',
     disabled: false,
   },
@@ -40,6 +41,9 @@ const styles = {
     gap: 1rem;
     padding: 1rem;
     background-color: #fcecd0;
+  `,
+  cancelContainer: css`
+    display: flex;
   `,
 };
 
@@ -98,6 +102,19 @@ export const SemiTransparent: Story = {
       <Button variant="semi-transparent">
         <PencilLine />
         <p>button</p>
+      </Button>
+    </div>
+  ),
+};
+
+export const Cancel: Story = {
+  render: () => (
+    <div css={styles.cancelContainer}>
+      <Button variant="cancel" rounded="none">
+        <p>닫기</p>
+      </Button>
+      <Button variant="primary" rounded="none">
+        <p>완료</p>
       </Button>
     </div>
   ),

@@ -30,7 +30,11 @@ const InputGenderStep = () => {
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={handleSubmit} disabled={isPending}>
+        <Button
+          variant="primary"
+          onClick={handleSubmit}
+          disabled={isPending || !gender}
+        >
           {isPending ? <LoadingSpinner size="1.3rem" /> : '선택 완료'}
         </Button>
       }

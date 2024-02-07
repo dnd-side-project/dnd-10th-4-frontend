@@ -68,7 +68,7 @@ const InputWorryStep = () => {
         <Button
           variant="primary"
           onClick={handleSubmit}
-          disabled={isSubmitting}
+          disabled={isSubmitting || selectedWorries.length === 0}
         >
           {isSubmitting ? <LoadingSpinner size="1.3rem" /> : '선택 완료'}
         </Button>
