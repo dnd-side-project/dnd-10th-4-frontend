@@ -9,14 +9,14 @@ interface LetterContentProps {
 
 const LetterContent = ({ children, isBlock = false }: LetterContentProps) => {
   return (
-    <motion.main
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: 'easeOut' }}
       css={style.content(isBlock)}
     >
       {children}
-    </motion.main>
+    </motion.div>
   );
 };
 

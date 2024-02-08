@@ -6,6 +6,8 @@ import Chip from '@/components/Chip';
 import IconButton from '@/components/IconButton';
 import HourGlass from '@/assets/icons/HourGlass';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
+import COLORS from '@/constants/colors';
+import { ROUTER_PATHS } from '@/router';
 
 interface ReceptionHeaderProps {
   /** 메인페이지로 이동 여부 */
@@ -24,11 +26,11 @@ const ReceptionHeader = ({ goHome = true }: ReceptionHeaderProps) => {
           <CaretLeft
             strokeWidth={2.5}
             color="white"
-            onClick={goHome ? () => navigate(-1) : toPrev}
+            onClick={goHome ? () => navigate(ROUTER_PATHS.ROOT) : toPrev}
           />
-          <Chip>
-            <HourGlass height={16} />
-            00:00:00
+          <Chip variant="primary">
+            <HourGlass height={16} color={COLORS.primary} />
+            <span css={{ color: COLORS.primary }}>00:00:00</span>
           </Chip>
         </>
       }

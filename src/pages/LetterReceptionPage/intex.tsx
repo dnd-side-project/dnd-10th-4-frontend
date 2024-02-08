@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import { FunnelProvider } from '@/contexts/useFunnelContext';
 import createFunnel from '@/components/Funnel/createFunnel';
+import { FunnelProvider } from '@/contexts/useFunnelContext';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
 
 const { Funnel, Step, useFunnel } = createFunnel([
-  'ReceivedLetter', // 흘러온 편지 보기
-  'ReplyToLetter', // 흘러온 편지 답장
+  'ReceivedLetter',
+  'ReplyToLetter',
 ] as const);
 
 const LetterReceptionPage = () => {
   const { step, toPrev, toNext, toFirst, toLast } = useFunnel();
-  const [navigate, setNavigage] =
+  const [navigate, setNavigate] =
     useState<React.ComponentProps<typeof ReceptionHeader>>();
 
   return (
@@ -24,7 +24,7 @@ const LetterReceptionPage = () => {
           <Step
             name="ReceivedLetter"
             onEnter={() =>
-              setNavigage({
+              setNavigate({
                 goHome: true,
               })
             }
@@ -34,7 +34,7 @@ const LetterReceptionPage = () => {
           <Step
             name="ReplyToLetter"
             onEnter={() =>
-              setNavigage({
+              setNavigate({
                 goHome: false,
               })
             }
