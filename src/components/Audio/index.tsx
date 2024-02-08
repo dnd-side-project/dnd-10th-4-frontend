@@ -41,7 +41,7 @@ const Audio = ({ src }: AudioProps) => {
     }
   }, [isPlaying]);
 
-  return <audio ref={audioRef} src={src} autoPlay loop />;
+  return <audio ref={audioRef} src={src} loop />;
 };
 
 export default Audio;
