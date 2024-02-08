@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { css } from '@emotion/react';
 import LetterCard from '@/components/LetterCard';
 import LetterAccordion from '@/components/LetterAccordion';
@@ -12,17 +11,15 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import { formatDate } from '@/utils/dateUtils';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import useBoolean from '@/hooks/useBoolean';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 const ReplyToLetter = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { value: isOpen, toggle: accordionToggle } = useBoolean(false);
   const { toPrev } = useFunnelContext();
-  const tagList = ['20~24세', '모두에게', '기타'];
 
-  const handleAccordionToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  const tagList = ['20~24세', '모두에게', '기타'];
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -46,7 +43,7 @@ const ReplyToLetter = () => {
           </div>
           <LetterAccordion
             isOpen={isOpen}
-            onToggle={handleAccordionToggle}
+            onToggle={accordionToggle}
             id="1"
             text="여기까지가 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오여기까지가 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋"
             date={new Date()}
