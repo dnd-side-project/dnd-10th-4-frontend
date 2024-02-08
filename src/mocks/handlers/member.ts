@@ -1,10 +1,22 @@
 import { http, HttpResponse, delay } from 'msw';
 import memberAPI from '@/api/member/apis';
 import { baseURL, type ResponseType } from '@/utils/mswUtils';
+import QUERY_STRINGS from '@/constants/queryStrings';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 
 const memberHandler = [
   http.get(baseURL('/api/member'), async () => {
     await delay(300);
+
+    const mswCase = new URLSearchParams(window.location.search).get(
+      QUERY_STRINGS.mswCase,
+    );
+
+    if (mswCase === '404') {
+      return new HttpResponse(ERROR_RESPONSES.usernameNotFound, {
+        status: 404,
+      });
+    }
 
     const result = {
       id: 7,
