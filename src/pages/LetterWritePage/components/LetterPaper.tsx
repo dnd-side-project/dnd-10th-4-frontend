@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/dateUtils';
 import { letterWrite } from '@/constants/schemaLiteral';
 import { type Inputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
-import { LetterReceiverContainer, LetterTextarea, PolaroidImage } from '.';
+import { LetterReceiverContainer, LetterContent, PolaroidImage } from '.';
 
 const LetterPaper = ({
   isBottomSheetOpen,
@@ -21,7 +21,7 @@ const LetterPaper = ({
         onClick={toggleBottomSheet(true)}
         isOpen={isBottomSheetOpen}
       />
-      <LetterTextarea />
+      <LetterContent />
       <div css={style.textCount}>
         <span>{watch('content').length}</span>
         <span>&nbsp;/ {letterWrite.content.max.value}</span>
