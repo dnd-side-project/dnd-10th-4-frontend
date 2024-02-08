@@ -5,6 +5,7 @@ import SigninPage from './pages/SigninPage';
 import SigninKakaoPage from './pages/SigninKakaoPage';
 import OnboardingPage from './pages/OnboardingPage';
 import LetterWritePage from './pages/LetterWritePage';
+import LetterReceptionPage from './pages/LetterReceptionPage/intex';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -15,6 +16,7 @@ const ROUTER_PATHS = {
   SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
   ONBOARDING: '/onboarding',
   LETTER_WRITE: '/write',
+  LETTER_RECEPTION: '/reception',
 } as const;
 
 const router = createBrowserRouter([
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.LETTER_WRITE,
         element: <LetterWritePage />,
+      },
+      {
+        path: ROUTER_PATHS.LETTER_RECEPTION,
+        element: <LetterReceptionPage />,
       },
     ],
   },
