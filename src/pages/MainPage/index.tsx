@@ -1,25 +1,17 @@
+import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
-import useEmblaCarousel from 'embla-carousel-react';
 import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
-import Button from '@/components/Button';
-import {
-  CaretLeft,
-  CaretRight,
-  PencilLine,
-  TreasureChest,
-  User,
-} from '@/assets/icons';
+import { buttonStyles } from '@/components/Button';
+import { PencilLine, TreasureChest, User } from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
-import styles, { carouselStyles } from './styles';
+import { ROUTER_PATHS } from '@/router';
+import styles from './styles';
+import CarouselArea from './components/CarouselArea';
 
 const MainPage = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-  });
-
   return (
     <div css={styles.page}>
       <Header
@@ -45,35 +37,17 @@ const MainPage = () => {
       />
 
       <main css={styles.main}>
-        <section css={carouselStyles.viewport} ref={emblaRef}>
-          <div css={carouselStyles.container}>
-            <div css={carouselStyles.slide}>Slide 1</div>
-            <div css={carouselStyles.slide}>Slide 2</div>
-            <div css={carouselStyles.slide}>Slide 3</div>
-          </div>
-        </section>
-
-        <IconButton
-          variant="carousel"
-          css={[carouselStyles.button, css({ left: '1rem' })]}
-          onClick={() => emblaApi?.scrollPrev()}
-        >
-          <CaretLeft color={COLORS.gray3} />
-        </IconButton>
-        <IconButton
-          variant="carousel"
-          css={[carouselStyles.button, css({ right: '1rem' })]}
-          onClick={() => emblaApi?.scrollNext()}
-        >
-          <CaretRight color={COLORS.gray3} />
-        </IconButton>
+        <CarouselArea />
       </main>
 
       <section css={styles.buttonSection}>
-        <Button css={styles.button}>
+        <Link
+          to={ROUTER_PATHS.LETTER_WRITE}
+          css={buttonStyles.button('primary', 'md', 'md')}
+        >
           <PencilLine />
           편지 쓰기
-        </Button>
+        </Link>
       </section>
     </div>
   );

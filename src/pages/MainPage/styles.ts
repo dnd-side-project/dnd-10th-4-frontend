@@ -33,28 +33,4 @@ const styles = {
   `,
 };
 
-export const carouselStyles = {
-  viewport: css`
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  `,
-  container: css`
-    display: flex;
-  `,
-  slide: css`
-    flex: 0 0 100%;
-  `,
-  button: css`
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    &:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-  `,
-};
-
 export default styles;
