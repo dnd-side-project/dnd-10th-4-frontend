@@ -1,10 +1,6 @@
 import { css } from '@emotion/react';
 
-export type ButtonVariant =
-  | 'header'
-  | 'leftCarousel'
-  | 'rightCarousel'
-  | 'bottom';
+export type ButtonVariant = 'header' | 'carousel' | 'bottom';
 
 export type ButtonRounded = 'r100' | 'r8';
 
@@ -38,23 +34,14 @@ const variants = {
     hoverBackground: 'rgba(255, 255, 255, 0.4)',
     activeBackground: 'rgba(255, 255, 255, 0.5)',
   },
-  leftCarousel: {
-    border: '1px solid rgba(255, 255, 255, 0.30)',
+  carousel: {
+    border: '1px solid rgba(255, 255, 255, 0.40)',
     background:
       'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)',
     hoverBackground:
       'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.60) 100%)',
     activeBackground:
       'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.70) 100%)',
-  },
-  rightCarousel: {
-    border: '1px solid rgba(255, 255, 255, 0.30)',
-    background:
-      'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.51) 38.5%, rgba(255, 255, 255, 0.20) 100%)',
-    hoverBackground:
-      'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.61) 38.5%, rgba(255, 255, 255, 0.30) 100%)',
-    activeBackground:
-      'radial-gradient(491.85% 132.88% at 0% 12.5%, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.71) 38.5%, rgba(255, 255, 255, 0.40) 100%)',
   },
   bottom: {
     border: '1px solid rgba(255, 255, 255, 0.3)',
