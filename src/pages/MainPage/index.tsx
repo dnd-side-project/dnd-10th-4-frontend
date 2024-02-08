@@ -1,14 +1,25 @@
 import { css } from '@emotion/react';
+import useEmblaCarousel from 'embla-carousel-react';
 import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
 import Button from '@/components/Button';
-import { PencilLine, TreasureChest, User } from '@/assets/icons';
+import {
+  CaretLeft,
+  CaretRight,
+  PencilLine,
+  TreasureChest,
+  User,
+} from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
-import styles from './styles';
+import styles, { carouselStyles } from './styles';
 
 const MainPage = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+  });
+
   return (
     <div css={styles.page}>
       <Header
@@ -34,7 +45,28 @@ const MainPage = () => {
       />
 
       <main css={styles.main}>
-        <p>내부 컨텐츠</p>
+        <section css={carouselStyles.viewport} ref={emblaRef}>
+          <div css={carouselStyles.container}>
+            <div css={carouselStyles.slide}>Slide 1</div>
+            <div css={carouselStyles.slide}>Slide 2</div>
+            <div css={carouselStyles.slide}>Slide 3</div>
+          </div>
+        </section>
+
+        <IconButton
+          variant="carousel"
+          css={[carouselStyles.button, css({ left: '1rem' })]}
+          onClick={() => emblaApi?.scrollPrev()}
+        >
+          <CaretLeft color={COLORS.gray3} />
+        </IconButton>
+        <IconButton
+          variant="carousel"
+          css={[carouselStyles.button, css({ right: '1rem' })]}
+          onClick={() => emblaApi?.scrollNext()}
+        >
+          <CaretRight color={COLORS.gray3} />
+        </IconButton>
       </main>
 
       <section css={styles.buttonSection}>
