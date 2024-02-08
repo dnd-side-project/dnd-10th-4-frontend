@@ -4,12 +4,13 @@ import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
+import LetterContent from '../components/LetterContent';
 
 const ReceivedLetter = () => {
   const { toNext } = useFunnelContext();
 
   return (
-    <div css={style.container}>
+    <LetterContent>
       <LetterCard isOpen={true}>하이</LetterCard>
       <Navbar css={style.navbar}>
         <Button variant="secondary" size="sm">
@@ -27,18 +28,11 @@ const ReceivedLetter = () => {
           사라지기전에 답장을 보내보세요!
         </Tooltip>
       </Navbar>
-    </div>
+    </LetterContent>
   );
 };
 
 const style = {
-  container: css`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    margin-inline: 0.5rem;
-  `,
   navbar: css`
     padding-inline: 0;
   `,

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import createFunnel from '@/components/Funnel/createFunnel';
 import { FunnelProvider } from '@/contexts/useFunnelContext';
+import createFunnel from '@/components/Funnel/createFunnel';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
@@ -13,11 +13,8 @@ const { Funnel, Step, useFunnel } = createFunnel([
 
 const LetterReceptionPage = () => {
   const { step, toPrev, toNext, toFirst, toLast } = useFunnel();
-  const [navigate, setNavigage] = useState<
-    React.ComponentProps<typeof ReceptionHeader>
-  >({
-    goHome: true,
-  });
+  const [navigate, setNavigage] =
+    useState<React.ComponentProps<typeof ReceptionHeader>>();
 
   return (
     <FunnelProvider value={{ toPrev, toNext, toFirst, toLast }}>

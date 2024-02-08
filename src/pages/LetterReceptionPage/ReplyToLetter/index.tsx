@@ -4,23 +4,25 @@ import LetterCard from '@/components/LetterCard';
 import LetterAccordion from '@/components/LetterAccordion';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
+import { useFunnelContext } from '@/contexts/useFunnelContext';
+import LetterContent from '../components/LetterContent';
 
 const ReplyToLetter = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { toPrev } = useFunnelContext();
 
   const handleAccordionToggle = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div css={style.container}>
+    <LetterContent isBlock={true}>
       <div css={style.letter}>
         <LetterCard css={{ marginBottom: '1rem' }}>
           <div>
             <span>From.</span>
             <span>낯선 고양이</span>
           </div>
-          <div>태그</div>
           <LetterAccordion
             isOpen={isOpen}
             onToggle={handleAccordionToggle}
@@ -34,26 +36,18 @@ const ReplyToLetter = () => {
         <LetterCard isOpen={true}>여기에 편지쓰기</LetterCard>
       </div>
       <Navbar css={style.navbar}>
-        <Button type="button" variant="secondary" size="sm">
+        <Button type="button" variant="secondary" size="sm" onClick={toPrev}>
           취소
         </Button>
         <Button type="submit" variant="primary" size="sm">
           보내기
         </Button>
       </Navbar>
-    </div>
+    </LetterContent>
   );
 };
 
 const style = {
-  container: css`
-    display: flex;
-    display: block;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    margin-inline: 0.5rem;
-  `,
   letter: css`
     overflow-y: auto;
     max-height: calc(100vh - 60px - 80px - 16px);
