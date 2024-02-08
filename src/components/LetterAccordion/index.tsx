@@ -77,8 +77,8 @@ const LetterContent = ({
   ...props
 }: LetterContentProps) => {
   const variants = {
-    open: { opacity: 1, height: 'auto' },
-    collapsed: { opacity: 1, height: 0 },
+    open: { height: 'auto' },
+    collapsed: { height: 0 },
   };
 
   return (
@@ -91,7 +91,6 @@ const LetterContent = ({
             exit="collapsed"
             variants={variants}
             transition={{
-              opacity: { duration: 1 },
               height: { duration: 1 },
             }}
           >

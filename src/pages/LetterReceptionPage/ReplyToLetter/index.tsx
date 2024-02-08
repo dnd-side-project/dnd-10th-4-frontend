@@ -12,8 +12,8 @@ import { formatDate } from '@/utils/dateUtils';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 const ReplyToLetter = () => {
   const { value: isOpen, toggle: accordionToggle } = useBoolean(false);
@@ -116,7 +116,7 @@ const style = {
   `,
   letter: css`
     overflow-y: auto;
-    max-height: calc(100svh - 60px - 80px - 16px);
+    max-height: calc(100dvh - 60px - 80px - 16px);
   `,
   textCount: css`
     display: flex;
