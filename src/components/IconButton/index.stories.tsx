@@ -37,10 +37,10 @@ export const 아이콘_버튼: StoryObj = {
       <IconButton variant="bottom">
         <Heart color="white" />
       </IconButton>
-      <IconButton variant="leftCarousel">
+      <IconButton variant="carousel">
         <CaretLeft color="white" />
       </IconButton>
-      <IconButton variant="rightCarousel">
+      <IconButton variant="carousel">
         <CaretRight color="white" />
       </IconButton>
     </div>

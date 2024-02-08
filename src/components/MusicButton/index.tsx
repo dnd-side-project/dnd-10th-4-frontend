@@ -9,7 +9,7 @@ interface MusicButtonProps {
 }
 
 /** 바다 소리를 On/Off 하는 컴포넌트입니다. */
-const MusicButton = ({ color = 'white' }: MusicButtonProps) => {
+const MusicButton = ({ color = 'white', ...props }: MusicButtonProps) => {
   const isPlaying = useMusicStore((s) => s.isPlaying);
   const toggle = useMusicStore((s) => s.togglePlaying);
 
@@ -20,7 +20,7 @@ const MusicButton = ({ color = 'white' }: MusicButtonProps) => {
         align="end"
         delay={5000}
         triggerContent={
-          <IconButton onClick={toggle}>
+          <IconButton onClick={toggle} {...props}>
             {isPlaying ? <SoundOn color={color} /> : <SoundOff color={color} />}
           </IconButton>
         }

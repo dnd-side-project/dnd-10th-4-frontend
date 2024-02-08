@@ -5,6 +5,7 @@ import SigninPage from './pages/SigninPage';
 import SigninKakaoPage from './pages/SigninKakaoPage';
 import OnboardingPage from './pages/OnboardingPage';
 import LetterWritePage from './pages/LetterWritePage';
+import MainPage from './pages/MainPage';
 import LetterReceptionPage from './pages/LetterReceptionPage/intex';
 
 const ROUTER_PATHS = {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.MODAL_TEST,
         element: <ModalTestPage />,
+      },
+      {
+        path: ROUTER_PATHS.ROOT,
+        element: <MainPage />,
       },
       {
         path: ROUTER_PATHS.SIGNIN,
