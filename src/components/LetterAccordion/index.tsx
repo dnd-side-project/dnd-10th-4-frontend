@@ -78,7 +78,7 @@ const LetterContent = ({
 }: LetterContentProps) => {
   const variants = {
     open: { opacity: 1, height: 'auto' },
-    collapsed: { opacity: 0, height: 0 },
+    collapsed: { opacity: 1, height: 0 },
   };
 
   return (

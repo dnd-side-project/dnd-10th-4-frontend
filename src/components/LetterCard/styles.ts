@@ -17,7 +17,7 @@ const style = {
     border-radius: 0.5rem;
     background-color: ${background === 'white' && 'white'};
     background-image: ${background === 'primary' && `url(${LetterBackground})`};
-    background-size: cover;
+    background-size: auto;
   `,
 };
 
