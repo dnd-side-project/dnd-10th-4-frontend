@@ -7,8 +7,8 @@ import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import LetterHeader from '@/components/LetterHeader';
 import Chip from '@/components/Chip';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 interface ReceivedLetterProps {
   onNext: () => void;

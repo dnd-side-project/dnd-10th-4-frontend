@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CaretDown from '@/assets/icons/CaretDown';
 import { formatDate } from '@/utils/dateUtils';
-import Polaroid from '../Polaroid';
+import LetterHeader from '../LetterHeader';
 import style, { letterAccordionType } from './styles';
 
 interface LetterAccordionProps {
@@ -12,12 +12,12 @@ interface LetterAccordionProps {
   text: string;
   /** LetterAccordion 컴포넌트에 들어갈 날짜 입니다. */
   date: Date;
+  /** LetterAccordion 컴포넌트에 들어갈 닉네임 입니다. */
+  nickname: string;
   /** LetterAccordion 컴포넌트의 표시될 줄 개수 입니다. */
   line?: number;
   /** LetterAccordion 컴포넌트의 타입 입니다. (보관함/편지 보내기) */
   type?: letterAccordionType;
-  /** LetterAccordion 컴포넌트에 들어가는 사진 URL 입니다. */
-  imgUrl?: string;
   /** LetterAccordion 컴포넌트의 open 여부 입니다. */
   isOpen?: boolean;
   /** LetterAccordion 컴포넌트의 onToggle 함수입니다. */
@@ -28,9 +28,9 @@ const LetterAccordion = ({
   id,
   text,
   date,
+  nickname,
   line = 3,
   type = 'inbox',
-  imgUrl = '',
   isOpen = false,
   onToggle = () => {},
   ...props
@@ -43,8 +43,6 @@ const LetterAccordion = ({
       <LetterContent
         isOpen={isOpen}
         text={text}
-        imgUrl={imgUrl}
-        type={type}
         line={line}
         textContainerRef={textContainerRef}
         {...props}
@@ -53,6 +51,7 @@ const LetterAccordion = ({
         {formatDate(date)}
         {type === 'inbox' && '에 받은 편지'}
       </p>
+      <LetterHeader fromOrTo="From" nickname={nickname} />
       <LetterBottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
     </div>
   );
@@ -62,7 +61,6 @@ interface LetterContentProps {
   isOpen: boolean;
   text: string;
   imgUrl?: string;
-  type: letterAccordionType;
   line: number;
   textContainerRef: React.RefObject<HTMLDivElement>;
 }
@@ -70,8 +68,6 @@ interface LetterContentProps {
 const LetterContent = ({
   isOpen,
   text,
-  imgUrl,
-  type,
   line,
   textContainerRef,
   ...props
@@ -97,7 +93,6 @@ const LetterContent = ({
             <div ref={textContainerRef} css={style.openText}>
               {text}
             </div>
-            {type !== 'inbox' && imgUrl && <Polaroid imgUrl={imgUrl} />}
           </motion.div>
         )}
       </AnimatePresence>
