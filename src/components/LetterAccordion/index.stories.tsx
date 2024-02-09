@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import LetterAccordion from '.';
 
 const meta = {
-  title: 'Components/LetterAccordion',
+  title: 'Components/Letter/LetterAccordion',
   component: LetterAccordion,
   tags: ['autodocs'],
 } satisfies Meta<typeof LetterAccordion>;

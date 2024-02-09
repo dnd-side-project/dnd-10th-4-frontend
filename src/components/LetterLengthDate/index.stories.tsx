@@ -5,7 +5,7 @@ import LetterTextarea from '../LetterTextarea';
 import LetterLengthDate from '.';
 
 const meta = {
-  title: 'Components/LetterLengthDate',
+  title: 'Components/Letter/LetterLengthDate',
   component: LetterLengthDate,
   tags: ['autodocs'],
 } satisfies Meta<typeof LetterLengthDate>;

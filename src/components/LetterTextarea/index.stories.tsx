@@ -3,7 +3,7 @@ import LetterCard from '../LetterCard';
 import LetterTextarea from '.';
 
 const meta = {
-  title: 'Components/LetterTextarea',
+  title: 'Components/Letter/LetterTextarea',
   component: LetterTextarea,
   tags: ['autodocs'],
 } satisfies Meta<typeof LetterTextarea>;

@@ -4,7 +4,7 @@ import LetterAccordion from '../LetterAccordion';
 import LetterCard from '.';
 
 const meta = {
-  title: 'Components/LetterCard',
+  title: 'Components/Letter/LetterCard',
   component: LetterCard,
   tags: ['autodocs'],
 } satisfies Meta<typeof LetterCard>;

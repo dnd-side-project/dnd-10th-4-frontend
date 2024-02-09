@@ -3,7 +3,7 @@ import LetterCard from '../LetterCard';
 import LetterHeader from '.';
 
 const meta = {
-  title: 'Components/LetterHeader',
+  title: 'Components/Letter/LetterHeader',
   component: LetterHeader,
   tags: ['autodocs'],
 } satisfies Meta<typeof LetterHeader>;
