@@ -6,8 +6,9 @@ import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import LetterHeader from '@/components/LetterHeader';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import Chip from '@/components/Chip';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 interface ReceivedLetterProps {
   onNext: () => void;
@@ -19,12 +20,13 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
   return (
     <LetterContent>
       <LetterCard isOpen={true}>
-        <LetterHeader
-          fromOrTo="From"
-          nickname="낯선 고양이"
-          tagList={tagList}
-          tagPosition="bottom"
-        />
+        <div css={style.tag}>
+          {tagList.map((tag) => (
+            <Chip key={tag} variant="filter">
+              {tag}
+            </Chip>
+          ))}
+        </div>
         <div css={style.text}>
           <p>
             여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대
@@ -40,6 +42,7 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
         <div css={style.date}>
           <span>24년 02월 08일</span>
         </div>
+        <LetterHeader fromOrTo="From" nickname="낯선 고양이" />
         <ReceptionPolaroid />
       </LetterCard>
       <Navbar css={style.navbar}>
@@ -63,6 +66,10 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
 };
 
 const style = {
+  tag: css`
+    display: flex;
+    gap: 0.5rem;
+  `,
   text: css`
     height: 15rem;
     ${textStyles.l1m};

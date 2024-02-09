@@ -14,21 +14,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    fromOrTo: 'To',
+    fromOrTo: 'From',
     nickname: '낯선 고양이',
-    tagList: ['10~40', '모두에게', '기타'],
   },
 };
 
 export const 편지지: StoryObj = {
   render: () => (
     <LetterCard isOpen={true}>
-      <LetterHeader
-        fromOrTo="From"
-        nickname="낯선 고양이"
-        tagList={['10~40', '모두에게', '기타']}
-        isMoreIcon={true}
-      />
+      <LetterHeader fromOrTo="To" nickname="낯선 고양이" isMoreIcon={true} />
     </LetterCard>
   ),
 };

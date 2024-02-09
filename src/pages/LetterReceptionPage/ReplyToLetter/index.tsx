@@ -9,8 +9,9 @@ import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
 import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterHeader from '@/components/LetterHeader';
-import LetterContent from '../components/LetterContent';
+import Chip from '@/components/Chip';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 interface ReplyToLetterProps {
   onPrev: () => void;
@@ -30,12 +31,13 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
     <LetterContent isBlock={true}>
       <div css={style.letter}>
         <LetterCard css={{ marginBottom: '1rem' }}>
-          <LetterHeader
-            fromOrTo="From"
-            nickname="낯선 고양이"
-            tagList={tagList}
-            tagPosition="bottom"
-          />
+          <div css={style.tag}>
+            {tagList.map((tag) => (
+              <Chip key={tag} variant="filter">
+                {tag}
+              </Chip>
+            ))}
+          </div>
           <LetterAccordion
             isOpen={isOpen}
             onToggle={accordionToggle}
@@ -75,6 +77,10 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
 };
 
 const style = {
+  tag: css`
+    display: flex;
+    gap: 0.5rem;
+  `,
   text: css`
     ${textStyles.l1m};
   `,

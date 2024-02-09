@@ -16,8 +16,8 @@ const ReceptionPolaroid = () => {
     <>
       <Polaroid
         onClick={open}
-        topPosition={5.5}
-        leftPosition={1}
+        topPosition={1.5}
+        leftPosition={1.2}
         imgUrl={imgUrl}
       />
       <Modal close={close} isOpen={isOpen}>
