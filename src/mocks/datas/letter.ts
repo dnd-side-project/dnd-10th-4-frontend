@@ -148,7 +148,7 @@ export const ReceivedLetterResponse = [
   },
 ] satisfies ResponseType<(typeof letterAPI)['getReceivedLetters']>;
 
-export const PagedRepliedLettersResponse = [
+export const RepliedLettersResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 1,

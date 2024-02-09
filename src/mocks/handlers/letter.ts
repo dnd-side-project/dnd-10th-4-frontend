@@ -3,7 +3,7 @@ import { baseURL } from '@/utils/mswUtils';
 import QUERY_STRINGS from '@/constants/queryStrings';
 import {
   ReceivedLetterResponse,
-  PagedRepliedLettersResponse,
+  RepliedLettersResponse,
 } from '../datas/letter';
 
 const letterHandler = [
@@ -30,10 +30,10 @@ const letterHandler = [
         new URLSearchParams(window.location.search).get(
           QUERY_STRINGS.mswItemCount,
         ),
-      ) || ReceivedLetterResponse.length;
+      ) || RepliedLettersResponse.length;
 
     return HttpResponse.json(
-      PagedRepliedLettersResponse.slice(0, Number(itemCount)),
+      RepliedLettersResponse.slice(0, Number(itemCount)),
     );
   }),
 
