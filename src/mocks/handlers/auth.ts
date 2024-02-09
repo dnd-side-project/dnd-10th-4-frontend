@@ -24,7 +24,7 @@ const authHandler = [
     }
   }),
 
-  /** 액세스 토큰이 필요한 API를 시뮬레이션하기 위해 테스트 코드에서만 사용되는 API입니다. */
+  /** 액세스 토큰이 필요한 API를 시뮬레이션하기 위해 테스트 코드에서만 사용되는 API입니다.  */
   http.get(baseURL('/mock/auth/access-check'), async (req) => {
     const accessToken = req.request.headers.get('accesstoken');
 
