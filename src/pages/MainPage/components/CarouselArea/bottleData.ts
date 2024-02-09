@@ -9,60 +9,70 @@ import BottleReply2 from '@/assets/images/bottleReply2.png';
 export const BOTTLES_LETTER = [
   {
     src: BottleLetter4,
-    position: css({
-      right: '20%',
-      bottom: '35%',
-    }),
-    chipPosition: css({
-      top: '-2.75rem',
-    }),
+    position: css`
+      position: absolute;
+      right: 20%;
+      bottom: 35%;
+    `,
+    chipPosition: css`
+      position: absolute;
+      top: -2.75rem;
+    `,
   },
   {
     src: BottleLetter3,
-    position: css({
-      left: '10%',
-      bottom: '55%',
-    }),
-    chipPosition: css({
-      top: '-2.5rem',
-    }),
+    position: css`
+      position: absolute;
+      bottom: 55%;
+      left: 10%;
+    `,
+    chipPosition: css`
+      position: absolute;
+      top: -2.5rem;
+    `,
   },
   {
     src: BottleLetter2,
-    position: css({
-      right: '20%',
-      bottom: '65%',
-    }),
-    chipPosition: css({
-      top: '-2.75rem',
-    }),
+    position: css`
+      position: absolute;
+      right: 20%;
+      bottom: 65%;
+    `,
+    chipPosition: css`
+      position: absolute;
+      top: -2.75rem;
+    `,
   },
   {
     src: BottleLetter1,
-    position: css({
-      left: '25%',
-      bottom: '75%',
-    }),
-    chipPosition: css({
-      top: '-2.5rem',
-      left: '1rem',
-    }),
+    position: css`
+      position: absolute;
+      bottom: 75%;
+      left: 25%;
+    `,
+    chipPosition: css`
+      position: absolute;
+      top: -2.5rem;
+      left: 1rem;
+    `,
   },
 ] as const;
 
 export const BOTTLES_REPLY = [
   {
     src: BottleReply1,
-    position: css({
-      left: '10%',
-      bottom: '4%',
-    }),
+    position: css`
+      position: absolute;
+      bottom: 4%;
+      left: 10%;
+    `,
   },
   {
     src: BottleReply2,
-    position: css({
-      right: '10%',
-      bottom: '4%',
-    }),
+    position: css`
+      position: absolute;
+      right: 10%;
+      bottom: 4%;
+    `,
   },
 ] as const;
