@@ -54,20 +54,24 @@ const CarouselArea = () => {
         </div>
       </section>
 
-      <IconButton
-        variant="carousel"
-        css={[styles.button, css({ left: '1rem' })]}
-        onClick={() => emblaApi?.scrollPrev()}
-      >
-        <CaretLeft color={COLORS.gray3} />
-      </IconButton>
-      <IconButton
-        variant="carousel"
-        css={[styles.button, css({ right: '1rem' })]}
-        onClick={() => emblaApi?.scrollNext()}
-      >
-        <CaretRight color={COLORS.gray3} />
-      </IconButton>
+      {emblaApi?.slideNodes().length && emblaApi?.slideNodes().length > 1 ? (
+        <>
+          <IconButton
+            variant="carousel"
+            css={[styles.button, css({ left: '1rem' })]}
+            onClick={() => emblaApi?.scrollPrev()}
+          >
+            <CaretLeft color={COLORS.gray3} />
+          </IconButton>
+          <IconButton
+            variant="carousel"
+            css={[styles.button, css({ right: '1rem' })]}
+            onClick={() => emblaApi?.scrollNext()}
+          >
+            <CaretRight color={COLORS.gray3} />
+          </IconButton>
+        </>
+      ) : null}
     </>
   );
 };
