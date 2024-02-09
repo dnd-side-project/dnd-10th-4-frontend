@@ -6,13 +6,12 @@ import Button from '@/components/Button';
 import ImageUploadButton from '@/components/ImageUploadButton';
 import Chip from '@/components/Chip';
 import LetterTextarea from '@/components/LetterTextarea';
-import { letterWrite } from '@/constants/schemaLiteral';
-import { formatDate } from '@/utils/dateUtils';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
-import LetterContent from '../components/LetterContent';
+import LetterLengthDate from '@/components/LetterLengthDate';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 interface ReplyToLetterProps {
   onPrev: () => void;
@@ -63,13 +62,7 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
             name="content"
             placeholder="하고싶은 이야기를 답장으로 적어보세요."
           />
-          <div css={style.textCount}>
-            <span>0</span>
-            <span>&nbsp;/ {letterWrite.content.max.value}</span>
-          </div>
-          <div css={style.date}>
-            <span>{formatDate(new Date())}</span>
-          </div>
+          <LetterLengthDate letterLength={0} />
         </LetterCard>
       </div>
       <Navbar css={style.navbar}>
@@ -119,26 +112,6 @@ const style = {
   letter: css`
     overflow-y: auto;
     max-height: calc(100dvh - 60px - 80px - 16px);
-  `,
-  textCount: css`
-    display: flex;
-    justify-content: flex-end;
-
-    ${textStyles.c1m}
-    & > span:nth-of-type(1) {
-      color: ${COLORS.gray1};
-    }
-
-    & > span:nth-of-type(2) {
-      color: ${COLORS.gray4};
-    }
-  `,
-  date: css`
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 2.5rem;
-    ${textStyles.c1r}
-    color: ${COLORS.gray4};
   `,
   navbar: css`
     position: fixed;
