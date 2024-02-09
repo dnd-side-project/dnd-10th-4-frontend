@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
@@ -8,6 +9,7 @@ import MusicButton from '@/components/MusicButton';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/router';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
 
@@ -37,7 +39,9 @@ const MainPage = () => {
       />
 
       <main css={styles.main}>
-        <CarouselArea />
+        <Suspense fallback={<LoadingSpinner />}>
+          <CarouselArea />
+        </Suspense>
       </main>
 
       <section css={styles.buttonSection}>

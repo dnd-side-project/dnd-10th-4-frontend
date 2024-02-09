@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { CaretLeft, CaretRight } from '@/assets/icons';
-import Bottle from '@/assets/images/bottle.png';
+// import { useSuspenseQuery } from '@tanstack/react-query';
+import { CaretLeft, CaretRight, HourGlass } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
+// import letterOptions from '@/api/letter/queryOptions';
+import Chip from '@/components/Chip';
+import textStyles from '@/styles/textStyles';
+import styles from './styles';
+import { BOTTLES } from './bottleData';
 
 const CarouselArea = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   });
   const [slides] = useState([1, 2, 3, 4, 5]);
+
+  // useSuspenseQuery({ ...letterOptions.reception() });
 
   return (
     <>
@@ -19,11 +26,23 @@ const CarouselArea = () => {
           {slides.map((slide) => (
             <div key={slide} css={styles.slide}>
               <p>Slide {slide}</p>
-              <img
-                src={Bottle}
-                alt="물병"
-                css={css({ transform: `rotate(${45 * slide}deg)` })}
-              />
+              {BOTTLES.map((bottle, idx) => (
+                <div
+                  key={idx}
+                  css={[css({ position: 'absolute' }), bottle.position]}
+                >
+                  <img src={bottle.src} alt="물병" css={styles.bottleImage} />
+                  {bottle.chipPosition && (
+                    <Chip
+                      variant="bottle-tag"
+                      css={[styles.timeChip, bottle.chipPosition]}
+                    >
+                      <HourGlass width="1rem" height="1rem" />
+                      <p css={textStyles.b4m}>00h</p>
+                    </Chip>
+                  )}
+                </div>
+              ))}
             </div>
           ))}
         </div>
@@ -45,30 +64,6 @@ const CarouselArea = () => {
       </IconButton>
     </>
   );
-};
-
-const styles = {
-  viewport: css`
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  `,
-  container: css`
-    display: flex;
-  `,
-  slide: css`
-    flex: 0 0 100%;
-  `,
-  button: css`
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    &:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-  `,
 };
 
 export default CarouselArea;
