@@ -32,13 +32,9 @@ const letterHandler = [
         ),
       ) || ReceivedLetterResponse.length;
 
-    return HttpResponse.json({
-      ...PagedRepliedLettersResponse,
-      postList: PagedRepliedLettersResponse.postList.slice(
-        0,
-        Number(itemCount),
-      ),
-    });
+    return HttpResponse.json(
+      PagedRepliedLettersResponse.slice(0, Number(itemCount)),
+    );
   }),
 
   http.post(baseURL('/api/letter'), async () => {

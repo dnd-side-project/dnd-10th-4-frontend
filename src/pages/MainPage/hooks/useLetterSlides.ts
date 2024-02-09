@@ -20,7 +20,7 @@ const useLetterSlides = () => {
   );
 
   const refinedReplies = chunkArray(
-    replies.postList.slice(0, MAX_SLIDES * REPLIES_PER_SLIDE),
+    replies.slice(0, MAX_SLIDES * REPLIES_PER_SLIDE),
     REPLIES_PER_SLIDE,
   );
 

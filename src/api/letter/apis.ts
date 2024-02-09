@@ -20,11 +20,8 @@ const letterAPI = {
 
   /** 답장 받은 편지 페이징 조회 */
   getRepliedLetters: async (page: number) => {
-    const { data } = await baseInstance.get<{
-      totalElements: number;
-      totalPage: number;
-      hasNextPage: boolean;
-      postList: Array<{
+    const { data } = await baseInstance.get<
+      Array<{
         createdAt: string;
         letterId: number;
         senderNickname: string;
@@ -32,8 +29,8 @@ const letterAPI = {
         content: string;
         repliedContent: string;
         worryType: Worry;
-      }>;
-    }>(`/api/letter/reply`, {
+      }>
+    >(`/api/letter/reply`, {
       params: {
         page,
       },
