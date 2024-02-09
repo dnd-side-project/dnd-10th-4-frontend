@@ -32,35 +32,44 @@ const CarouselArea = () => {
     <>
       <section css={styles.viewport} ref={emblaRef}>
         <div css={styles.container}>
-          {slides.map((slide) => (
-            <article key={slide.id} css={styles.slide}>
-              {BOTTLES_LETTER.slice(0, slide.letters.length).map(
-                (bottle, idx) => (
-                  <div
-                    key={idx}
-                    css={[css({ position: 'absolute' }), bottle.position]}
+          {slides.map(({ id: slideId, letters, replies }) => (
+            <article key={slideId} css={styles.slide}>
+              {letters.map((letter, idx) => (
+                <div key={idx} css={BOTTLES_LETTER[idx]?.position}>
+                  <img
+                    src={BOTTLES_LETTER[idx]?.src}
+                    alt="물병"
+                    css={styles.bottleImage}
+                    onClick={() =>
+                      console.log(
+                        `TODO: ${letter.letterId} 번 편지 답장 보러가기`,
+                      )
+                    }
+                  />
+                  <Chip
+                    variant="bottle-tag"
+                    css={[styles.timeChip, BOTTLES_LETTER[idx]?.chipPosition]}
                   >
-                    <img src={bottle.src} alt="물병" css={styles.bottleImage} />
-                    <Chip
-                      variant="bottle-tag"
-                      css={[styles.timeChip, bottle.chipPosition]}
-                    >
-                      <HourGlass width="1rem" height="1rem" />
-                      <p css={textStyles.b4m}>00h</p>
-                    </Chip>
-                  </div>
-                ),
-              )}
-              {BOTTLES_REPLY.slice(0, slide.replies.length).map(
-                (bottle, idx) => (
-                  <div
-                    key={idx}
-                    css={[css({ position: 'absolute' }), bottle.position]}
-                  >
-                    <img src={bottle.src} alt="물병" css={styles.bottleImage} />
-                  </div>
-                ),
-              )}
+                    <HourGlass width="1rem" height="1rem" />
+                    <p css={textStyles.b4m}>00h</p>
+                  </Chip>
+                </div>
+              ))}
+
+              {replies.map((reply, idx) => (
+                <div key={idx} css={BOTTLES_REPLY[idx]?.position}>
+                  <img
+                    src={BOTTLES_REPLY[idx]?.src}
+                    alt="물병"
+                    css={styles.bottleImage}
+                    onClick={() =>
+                      console.log(
+                        `TODO: ${reply.letterId} 번 편지 답장 보러가기`,
+                      )
+                    }
+                  />
+                </div>
+              ))}
             </article>
           ))}
         </div>
