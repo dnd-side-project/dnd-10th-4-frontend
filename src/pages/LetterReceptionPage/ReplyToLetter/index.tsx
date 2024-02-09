@@ -4,14 +4,13 @@ import LetterAccordion from '@/components/LetterAccordion';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import ImageUploadButton from '@/components/ImageUploadButton';
-import Chip from '@/components/Chip';
 import LetterTextarea from '@/components/LetterTextarea';
-import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
 import LetterLengthDate from '@/components/LetterLengthDate';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterHeader from '@/components/LetterHeader';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 interface ReplyToLetterProps {
   onPrev: () => void;
@@ -31,17 +30,12 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
     <LetterContent isBlock={true}>
       <div css={style.letter}>
         <LetterCard css={{ marginBottom: '1rem' }}>
-          <div css={style.from}>
-            <span>From.</span>
-            <span>낯선 고양이</span>
-          </div>
-          <div css={style.tag}>
-            {tagList.map((item) => (
-              <Chip variant="filter" key={item}>
-                # {item}
-              </Chip>
-            ))}
-          </div>
+          <LetterHeader
+            fromOrTo="From"
+            nickname="낯선 고양이"
+            tagList={tagList}
+            tagPosition="bottom"
+          />
           <LetterAccordion
             isOpen={isOpen}
             onToggle={accordionToggle}
@@ -54,10 +48,7 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
           <ReceptionPolaroid />
         </LetterCard>
         <LetterCard isOpen={true}>
-          <div css={style.from}>
-            <span>To.</span>
-            <span>낯선 고양이</span>
-          </div>
+          <LetterHeader fromOrTo="To" nickname="낯선 고양이" />
           <LetterTextarea
             name="content"
             placeholder="하고싶은 이야기를 답장으로 적어보세요."
@@ -84,28 +75,6 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
 };
 
 const style = {
-  from: css`
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-
-    & > span:nth-of-type(1) {
-      color: ${COLORS.gray1};
-      ${textStyles.t4};
-    }
-
-    & > span:nth-of-type(2) {
-      color: ${COLORS.gray3};
-      font-weight: 500;
-      font-style: normal;
-      font-size: 14px;
-      line-height: 16px;
-    }
-  `,
-  tag: css`
-    display: flex;
-    gap: 0.5rem;
-  `,
   text: css`
     ${textStyles.l1m};
   `,

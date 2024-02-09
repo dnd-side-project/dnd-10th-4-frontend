@@ -3,11 +3,11 @@ import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
-import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
-import LetterContent from '../components/LetterContent';
+import LetterHeader from '@/components/LetterHeader';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 interface ReceivedLetterProps {
   onNext: () => void;
@@ -19,17 +19,12 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
   return (
     <LetterContent>
       <LetterCard isOpen={true}>
-        <div css={style.from}>
-          <span>From.</span>
-          <span>낯선 고양이</span>
-        </div>
-        <div css={style.tag}>
-          {tagList.map((item) => (
-            <Chip variant="filter" key={item}>
-              # {item}
-            </Chip>
-          ))}
-        </div>
+        <LetterHeader
+          fromOrTo="From"
+          nickname="낯선 고양이"
+          tagList={tagList}
+          tagPosition="bottom"
+        />
         <div css={style.text}>
           <p>
             여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대
@@ -68,28 +63,6 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
 };
 
 const style = {
-  from: css`
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-
-    & > span:nth-of-type(1) {
-      color: ${COLORS.gray1};
-      ${textStyles.t4};
-    }
-
-    & > span:nth-of-type(2) {
-      color: ${COLORS.gray3};
-      font-weight: 500;
-      font-style: normal;
-      font-size: 14px;
-      line-height: 16px;
-    }
-  `,
-  tag: css`
-    display: flex;
-    gap: 0.5rem;
-  `,
   text: css`
     height: 15rem;
     ${textStyles.l1m};
