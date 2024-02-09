@@ -1,38 +1,34 @@
-import { useState } from 'react';
 import { css } from '@emotion/react';
 import useEmblaCarousel from 'embla-carousel-react';
-// import { useSuspenseQuery } from '@tanstack/react-query';
 import { CaretLeft, CaretRight, HourGlass } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
-// import letterOptions from '@/api/letter/queryOptions';
 import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
+import useLetterSlides from '../../hooks/useLetterSlides';
 import styles from './styles';
-import { BOTTLES } from './bottleData';
+import { BOTTLES_LETTER, BOTTLES_REPLY } from './bottleData';
 
 const CarouselArea = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   });
-  const [slides] = useState([1, 2, 3, 4, 5]);
-
-  // useSuspenseQuery({ ...letterOptions.reception() });
+  const { slides } = useLetterSlides();
 
   return (
     <>
       <section css={styles.viewport} ref={emblaRef}>
         <div css={styles.container}>
           {slides.map((slide) => (
-            <div key={slide} css={styles.slide}>
-              <p>Slide {slide}</p>
-              {BOTTLES.map((bottle, idx) => (
-                <div
-                  key={idx}
-                  css={[css({ position: 'absolute' }), bottle.position]}
-                >
-                  <img src={bottle.src} alt="물병" css={styles.bottleImage} />
-                  {bottle.chipPosition && (
+            <article key={slide.id} css={styles.slide}>
+              <p>Slide {slide.id}</p>
+              {BOTTLES_LETTER.slice(0, slide.letters.length).map(
+                (bottle, idx) => (
+                  <div
+                    key={idx}
+                    css={[css({ position: 'absolute' }), bottle.position]}
+                  >
+                    <img src={bottle.src} alt="물병" css={styles.bottleImage} />
                     <Chip
                       variant="bottle-tag"
                       css={[styles.timeChip, bottle.chipPosition]}
@@ -40,10 +36,20 @@ const CarouselArea = () => {
                       <HourGlass width="1rem" height="1rem" />
                       <p css={textStyles.b4m}>00h</p>
                     </Chip>
-                  )}
-                </div>
-              ))}
-            </div>
+                  </div>
+                ),
+              )}
+              {BOTTLES_REPLY.slice(0, slide.replies.length).map(
+                (bottle, idx) => (
+                  <div
+                    key={idx}
+                    css={[css({ position: 'absolute' }), bottle.position]}
+                  >
+                    <img src={bottle.src} alt="물병" css={styles.bottleImage} />
+                  </div>
+                ),
+              )}
+            </article>
           ))}
         </div>
       </section>
