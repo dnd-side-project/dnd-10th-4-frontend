@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { CaretLeft, CaretRight, HourGlass } from '@/assets/icons';
+import { CaretLeft, CaretRight } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
-import Chip from '@/components/Chip';
-import textStyles from '@/styles/textStyles';
 import useLetterSlides from '../../hooks/useLetterSlides';
+import TimeChip from '../TimeChip';
 import styles from './styles';
 import { BOTTLES_LETTER, BOTTLES_REPLY } from './bottleData';
 
@@ -46,13 +45,10 @@ const CarouselArea = () => {
                       )
                     }
                   />
-                  <Chip
-                    variant="bottle-tag"
-                    css={[styles.timeChip, BOTTLES_LETTER[idx]?.chipPosition]}
-                  >
-                    <HourGlass width="1rem" height="1rem" />
-                    <p css={textStyles.b4m}>00h</p>
-                  </Chip>
+                  <TimeChip
+                    css={BOTTLES_LETTER[idx]?.chipPosition}
+                    createdAt={letter.createdAt}
+                  />
                 </div>
               ))}
 
