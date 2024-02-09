@@ -9,7 +9,6 @@ import MusicButton from '@/components/MusicButton';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/router';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
 
@@ -39,7 +38,8 @@ const MainPage = () => {
       />
 
       <main css={styles.main}>
-        <Suspense fallback={<LoadingSpinner />}>
+        {/* TODO: 로딩 처리 필요 */}
+        <Suspense fallback={<></>}>
           <CarouselArea />
         </Suspense>
       </main>

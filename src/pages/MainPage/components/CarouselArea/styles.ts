@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import COLORS from '@/constants/colors';
 
 const styles = {
   viewport: css`
@@ -16,7 +17,7 @@ const styles = {
     flex: 0 0 100%;
     height: 100%;
   `,
-  button: css`
+  carouselButton: css`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -24,6 +25,21 @@ const styles = {
     &:active {
       transform: translateY(-50%) scale(0.95);
     }
+  `,
+  dotsSection: css`
+    display: flex;
+    gap: 0.1875rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.75rem;
+  `,
+  dot: (selected: boolean) => css`
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: ${selected ? COLORS.gray1 : COLORS.gray4};
+    cursor: pointer;
+    transition: background-color 0.15s;
   `,
   bottleImage: css`
     cursor: pointer;
