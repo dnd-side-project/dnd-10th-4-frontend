@@ -3,15 +3,17 @@ import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
-import { useFunnelContext } from '@/contexts/useFunnelContext';
 import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
-const ReceivedLetter = () => {
-  const { toNext } = useFunnelContext();
+interface ReceivedLetterProps {
+  onNext: () => void;
+}
+
+const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
   const tagList = ['20~24세', '모두에게', '기타'];
 
   return (
@@ -53,7 +55,7 @@ const ReceivedLetter = () => {
           side="top"
           delay={10000}
           triggerContent={
-            <Button variant="primary" size="sm" onClick={toNext}>
+            <Button variant="primary" size="sm" onClick={onNext}>
               답장하기
             </Button>
           }

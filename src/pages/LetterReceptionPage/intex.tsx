@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
-import { FunnelProvider } from '@/contexts/useFunnelContext';
 import createFunnel from '@/components/Funnel/createFunnel';
+import { ROUTER_PATHS } from '@/router';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
@@ -12,38 +12,25 @@ const { Funnel, Step, useFunnel } = createFunnel([
 ] as const);
 
 const LetterReceptionPage = () => {
-  const { step, toPrev, toNext, toFirst, toLast } = useFunnel();
-  const [navigate, setNavigate] =
-    useState<React.ComponentProps<typeof ReceptionHeader>>();
+  const { step, setStep, toPrev } = useFunnel();
+  const navigate = useNavigate();
 
   return (
-    <FunnelProvider value={{ toPrev, toNext, toFirst, toLast }}>
-      <div css={style.container}>
-        <ReceptionHeader {...navigate} />
-        <Funnel step={step}>
-          <Step
-            name="ReceivedLetter"
-            onEnter={() =>
-              setNavigate({
-                goHome: true,
-              })
-            }
-          >
-            <ReceivedLetter />
-          </Step>
-          <Step
-            name="ReplyToLetter"
-            onEnter={() =>
-              setNavigate({
-                goHome: false,
-              })
-            }
-          >
-            <ReplyToLetter />
-          </Step>
-        </Funnel>
-      </div>
-    </FunnelProvider>
+    <div css={style.container}>
+      <ReceptionHeader
+        onClickPrev={
+          step === 'ReceivedLetter' ? () => navigate(ROUTER_PATHS.ROOT) : toPrev
+        }
+      />
+      <Funnel step={step}>
+        <Step name="ReceivedLetter">
+          <ReceivedLetter onNext={() => setStep('ReplyToLetter')} />
+        </Step>
+        <Step name="ReplyToLetter">
+          <ReplyToLetter onPrev={() => setStep('ReceivedLetter')} />
+        </Step>
+      </Funnel>
+    </div>
   );
 };
 

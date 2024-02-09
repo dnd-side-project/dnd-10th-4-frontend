@@ -3,7 +3,6 @@ import LetterCard from '@/components/LetterCard';
 import LetterAccordion from '@/components/LetterAccordion';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
-import { useFunnelContext } from '@/contexts/useFunnelContext';
 import ImageUploadButton from '@/components/ImageUploadButton';
 import Chip from '@/components/Chip';
 import LetterTextarea from '@/components/LetterTextarea';
@@ -12,12 +11,15 @@ import { formatDate } from '@/utils/dateUtils';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
-const ReplyToLetter = () => {
+interface ReplyToLetterProps {
+  onPrev: () => void;
+}
+
+const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
   const { value: isOpen, toggle: accordionToggle } = useBoolean(false);
-  const { toPrev } = useFunnelContext();
 
   const tagList = ['20~24세', '모두에게', '기타'];
 
@@ -75,7 +77,7 @@ const ReplyToLetter = () => {
           type="button"
           variant="semi-transparent-unaccent"
           size="sm"
-          onClick={toPrev}
+          onClick={onPrev}
         >
           다시 흘러보내기
         </Button>
