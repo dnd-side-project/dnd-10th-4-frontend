@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Progress from './';
 
 const meta = {
-  title: 'OnboardingPage/Components/Progress',
+  title: 'Pages/OnboardingPage/Components/Progress',
   component: Progress,
   tags: ['autodocs'],
   argTypes: {},
