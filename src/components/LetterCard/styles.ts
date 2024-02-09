@@ -12,12 +12,12 @@ const style = {
     box-sizing: border-box;
     width: 100%;
     max-width: 600px;
-    height: ${isOpen ? '27rem' : 'auto'};
+    height: ${isOpen ? '26rem' : 'auto'};
     padding: 1.25rem;
     border-radius: 0.5rem;
     background-color: ${background === 'white' && 'white'};
     background-image: ${background === 'primary' && `url(${LetterBackground})`};
-    background-size: cover;
+    background-size: auto;
   `,
 };
 
