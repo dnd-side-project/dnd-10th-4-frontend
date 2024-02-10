@@ -3,7 +3,9 @@ import letterAPI from '@/api/letter/apis';
 
 export const ReceivedLetterResponse = [
   {
-    createdAt: '2024-02-05T15:40:44',
+    createdAt: new Date(
+      new Date().getTime() - 48 * 60 * 60 * 1000 + 2 * 60 * 1000,
+    ).toISOString(),
     letterId: 3,
     senderNickname: '낯선 소',
     receiverNickname: '낯선 유저1',
@@ -11,7 +13,9 @@ export const ReceivedLetterResponse = [
     worryType: 'BREAK_LOVE',
   },
   {
-    createdAt: '2024-02-05T15:40:44',
+    createdAt: new Date(
+      new Date().getTime() - 48 * 60 * 60 * 1000 + 60 * 60 * 1000,
+    ).toISOString(),
     letterId: 4,
     senderNickname: '낯선 소',
     receiverNickname: '낯선 유저2',
@@ -19,7 +23,9 @@ export const ReceivedLetterResponse = [
     worryType: 'WORK',
   },
   {
-    createdAt: '2024-02-05T15:40:44',
+    createdAt: new Date(
+      new Date().getTime() - 23 * 60 * 60 * 1000,
+    ).toISOString(),
     letterId: 5,
     senderNickname: '낯선 소',
     receiverNickname: '낯선 유저3',
@@ -27,7 +33,9 @@ export const ReceivedLetterResponse = [
     worryType: 'COURSE',
   },
   {
-    createdAt: '2024-02-05T15:40:44',
+    createdAt: new Date(
+      new Date().getTime() - 1 * 60 * 60 * 1000,
+    ).toISOString(),
     letterId: 6,
     senderNickname: '낯선 소',
     receiverNickname: '낯선 유저4',
