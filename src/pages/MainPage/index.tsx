@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
@@ -37,7 +38,10 @@ const MainPage = () => {
       />
 
       <main css={styles.main}>
-        <CarouselArea />
+        {/* TODO: 로딩 처리 필요 */}
+        <Suspense fallback={<></>}>
+          <CarouselArea />
+        </Suspense>
       </main>
 
       <section css={styles.buttonSection}>
