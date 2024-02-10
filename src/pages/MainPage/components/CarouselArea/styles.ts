@@ -1,5 +1,15 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import COLORS from '@/constants/colors';
+
+const float = (translateY: string) => keyframes`
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(${translateY});
+  }
+`;
 
 const styles = {
   viewport: css`
@@ -41,8 +51,14 @@ const styles = {
     cursor: pointer;
     transition: background-color 0.15s;
   `,
-  bottleImage: css`
+  bottleImage: (animation?: { duration: string; translateY: string }) => css`
     cursor: pointer;
+
+    ${animation &&
+    css`
+      animation: ${float(animation.translateY)} ${animation.duration} infinite
+        alternate;
+    `}
   `,
 };
 

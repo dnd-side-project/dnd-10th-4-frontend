@@ -38,7 +38,7 @@ const CarouselArea = () => {
                   <img
                     src={BOTTLES_LETTER[idx]?.src}
                     alt="물병"
-                    css={styles.bottleImage}
+                    css={styles.bottleImage(BOTTLES_LETTER[idx]?.animation)}
                     onClick={() =>
                       console.log(
                         `TODO: ${letter.letterId} 번 편지 답장 보러가기`,
@@ -60,7 +60,7 @@ const CarouselArea = () => {
                   <img
                     src={BOTTLES_REPLY[idx]?.src}
                     alt="물병"
-                    css={styles.bottleImage}
+                    css={styles.bottleImage()}
                     onClick={() =>
                       console.log(
                         `TODO: ${reply.letterId} 번 편지 답장 보러가기`,

@@ -18,6 +18,10 @@ export const BOTTLES_LETTER = [
         bottom: 25%;
       }
     `,
+    animation: {
+      duration: '5s',
+      translateY: '0.5rem',
+    },
     chipPosition: css`
       position: absolute;
       top: -2.75rem;
@@ -34,6 +38,10 @@ export const BOTTLES_LETTER = [
         bottom: 45%;
       }
     `,
+    animation: {
+      duration: '3s',
+      translateY: '0.75rem',
+    },
     chipPosition: css`
       position: absolute;
       top: -2.5rem;
@@ -50,6 +58,10 @@ export const BOTTLES_LETTER = [
         bottom: 55%;
       }
     `,
+    animation: {
+      duration: '4s',
+      translateY: '1rem',
+    },
     chipPosition: css`
       position: absolute;
       top: -2.75rem;
@@ -66,6 +78,10 @@ export const BOTTLES_LETTER = [
         bottom: 65%;
       }
     `,
+    animation: {
+      duration: '7s',
+      translateY: '1rem',
+    },
     chipPosition: css`
       position: absolute;
       top: -2.5rem;
