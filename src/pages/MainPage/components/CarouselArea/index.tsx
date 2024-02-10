@@ -46,7 +46,10 @@ const CarouselArea = () => {
                     }
                   />
                   <TimeChip
-                    css={BOTTLES_LETTER[idx]?.chipPosition}
+                    css={[
+                      BOTTLES_LETTER[idx]?.chipPosition,
+                      css({ zIndex: 10 }),
+                    ]}
                     createdAt={letter.createdAt}
                   />
                 </div>

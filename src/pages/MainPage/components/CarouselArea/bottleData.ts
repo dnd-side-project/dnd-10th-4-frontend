@@ -12,7 +12,11 @@ export const BOTTLES_LETTER = [
     position: css`
       position: absolute;
       right: 20%;
-      bottom: 35%;
+      bottom: 30%;
+
+      @media (min-aspect-ratio: 0.4/1) {
+        bottom: 25%;
+      }
     `,
     chipPosition: css`
       position: absolute;
@@ -25,6 +29,10 @@ export const BOTTLES_LETTER = [
       position: absolute;
       bottom: 55%;
       left: 10%;
+
+      @media (min-aspect-ratio: 0.4/1) {
+        bottom: 45%;
+      }
     `,
     chipPosition: css`
       position: absolute;
@@ -37,6 +45,10 @@ export const BOTTLES_LETTER = [
       position: absolute;
       right: 20%;
       bottom: 65%;
+
+      @media (min-aspect-ratio: 0.4/1) {
+        bottom: 55%;
+      }
     `,
     chipPosition: css`
       position: absolute;
@@ -49,6 +61,10 @@ export const BOTTLES_LETTER = [
       position: absolute;
       bottom: 75%;
       left: 25%;
+
+      @media (min-aspect-ratio: 0.4/1) {
+        bottom: 65%;
+      }
     `,
     chipPosition: css`
       position: absolute;
@@ -72,7 +88,7 @@ export const BOTTLES_REPLY = [
     position: css`
       position: absolute;
       right: 10%;
-      bottom: 4%;
+      bottom: 0%;
     `,
   },
 ] as const;
