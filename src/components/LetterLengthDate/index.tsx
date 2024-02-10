@@ -8,7 +8,7 @@ interface LetterLengthDateProps {
 
 const LetterLengthDate = ({ letterLength }: LetterLengthDateProps) => {
   return (
-    <>
+    <div>
       <div css={style.textCount}>
         <span>{letterLength}</span>
         <span>&nbsp;/ {letterWrite.content.max.value}</span>
@@ -16,7 +16,7 @@ const LetterLengthDate = ({ letterLength }: LetterLengthDateProps) => {
       <div css={style.date}>
         <span>{formatDate(new Date())}</span>
       </div>
-    </>
+    </div>
   );
 };
 
