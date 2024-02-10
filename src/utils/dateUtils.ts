@@ -8,14 +8,12 @@ const formatDate = (date: Date): string => {
 
 /** 시간 차이를 계산한 뒤, TimeChip에서 사용되는 문자열 형태로 반환 */
 const formatTimechipDate = (from: Date, to: Date): string => {
-  const { second, minute, hour } = getTimeDifference(from, to);
+  const { minute, hour } = getTimeDifference(from, to);
 
   if (hour > 0) {
     return `${hour}h`.padStart(3, '0');
-  } else if (minute > 0) {
-    return `${minute}m`.padStart(3, '0');
   } else {
-    return `${second}s`.padStart(3, '0');
+    return `${minute}m`.padStart(3, '0');
   }
 };
 

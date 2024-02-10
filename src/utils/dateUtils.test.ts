@@ -9,20 +9,6 @@ describe('formatTimechipDate', () => {
     expect(
       formatTimechipDate(
         new Date('2021-01-01T00:00:00'),
-        new Date('2021-01-01T00:00:01'),
-      ),
-    ).toBe('01s');
-
-    expect(
-      formatTimechipDate(
-        new Date('2021-01-01T00:00:00'),
-        new Date('2021-01-01T00:00:59'),
-      ),
-    ).toBe('59s');
-
-    expect(
-      formatTimechipDate(
-        new Date('2021-01-01T00:00:00'),
         new Date('2021-01-01T00:01:00'),
       ),
     ).toBe('01m');
@@ -49,13 +35,13 @@ describe('formatTimechipDate', () => {
     ).toBe('48h');
   });
 
-  it('from이 to보다 크면 00s를 반환해야 한다.', () => {
+  it('from이 to보다 크면 00m을 반환해야 한다.', () => {
     expect(
       formatTimechipDate(
         new Date('2022-01-01T00:00:00'),
         new Date('2021-01-01T00:00:00'),
       ),
-    ).toBe('00s');
+    ).toBe('00m');
   });
 
   it('유효하지 않은 Date 객체가 들어오면 에러를 반환해야 한다', () => {
