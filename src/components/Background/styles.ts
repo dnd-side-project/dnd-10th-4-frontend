@@ -18,34 +18,38 @@ const style = {
     background-size: 600px 100%;
     background-repeat: repeat-x;
     animation: gradient linear infinite;
-    animation-duration: 10000s;
+    animation-duration: 20000s;
 
     @media (max-width: 1200px) {
-      animation-duration: 7200s;
+      animation-duration: 14400s;
     }
 
     @media (max-width: 1000px) {
-      animation-duration: 4800s;
+      animation-duration: 9600s;
     }
 
     @media (max-width: 900px) {
-      animation-duration: 4000s;
+      animation-duration: 8000s;
     }
 
     @media (max-width: 800px) {
-      animation-duration: 3600s;
+      animation-duration: 7200s;
     }
 
     @media (max-width: 700px) {
-      animation-duration: 2400s;
+      animation-duration: 4800s;
     }
 
     @media (max-width: 650px) {
-      animation-duration: 1600s;
+      animation-duration: 3200s;
     }
 
     @media (max-width: 600px) {
-      animation-duration: 1200s;
+      animation-duration: 2400s;
+    }
+
+    @media (max-width: 400px) {
+      animation-duration: 10000s;
     }
   `,
 
