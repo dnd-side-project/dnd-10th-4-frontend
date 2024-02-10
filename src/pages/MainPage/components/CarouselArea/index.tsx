@@ -71,7 +71,7 @@ const CarouselArea = () => {
         </div>
       </section>
 
-      {slides.length > 1 ? (
+      {slides.length > 1 && (
         <>
           <section css={styles.dotsSection}>
             {slides.map((slide, idx) => (
@@ -97,7 +97,7 @@ const CarouselArea = () => {
             <CaretRight color={COLORS.gray3} />
           </IconButton>
         </>
-      ) : null}
+      )}
     </>
   );
 };
