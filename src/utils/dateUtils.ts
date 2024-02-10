@@ -35,9 +35,8 @@ const getTimeDifference = (from: Date, to: Date) => {
   const second = Math.max(Math.floor(diff / 1000), 0);
   const minute = Math.max(Math.floor(diff / (1000 * 60)), 0);
   const hour = Math.max(Math.floor(diff / (1000 * 60 * 60)), 0);
-  const day = Math.max(Math.floor(diff / (1000 * 60 * 60 * 24)), 0);
 
-  return { second, minute, hour, day };
+  return { second, minute, hour };
 };
 
 export { formatDate, isValidDate, getTimeDifference, formatTimechipDate };

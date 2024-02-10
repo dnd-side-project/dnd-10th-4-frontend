@@ -92,7 +92,6 @@ describe('getTimeDifference', () => {
       second: 1,
       minute: 0,
       hour: 0,
-      day: 0,
     });
 
     expect(
@@ -104,7 +103,6 @@ describe('getTimeDifference', () => {
       second: 60,
       minute: 1,
       hour: 0,
-      day: 0,
     });
 
     expect(
@@ -116,7 +114,6 @@ describe('getTimeDifference', () => {
       second: 3600,
       minute: 60,
       hour: 1,
-      day: 0,
     });
 
     expect(
@@ -128,7 +125,6 @@ describe('getTimeDifference', () => {
       second: 86400,
       minute: 1440,
       hour: 24,
-      day: 1,
     });
 
     expect(
@@ -140,7 +136,6 @@ describe('getTimeDifference', () => {
       second: 31536000,
       minute: 525600,
       hour: 8760,
-      day: 365,
     });
   });
 
@@ -154,7 +149,6 @@ describe('getTimeDifference', () => {
       second: 0,
       minute: 0,
       hour: 0,
-      day: 0,
     });
   });
 
