@@ -6,10 +6,13 @@ import Button from '@/components/Button';
 import Header from '@/components/Header';
 import { CaretLeft } from '@/assets/icons';
 
-const ReceptionPolaroid = () => {
-  const imgUrl =
-    'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg';
+interface ReceptionPolaroidProps {
+  img?: string;
+}
 
+const ReceptionPolaroid = ({
+  img = 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+}: ReceptionPolaroidProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
   return (
@@ -18,7 +21,7 @@ const ReceptionPolaroid = () => {
         onClick={open}
         topPosition={2.2}
         leftPosition={1.2}
-        imgUrl={imgUrl}
+        imgUrl={img}
       />
       <Modal close={close} isOpen={isOpen}>
         <Header
@@ -28,7 +31,7 @@ const ReceptionPolaroid = () => {
           }
         />
         <div css={style.modalContainer}>
-          <Polaroid imgUrl={imgUrl} size="lg" />
+          <Polaroid imgUrl={img} size="lg" />
           <div onClick={close}>
             <Button variant="secondary" size="sm">
               닫기

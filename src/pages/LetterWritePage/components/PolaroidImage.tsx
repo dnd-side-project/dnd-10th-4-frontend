@@ -4,6 +4,8 @@ import Polaroid from '@/components/Polaroid';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
+import Header from '@/components/Header';
+import { CaretLeft } from '@/assets/icons';
 import { Inputs } from '..';
 
 const PolaroidImage = () => {
@@ -23,6 +25,12 @@ const PolaroidImage = () => {
         imgUrl={imgUrl}
       />
       <Modal close={close} isOpen={isOpen}>
+        <Header
+          css={style.modalHeader}
+          leftContent={
+            <CaretLeft strokeWidth={2.5} color="white" onClick={close} />
+          }
+        />
         <div css={style.modalContainer}>
           <Polaroid imgUrl={imgUrl} size="lg" />
           <div onClick={close}>
@@ -39,6 +47,9 @@ const PolaroidImage = () => {
 export default PolaroidImage;
 
 const style = {
+  modalHeader: css`
+    margin-block: 0.5rem;
+  `,
   modalContainer: css`
     display: flex;
     flex-direction: column;
@@ -46,7 +57,6 @@ const style = {
     justify-content: center;
     align-items: center;
     margin-inline: 1rem;
-    margin-top: 15vh;
 
     div {
       display: flex;

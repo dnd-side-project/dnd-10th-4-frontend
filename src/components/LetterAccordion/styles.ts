@@ -7,13 +7,13 @@ const style = {
   container: css`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     overflow-y: hidden;
     height: 100%;
   `,
   contentText: (isOpen: boolean, line: number) => css`
     position: relative;
-    height: ${isOpen ? `14.8rem` : `${line * 1.225}rem`};
+    height: ${isOpen ? `15.2rem` : `${line * 1.225}rem`};
     color: var(--kakao-logo, #000);
     font-weight: 400;
     font-style: normal;
@@ -36,6 +36,11 @@ const style = {
     text-overflow: ellipsis;
     -webkit-line-clamp: ${line};
     -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
+  `,
+  info: css`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   `,
   date: (type: letterAccordionType) => css`
     color: #888;

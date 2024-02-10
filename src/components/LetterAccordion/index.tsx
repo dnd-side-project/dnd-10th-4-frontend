@@ -45,13 +45,11 @@ const LetterAccordion = ({
         text={text}
         line={line}
         textContainerRef={textContainerRef}
+        date={date}
+        type={type}
+        nickname={nickname}
         {...props}
       />
-      <p css={style.date(type)}>
-        {formatDate(date)}
-        {type === 'inbox' && '에 받은 편지'}
-      </p>
-      <LetterHeader fromOrTo="From" nickname={nickname} />
       <LetterBottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
     </div>
   );
@@ -63,6 +61,9 @@ interface LetterContentProps {
   imgUrl?: string;
   line: number;
   textContainerRef: React.RefObject<HTMLDivElement>;
+  date: Date;
+  type?: letterAccordionType;
+  nickname: string;
 }
 
 const LetterContent = ({
@@ -70,6 +71,9 @@ const LetterContent = ({
   text,
   line,
   textContainerRef,
+  date,
+  type = 'inbox',
+  nickname,
   ...props
 }: LetterContentProps) => {
   const variants = {
@@ -78,27 +82,38 @@ const LetterContent = ({
   };
 
   return (
-    <div css={style.contentText(isOpen, line)} {...props}>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={variants}
-            transition={{
-              height: { duration: 1 },
-            }}
-          >
-            <div ref={textContainerRef} css={style.openText}>
-              {text}
-            </div>
-          </motion.div>
+    <div>
+      <div css={style.contentText(isOpen, line)} {...props}>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={variants}
+              transition={{
+                height: { duration: 1 },
+              }}
+            >
+              <div ref={textContainerRef} css={style.openText}>
+                {text}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {!isOpen && (
+          <div ref={textContainerRef} css={style.originalText(line)}>
+            {text}
+          </div>
         )}
-      </AnimatePresence>
-      {!isOpen && (
-        <div ref={textContainerRef} css={style.originalText(line)}>
-          {text}
+      </div>
+      {isOpen && (
+        <div css={style.info}>
+          <p css={style.date(type)}>
+            {formatDate(date)}
+            {type === 'inbox' && '에 받은 편지'}
+          </p>
+          <LetterHeader fromOrTo="From" nickname={nickname} />
         </div>
       )}
     </div>
