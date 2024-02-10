@@ -8,8 +8,11 @@ import style from './styles';
 interface PolaroidModalProps {
   /** 폴라로이드 이미지 입니다. */
   img: string;
+  /** 폴라로이드 top 위치 입니다. */
   topPosition?: number;
+  /** 폴라로이드 left 위치 입니다. */
   leftPosition?: number;
+  /** 폴라로이드 모달 하단 버튼 입니다. */
   children: React.ReactNode;
 }
 
