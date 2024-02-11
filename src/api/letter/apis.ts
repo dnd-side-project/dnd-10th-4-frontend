@@ -53,13 +53,21 @@ const letterAPI = {
   },
 
   /** 받은 편지 답장 */
-  patchReceptionReply: async (
-    letterId: number,
-    params: { replyContent: string },
-  ) => {
+  patchReceptionReply: async ({
+    letterId,
+    body,
+  }: {
+    letterId: number;
+    body: FormData;
+  }) => {
     const { data } = await authInstance.patch(
       `api/letter/reception/reply/${letterId}`,
-      params,
+      body,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
     );
     return data;
   },
