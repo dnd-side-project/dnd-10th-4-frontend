@@ -9,9 +9,9 @@ import useBoolean from '@/hooks/useBoolean';
 import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterHeader from '@/components/LetterHeader';
 import Chip from '@/components/Chip';
-import { ReceptionLetterType } from '../hooks/useLetterTag';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import { ReceptionLetterType } from '../hooks/useLetterTag';
 import style from './styles';
 interface ReplyToLetterProps {
   receptionLetter: ReceptionLetterType;

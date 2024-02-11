@@ -61,6 +61,10 @@ const router = createBrowserRouter([
         path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
         element: <LetterReceptionPage />,
       },
+      {
+        path: '*',
+        element: <div>잘못된 경로입니다.</div>,
+      },
     ],
   },
 ]);

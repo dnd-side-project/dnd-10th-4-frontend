@@ -5,9 +5,9 @@ import Tooltip from '@/components/Tooltip';
 import LetterHeader from '@/components/LetterHeader';
 import Chip from '@/components/Chip';
 import { formatDate } from '@/utils/dateUtils';
-import { ReceptionLetterType } from '../hooks/useLetterTag';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
+import { ReceptionLetterType } from '../hooks/useLetterTag';
 import style from './styles';
 
 interface ReceivedLetterProps {

@@ -2,6 +2,7 @@ import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '@/utils/mswUtils';
 import QUERY_STRINGS from '@/constants/queryStrings';
 import { Reception } from '@/types/letter';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
@@ -45,6 +46,16 @@ const letterHandler = [
 
   http.get(baseURL('/api/letter/reception/:letterId'), async (req) => {
     await delay(300);
+
+    const mswCase = new URLSearchParams(window.location.search).get(
+      QUERY_STRINGS.mswCase,
+    );
+
+    if (mswCase === '400') {
+      return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+        status: 400,
+      });
+    }
 
     const result: Reception = {
       createdAt: '2024-02-05T15:40:44',
