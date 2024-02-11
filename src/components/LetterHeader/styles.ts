@@ -31,9 +31,6 @@ const style = {
       line-height: 16px;
     }
   `,
-  icon: css`
-    cursor: pointer;
-  `,
 };
 
 export default style;

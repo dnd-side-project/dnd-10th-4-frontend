@@ -23,7 +23,7 @@ export const Primary: Story = {
 export const 편지지: StoryObj = {
   render: () => (
     <LetterCard isOpen={true}>
-      <LetterHeader title="To" nickname="낯선 고양이" isMoreIcon={true} />
+      <LetterHeader title="To" nickname="낯선 고양이" />
     </LetterCard>
   ),
 };
