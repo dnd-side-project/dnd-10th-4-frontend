@@ -16,7 +16,12 @@ const ReceptionHeader = ({ onClickPrev }: ReceptionHeaderProps) => {
       css={style.header}
       leftContent={
         <>
-          <CaretLeft strokeWidth={2.5} color="white" onClick={onClickPrev} />
+          <CaretLeft
+            css={style.icon}
+            strokeWidth={2.5}
+            color="white"
+            onClick={onClickPrev}
+          />
           <Chip variant="primary">
             <HourGlass height={16} color={COLORS.primary} />
             <span css={{ color: COLORS.primary }}>00:00:00</span>
@@ -40,6 +45,9 @@ const style = {
   leftHeader: css`
     display: flex;
     gap: 0.5rem;
+  `,
+  icon: css`
+    cursor: pointer;
   `,
 };
 

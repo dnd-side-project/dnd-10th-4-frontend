@@ -22,3 +22,5 @@ const letterOptions = {
       queryFn: () => letterAPI.getSingleReception(letterId),
     }),
 };
+
+export default letterOptions;
