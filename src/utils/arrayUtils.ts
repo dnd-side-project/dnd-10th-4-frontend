@@ -18,7 +18,7 @@ export const chunkArray = <T>(arr: T[], size: number) => {
  * @param arr 대상 배열
  * @param item 추가하거나 제거할 아이템
  */
-export const toggleItemInArray = <T>(arr: T[], item: T): T[] => {
+export const toggleItemInArray = <T>(arr: readonly T[], item: T): T[] => {
   return arr.includes(item) ? arr.filter((t) => t !== item) : [...arr, item];
 };
 
