@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import LetterCard from '@/components/LetterCard';
 import LetterAccordion from '@/components/LetterAccordion';
 import Navbar from '@/components/Navbar';
@@ -24,11 +25,6 @@ interface ReplyToLetterProps {
   receptionLetter: ReceptionLetterType;
   onPrev: () => void;
 }
-
-// type Inputs = {
-//   replyContent: string;
-//   image: Blob;
-// };
 
 const L = letterWrite;
 
@@ -54,19 +50,26 @@ type Inputs = z.infer<typeof schema>;
 
 const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
   const methods = useForm<Inputs>({
+    resolver: zodResolver(schema),
     defaultValues: {
       replyContent: '',
     },
   });
 
-  const { handleSubmit, register, watch, setValue } = methods;
+  const {
+    handleSubmit,
+    register,
+    watch,
+    setValue,
+    formState: { errors },
+  } = methods;
 
   const { value: isOpen, toggle: accordionToggle } = useBoolean(false);
 
   const tagList = receptionLetter.tagList;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files;
     if (file) {
       setValue('image', file);
     }
@@ -119,7 +122,7 @@ const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
             />
             <LetterLengthDate letterLength={watch('replyContent').length} />
             {watch('image') && (
-              <ReceptionPolaroid img={URL.createObjectURL(watch('image'))} />
+              <ReceptionPolaroid img={URL.createObjectURL(watch('image')[0])} />
             )}
           </LetterCard>
         </div>
@@ -138,6 +141,9 @@ const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
           <ImageUploadButton onChangeImage={handleFileChange} />
         </Navbar>
       </form>
+      {/** 임시 에러 출력용 */}
+      {errors.replyContent && <p>{errors.replyContent.message}</p>}
+      {errors.image && <p>{errors.image.message?.toString()}</p>}
     </LetterContent>
   );
 };
