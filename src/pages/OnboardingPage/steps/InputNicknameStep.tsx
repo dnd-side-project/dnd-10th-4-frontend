@@ -6,7 +6,8 @@ import textStyles from '@/styles/textStyles';
 import { Shuffle } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
-import { getRandomNickname } from '@/utils/userUtils';
+import { getRandomItem } from '@/utils/arrayUtils';
+import { NICKNAMES } from '@/constants/users';
 import onboardingStyles from '../styles';
 import StepTemplate from '../components/StepTemplate';
 import { Inputs } from '../hooks/useOnboardingForm';
@@ -35,7 +36,7 @@ const InputNicknameStep = () => {
           type="button"
           css={styles.icon}
           variant="header"
-          onClick={() => setValue('nickname', getRandomNickname())}
+          onClick={() => setValue('nickname', getRandomItem(NICKNAMES))}
         >
           <Shuffle />
         </IconButton>

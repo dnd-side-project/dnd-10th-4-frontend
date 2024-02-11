@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
-import { getFilteredDateValue } from '@/utils/userUtils';
+import { clampValue } from '@/utils/stringUtils';
 import StepTemplate from '../components/StepTemplate';
 import onboardingStyles from '../styles';
 import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
@@ -15,10 +15,6 @@ const InputBirthdayStep = () => {
   const nickname = watch('nickname');
 
   const { toNext } = useFunnelContext();
-
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = getFilteredDateValue(e.target.name, e.target.value);
-  };
 
   return (
     <StepTemplate
@@ -53,7 +49,10 @@ const InputBirthdayStep = () => {
               autoComplete="off"
               maxLength={formLiteral.year.length}
               onChange={async (e) => {
-                handleChange(e);
+                e.target.value = clampValue(
+                  e.target.value,
+                  formLiteral.year.max,
+                );
                 field.onChange(e);
                 trigger('birthday.year');
               }}
@@ -73,7 +72,10 @@ const InputBirthdayStep = () => {
               autoComplete="off"
               maxLength={formLiteral.month.length}
               onChange={async (e) => {
-                handleChange(e);
+                e.target.value = clampValue(
+                  e.target.value,
+                  formLiteral.month.max,
+                );
                 field.onChange(e);
                 trigger('birthday.month');
               }}
@@ -93,7 +95,10 @@ const InputBirthdayStep = () => {
               autoComplete="off"
               maxLength={formLiteral.day.length}
               onChange={async (e) => {
-                handleChange(e);
+                e.target.value = clampValue(
+                  e.target.value,
+                  formLiteral.day.max,
+                );
                 field.onChange(e);
                 trigger('birthday.day');
               }}

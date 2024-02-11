@@ -5,20 +5,20 @@ import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
 import Chip from '@/components/Chip';
 import { WORRY_DICT, type Worry } from '@/constants/users';
-import { getWorryChipVariant, toggleWorry } from '@/utils/userUtils';
+import { toggleItemInArray } from '@/utils/arrayUtils';
 import StepTemplate from '../components/StepTemplate';
-import { Inputs } from '../hooks/useOnboardingForm';
+import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
 const InputWorryStep = () => {
   const { setValue, watch, getFieldState, trigger, formState } =
     useFormContext<Inputs>();
   const { invalid } = getFieldState('worries', formState);
-  const selectedWorries = watch('worries', []);
+  const worries = watch('worries');
 
   const { toNext } = useFunnelContext();
 
   const handleToggleWorry = (worry: Worry) => {
-    setValue('worries', toggleWorry(selectedWorries, worry));
+    setValue('worries', toggleItemInArray(worries, worry));
     trigger('worries');
   };
 
@@ -45,11 +45,13 @@ const InputWorryStep = () => {
             <Chip
               key={key}
               css={css({ marginBottom: '0.875rem' })}
-              variant={getWorryChipVariant(selectedWorries, key as Worry, {
-                default: 'primary',
-                selected: 'primary-selected',
-                disabled: 'primary-disabled',
-              })}
+              variant={
+                worries.includes(key as Worry)
+                  ? 'primary-selected'
+                  : worries.length < formLiteral.worries.max
+                    ? 'primary'
+                    : 'primary-disabled'
+              }
               onClick={() => handleToggleWorry(key as Worry)}
             >
               {value}
