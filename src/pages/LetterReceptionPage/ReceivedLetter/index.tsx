@@ -3,11 +3,12 @@ import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
-import Chip from '@/components/Chip';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
-import LetterContent from '../components/LetterContent';
+import LetterHeader from '@/components/LetterHeader';
+import Chip from '@/components/Chip';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 interface ReceivedLetterProps {
   onNext: () => void;
@@ -19,14 +20,10 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
   return (
     <LetterContent>
       <LetterCard isOpen={true}>
-        <div css={style.from}>
-          <span>From.</span>
-          <span>낯선 고양이</span>
-        </div>
         <div css={style.tag}>
-          {tagList.map((item) => (
-            <Chip variant="filter" key={item}>
-              # {item}
+          {tagList.map((tag) => (
+            <Chip key={tag} variant="filter">
+              {tag}
             </Chip>
           ))}
         </div>
@@ -45,6 +42,11 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
         <div css={style.date}>
           <span>24년 02월 08일</span>
         </div>
+        <LetterHeader
+          title="From"
+          titlePosition="right"
+          nickname="낯선 고양이"
+        />
         <ReceptionPolaroid />
       </LetterCard>
       <Navbar css={style.navbar}>
@@ -68,24 +70,6 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
 };
 
 const style = {
-  from: css`
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-
-    & > span:nth-of-type(1) {
-      color: ${COLORS.gray1};
-      ${textStyles.t4};
-    }
-
-    & > span:nth-of-type(2) {
-      color: ${COLORS.gray3};
-      font-weight: 500;
-      font-style: normal;
-      font-size: 14px;
-      line-height: 16px;
-    }
-  `,
   tag: css`
     display: flex;
     gap: 0.5rem;

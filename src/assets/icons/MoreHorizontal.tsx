@@ -1,5 +1,6 @@
 import type { SVGProps } from 'react';
-const SvgImageSquare = ({
+
+const SvgMoreHorizontal = ({
   width = 24,
   height = 24,
   stroke = 'currentColor',
@@ -19,9 +20,8 @@ const SvgImageSquare = ({
       strokeLinejoin="round"
       strokeWidth={2}
     >
-      <path d="M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2" />
-      <path d="M15 13a2 2 0 1 0 0 4 2 2 0 0 0 0-4M3 9l3.086 3.086a2 2 0 0 0 2.828 0L18 3" />
+      <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
     </g>
   </svg>
 );
-export default SvgImageSquare;
+export default SvgMoreHorizontal;

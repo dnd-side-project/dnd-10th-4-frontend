@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CaretDown from '@/assets/icons/CaretDown';
 import { formatDate } from '@/utils/dateUtils';
-import Polaroid from '../Polaroid';
+import LetterHeader from '../LetterHeader';
 import style, { letterAccordionType } from './styles';
 
 interface LetterAccordionProps {
@@ -12,12 +12,12 @@ interface LetterAccordionProps {
   text: string;
   /** LetterAccordion 컴포넌트에 들어갈 날짜 입니다. */
   date: Date;
+  /** LetterAccordion 컴포넌트에 들어갈 닉네임 입니다. */
+  nickname: string;
   /** LetterAccordion 컴포넌트의 표시될 줄 개수 입니다. */
   line?: number;
   /** LetterAccordion 컴포넌트의 타입 입니다. (보관함/편지 보내기) */
   type?: letterAccordionType;
-  /** LetterAccordion 컴포넌트에 들어가는 사진 URL 입니다. */
-  imgUrl?: string;
   /** LetterAccordion 컴포넌트의 open 여부 입니다. */
   isOpen?: boolean;
   /** LetterAccordion 컴포넌트의 onToggle 함수입니다. */
@@ -28,9 +28,9 @@ const LetterAccordion = ({
   id,
   text,
   date,
+  nickname,
   line = 3,
   type = 'inbox',
-  imgUrl = '',
   isOpen = false,
   onToggle = () => {},
   ...props
@@ -43,16 +43,13 @@ const LetterAccordion = ({
       <LetterContent
         isOpen={isOpen}
         text={text}
-        imgUrl={imgUrl}
-        type={type}
         line={line}
         textContainerRef={textContainerRef}
+        date={date}
+        type={type}
+        nickname={nickname}
         {...props}
       />
-      <p css={style.date(type)}>
-        {formatDate(date)}
-        {type === 'inbox' && '에 받은 편지'}
-      </p>
       <LetterBottom isOpen={isOpen} toggleAccordion={toggleAccordion} />
     </div>
   );
@@ -62,18 +59,21 @@ interface LetterContentProps {
   isOpen: boolean;
   text: string;
   imgUrl?: string;
-  type: letterAccordionType;
   line: number;
   textContainerRef: React.RefObject<HTMLDivElement>;
+  date: Date;
+  type?: letterAccordionType;
+  nickname: string;
 }
 
 const LetterContent = ({
   isOpen,
   text,
-  imgUrl,
-  type,
   line,
   textContainerRef,
+  date,
+  type = 'inbox',
+  nickname,
   ...props
 }: LetterContentProps) => {
   const variants = {
@@ -82,28 +82,42 @@ const LetterContent = ({
   };
 
   return (
-    <div css={style.contentText(isOpen, line)} {...props}>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={variants}
-            transition={{
-              height: { duration: 1 },
-            }}
-          >
-            <div ref={textContainerRef} css={style.openText}>
-              {text}
-            </div>
-            {type !== 'inbox' && imgUrl && <Polaroid imgUrl={imgUrl} />}
-          </motion.div>
+    <div>
+      <div css={style.contentText(isOpen, line)} {...props}>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={variants}
+              transition={{
+                height: { duration: 1 },
+              }}
+            >
+              <div ref={textContainerRef} css={style.openText}>
+                {text}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {!isOpen && (
+          <div ref={textContainerRef} css={style.originalText(line)}>
+            {text}
+          </div>
         )}
-      </AnimatePresence>
-      {!isOpen && (
-        <div ref={textContainerRef} css={style.originalText(line)}>
-          {text}
+      </div>
+      {isOpen && (
+        <div css={style.info}>
+          <p css={style.date(type)}>
+            {formatDate(date)}
+            {type === 'inbox' && '에 받은 편지'}
+          </p>
+          <LetterHeader
+            title="From"
+            titlePosition="right"
+            nickname={nickname}
+          />
         </div>
       )}
     </div>
