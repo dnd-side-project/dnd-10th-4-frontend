@@ -14,7 +14,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    fromOrTo: 'From',
+    title: 'From',
+    titlePosition: 'right',
     nickname: '낯선 고양이',
   },
 };
@@ -22,7 +23,7 @@ export const Primary: Story = {
 export const 편지지: StoryObj = {
   render: () => (
     <LetterCard isOpen={true}>
-      <LetterHeader fromOrTo="To" nickname="낯선 고양이" isMoreIcon={true} />
+      <LetterHeader title="To" nickname="낯선 고양이" isMoreIcon={true} />
     </LetterCard>
   ),
 };

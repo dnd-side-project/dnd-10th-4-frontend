@@ -113,7 +113,11 @@ const LetterContent = ({
             {formatDate(date)}
             {type === 'inbox' && '에 받은 편지'}
           </p>
-          <LetterHeader fromOrTo="From" nickname={nickname} />
+          <LetterHeader
+            title="From"
+            titlePosition="right"
+            nickname={nickname}
+          />
         </div>
       )}
     </div>

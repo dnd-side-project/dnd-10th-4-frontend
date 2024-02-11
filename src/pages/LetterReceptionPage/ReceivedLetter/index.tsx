@@ -7,8 +7,8 @@ import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import LetterHeader from '@/components/LetterHeader';
 import Chip from '@/components/Chip';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 
 interface ReceivedLetterProps {
   onNext: () => void;
@@ -42,7 +42,11 @@ const ReceivedLetter = ({ onNext }: ReceivedLetterProps) => {
         <div css={style.date}>
           <span>24년 02월 08일</span>
         </div>
-        <LetterHeader fromOrTo="From" nickname="낯선 고양이" />
+        <LetterHeader
+          title="From"
+          titlePosition="right"
+          nickname="낯선 고양이"
+        />
         <ReceptionPolaroid />
       </LetterCard>
       <Navbar css={style.navbar}>

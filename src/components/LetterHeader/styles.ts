@@ -2,13 +2,16 @@ import { css } from '@emotion/react';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 
-export type FromOrTo = 'From' | 'To';
+export type titleType = 'From' | 'To';
+export type positonType = 'right' | 'reft';
 
 const style = {
-  header: (fromOrTo: FromOrTo) => css`
+  header: (titlePosition: positonType) => css`
     display: flex;
     gap: 0.5rem;
-    justify-content: ${fromOrTo === 'From' ? 'flex-end' : 'space-between'};
+    justify-content: ${titlePosition === 'right'
+      ? 'flex-end'
+      : 'space-between'};
   `,
   name: css`
     display: flex;

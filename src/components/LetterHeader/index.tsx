@@ -1,9 +1,11 @@
 import { MoreHorizontal } from '@/assets/icons';
-import style, { FromOrTo } from './styles';
+import style, { titleType, positonType } from './styles';
 
 interface LetterHeaderProps {
-  /** from, to 입니다. */
-  fromOrTo: FromOrTo;
+  /** title 입니다. (To / From) */
+  title?: titleType;
+  /** title 위치입니다. (Left / Right)  */
+  titlePosition?: positonType;
   /** 닉네임 입니다. */
   nickname: string;
   /** more 아이콘 유무 입니다. */
@@ -13,15 +15,16 @@ interface LetterHeaderProps {
 }
 
 const LetterHeader = ({
-  fromOrTo,
+  title = 'To',
+  titlePosition = 'reft',
   nickname,
   isMoreIcon = false,
   onClickMoreIcon,
 }: LetterHeaderProps) => {
   return (
-    <div css={style.header(fromOrTo)}>
+    <div css={style.header(titlePosition)}>
       <div css={style.name}>
-        <span>{fromOrTo}.</span>
+        <span>{title}.</span>
         <span>{nickname}</span>
       </div>
       {isMoreIcon && <MoreHorizontal height={24} onClick={onClickMoreIcon} />}

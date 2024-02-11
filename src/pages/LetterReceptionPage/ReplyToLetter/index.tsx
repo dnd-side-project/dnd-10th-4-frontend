@@ -11,8 +11,8 @@ import useBoolean from '@/hooks/useBoolean';
 import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterHeader from '@/components/LetterHeader';
 import Chip from '@/components/Chip';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 interface ReplyToLetterProps {
   onPrev: () => void;
@@ -52,7 +52,7 @@ const ReplyToLetter = ({ onPrev }: ReplyToLetterProps) => {
           <ReceptionPolaroid />
         </LetterCard>
         <LetterCard isOpen={true}>
-          <LetterHeader fromOrTo="To" nickname="낯선 고양이" />
+          <LetterHeader title="To" nickname="낯선 고양이" />
           <LetterTextarea
             name="content"
             placeholder="하고싶은 이야기를 답장으로 적어보세요."
