@@ -1,8 +1,8 @@
-import style, { VariantType } from './styles';
+import style, { ChipVariant } from './styles';
 
 interface ChipProps {
   /** Chip의 내용입니다. */
-  variant?: VariantType;
+  variant?: ChipVariant;
   /** Chip의 테마입니다. */
   children: React.ReactNode;
   /** Chip의 클릭 이벤트 입니다. */
