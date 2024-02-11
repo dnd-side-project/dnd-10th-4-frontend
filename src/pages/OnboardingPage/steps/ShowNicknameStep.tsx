@@ -1,8 +1,13 @@
+import { useFormContext } from 'react-hook-form';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import StepTemplate from '../components/StepTemplate';
+import { Inputs } from '../hooks/useOnboardingForm';
 
 const ShowNicknameStep = () => {
+  const { watch } = useFormContext<Inputs>();
+  const nickname = watch('nickname');
+
   const { toNext } = useFunnelContext();
 
   return (
@@ -13,7 +18,7 @@ const ShowNicknameStep = () => {
         </Button>
       }
     >
-      <h1>반가워요, 낯선 거북이님.</h1>
+      <h1>반가워요, 낯선 {nickname}님.</h1>
     </StepTemplate>
   );
 };
