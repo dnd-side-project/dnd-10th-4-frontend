@@ -1,6 +1,6 @@
-import { Letter } from '@/types/letter';
+import { Letter, Reception } from '@/types/letter';
 import { Worry } from '@/constants/users';
-import { baseInstance } from '../instance';
+import { baseInstance, authInstance } from '../instance';
 
 const letterAPI = {
   /** 받은 편지 전체 조회 */
@@ -40,7 +40,35 @@ const letterAPI = {
 
   /** 편지 작성 */
   postLetter: async (letter: Letter) => {
-    const { data } = await baseInstance.post('/api/letter', letter);
+    const { data } = await authInstance.post('/api/letter', letter);
+    return data;
+  },
+
+  /** 보낸 편지 단건 조회 */
+  getSingleReception: async (letterId: number) => {
+    const { data } = await authInstance.get<Reception>(
+      `/api/letter/reception/${letterId}`,
+    );
+    return data;
+  },
+
+  /** 받은 편지 답장 */
+  patchReceptionReply: async (
+    letterId: number,
+    params: { replyContent: string },
+  ) => {
+    const { data } = await authInstance.patch(
+      `api/letter/reception/reply/${letterId}`,
+      params,
+    );
+    return data;
+  },
+
+  /** 받은 편지 토스 */
+  patchReceptionToss: async (letterId: number) => {
+    const { data } = await authInstance.patch(
+      `/api/letter/reception/toss/${letterId}`,
+    );
     return data;
   },
 };
