@@ -14,8 +14,7 @@ const style = {
 
     height: 100svh;
     background-image: url(${imageUrl});
-    background-position: center center;
-    background-size: 600px 100%;
+    background-size: 390px 100%;
     background-repeat: repeat-x;
     animation: gradient linear infinite;
     animation-duration: 20000s;
