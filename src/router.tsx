@@ -17,7 +17,7 @@ const ROUTER_PATHS = {
   SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
   ONBOARDING: '/onboarding',
   LETTER_WRITE: '/write',
-  LETTER_RECEPTION: '/reception',
+  LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
 } as const;
 
 const router = createBrowserRouter([
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         element: <LetterWritePage />,
       },
       {
-        path: ROUTER_PATHS.LETTER_RECEPTION,
+        path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
         element: <LetterReceptionPage />,
       },
     ],
