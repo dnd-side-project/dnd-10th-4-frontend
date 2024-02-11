@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 
-export type ChipVariant =
+export type VariantType =
   | 'primary'
   | 'primary-selected'
   | 'primary-disabled'
@@ -12,7 +12,7 @@ export type ChipVariant =
   | 'form-selected';
 
 const styles = {
-  chip: (variant: ChipVariant) => css`
+  chip: (variant: VariantType) => css`
     cursor: ${variant === 'primary-disabled' ? 'not-allowed' : 'pointer'};
     ${variants[variant]}
   `,

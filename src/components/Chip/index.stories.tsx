@@ -47,7 +47,7 @@ const styles = {
 export const 고민_종류_칩: StoryObj = {
   render: () => {
     const ChipComponent = () => {
-      type ChipVariant = 'primary' | 'primary-selected' | 'primary-disabled';
+      type VariantType = 'primary' | 'primary-selected' | 'primary-disabled';
       const [selectedChips, setSelectedChips] = useState<string[]>([]);
 
       const handleChipClick = (chip: string) => {
@@ -61,7 +61,7 @@ export const 고민_종류_칩: StoryObj = {
         });
       };
 
-      const getVariant = (label: string): ChipVariant => {
+      const getVariant = (label: string): VariantType => {
         if (selectedChips.includes(label)) {
           return 'primary-selected';
         } else if (selectedChips.length >= 3) {
