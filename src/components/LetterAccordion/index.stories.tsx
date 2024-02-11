@@ -47,7 +47,7 @@ export const 편지_보관함_카드: StoryObj = {
                 date={new Date()}
                 nickname="낯선 고양이"
                 line={2}
-                type="inbox"
+                type="send"
               />
             </LetterCard>
           ))}
