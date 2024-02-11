@@ -1,13 +1,20 @@
 import type { SVGProps } from 'react';
-const SvgImageSquare = ({ ...props }: SVGProps<SVGSVGElement>) => (
+const SvgImageSquare = ({
+  width = 24,
+  height = 24,
+  stroke = 'currentColor',
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
+    width={width}
+    height={height}
     {...props}
   >
     <g
-      stroke="#4F4F4F"
+      stroke={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
