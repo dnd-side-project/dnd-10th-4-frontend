@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import NavHeader from './';
 
 const meta = {
-  title: 'OnboardingPage/Components/NavHeader',
+  title: 'Pages/OnboardingPage/Components/NavHeader',
   component: NavHeader,
   tags: ['autodocs'],
   argTypes: {},

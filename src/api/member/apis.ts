@@ -12,7 +12,7 @@ const memberAPI = {
     const { data } = await authInstance.get<{
       id: number;
       email: string;
-      nickname: `낯선 ${Nickname}`;
+      nickname: string;
       worryTypes: Worry[];
       gender: Gender;
       age: number;
