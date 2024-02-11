@@ -1,95 +1,23 @@
-import {
-  useForm,
-  type SubmitHandler,
-  type SubmitErrorHandler,
-} from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useFormContext, Controller } from 'react-hook-form';
 import { css } from '@emotion/react';
-import { useMutation } from '@tanstack/react-query';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
-import memberAPI from '@/api/member/apis';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import { getFilteredDateValue } from '@/utils/userUtils';
 import StepTemplate from '../components/StepTemplate';
 import onboardingStyles from '../styles';
-
-const formLiteral = {
-  year: {
-    min: 1800,
-    max: new Date().getFullYear(),
-    length: 4,
-  },
-  month: {
-    min: 1,
-    max: 12,
-    length: 2,
-  },
-  day: {
-    min: 1,
-    max: 31,
-    length: 2,
-  },
-} as const;
-
-const L = formLiteral;
-
-const formSchema = z.object({
-  year: z.coerce.number().int().min(L.year.min).max(L.year.max),
-  month: z.coerce.number().int().min(L.month.min).max(L.month.max),
-  day: z.coerce.number().int().min(L.day.min).max(L.day.max),
-});
-
-type Inputs = z.infer<typeof formSchema>;
+import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
 const InputBirthdayStep = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { isValid },
-  } = useForm<Inputs>({
-    resolver: zodResolver(formSchema),
-  });
+  const { trigger, getFieldState, watch, formState, control } =
+    useFormContext<Inputs>();
+  const { invalid } = getFieldState('birthday', formState);
+  const nickname = watch('nickname');
 
   const { toNext } = useFunnelContext();
-  const { mutateAsync, isPending } = useMutation({
-    mutationFn: memberAPI.patchBirthday,
-  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value.replace(/[^0-9]/g, '');
-
-    if (!(name === 'day' || name === 'month' || name === 'year')) {
-      return;
-    }
-
-    const max = formLiteral[name].max;
-
-    if (Number(value) > max) {
-      e.target.value = max.toString();
-    } else {
-      e.target.value = value.toString().padStart(value.length, '0');
-    }
-  };
-
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const year = data.year.toString().padStart(formLiteral.year.length, '0');
-    const month = data.month.toString().padStart(formLiteral.month.length, '0');
-    const day = data.day.toString().padStart(formLiteral.day.length, '0');
-
-    const birthday = `${year}-${month}-${day}`;
-
-    await mutateAsync({
-      birthday,
-    });
-
-    toNext();
-  };
-
-  const onError: SubmitErrorHandler<Inputs> = (errors) => {
-    console.error(errors);
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value = getFilteredDateValue(e.target.name, e.target.value);
   };
 
   return (
@@ -98,46 +26,79 @@ const InputBirthdayStep = () => {
         <Button
           type="submit"
           variant="primary"
-          onClick={handleSubmit(onSubmit, onError)}
-          disabled={isPending || !isValid}
+          disabled={invalid}
+          onClick={toNext}
         >
-          {isPending ? <LoadingSpinner size="1.3rem" /> : '다음'}
+          다음
         </Button>
       }
     >
       <p css={[textStyles.b4m, css({ marginBottom: '0.25rem' })]}>
-        낯선거북이님의 편지가 잘 전해질 수 있도록
+        낯선 {nickname}님의 편지가 잘 전해질 수 있도록
       </p>
       <h3 css={[textStyles.t3, css({ marginBottom: '1.5625rem' })]}>
         생년월일을 알려주세요
       </h3>
       <section css={styles.inputSection}>
-        <input
-          css={[onboardingStyles.input, styles.input('0.9')]}
-          {...register('year')}
-          type="text"
-          placeholder="YYYY"
-          autoComplete="off"
-          onChange={handleChange}
-          maxLength={formLiteral.year.length}
+        <Controller
+          name="birthday.year"
+          control={control}
+          render={({ field }) => (
+            <input
+              {...field}
+              css={[onboardingStyles.input, styles.input('0.9')]}
+              type="text"
+              inputMode="numeric"
+              placeholder="YYYY"
+              autoComplete="off"
+              maxLength={formLiteral.year.length}
+              onChange={async (e) => {
+                handleChange(e);
+                field.onChange(e);
+                trigger('birthday.year');
+              }}
+            />
+          )}
         />
-        <input
-          css={[onboardingStyles.input, styles.input('1')]}
-          {...register('month')}
-          type="text"
-          placeholder="MM"
-          autoComplete="off"
-          onChange={handleChange}
-          maxLength={formLiteral.month.length}
+        <Controller
+          name="birthday.month"
+          control={control}
+          render={({ field }) => (
+            <input
+              {...field}
+              css={[onboardingStyles.input, styles.input('1')]}
+              type="text"
+              inputMode="numeric"
+              placeholder="MM"
+              autoComplete="off"
+              maxLength={formLiteral.month.length}
+              onChange={async (e) => {
+                handleChange(e);
+                field.onChange(e);
+                trigger('birthday.month');
+              }}
+            />
+          )}
         />
-        <input
-          css={[onboardingStyles.input, styles.input('1')]}
-          {...register('day')}
-          type="text"
-          placeholder="DD"
-          autoComplete="off"
-          onChange={handleChange}
-          maxLength={formLiteral.day.length}
+        <Controller
+          name="birthday.day"
+          control={control}
+          render={({ field }) => (
+            <input
+              {...field}
+              css={[onboardingStyles.input, styles.input('1')]}
+              type="text"
+              inputMode="numeric"
+              placeholder="DD"
+              autoComplete="off"
+              maxLength={formLiteral.day.length}
+              onChange={async (e) => {
+                handleChange(e);
+                field.onChange(e);
+                trigger('birthday.day');
+              }}
+            />
+          )}
         />
       </section>
     </StepTemplate>
