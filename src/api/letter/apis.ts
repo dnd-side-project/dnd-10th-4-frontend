@@ -1,5 +1,6 @@
 import { Letter, Reception } from '@/types/letter';
 import { Worry } from '@/constants/users';
+import { ReplyInputs } from '@/pages/LetterReceptionPage/ReplyToLetter';
 import { baseInstance, authInstance } from '../instance';
 
 const letterAPI = {
@@ -58,11 +59,15 @@ const letterAPI = {
     body,
   }: {
     letterId: number;
-    body: FormData;
+    body: ReplyInputs;
   }) => {
+    const formData = new FormData();
+    formData.append('replyContent', body.replyContent);
+    formData.append('image', body.image[0]);
+
     const { data } = await authInstance.patch(
       `api/letter/reception/reply/${letterId}`,
-      body,
+      formData,
       {
         headers: {
           'Content-Type': 'multipart/form-data',
