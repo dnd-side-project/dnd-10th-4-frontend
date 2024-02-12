@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { css } from '@emotion/react';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
@@ -13,12 +14,14 @@ interface ReceptionHeaderProps {
 }
 
 const ReceptionHeader = ({ onClickPrev, createTime }: ReceptionHeaderProps) => {
-  const expiredTime = createTime
-    ? formatTimechipDate(
-        new Date(),
-        new Date(new Date(createTime).getTime() + 48 * 60 * 60 * 1000),
-      )
-    : '00h';
+  const expiredTime = useMemo(() => {
+    return createTime
+      ? formatTimechipDate(
+          new Date(),
+          new Date(new Date(createTime).getTime() + 48 * 60 * 60 * 1000),
+        )
+      : '00h';
+  }, [createTime]);
 
   return (
     <Header
