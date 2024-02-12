@@ -7,21 +7,24 @@ import IconButton from '@/components/IconButton';
 import HourGlass from '@/assets/icons/HourGlass';
 import COLORS from '@/constants/colors';
 import { formatTimechipDate } from '@/utils/dateUtils';
+import useLetterTag from '../hooks/useLetterTag';
 
 interface ReceptionHeaderProps {
   onClickPrev: () => void;
-  createTime: string;
+  letterId: number;
 }
 
-const ReceptionHeader = ({ onClickPrev, createTime }: ReceptionHeaderProps) => {
+const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
+  const { receptionLetter } = useLetterTag(letterId);
+
   const expiredTime = useMemo(() => {
-    return createTime
-      ? formatTimechipDate(
-          new Date(),
-          new Date(new Date(createTime).getTime() + 48 * 60 * 60 * 1000),
-        )
-      : '00h';
-  }, [createTime]);
+    return formatTimechipDate(
+      new Date(),
+      new Date(
+        new Date(receptionLetter.createdAt).getTime() + 48 * 60 * 60 * 1000,
+      ),
+    );
+  }, [receptionLetter.createdAt]);
 
   return (
     <Header

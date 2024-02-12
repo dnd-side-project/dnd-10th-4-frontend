@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import createFunnel from '@/components/Funnel/createFunnel';
+import { Suspense } from 'react';
 import { ROUTER_PATHS } from '@/router';
-import useLetterTag from './hooks/useLetterTag';
+import createFunnel from '@/components/Funnel/createFunnel';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
@@ -17,31 +18,34 @@ const LetterReceptionPage = () => {
   const { step, setStep, toPrev } = useFunnel();
 
   const { letterId } = useParams();
-  const { letter } = useLetterTag(Number(letterId));
 
   return (
-    <div css={style.container}>
-      <ReceptionHeader
-        onClickPrev={
-          step === 'ReceivedLetter' ? () => navigate(ROUTER_PATHS.ROOT) : toPrev
-        }
-        createTime={letter.createdAt}
-      />
-      <Funnel step={step}>
-        <Step name="ReceivedLetter">
-          <ReceivedLetter
-            receptionLetter={letter}
-            onNext={() => setStep('ReplyToLetter')}
-          />
-        </Step>
-        <Step name="ReplyToLetter">
-          <ReplyToLetter
-            receptionLetter={letter}
-            onPrev={() => setStep('ReceivedLetter')}
-          />
-        </Step>
-      </Funnel>
-    </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <div css={style.container}>
+        <ReceptionHeader
+          onClickPrev={
+            step === 'ReceivedLetter'
+              ? () => navigate(ROUTER_PATHS.ROOT)
+              : toPrev
+          }
+          letterId={Number(letterId)}
+        />
+        <Funnel step={step}>
+          <Step name="ReceivedLetter">
+            <ReceivedLetter
+              letterId={Number(letterId)}
+              onNext={() => setStep('ReplyToLetter')}
+            />
+          </Step>
+          <Step name="ReplyToLetter">
+            <ReplyToLetter
+              letterId={Number(letterId)}
+              onPrev={() => setStep('ReceivedLetter')}
+            />
+          </Step>
+        </Funnel>
+      </div>
+    </Suspense>
   );
 };
 

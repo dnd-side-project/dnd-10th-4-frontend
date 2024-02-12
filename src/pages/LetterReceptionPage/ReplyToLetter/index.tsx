@@ -12,11 +12,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
-import { ReceptionLetterType } from '../hooks/useLetterTag';
 import LetterContent from '../components/LetterContent';
-import style from './styles';
+import useLetterTag from '../hooks/useLetterTag';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
-
+import style from './styles';
 const L = letterWrite;
 
 const replySchema = z.object({
@@ -29,11 +28,13 @@ const replySchema = z.object({
 export type ReplyInputs = z.infer<typeof replySchema>;
 
 interface ReplyToLetterProps {
-  receptionLetter: ReceptionLetterType;
+  letterId: number;
   onPrev: () => void;
 }
 
-const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
+const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
+  const { receptionLetter } = useLetterTag(letterId);
+
   const queryClient = new QueryClient();
 
   const methods = useForm<ReplyInputs>({

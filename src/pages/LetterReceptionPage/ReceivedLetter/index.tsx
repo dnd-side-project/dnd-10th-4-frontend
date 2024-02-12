@@ -10,18 +10,19 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
-import { ReceptionLetterType } from '../hooks/useLetterTag';
 import TagList from '../components/TagList';
+import useLetterTag from '../hooks/useLetterTag';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
-
 interface ReceivedLetterProps {
-  receptionLetter: ReceptionLetterType;
+  letterId: number;
   onNext: () => void;
 }
 
-const ReceivedLetter = ({ receptionLetter, onNext }: ReceivedLetterProps) => {
+const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
+  const { receptionLetter } = useLetterTag(letterId);
+
   const queryClient = new QueryClient();
   const navigate = useNavigate();
 
