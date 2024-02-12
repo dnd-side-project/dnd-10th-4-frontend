@@ -13,11 +13,11 @@ import LetterHeader from '@/components/LetterHeader';
 import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
-import { ReceptionLetterType } from '../hooks/useLetterTag';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import LetterContent from '../components/LetterContent';
-import style from './styles';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import { ReceptionLetterType } from '../hooks/useLetterTag';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -39,7 +39,7 @@ const replySchema = z.object({
     ),
 });
 
-type replyInputs = z.infer<typeof replySchema>;
+export type ReplyInputs = z.infer<typeof replySchema>;
 
 interface ReplyToLetterProps {
   receptionLetter: ReceptionLetterType;
@@ -47,7 +47,7 @@ interface ReplyToLetterProps {
 }
 
 const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
-  const methods = useForm<replyInputs>({
+  const methods = useForm<ReplyInputs>({
     resolver: zodResolver(replySchema),
     defaultValues: {
       replyContent: '',
@@ -73,7 +73,7 @@ const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
     mutationFn: letterAPI.patchReceptionReply,
   });
 
-  const onSubmit = async (data: replyInputs) => {
+  const onSubmit = async (data: ReplyInputs) => {
     const formData = new FormData();
     formData.append('replyContent', data.replyContent);
     formData.append('image', data.image);
