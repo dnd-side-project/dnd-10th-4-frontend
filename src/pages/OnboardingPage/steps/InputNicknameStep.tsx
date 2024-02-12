@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
@@ -13,8 +13,8 @@ import StepTemplate from '../components/StepTemplate';
 import { Inputs } from '../hooks/useOnboardingForm';
 
 const InputNicknameStep = () => {
-  const { watch, setValue } = useFormContext<Inputs>();
-  const nickname = watch('nickname');
+  const { setValue, control } = useFormContext<Inputs>();
+  const { nickname } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
 

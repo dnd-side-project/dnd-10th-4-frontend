@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
@@ -10,12 +10,16 @@ import StepTemplate from '../components/StepTemplate';
 import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
 const InputWorryStep = () => {
-  const { setValue, watch, getFieldState, trigger, formState } =
+  const { setValue, getFieldState, trigger, formState, control } =
     useFormContext<Inputs>();
   const { invalid } = getFieldState('worries', formState);
-  const worries = watch('worries');
+  const { worries } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
+
+  if (!worries) {
+    return;
+  }
 
   const handleToggleWorry = (worry: Worry) => {
     setValue('worries', toggleItemInArray(worries, worry));

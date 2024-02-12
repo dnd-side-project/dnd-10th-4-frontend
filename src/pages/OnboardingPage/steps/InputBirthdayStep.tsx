@@ -1,4 +1,4 @@
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext, Controller, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
@@ -9,10 +9,10 @@ import onboardingStyles from '../styles';
 import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
 const InputBirthdayStep = () => {
-  const { trigger, getFieldState, watch, formState, control } =
+  const { trigger, getFieldState, formState, control } =
     useFormContext<Inputs>();
   const { invalid } = getFieldState('birthday', formState);
-  const nickname = watch('nickname');
+  const { nickname } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
 

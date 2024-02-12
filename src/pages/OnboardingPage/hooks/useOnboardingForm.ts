@@ -36,7 +36,7 @@ const L = formLiteral;
 const [gender, ...otherGender] = Object.keys(GENDER_DICT) as Gender[];
 const [worry, ...otherWorries] = Object.keys(WORRY_DICT) as Worry[];
 
-const formSchema = z.object({
+export const formSchema = z.object({
   nickname: z.enum(NICKNAMES),
   birthday: z.object({
     year: z.coerce.number().int().min(L.year.min).max(L.year.max),

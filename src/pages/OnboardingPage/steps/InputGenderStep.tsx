@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
 import { type Gender } from '@/constants/users';
 import Button from '@/components/Button';
@@ -9,11 +9,10 @@ import StepTemplate from '../components/StepTemplate';
 import { Inputs } from '../hooks/useOnboardingForm';
 
 const InputGenderStep = () => {
-  const { setValue, getFieldState, watch, trigger, formState } =
+  const { setValue, getFieldState, trigger, formState, control } =
     useFormContext<Inputs>();
   const { invalid } = getFieldState('gender', formState);
-  const nickname = watch('nickname');
-  const gender = watch('gender');
+  const { nickname, gender } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
 
