@@ -2,14 +2,15 @@ import STORAGE_KEYS from '@/constants/storageKeys';
 import { baseInstance, authInstance } from '../instance';
 
 const authAPI = {
-  // TODO: 추후 API 명세에 맞게 수정해야 합니다.
+  /** 카카오 인가 코드 전송 후 로그인 토큰 받아오기 */
   postKakaoCode: async (code: string) => {
-    const { data } = await baseInstance.post(
-      '/api/oauth2/authorization/kakao',
-      {
-        code,
-      },
-    );
+    const { data } = await baseInstance.post<{
+      accessToken: string;
+      refreshToken: string;
+      firstLogin: boolean;
+    }>('/api/auth/login/kakao/postman', {
+      code,
+    });
     return data;
   },
 
