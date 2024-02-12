@@ -61,18 +61,9 @@ const letterAPI = {
     letterId: number;
     body: ReplyInputs;
   }) => {
-    const formData = new FormData();
-    formData.append('replyContent', body.replyContent);
-    formData.append('image', body.image[0]);
-
     const { data } = await authInstance.patch(
       `api/letter/reception/reply/${letterId}`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      },
+      body,
     );
     return data;
   },
