@@ -10,8 +10,8 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import { EQUAL_GENDER_DICT, type Worry } from '@/constants/letters';
 import { Letter } from '@/types/letter';
 import letterAPI from '@/api/letter/apis';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const L = letterWrite;
 
@@ -82,7 +82,7 @@ const LetterWritePage = () => {
           leftContent={
             <CaretLeft
               strokeWidth={2.5}
-              color="white"
+              stroke="white"
               onClick={() => navigate(ROUTER_PATHS.ROOT)}
             />
           }

@@ -55,7 +55,10 @@ const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
 
 const style = {
   header: css`
-    margin-block: 0.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
   `,
   leftHeader: css`
     display: flex;
