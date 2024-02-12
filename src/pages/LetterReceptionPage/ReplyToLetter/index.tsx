@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, QueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import LetterCard from '@/components/LetterCard';
@@ -13,11 +13,12 @@ import LetterHeader from '@/components/LetterHeader';
 import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
-import { ReceptionLetterType } from '../hooks/useLetterTag';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import letterOptions from '@/api/letter/queryOptions';
 import LetterContent from '../components/LetterContent';
-import style from './styles';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import { ReceptionLetterType } from '../hooks/useLetterTag';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -47,6 +48,8 @@ interface ReplyToLetterProps {
 }
 
 const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
+  const queryClient = new QueryClient();
+
   const methods = useForm<ReplyInputs>({
     resolver: zodResolver(replySchema),
     defaultValues: {
@@ -75,6 +78,7 @@ const ReplyToLetter = ({ receptionLetter, onPrev }: ReplyToLetterProps) => {
 
   const onSubmit = async (data: ReplyInputs) => {
     await patchReply({ letterId: receptionLetter.letterId, body: data });
+    queryClient.invalidateQueries({ queryKey: letterOptions.all });
   };
 
   return (
