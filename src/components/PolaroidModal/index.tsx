@@ -12,14 +12,17 @@ interface PolaroidModalProps {
   topPosition?: number;
   /** 폴라로이드 left 위치 입니다. */
   leftPosition?: number;
+  /** 폴라로이드 헤더의 오른쪽 내용 입니다. */
+  headerRightContent?: React.ReactNode;
   /** 폴라로이드 모달 하단 버튼 입니다. */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const PolaroidModal = ({
   img,
   topPosition,
   leftPosition,
+  headerRightContent,
   children,
 }: PolaroidModalProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
@@ -38,6 +41,7 @@ const PolaroidModal = ({
           leftContent={
             <CaretLeft strokeWidth={2.5} color="white" onClick={close} />
           }
+          rightContent={headerRightContent}
         />
         <div css={style.modalContainer}>
           <Polaroid imgUrl={img} size="lg" />
