@@ -50,16 +50,25 @@ const formSchema = z.object({
     .max(L.worries.max),
 });
 
+const initialSchema = formSchema.omit({ birthday: true }).extend({
+  birthday: z.object({
+    year: z.literal(''),
+    month: z.literal(''),
+    day: z.literal(''),
+  }),
+});
+
 export type Inputs = z.infer<typeof formSchema>;
+type InitialInputs = z.infer<typeof initialSchema>;
 
 const useOnboardingForm = () =>
-  useForm<Inputs>({
+  useForm<InitialInputs, void, Inputs>({
     defaultValues: {
       nickname: NICKNAMES[0],
       birthday: {
-        year: '' as unknown as number,
-        month: '' as unknown as number,
-        day: '' as unknown as number,
+        year: '',
+        month: '',
+        day: '',
       },
       gender: undefined,
       worries: [],
