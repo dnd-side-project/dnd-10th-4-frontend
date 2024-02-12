@@ -10,8 +10,8 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import { EQUAL_GENDER_DICT, type Worry } from '@/constants/letters';
 import { Letter } from '@/types/letter';
 import letterAPI from '@/api/letter/apis';
-import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 

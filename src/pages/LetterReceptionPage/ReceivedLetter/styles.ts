@@ -3,10 +3,6 @@ import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 
 const style = {
-  tag: css`
-    display: flex;
-    gap: 0.5rem;
-  `,
   text: css`
     height: 15rem;
     ${textStyles.l1m};

@@ -2,10 +2,6 @@ import { css } from '@emotion/react';
 import textStyles from '@/styles/textStyles';
 
 const style = {
-  tag: css`
-    display: flex;
-    gap: 0.5rem;
-  `,
   text: css`
     ${textStyles.l1m};
   `,

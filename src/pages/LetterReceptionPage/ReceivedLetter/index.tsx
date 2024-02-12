@@ -5,14 +5,14 @@ import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
 import LetterHeader from '@/components/LetterHeader';
-import Chip from '@/components/Chip';
 import { formatDate } from '@/utils/dateUtils';
 import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
+import TagList from '../components/TagList';
 import { ReceptionLetterType } from '../hooks/useLetterTag';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
 
 interface ReceivedLetterProps {
@@ -22,7 +22,6 @@ interface ReceivedLetterProps {
 
 const ReceivedLetter = ({ receptionLetter, onNext }: ReceivedLetterProps) => {
   const navigate = useNavigate();
-  const tagList = receptionLetter.tagList;
 
   const { mutateAsync: patchToss, isPending: isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionToss,
@@ -36,13 +35,7 @@ const ReceivedLetter = ({ receptionLetter, onNext }: ReceivedLetterProps) => {
   return (
     <LetterContent>
       <LetterCard isOpen={true}>
-        <div css={style.tag}>
-          {tagList.map((tag) => (
-            <Chip key={tag} variant="filter">
-              {tag}
-            </Chip>
-          ))}
-        </div>
+        <TagList tags={receptionLetter.tagList} />
         <div css={style.text}>
           <p>{receptionLetter.content}</p>
         </div>
