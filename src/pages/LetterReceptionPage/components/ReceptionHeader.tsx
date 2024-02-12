@@ -7,7 +7,7 @@ import IconButton from '@/components/IconButton';
 import HourGlass from '@/assets/icons/HourGlass';
 import COLORS from '@/constants/colors';
 import { formatTimechipDate } from '@/utils/dateUtils';
-import useLetterTag from '../hooks/useLetterTag';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 
 interface ReceptionHeaderProps {
   onClickPrev: () => void;
@@ -15,7 +15,7 @@ interface ReceptionHeaderProps {
 }
 
 const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
-  const { receptionLetter } = useLetterTag(letterId);
+  const { receptionLetter } = useLetterWithTags(letterId);
 
   const expiredTime = useMemo(() => {
     return formatTimechipDate(

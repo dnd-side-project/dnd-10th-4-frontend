@@ -2,11 +2,12 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import letterOptions from '@/api/letter/queryOptions';
 import { WORRY_DICT } from '@/constants/users';
 import { Reception } from '@/types/letter';
+
 interface ReceptionLetterType extends Reception {
   tagList: string[];
 }
 
-const useLetterTag = (letterId: number) => {
+const useLetterWithTags = (letterId: number) => {
   const { data } = useSuspenseQuery({
     ...letterOptions.singleReception(letterId),
   });
@@ -22,4 +23,4 @@ const useLetterTag = (letterId: number) => {
 
 export type { ReceptionLetterType };
 
-export default useLetterTag;
+export default useLetterWithTags;

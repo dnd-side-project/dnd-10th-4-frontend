@@ -12,10 +12,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import useLetterTag from '../hooks/useLetterTag';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 const L = letterWrite;
 
 const replySchema = z.object({
@@ -33,7 +33,7 @@ interface ReplyToLetterProps {
 }
 
 const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
-  const { receptionLetter } = useLetterTag(letterId);
+  const { receptionLetter } = useLetterWithTags(letterId);
 
   const queryClient = new QueryClient();
 
