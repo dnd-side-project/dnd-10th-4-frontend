@@ -1,4 +1,3 @@
-import { Letter } from '@/types/letter';
 import { Worry } from '@/constants/users';
 import { baseInstance } from '../instance';
 
@@ -39,8 +38,12 @@ const letterAPI = {
   },
 
   /** 편지 작성 */
-  postLetter: async (letter: Letter) => {
-    const { data } = await baseInstance.post('/api/letter', letter);
+  postLetter: async (letter: FormData) => {
+    const { data } = await baseInstance.post('/api/letter', letter, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return data;
   },
 };

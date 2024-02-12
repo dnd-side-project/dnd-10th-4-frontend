@@ -8,10 +8,9 @@ import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import { EQUAL_GENDER_DICT, type Worry } from '@/constants/letters';
-import { Letter } from '@/types/letter';
 import letterAPI from '@/api/letter/apis';
-import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -63,15 +62,18 @@ const LetterWritePage = () => {
   });
 
   const onSubmit = async (data: Inputs) => {
-    const letterData: Letter = {
-      content: data.content,
-      equalGender: EQUAL_GENDER_DICT[1] === data.gender,
-      ageRangeStart: data.age[0],
-      ageRangeEnd: data.age[1],
-      worryType: data.worryType as Worry,
-      image: data.image?.[0],
-    };
-    await postLetter(letterData);
+    const formData = new FormData();
+    formData.append('content', data.content);
+    formData.append(
+      'equalGender',
+      EQUAL_GENDER_DICT[1] === data.gender ? 'true' : 'false',
+    );
+    formData.append('ageRangeStart', data.age[0].toString());
+    formData.append('ageRangeEnd', data.age[1].toString());
+    formData.append('worryType', data.worryType as Worry);
+    formData.append('image', data.image?.[0]);
+
+    await postLetter(formData);
   };
 
   return (
