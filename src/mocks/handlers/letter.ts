@@ -58,7 +58,7 @@ const letterHandler = [
     }
 
     const result: Reception = {
-      createdAt: '2024-02-05T15:40:44',
+      createdAt: '2024-02-11T16:50:44',
       letterId: Number(req.params.letterId),
       senderNickname: '낯선 고양이123',
       receiverNickname: '낯선 강아지456',

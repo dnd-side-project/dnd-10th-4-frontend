@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { ROUTER_PATHS } from '@/router';
 import createFunnel from '@/components/Funnel/createFunnel';
+import { ROUTER_PATHS } from '@/router';
 import useLetterTag from './hooks/useLetterTag';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
@@ -14,11 +14,10 @@ const { Funnel, Step, useFunnel } = createFunnel([
 
 const LetterReceptionPage = () => {
   const navigate = useNavigate();
-  const { letterId } = useParams();
-
-  const { letter } = useLetterTag(Number(letterId));
-
   const { step, setStep, toPrev } = useFunnel();
+
+  const { letterId } = useParams();
+  const { letter } = useLetterTag(Number(letterId));
 
   return (
     <div css={style.container}>
@@ -26,6 +25,7 @@ const LetterReceptionPage = () => {
         onClickPrev={
           step === 'ReceivedLetter' ? () => navigate(ROUTER_PATHS.ROOT) : toPrev
         }
+        createTime={letter.createdAt}
       />
       <Funnel step={step}>
         <Step name="ReceivedLetter">

@@ -5,12 +5,21 @@ import Chip from '@/components/Chip';
 import IconButton from '@/components/IconButton';
 import HourGlass from '@/assets/icons/HourGlass';
 import COLORS from '@/constants/colors';
+import { formatTimechipDate } from '@/utils/dateUtils';
 
 interface ReceptionHeaderProps {
   onClickPrev: () => void;
+  createTime: string;
 }
 
-const ReceptionHeader = ({ onClickPrev }: ReceptionHeaderProps) => {
+const ReceptionHeader = ({ onClickPrev, createTime }: ReceptionHeaderProps) => {
+  const expiredTime = createTime
+    ? formatTimechipDate(
+        new Date(),
+        new Date(new Date(createTime).getTime() + 48 * 60 * 60 * 1000),
+      )
+    : '00h';
+
   return (
     <Header
       css={style.header}
@@ -24,7 +33,7 @@ const ReceptionHeader = ({ onClickPrev }: ReceptionHeaderProps) => {
           />
           <Chip variant="primary">
             <HourGlass height={16} color={COLORS.primary} />
-            <span css={{ color: COLORS.primary }}>00:00:00</span>
+            <span css={{ color: COLORS.primary }}>{expiredTime}</span>
           </Chip>
         </>
       }

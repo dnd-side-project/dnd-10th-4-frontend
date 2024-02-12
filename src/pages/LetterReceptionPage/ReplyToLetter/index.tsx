@@ -13,11 +13,11 @@ import LetterHeader from '@/components/LetterHeader';
 import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
-import LetterContent from '../components/LetterContent';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import { ReceptionLetterType } from '../hooks/useLetterTag';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 
