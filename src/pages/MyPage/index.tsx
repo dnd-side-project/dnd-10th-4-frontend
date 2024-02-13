@@ -9,9 +9,11 @@ import { ROUTER_PATHS } from '@/router';
 import useBoolean from '@/hooks/useBoolean';
 import styles from './style';
 import NicknameBottomSheet from './components/NicknameBottomSheet';
+import BirthdayBottomSheet from './components/BirthdayBottomSheet';
 
 const MyPage = () => {
   const nicknameBottomSheetProps = useBoolean(false);
+  const birthdayBottomSheetProps = useBoolean(false);
 
   return (
     <div css={styles.page}>
@@ -34,7 +36,7 @@ const MyPage = () => {
           </li>
           <li css={styles.item}>
             <p>생년월일 변경</p>
-            <div css={styles.value}>
+            <div css={styles.value} onClick={birthdayBottomSheetProps.on}>
               <span>1997년 1월 1일</span>
               <CaretRight color={COLORS.gray3} />
             </div>
@@ -74,6 +76,7 @@ const MyPage = () => {
         </ul>
       </main>
       <NicknameBottomSheet {...nicknameBottomSheetProps} />
+      <BirthdayBottomSheet {...birthdayBottomSheetProps} />
     </div>
   );
 };
