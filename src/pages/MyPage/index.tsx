@@ -6,9 +6,13 @@ import { CaretLeft, CaretRight } from '@/assets/icons';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/router';
+import useBoolean from '@/hooks/useBoolean';
 import styles from './style';
+import NicknameBottomSheet from './components/NicknameBottomSheet';
 
 const MyPage = () => {
+  const nicknameBottomSheetProps = useBoolean(false);
+
   return (
     <div css={styles.page}>
       <Header
@@ -23,7 +27,7 @@ const MyPage = () => {
         <ul css={styles.list}>
           <li css={styles.item}>
             <p>닉네임 변경</p>
-            <div css={styles.value}>
+            <div css={styles.value} onClick={nicknameBottomSheetProps.on}>
               <span>낯선 거북이</span>
               <CaretRight color={COLORS.gray3} />
             </div>
@@ -69,6 +73,7 @@ const MyPage = () => {
           </li>
         </ul>
       </main>
+      <NicknameBottomSheet {...nicknameBottomSheetProps} />
     </div>
   );
 };
