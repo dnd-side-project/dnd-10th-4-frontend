@@ -1,7 +1,9 @@
+import { Reception } from '@/types/letter';
 import { Worry } from '@/constants/users';
 import { WriteInputs } from '@/pages/LetterWritePage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
-import { baseInstance } from '../instance';
+import { ReplyInputs } from '@/pages/LetterReceptionPage/ReplyToLetter';
+import { baseInstance, authInstance } from '../instance';
 
 const letterAPI = {
   /** 받은 편지 전체 조회 */
@@ -52,11 +54,42 @@ const letterAPI = {
     formData.append('worryType', letter.worryType as Worry);
     formData.append('image', letter.image?.[0]);
 
-    const { data } = await baseInstance.post('/api/letter', formData, {
+    const { data } = await authInstance.post('/api/letter', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
+    return data;
+  },
+
+  /** 보낸 편지 단건 조회 */
+  getSingleReception: async (letterId: number) => {
+    const { data } = await authInstance.get<Reception>(
+      `/api/letter/reception/${letterId}`,
+    );
+    return data;
+  },
+
+  /** 받은 편지 답장 */
+  patchReceptionReply: async ({
+    letterId,
+    body,
+  }: {
+    letterId: number;
+    body: ReplyInputs;
+  }) => {
+    const { data } = await authInstance.patch(
+      `api/letter/reception/reply/${letterId}`,
+      body,
+    );
+    return data;
+  },
+
+  /** 받은 편지 토스 */
+  patchReceptionToss: async (letterId: number) => {
+    const { data } = await authInstance.patch(
+      `/api/letter/reception/toss/${letterId}`,
+    );
     return data;
   },
 };

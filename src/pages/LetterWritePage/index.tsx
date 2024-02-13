@@ -8,8 +8,8 @@ import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const L = letterWrite;
 
@@ -72,7 +72,7 @@ const LetterWritePage = () => {
           leftContent={
             <CaretLeft
               strokeWidth={2.5}
-              color="white"
+              stroke="white"
               onClick={() => navigate(ROUTER_PATHS.ROOT)}
             />
           }

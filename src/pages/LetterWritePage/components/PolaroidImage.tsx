@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import Button from '@/components/Button';
 import PolaroidModal from '@/components/PolaroidModal';
-import { WriteInputs } from '..';
+import { type WriteInputs } from '..';
 
 const PolaroidImage = () => {
   const { watch } = useFormContext<WriteInputs>();

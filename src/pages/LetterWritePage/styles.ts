@@ -9,8 +9,8 @@ const style = {
   `,
   header: css`
     height: 2.5rem;
-    margin-top: 1.25rem;
-    margin-bottom: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
 
     & > div:nth-of-type(1) {
       cursor: pointer;

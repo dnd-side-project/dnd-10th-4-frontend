@@ -15,6 +15,14 @@ const letterOptions = {
       queryKey: [...letterOptions.all, 'reply', page] as const,
       queryFn: () => letterAPI.getRepliedLetters(page),
     }),
+
+  singleReception: (letterId: number) =>
+    queryOptions({
+      queryKey: [...letterOptions.all, 'reception', letterId] as const,
+      queryFn: () => letterAPI.getSingleReception(letterId),
+      gcTime: 5 * 60 * 1000,
+      staleTime: 1 * 60 * 1000,
+    }),
 };
 
 export default letterOptions;

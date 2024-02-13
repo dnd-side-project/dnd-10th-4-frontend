@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import ImageUploadButton from '@/components/ImageUploadButton';
-import { WriteInputs } from '../..';
+import { type WriteInputs } from '../..';
 
 const ImageSelect = () => {
   const { setValue } = useFormContext<WriteInputs>();
