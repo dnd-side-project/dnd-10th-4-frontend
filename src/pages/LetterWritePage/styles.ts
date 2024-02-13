@@ -6,7 +6,6 @@ const style = {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(20px);
   `,
   header: css`
     height: 2.5rem;
