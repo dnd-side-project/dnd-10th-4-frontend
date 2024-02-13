@@ -14,12 +14,12 @@ import { bottomSheetStyles } from '../style';
 interface GenderBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
 const GenderBottomSheet = ({ value, on, off }: GenderBottomSheetProps) => {
+  const [gender, setGender] = useState<Gender>();
+
   const { mutateAsync, isPending } = useMutation({
     mutationFn: memberAPI.patchGender,
   });
   const queryClient = useQueryClient();
-
-  const [gender, setGender] = useState<Gender>();
 
   const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value as Gender;
