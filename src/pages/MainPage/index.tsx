@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import IconButton from '@/components/IconButton';
+import IconButton, { iconButtonStyles } from '@/components/IconButton';
 import Header from '@/components/Header';
 import { buttonStyles } from '@/components/Button';
 import { PencilLine, TreasureChest, User } from '@/assets/icons';
@@ -30,9 +30,12 @@ const MainPage = () => {
             <IconButton variant="header" rounded="r8">
               <TreasureChest color="white" />
             </IconButton>
-            <IconButton variant="header" rounded="r8">
+            <Link
+              to={ROUTER_PATHS.MYPAGE}
+              css={iconButtonStyles.button('header', 'r8')}
+            >
               <User color="white" />
-            </IconButton>
+            </Link>
           </>
         }
       />
