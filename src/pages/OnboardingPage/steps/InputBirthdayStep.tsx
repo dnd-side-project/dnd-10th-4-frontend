@@ -36,75 +36,81 @@ const InputBirthdayStep = () => {
         생년월일을 알려주세요
       </h3>
       <section css={styles.inputSection}>
-        <Controller
-          name="birthday.year"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              css={[onboardingStyles.input, styles.input('0.9')]}
-              type="text"
-              inputMode="numeric"
-              placeholder="YYYY"
-              autoComplete="off"
-              maxLength={formLiteral.year.length}
-              onChange={async (e) => {
-                e.target.value = clampValue(
-                  e.target.value,
-                  formLiteral.year.max,
-                );
-                field.onChange(e);
-                trigger('birthday.year');
-              }}
-            />
-          )}
-        />
-        <Controller
-          name="birthday.month"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              css={[onboardingStyles.input, styles.input('1')]}
-              type="text"
-              inputMode="numeric"
-              placeholder="MM"
-              autoComplete="off"
-              maxLength={formLiteral.month.length}
-              onChange={async (e) => {
-                e.target.value = clampValue(
-                  e.target.value,
-                  formLiteral.month.max,
-                );
-                field.onChange(e);
-                trigger('birthday.month');
-              }}
-            />
-          )}
-        />
-        <Controller
-          name="birthday.day"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              css={[onboardingStyles.input, styles.input('1')]}
-              type="text"
-              inputMode="numeric"
-              placeholder="DD"
-              autoComplete="off"
-              maxLength={formLiteral.day.length}
-              onChange={async (e) => {
-                e.target.value = clampValue(
-                  e.target.value,
-                  formLiteral.day.max,
-                );
-                field.onChange(e);
-                trigger('birthday.day');
-              }}
-            />
-          )}
-        />
+        <span css={css({ flexBasis: '5.9375rem' })}>
+          <Controller
+            name="birthday.year"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                css={onboardingStyles.input}
+                type="text"
+                inputMode="numeric"
+                placeholder="YYYY"
+                autoComplete="off"
+                maxLength={formLiteral.year.length}
+                onChange={async (e) => {
+                  e.target.value = clampValue(
+                    e.target.value,
+                    formLiteral.year.max,
+                  );
+                  field.onChange(e);
+                  trigger('birthday.year');
+                }}
+              />
+            )}
+          />
+        </span>
+        <span css={css({ flexBasis: '4.6875rem' })}>
+          <Controller
+            name="birthday.month"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                css={onboardingStyles.input}
+                type="text"
+                inputMode="numeric"
+                placeholder="MM"
+                autoComplete="off"
+                maxLength={formLiteral.month.length}
+                onChange={async (e) => {
+                  e.target.value = clampValue(
+                    e.target.value,
+                    formLiteral.month.max,
+                  );
+                  field.onChange(e);
+                  trigger('birthday.month');
+                }}
+              />
+            )}
+          />
+        </span>
+        <span css={css({ flexBasis: '4.6875rem' })}>
+          <Controller
+            name="birthday.day"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                css={onboardingStyles.input}
+                type="text"
+                inputMode="numeric"
+                placeholder="DD"
+                autoComplete="off"
+                maxLength={formLiteral.day.length}
+                onChange={async (e) => {
+                  e.target.value = clampValue(
+                    e.target.value,
+                    formLiteral.day.max,
+                  );
+                  field.onChange(e);
+                  trigger('birthday.day');
+                }}
+              />
+            )}
+          />
+        </span>
       </section>
     </StepTemplate>
   );
@@ -116,11 +122,12 @@ const styles = {
   inputSection: css`
     display: flex;
     gap: 0.5rem;
+    justify-content: center;
     width: 100%;
-    max-width: 16.25rem;
-  `,
-  input: (shrink: string) => css`
-    flex-shrink: ${shrink};
-    width: 100%;
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+    }
   `,
 };
