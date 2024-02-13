@@ -3,7 +3,7 @@ import { CaretRight } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
-import SentLetterModal from './sentLetterModal';
+import SentLetterModal from './SentLetterModal';
 
 const SentLetter = () => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
