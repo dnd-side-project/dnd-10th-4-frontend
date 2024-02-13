@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import ReplyHeader from './ReplyHeader';
 import SentLetter from './sentLetter';
+import ReplyLetter from './replyLetter';
 
 const LetterReplyPage = () => {
   return (
@@ -8,6 +9,7 @@ const LetterReplyPage = () => {
       <ReplyHeader />
       <div css={style.content}>
         <SentLetter />
+        <ReplyLetter />
       </div>
     </div>
   );
@@ -20,6 +22,9 @@ const style = {
     width: 100%;
   `,
   content: css`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     padding-inline: 1rem;
   `,
 };
