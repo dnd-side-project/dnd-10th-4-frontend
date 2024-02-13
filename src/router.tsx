@@ -8,6 +8,7 @@ import LetterWritePage from './pages/LetterWritePage';
 import MainPage from './pages/MainPage';
 import LetterReceptionPage from './pages/LetterReceptionPage/intex';
 import MyPage from './pages/MyPage';
+import LetterReplyPage from './pages/LetterReplyPage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -20,6 +21,7 @@ const ROUTER_PATHS = {
   LETTER_WRITE: '/write',
   LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
   MYPAGE: '/mypage',
+  LETTER_REPLY: (letterId: string) => `/reply/${letterId}`,
 } as const;
 
 const router = createBrowserRouter([
@@ -66,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.MYPAGE,
         element: <MyPage />,
+      },
+      {
+        path: ROUTER_PATHS.LETTER_REPLY(':letterId'),
+        element: <LetterReplyPage />,
       },
       {
         path: '*',
