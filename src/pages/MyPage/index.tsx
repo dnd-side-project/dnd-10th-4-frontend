@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import { Switch } from '@mui/material';
@@ -13,6 +13,7 @@ import memberOptions from '@/api/member/queryOptions';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { GENDER_DICT, WORRY_DICT } from '@/constants/users';
 import useMusicStore from '@/stores/useMusicStore';
+import STORAGE_KEYS from '@/constants/storageKeys';
 import styles from './style';
 import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
@@ -21,6 +22,7 @@ import WorryBottomSheet from './components/WorryBottomSheet';
 
 const SuspendedPage = () => {
   const { data: member } = useSuspenseQuery(memberOptions.detail());
+  const navigate = useNavigate();
 
   const nicknameBottomSheetProps = useBoolean(false);
   const birthdayBottomSheetProps = useBoolean(false);
@@ -29,6 +31,12 @@ const SuspendedPage = () => {
 
   const isMusicPlaying = useMusicStore((s) => s.isPlaying);
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
+
+  const handleLogout = () => {
+    localStorage.removeItem(STORAGE_KEYS.accessToken);
+    localStorage.removeItem(STORAGE_KEYS.refreshToken);
+    navigate(ROUTER_PATHS.SIGNIN);
+  };
 
   return (
     <main css={styles.main}>
@@ -80,7 +88,10 @@ const SuspendedPage = () => {
       </ul>
       <div css={styles.divider} />
       <ul css={styles.list}>
-        <li css={[styles.item, css({ cursor: 'pointer' })]}>
+        <li
+          css={[styles.item, css({ cursor: 'pointer' })]}
+          onClick={handleLogout}
+        >
           <p>로그아웃</p>
         </li>
         <li css={[styles.item, css({ cursor: 'pointer' })]}>
