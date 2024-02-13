@@ -35,9 +35,12 @@ const GenderBottomSheet = ({ value, on, off }: GenderBottomSheetProps) => {
     }
 
     await mutateAsync({ gender });
+
     queryClient.invalidateQueries({
       queryKey: memberOptions.detail().queryKey,
     });
+
+    off();
   };
 
   return (

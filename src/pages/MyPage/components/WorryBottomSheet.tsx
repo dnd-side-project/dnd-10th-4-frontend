@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
@@ -26,6 +30,7 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
   const { mutateAsync: postWorry, isPending: isPosting } = useMutation({
     mutationFn: memberAPI.postWorry,
   });
+  const queryClient = useQueryClient();
 
   const [worries, setWorries] = useState<Worry[]>(member.worryTypes);
 
@@ -38,6 +43,12 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
   const handleSubmit = async () => {
     await deleteWorry();
     await postWorry({ worries });
+
+    queryClient.invalidateQueries({
+      queryKey: memberOptions.detail().queryKey,
+    });
+
+    off();
   };
 
   return (
