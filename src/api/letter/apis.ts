@@ -1,4 +1,6 @@
 import { Worry } from '@/constants/users';
+import { Inputs } from '@/pages/LetterWritePage';
+import { EQUAL_GENDER_DICT } from '@/constants/letters';
 import { baseInstance } from '../instance';
 
 const letterAPI = {
@@ -38,8 +40,19 @@ const letterAPI = {
   },
 
   /** 편지 작성 */
-  postLetter: async (letter: FormData) => {
-    const { data } = await baseInstance.post('/api/letter', letter, {
+  postLetter: async (letter: Inputs) => {
+    const formData = new FormData();
+    formData.append('content', letter.content);
+    formData.append(
+      'equalGender',
+      EQUAL_GENDER_DICT[1] === letter.gender ? 'true' : 'false',
+    );
+    formData.append('ageRangeStart', letter.age[0].toString());
+    formData.append('ageRangeEnd', letter.age[1].toString());
+    formData.append('worryType', letter.worryType as Worry);
+    formData.append('image', letter.image?.[0]);
+
+    const { data } = await baseInstance.post('/api/letter', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
