@@ -50,7 +50,7 @@ export const formSchema = z.object({
     .max(L.worries.max),
 });
 
-const initialSchema = formSchema.omit({ birthday: true }).extend({
+export const initialSchema = formSchema.omit({ birthday: true }).extend({
   birthday: z.object({
     year: z.literal(''),
     month: z.literal(''),
