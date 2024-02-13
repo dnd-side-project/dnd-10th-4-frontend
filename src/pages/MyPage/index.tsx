@@ -10,10 +10,12 @@ import useBoolean from '@/hooks/useBoolean';
 import styles from './style';
 import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
+import GenderBottomSheet from './components/GenderBottomSheet';
 
 const MyPage = () => {
   const nicknameBottomSheetProps = useBoolean(false);
   const birthdayBottomSheetProps = useBoolean(false);
+  const genderBottomSheetProps = useBoolean(false);
 
   return (
     <div css={styles.page}>
@@ -43,7 +45,7 @@ const MyPage = () => {
           </li>
           <li css={styles.item}>
             <p>성별 변경</p>
-            <div css={styles.value}>
+            <div css={styles.value} onClick={genderBottomSheetProps.on}>
               <span>여성</span>
               <CaretRight color={COLORS.gray3} />
             </div>
@@ -77,6 +79,7 @@ const MyPage = () => {
       </main>
       <NicknameBottomSheet {...nicknameBottomSheetProps} />
       <BirthdayBottomSheet {...birthdayBottomSheetProps} />
+      <GenderBottomSheet {...genderBottomSheetProps} />
     </div>
   );
 };
