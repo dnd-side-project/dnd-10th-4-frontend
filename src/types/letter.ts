@@ -8,3 +8,12 @@ export type Letter = {
   worryType: Worry;
   image: File;
 };
+
+export type Reception = {
+  createdAt: string;
+  letterId: number;
+  senderNickname: string;
+  receiverNickname: string;
+  content: string;
+  worryType: Worry;
+};

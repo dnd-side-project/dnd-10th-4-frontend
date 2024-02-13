@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { css } from '@emotion/react';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
@@ -5,21 +6,40 @@ import Chip from '@/components/Chip';
 import IconButton from '@/components/IconButton';
 import HourGlass from '@/assets/icons/HourGlass';
 import COLORS from '@/constants/colors';
+import { formatTimechipDate } from '@/utils/dateUtils';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 
 interface ReceptionHeaderProps {
   onClickPrev: () => void;
+  letterId: number;
 }
 
-const ReceptionHeader = ({ onClickPrev }: ReceptionHeaderProps) => {
+const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
+  const { receptionLetter } = useLetterWithTags(letterId);
+
+  const expiredTime = useMemo(() => {
+    return formatTimechipDate(
+      new Date(),
+      new Date(
+        new Date(receptionLetter.createdAt).getTime() + 48 * 60 * 60 * 1000,
+      ),
+    );
+  }, [receptionLetter.createdAt]);
+
   return (
     <Header
       css={style.header}
       leftContent={
         <>
-          <CaretLeft strokeWidth={2.5} color="white" onClick={onClickPrev} />
+          <CaretLeft
+            css={style.icon}
+            strokeWidth={2.5}
+            color="white"
+            onClick={onClickPrev}
+          />
           <Chip variant="primary">
             <HourGlass height={16} color={COLORS.primary} />
-            <span css={{ color: COLORS.primary }}>00:00:00</span>
+            <span css={{ color: COLORS.primary }}>{expiredTime}</span>
           </Chip>
         </>
       }
@@ -35,11 +55,17 @@ const ReceptionHeader = ({ onClickPrev }: ReceptionHeaderProps) => {
 
 const style = {
   header: css`
-    margin-block: 0.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
   `,
   leftHeader: css`
     display: flex;
     gap: 0.5rem;
+  `,
+  icon: css`
+    cursor: pointer;
   `,
 };
 
