@@ -9,11 +9,14 @@ export type VariantType =
   | 'bottle-tag-bubble'
   | 'filter'
   | 'form'
-  | 'form-selected';
+  | 'form-selected'
+  | 'form-disabled';
 
 const styles = {
   chip: (variant: VariantType) => css`
-    cursor: ${variant === 'primary-disabled' ? 'not-allowed' : 'pointer'};
+    cursor: ${variant === 'primary-disabled' || variant === 'form-disabled'
+      ? 'not-allowed'
+      : 'pointer'};
     ${variants[variant]}
   `,
 };
@@ -117,6 +120,11 @@ const variants = {
     ${formChipStyles};
     border: 1px solid #2f80ed;
     background: rgb(47 128 237 / 0.2);
+  `,
+  'form-disabled': css`
+    ${formChipStyles};
+    border: 1px solid ${COLORS.gray5};
+    color: ${COLORS.gray4};
   `,
 };
 
