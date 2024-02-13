@@ -11,11 +11,13 @@ import styles from './style';
 import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
 import GenderBottomSheet from './components/GenderBottomSheet';
+import WorryBottomSheet from './components/WorryBottomSheet';
 
 const MyPage = () => {
   const nicknameBottomSheetProps = useBoolean(false);
   const birthdayBottomSheetProps = useBoolean(false);
   const genderBottomSheetProps = useBoolean(false);
+  const worryBottomSheetProps = useBoolean(false);
 
   return (
     <div css={styles.page}>
@@ -52,8 +54,8 @@ const MyPage = () => {
           </li>
           <li css={styles.item}>
             <p>고민 변경</p>
-            <div css={styles.value}>
-              <span css={styles.chip}>진로</span>
+            <div css={styles.value} onClick={worryBottomSheetProps.on}>
+              <span css={styles.chip}>취업·진로</span>
               <span css={styles.chip}>학업</span>
               <span css={styles.chip}>인간관계</span>
               <CaretRight color={COLORS.gray3} />
@@ -80,6 +82,7 @@ const MyPage = () => {
       <NicknameBottomSheet {...nicknameBottomSheetProps} />
       <BirthdayBottomSheet {...birthdayBottomSheetProps} />
       <GenderBottomSheet {...genderBottomSheetProps} />
+      <WorryBottomSheet {...worryBottomSheetProps} />
     </div>
   );
 };
