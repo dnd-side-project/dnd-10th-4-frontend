@@ -7,7 +7,7 @@ import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
 import { letterWrite } from '@/constants/schemaLiteral';
 import { type Worry, type EqualGender } from '@/constants/letters';
-import { type Inputs } from '..';
+import { type WriteInputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
 import { AgeSlider, GenderSelect, WorrySelect } from '.';
 
@@ -15,7 +15,7 @@ const LetterReceiverSelect = ({
   isBottomSheetOpen,
   toggleBottomSheet,
 }: BottomSheetProps) => {
-  const { setValue } = useFormContext<Inputs>();
+  const { setValue } = useFormContext<WriteInputs>();
 
   const [age, setAge] = useState<[number, number]>([
     letterWrite.age.min,

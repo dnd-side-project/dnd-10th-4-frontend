@@ -10,7 +10,7 @@ import {
   type EqualGender,
 } from '@/constants/letters';
 import Chip from '@/components/Chip';
-import { type Inputs } from '..';
+import { type WriteInputs } from '..';
 
 interface ReceiverContainerProps {
   onClick: () => void;
@@ -18,7 +18,7 @@ interface ReceiverContainerProps {
 }
 
 const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
-  const { watch } = useFormContext<Inputs>();
+  const { watch } = useFormContext<WriteInputs>();
 
   const age = watch('age');
   const gender = watch('gender') as '' | EqualGender;

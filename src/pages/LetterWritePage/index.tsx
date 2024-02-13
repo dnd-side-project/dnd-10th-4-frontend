@@ -8,12 +8,12 @@ import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
-import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
-const schema = z.object({
+const writeSchema = z.object({
   age: z.array(z.number()).min(L.age.value, { message: L.age.message }),
   content: z
     .string()
@@ -36,13 +36,13 @@ const schema = z.object({
     ),
 });
 
-export type Inputs = z.infer<typeof schema>;
+export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
   const navigate = useNavigate();
 
-  const methods = useForm<Inputs>({
-    resolver: zodResolver(schema),
+  const methods = useForm<WriteInputs>({
+    resolver: zodResolver(writeSchema),
     defaultValues: {
       age: [],
       content: '',
@@ -60,7 +60,7 @@ const LetterWritePage = () => {
     mutationFn: letterAPI.postLetter,
   });
 
-  const onSubmit = async (data: Inputs) => {
+  const onSubmit = async (data: WriteInputs) => {
     await postLetter(data);
   };
 

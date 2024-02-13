@@ -1,10 +1,10 @@
 import { useFormContext } from 'react-hook-form';
 import Button from '@/components/Button';
 import PolaroidModal from '@/components/PolaroidModal';
-import { Inputs } from '..';
+import { WriteInputs } from '..';
 
 const PolaroidImage = () => {
-  const { watch } = useFormContext<Inputs>();
+  const { watch } = useFormContext<WriteInputs>();
   const imgUrl = URL.createObjectURL(watch('image')[0]);
 
   return (

@@ -1,5 +1,5 @@
 import { Worry } from '@/constants/users';
-import { Inputs } from '@/pages/LetterWritePage';
+import { WriteInputs } from '@/pages/LetterWritePage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
 import { baseInstance } from '../instance';
 
@@ -40,7 +40,7 @@ const letterAPI = {
   },
 
   /** 편지 작성 */
-  postLetter: async (letter: Inputs) => {
+  postLetter: async (letter: WriteInputs) => {
     const formData = new FormData();
     formData.append('content', letter.content);
     formData.append(
