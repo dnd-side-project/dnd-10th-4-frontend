@@ -22,7 +22,7 @@ const memberHandler = [
       id: 7,
       email: 'tnlswodnjs99@naver.com',
       nickname: '낯선 거북이',
-      worryTypes: [],
+      worryTypes: ['COURSE', 'STUDY', 'RELATIONSHIP'],
       gender: 'MALE',
       age: 40,
       role: 'USER',
