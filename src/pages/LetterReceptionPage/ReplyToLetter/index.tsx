@@ -12,10 +12,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import LetterContent from '../components/LetterContent';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 

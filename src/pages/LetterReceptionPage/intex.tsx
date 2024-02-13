@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Suspense } from 'react';
-import { ROUTER_PATHS } from '@/router';
-import createFunnel from '@/components/Funnel/createFunnel';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import createFunnel from '@/components/Funnel/createFunnel';
+import { ROUTER_PATHS } from '@/router';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
