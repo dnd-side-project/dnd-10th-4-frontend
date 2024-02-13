@@ -1,42 +1,28 @@
-import { useState } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
-import { useMutation } from '@tanstack/react-query';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
 import { Shuffle } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
+import { getRandomItem } from '@/utils/arrayUtils';
 import { NICKNAMES } from '@/constants/users';
-import { type Nickname } from '@/constants/users';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import memberAPI from '@/api/member/apis';
 import onboardingStyles from '../styles';
 import StepTemplate from '../components/StepTemplate';
+import { Inputs } from '../hooks/useOnboardingForm';
 
 const InputNicknameStep = () => {
-  const [nickname, setNickname] = useState<Nickname>(NICKNAMES[0]);
+  const { setValue, control } = useFormContext<Inputs>();
+  const { nickname } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
-  const { mutateAsync, isPending } = useMutation({
-    mutationFn: memberAPI.patchNickname,
-  });
-
-  const handleChangeNickname = () => {
-    const randomIndex = Math.floor(Math.random() * NICKNAMES.length);
-    setNickname(NICKNAMES[randomIndex]);
-  };
-
-  const handleSubmit = async () => {
-    await mutateAsync({ nickname });
-    toNext();
-  };
 
   return (
     <StepTemplate
       buttonContent={
-        <Button variant="primary" onClick={handleSubmit} disabled={isPending}>
-          {isPending ? <LoadingSpinner size="1.3rem" /> : '다음'}
+        <Button variant="primary" onClick={toNext}>
+          다음
         </Button>
       }
     >
@@ -47,9 +33,10 @@ const InputNicknameStep = () => {
         <span>낯선 </span>
         <span css={css({ color: COLORS.gray3 })}>{nickname}</span>
         <IconButton
+          type="button"
           css={styles.icon}
           variant="header"
-          onClick={handleChangeNickname}
+          onClick={() => setValue('nickname', getRandomItem(NICKNAMES))}
         >
           <Shuffle />
         </IconButton>

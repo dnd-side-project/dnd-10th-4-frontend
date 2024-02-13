@@ -20,7 +20,7 @@ const MusicButton = ({ color = 'white', ...props }: MusicButtonProps) => {
         align="end"
         delay={5000}
         triggerContent={
-          <IconButton onClick={toggle} {...props}>
+          <IconButton type="button" onClick={toggle} {...props}>
             {isPlaying ? <SoundOn color={color} /> : <SoundOff color={color} />}
           </IconButton>
         }

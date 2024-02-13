@@ -1,18 +1,13 @@
-import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import textStyles from '@/styles/textStyles';
-import { ROUTER_PATHS } from '@/router';
 import StepTemplate from '../components/StepTemplate';
 
 const LastStep = () => {
-  const navigate = useNavigate();
-
   return (
     <StepTemplate
       buttonContent={
-        // TODO: 임시로 첫 스텝으로 이동시킴
-        <Button variant="primary" onClick={() => navigate(ROUTER_PATHS.ROOT)}>
+        <Button type="submit" variant="primary">
           시작하기
         </Button>
       }
