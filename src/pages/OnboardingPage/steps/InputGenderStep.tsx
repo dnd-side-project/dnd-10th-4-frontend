@@ -1,6 +1,5 @@
 import { useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
-import { type Gender } from '@/constants/users';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
@@ -9,17 +8,12 @@ import StepTemplate from '../components/StepTemplate';
 import { Inputs } from '../hooks/useOnboardingForm';
 
 const InputGenderStep = () => {
-  const { setValue, getFieldState, trigger, formState, control } =
+  const { getFieldState, trigger, formState, control, register } =
     useFormContext<Inputs>();
   const { invalid } = getFieldState('gender', formState);
   const { nickname, gender } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
-
-  const handleSelect = (value: Gender) => {
-    setValue('gender', value);
-    trigger('gender');
-  };
 
   return (
     <StepTemplate
@@ -35,16 +29,18 @@ const InputGenderStep = () => {
       <h3 css={textStyles.t3}>성별을 알려주세요</h3>
       <section css={styles.genderSection}>
         <GenderCard
+          {...register('gender')}
           variant="primary"
-          gender="MALE"
-          isSelected={gender === 'MALE'}
-          onClick={() => handleSelect('MALE')}
+          value="MALE"
+          selectedValue={gender}
+          onClick={() => trigger('gender')}
         />
         <GenderCard
+          {...register('gender')}
           variant="primary"
-          gender="FEMALE"
-          isSelected={gender === 'FEMALE'}
-          onClick={() => handleSelect('FEMALE')}
+          value="FEMALE"
+          selectedValue={gender}
+          onClick={() => trigger('gender')}
         />
       </section>
     </StepTemplate>

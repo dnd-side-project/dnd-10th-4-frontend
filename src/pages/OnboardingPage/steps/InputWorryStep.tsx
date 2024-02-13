@@ -44,24 +44,22 @@ const InputWorryStep = () => {
         3개 까지 선택 할 수 있어요
       </p>
       <section css={styles.chipSection}>
-        {Object.entries(WORRY_DICT).map(([key, value]) => {
-          return (
-            <Chip
-              key={key}
-              css={css({ marginBottom: '0.875rem' })}
-              variant={
-                worries.includes(key as Worry)
-                  ? 'primary-selected'
-                  : worries.length < formLiteral.worries.max
-                    ? 'primary'
-                    : 'primary-disabled'
-              }
-              onClick={() => handleToggleWorry(key as Worry)}
-            >
-              {value}
-            </Chip>
-          );
-        })}
+        {Object.entries(WORRY_DICT).map(([key, value]) => (
+          <Chip
+            key={key}
+            css={css({ marginBottom: '0.875rem' })}
+            variant={
+              worries.includes(key as Worry)
+                ? 'primary-selected'
+                : worries.length < formLiteral.worries.max
+                  ? 'primary'
+                  : 'primary-disabled'
+            }
+            onClick={() => handleToggleWorry(key as Worry)}
+          >
+            {value}
+          </Chip>
+        ))}
       </section>
     </StepTemplate>
   );
