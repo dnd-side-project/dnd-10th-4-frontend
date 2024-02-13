@@ -2,11 +2,9 @@ import { css } from '@emotion/react';
 import Modal from '@/components/Modal';
 import Header from '@/components/Header';
 import LetterCard from '@/components/LetterCard';
-import LetterHeader from '@/components/LetterHeader';
 import PolaroidModal from '@/components/PolaroidModal';
 import { CaretLeft } from '@/assets/icons';
-import COLORS from '@/constants/colors';
-import textStyles from '@/styles/textStyles';
+import LetterContent from '../components/LetterContent';
 
 interface SentLetterModalProps {
   isOpen: boolean;
@@ -32,18 +30,11 @@ const SentLetterModal = ({ isOpen, close }: SentLetterModalProps) => {
       />
       <div css={style.content}>
         <LetterCard isOpen={true}>
-          <LetterHeader nickname="낯선 고양이" />
-          <p css={style.letter}>
-            여기까지가 끝인가 보오 이제 나는 돌아서겠소 억지 노력으로 인연을
-            거슬러 괴롭히지는 않겠소 하고 싶은 말 하려 했던 말 이대로 다
-            남겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴
-            그대 침묵을 이별로 받아두겠소
-          </p>
-          <div css={style.date}>24년 02월 13일</div>
-          <LetterHeader
-            title="From"
-            titlePosition="right"
-            nickname="낯선 강아지"
+          <LetterContent
+            receiver="낯선 강아지"
+            content="여기까지가 끝인가 보오 이제 나는 돌아서겠소 억지 노력으로 인연을 거슬러 괴롭히지는 않겠소 하고 싶은 말 하려 했던 말 이대로 다 남겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오"
+            date="24년 02월 13일"
+            sender="낯선 고양이"
           />
           <PolaroidModal
             topPosition={4.5}
@@ -81,16 +72,5 @@ const style = {
   `,
   content: css`
     padding-inline: 1rem;
-  `,
-  letter: css`
-    height: 15rem;
-    ${textStyles.l1m}
-  `,
-  date: css`
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 3.5rem;
-    ${textStyles.c1r};
-    color: ${COLORS.gray4};
   `,
 };
