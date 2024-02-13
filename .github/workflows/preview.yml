@@ -6,7 +6,7 @@ env:
 
 on:
   pull_request:
-    branches: ['main', feat/**]
+    branches: ['main', feat/**, refactor/**, fix/**, chore/**]
 
 jobs:
   build:
