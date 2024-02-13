@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { ROUTER_PATHS } from '@/router';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { ImageSelect } from '.';
 
 interface LetterWriteBottomProps {
@@ -23,8 +24,7 @@ const LetterWriteBottom = ({ isPosting }: LetterWriteBottomProps) => {
         취소
       </Button>
       <Button disabled={isPosting} type="submit" variant="primary" size="sm">
-        {/** isPosting 가 true 일 때 로딩스피너 보여줄 예정  */}
-        보내기
+        {isPosting ? <LoadingSpinner /> : '보내기'}
       </Button>
       <ImageSelect />
     </Navbar>

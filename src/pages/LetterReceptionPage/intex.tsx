@@ -1,10 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import { css } from '@emotion/react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import createFunnel from '@/components/Funnel/createFunnel';
 import { ROUTER_PATHS } from '@/router';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
+import style from './styles';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'ReceivedLetter',
@@ -12,35 +14,39 @@ const { Funnel, Step, useFunnel } = createFunnel([
 ] as const);
 
 const LetterReceptionPage = () => {
-  const { step, setStep, toPrev } = useFunnel();
   const navigate = useNavigate();
+  const { step, setStep, toPrev } = useFunnel();
+
+  const { letterId } = useParams();
 
   return (
-    <div css={style.container}>
-      <ReceptionHeader
-        onClickPrev={
-          step === 'ReceivedLetter' ? () => navigate(ROUTER_PATHS.ROOT) : toPrev
-        }
-      />
-      <Funnel step={step}>
-        <Step name="ReceivedLetter">
-          <ReceivedLetter onNext={() => setStep('ReplyToLetter')} />
-        </Step>
-        <Step name="ReplyToLetter">
-          <ReplyToLetter onPrev={() => setStep('ReceivedLetter')} />
-        </Step>
-      </Funnel>
-    </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <div css={style.container}>
+        <ReceptionHeader
+          onClickPrev={
+            step === 'ReceivedLetter'
+              ? () => navigate(ROUTER_PATHS.ROOT)
+              : toPrev
+          }
+          letterId={Number(letterId)}
+        />
+        <Funnel step={step}>
+          <Step name="ReceivedLetter">
+            <ReceivedLetter
+              letterId={Number(letterId)}
+              onNext={() => setStep('ReplyToLetter')}
+            />
+          </Step>
+          <Step name="ReplyToLetter">
+            <ReplyToLetter
+              letterId={Number(letterId)}
+              onPrev={() => setStep('ReceivedLetter')}
+            />
+          </Step>
+        </Funnel>
+      </div>
+    </Suspense>
   );
-};
-
-const style = {
-  container: css`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  `,
 };
 
 export default LetterReceptionPage;

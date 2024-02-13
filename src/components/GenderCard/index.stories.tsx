@@ -18,9 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    gender: 'FEMALE',
-    isSelected: false,
-    onClick: () => {},
+    value: 'FEMALE',
   },
 };
 
@@ -35,6 +33,7 @@ const styles = {
     padding: 1rem;
   `,
 };
+
 export const Primary_Variant: Story = {
   ...Primary,
   render: () => {
@@ -47,14 +46,16 @@ export const Primary_Variant: Story = {
         >
           <GenderCard
             variant="primary"
-            gender="MALE"
-            isSelected={gender === 'MALE'}
+            name="gender"
+            value="MALE"
+            selectedValue={gender}
             onClick={() => setGender('MALE')}
           />
           <GenderCard
             variant="primary"
-            gender="FEMALE"
-            isSelected={gender === 'FEMALE'}
+            name="gender"
+            value="FEMALE"
+            selectedValue={gender}
             onClick={() => setGender('FEMALE')}
           />
         </section>
@@ -75,14 +76,16 @@ export const Secondary_Variant: Story = {
         <section css={styles.genderSection}>
           <GenderCard
             variant="secondary"
-            gender="MALE"
-            isSelected={gender === 'MALE'}
+            name="gender"
+            value="MALE"
+            selectedValue={gender}
             onClick={() => setGender('MALE')}
           />
           <GenderCard
             variant="secondary"
-            gender="FEMALE"
-            isSelected={gender === 'FEMALE'}
+            name="gender"
+            value="FEMALE"
+            selectedValue={gender}
             onClick={() => setGender('FEMALE')}
           />
         </section>

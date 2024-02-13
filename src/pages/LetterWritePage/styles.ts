@@ -6,12 +6,11 @@ const style = {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(20px);
   `,
   header: css`
     height: 2.5rem;
-    margin-top: 1.25rem;
-    margin-bottom: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
 
     & > div:nth-of-type(1) {
       cursor: pointer;

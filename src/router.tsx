@@ -18,7 +18,7 @@ const ROUTER_PATHS = {
   SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
   ONBOARDING: '/onboarding',
   LETTER_WRITE: '/write',
-  LETTER_RECEPTION: '/reception',
+  LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
   MYPAGE: '/mypage',
 } as const;
 
@@ -60,12 +60,16 @@ const router = createBrowserRouter([
         element: <LetterWritePage />,
       },
       {
-        path: ROUTER_PATHS.LETTER_RECEPTION,
+        path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
         element: <LetterReceptionPage />,
       },
       {
         path: ROUTER_PATHS.MYPAGE,
         element: <MyPage />,
+      },
+      {
+        path: '*',
+        element: <div>잘못된 경로입니다.</div>,
       },
     ],
   },

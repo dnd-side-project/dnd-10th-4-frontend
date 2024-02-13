@@ -1,76 +1,36 @@
-import { useState } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
-import { useMutation } from '@tanstack/react-query';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
 import textStyles from '@/styles/textStyles';
 import Chip from '@/components/Chip';
 import { WORRY_DICT, type Worry } from '@/constants/users';
-import memberAPI from '@/api/member/apis';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import { toggleItemInArray } from '@/utils/arrayUtils';
 import StepTemplate from '../components/StepTemplate';
-
-const formLiteral = {
-  worry: {
-    min: 1,
-    max: 3,
-  },
-} as const;
+import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
 const InputWorryStep = () => {
-  const [selectedWorries, setSelectedWorries] = useState<Worry[]>([]);
+  const { setValue, getFieldState, trigger, formState, control } =
+    useFormContext<Inputs>();
+  const { invalid } = getFieldState('worries', formState);
+  const { worries } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
-  const { mutateAsync: deleteWorry, isPending: isDeleting } = useMutation({
-    mutationFn: memberAPI.deleteWorry,
-  });
-  const { mutateAsync: postWorry, isPending: isPosting } = useMutation({
-    mutationFn: memberAPI.postWorry,
-  });
+
+  if (!worries) {
+    return;
+  }
 
   const handleToggleWorry = (worry: Worry) => {
-    if (selectedWorries.includes(worry)) {
-      setSelectedWorries(selectedWorries.filter((w) => w !== worry));
-    } else {
-      setSelectedWorries([...selectedWorries, worry]);
-    }
-  };
-
-  const getChipVariant = (worry: Worry) => {
-    if (selectedWorries.length < formLiteral.worry.max) {
-      return selectedWorries.includes(worry) ? 'primary-selected' : 'primary';
-    } else {
-      return selectedWorries.includes(worry)
-        ? 'primary-selected'
-        : 'primary-disabled';
-    }
-  };
-
-  const isSubmitting = isDeleting || isPosting;
-
-  const handleSubmit = async () => {
-    if (
-      selectedWorries.length < formLiteral.worry.min ||
-      selectedWorries.length > formLiteral.worry.max
-    ) {
-      return;
-    }
-
-    await deleteWorry();
-    await postWorry({ worries: selectedWorries });
-
-    toNext();
+    setValue('worries', toggleItemInArray(worries, worry));
+    trigger('worries');
   };
 
   return (
     <StepTemplate
       buttonContent={
-        <Button
-          variant="primary"
-          onClick={handleSubmit}
-          disabled={isSubmitting || selectedWorries.length === 0}
-        >
-          {isSubmitting ? <LoadingSpinner size="1.3rem" /> : '선택 완료'}
+        <Button variant="primary" onClick={toNext} disabled={invalid}>
+          선택 완료
         </Button>
       }
     >
@@ -84,18 +44,22 @@ const InputWorryStep = () => {
         3개 까지 선택 할 수 있어요
       </p>
       <section css={styles.chipSection}>
-        {Object.entries(WORRY_DICT).map(([key, value]) => {
-          return (
-            <Chip
-              key={key}
-              css={css({ marginBottom: '0.875rem' })}
-              variant={getChipVariant(key as Worry)}
-              onClick={() => handleToggleWorry(key as Worry)}
-            >
-              {value}
-            </Chip>
-          );
-        })}
+        {Object.entries(WORRY_DICT).map(([key, value]) => (
+          <Chip
+            key={key}
+            css={css({ marginBottom: '0.875rem' })}
+            variant={
+              worries.includes(key as Worry)
+                ? 'primary-selected'
+                : worries.length < formLiteral.worries.max
+                  ? 'primary'
+                  : 'primary-disabled'
+            }
+            onClick={() => handleToggleWorry(key as Worry)}
+          >
+            {value}
+          </Chip>
+        ))}
       </section>
     </StepTemplate>
   );
