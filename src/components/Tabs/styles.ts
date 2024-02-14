@@ -23,7 +23,7 @@ const variantStyles = {
   primary: {
     list: css`
       border: 1px solid rgb(255 255 255 / 0.5);
-      border-radius: 0.5625rem;
+      border-radius: 6.25rem;
       background: linear-gradient(
         91deg,
         rgb(241 241 241 / 0.48) 19.56%,
@@ -35,7 +35,7 @@ const variantStyles = {
       margin: 1px;
       padding: 0.75rem 1rem;
       border: 1px solid transparent;
-      border-radius: 0.75rem;
+      border-radius: 6.25rem;
       background: none;
       color: ${COLORS.gray3};
       transition: all 0.25s ease;
@@ -46,7 +46,7 @@ const variantStyles = {
 
       &[data-state='active'] {
         border: 0.5px solid rgb(0 0 0 / 0.04);
-        border-radius: 0.4375rem;
+        border-radius: 6.25rem;
         background: white;
         color: black;
       }
