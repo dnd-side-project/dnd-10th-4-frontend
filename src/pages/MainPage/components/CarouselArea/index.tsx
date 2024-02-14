@@ -10,7 +10,7 @@ import useReadLetterStore from '@/stores/useReadLetterStore';
 import useLetterSlides from '../../hooks/useLetterSlides';
 import TimeChip from '../TimeChip';
 import styles from './styles';
-import { BOTTLES_LETTER, BOTTLES_REPLY } from './bottleData';
+import { BOTTLES_RECEPTIONS, BOTTLES_REPLY } from './bottleData';
 
 const CarouselArea = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -39,30 +39,30 @@ const CarouselArea = () => {
     <>
       <section css={styles.viewport} ref={emblaRef}>
         <div css={styles.container}>
-          {slides.map(({ id: slideId, letters, replies }) => (
+          {slides.map(({ id: slideId, receptions, replies }) => (
             <article key={slideId} css={styles.slide}>
-              {letters.map((letter, letterIdx) => (
+              {receptions.map((reception, receptionIdx) => (
                 <div
-                  key={letter.letterId}
-                  css={BOTTLES_LETTER[letterIdx]?.container.position}
+                  key={reception.letterId}
+                  css={BOTTLES_RECEPTIONS[receptionIdx]?.container.position}
                 >
                   <div
                     css={styles.bottleAnimation(
-                      BOTTLES_LETTER[letterIdx]?.container.animation,
+                      BOTTLES_RECEPTIONS[receptionIdx]?.container.animation,
                     )}
                     onClick={() =>
                       navigate(
-                        ROUTER_PATHS.LETTER_RECEPTION(`${letter.letterId}`),
+                        ROUTER_PATHS.LETTER_RECEPTION(`${reception.letterId}`),
                       )
                     }
                   >
                     <img
-                      src={BOTTLES_LETTER[letterIdx]?.bottle.src}
+                      src={BOTTLES_RECEPTIONS[receptionIdx]?.bottle.src}
                       alt="물병"
                     />
-                    {BOTTLES_LETTER[letterIdx].sparkles?.map(
+                    {BOTTLES_RECEPTIONS[receptionIdx].sparkles?.map(
                       (sparkle, sparkleIdx) =>
-                        !readReceptions.includes(letter.letterId) && (
+                        !readReceptions.includes(reception.letterId) && (
                           <img
                             key={sparkleIdx}
                             src={sparkle.src}
@@ -74,10 +74,10 @@ const CarouselArea = () => {
                   </div>
                   <TimeChip
                     css={[
-                      BOTTLES_LETTER[letterIdx]?.chip.position,
+                      BOTTLES_RECEPTIONS[receptionIdx]?.chip.position,
                       css({ zIndex: 10 }),
                     ]}
-                    createdAt={letter.createdAt}
+                    createdAt={reception.createdAt}
                   />
                 </div>
               ))}

@@ -1,17 +1,17 @@
 import { css } from '@emotion/react';
-import BottleLetter1 from '@/assets/images/bottleLetter1.png';
-import BottleLetter2 from '@/assets/images/bottleLetter2.png';
-import BottleLetter3 from '@/assets/images/bottleLetter3.png';
-import BottleLetter4 from '@/assets/images/bottleLetter4.png';
+import BottleReception1 from '@/assets/images/bottleReception1.png';
+import BottleReception2 from '@/assets/images/bottleReception2.png';
+import BottleReception3 from '@/assets/images/bottleReception3.png';
+import BottleReception4 from '@/assets/images/bottleReception4.png';
 import BottleReply1 from '@/assets/images/bottleReply1.png';
 import BottleReply2 from '@/assets/images/bottleReply2.png';
 import SparkleBig from '@/assets/images/sparkleBig.png';
 import SparkleSmall from '@/assets/images/sparkleSmall.png';
 
-export const BOTTLES_LETTER = [
+export const BOTTLES_RECEPTIONS = [
   {
     bottle: {
-      src: BottleLetter4,
+      src: BottleReception1,
     },
     container: {
       animation: {
@@ -47,7 +47,7 @@ export const BOTTLES_LETTER = [
   },
   {
     bottle: {
-      src: BottleLetter3,
+      src: BottleReception2,
     },
     container: {
       animation: {
@@ -83,7 +83,7 @@ export const BOTTLES_LETTER = [
   },
   {
     bottle: {
-      src: BottleLetter2,
+      src: BottleReception3,
     },
     container: {
       animation: {
@@ -119,7 +119,7 @@ export const BOTTLES_LETTER = [
   },
   {
     bottle: {
-      src: BottleLetter1,
+      src: BottleReception4,
     },
     container: {
       animation: {
