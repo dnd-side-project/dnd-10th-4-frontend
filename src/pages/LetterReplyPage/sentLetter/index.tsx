@@ -7,8 +7,9 @@ import Modal from '@/components/Modal';
 import Header from '@/components/Header';
 import LetterCard from '@/components/LetterCard';
 import PolaroidModal from '@/components/PolaroidModal';
-import useLetterReply from '../hooks/useLetterReply';
+import TagList from '@/pages/LetterReceptionPage/components/TagList';
 import LetterContent from '../components/LetterContent';
+import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 
 interface SentLetterProps {
   letterId: number;
@@ -17,7 +18,7 @@ interface SentLetterProps {
 const SentLetter = ({ letterId }: SentLetterProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
-  const data = useLetterReply(letterId);
+  const { replyLetter } = useLetterReplyWithTag(letterId);
 
   return (
     <>
@@ -42,11 +43,12 @@ const SentLetter = ({ letterId }: SentLetterProps) => {
         />
         <div css={style.content}>
           <LetterCard isOpen={true}>
+            <TagList tags={replyLetter.tagList} />
             <LetterContent
-              receiver={data.senderNickname}
-              content={data.content}
+              receiver={replyLetter.senderNickname}
+              content={replyLetter.content}
               date="24년 02월 13일"
-              sender={data.receiverNickname}
+              sender={replyLetter.receiverNickname}
             />
             <PolaroidModal
               topPosition={4.5}

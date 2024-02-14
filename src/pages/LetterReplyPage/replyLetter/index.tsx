@@ -1,22 +1,22 @@
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
 import LetterContent from '../components/LetterContent';
-import useLetterReply from '../hooks/useLetterReply';
+import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 
 interface ReplyLetterProps {
   letterId: number;
 }
 
 const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
-  const data = useLetterReply(letterId);
+  const { replyLetter } = useLetterReplyWithTag(letterId);
 
   return (
     <LetterCard isOpen={true}>
       <LetterContent
-        receiver={data.receiverNickname}
-        content={data.repliedContent}
-        date={formatDate(new Date(data.createdAt))}
-        sender={data.senderNickname}
+        receiver={replyLetter.receiverNickname}
+        content={replyLetter.repliedContent}
+        date={formatDate(new Date(replyLetter.createdAt))}
+        sender={replyLetter.senderNickname}
       />
     </LetterCard>
   );
