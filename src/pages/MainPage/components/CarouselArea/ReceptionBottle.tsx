@@ -4,6 +4,7 @@ import { type Reception } from '@/types/letter';
 import { ROUTER_PATHS } from '@/router';
 import useReadLetterStore from '@/stores/useReadLetterStore';
 import TimeChip from '../TimeChip';
+import Sparkle from '../Sparkle';
 import { RECEPTION_BOTTLES } from './bottleData';
 import styles from './styles';
 
@@ -38,12 +39,7 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
         {RECEPTION_BOTTLES[constantId].sparkles?.map(
           (sparkle, i) =>
             !readReceptions.includes(letterId) && (
-              <img
-                key={i}
-                src={sparkle.src}
-                alt="반짝이"
-                css={[styles.sparkleAnimation, sparkle.position]}
-              />
+              <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
             ),
         )}
       </div>

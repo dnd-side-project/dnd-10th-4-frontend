@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { type Reply } from '@/types/letter';
 import { ROUTER_PATHS } from '@/router';
 import useReadLetterStore from '@/stores/useReadLetterStore';
+import Sparkle from '../Sparkle';
 import { REPLY_BOTTLES } from './bottleData';
 import styles from './styles';
 
@@ -37,12 +38,7 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
       {REPLY_BOTTLES[constantId].sparkles?.map(
         (sparkle, i) =>
           !readReplies.includes(letterId) && (
-            <img
-              key={i}
-              src={sparkle.src}
-              alt="반짝이"
-              css={[styles.sparkleAnimation, sparkle.position]}
-            />
+            <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
           ),
       )}
     </div>
