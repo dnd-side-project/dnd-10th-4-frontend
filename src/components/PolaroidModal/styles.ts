@@ -22,6 +22,9 @@ const style = {
       padding-inline: 3.75rem;
     }
   `,
+  icon: css`
+    cursor: pointer;
+  `,
 };
 
 export default style;
