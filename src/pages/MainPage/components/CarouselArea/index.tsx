@@ -37,11 +37,14 @@ const CarouselArea = () => {
         <div css={styles.container}>
           {slides.map(({ id: slideId, letters, replies }) => (
             <article key={slideId} css={styles.slide}>
-              {letters.map((letter, idx) => (
-                <div key={idx} css={BOTTLES_LETTER[idx]?.container.position}>
+              {letters.map((letter, letterIdx) => (
+                <div
+                  key={letter.letterId}
+                  css={BOTTLES_LETTER[letterIdx]?.container.position}
+                >
                   <div
                     css={styles.bottleAnimation(
-                      BOTTLES_LETTER[idx]?.container.animation,
+                      BOTTLES_LETTER[letterIdx]?.container.animation,
                     )}
                     onClick={() =>
                       navigate(
@@ -49,19 +52,24 @@ const CarouselArea = () => {
                       )
                     }
                   >
-                    <img src={BOTTLES_LETTER[idx]?.bottle.src} alt="물병" />
-                    {BOTTLES_LETTER[idx].sparkles?.map((sparkle, idx) => (
-                      <img
-                        key={idx}
-                        src={sparkle.src}
-                        alt="반짝이"
-                        css={[styles.sparkleAnimation, sparkle.position]}
-                      />
-                    ))}
+                    <img
+                      src={BOTTLES_LETTER[letterIdx]?.bottle.src}
+                      alt="물병"
+                    />
+                    {BOTTLES_LETTER[letterIdx].sparkles?.map(
+                      (sparkle, sparkleIdx) => (
+                        <img
+                          key={sparkleIdx}
+                          src={sparkle.src}
+                          alt="반짝이"
+                          css={[styles.sparkleAnimation, sparkle.position]}
+                        />
+                      ),
+                    )}
                   </div>
                   <TimeChip
                     css={[
-                      BOTTLES_LETTER[idx]?.chip.position,
+                      BOTTLES_LETTER[letterIdx]?.chip.position,
                       css({ zIndex: 10 }),
                     ]}
                     createdAt={letter.createdAt}
@@ -69,26 +77,28 @@ const CarouselArea = () => {
                 </div>
               ))}
 
-              {replies.map((reply, idx) => (
+              {replies.map((reply, replyIdx) => (
                 <div
-                  key={idx}
+                  key={reply.letterId}
                   css={[
-                    BOTTLES_REPLY[idx]?.container.position,
+                    BOTTLES_REPLY[replyIdx]?.container.position,
                     styles.bottleAnimation(),
                   ]}
                   onClick={() =>
                     navigate(ROUTER_PATHS.LETTER_REPLY(`${reply.letterId}`))
                   }
                 >
-                  <img src={BOTTLES_REPLY[idx]?.bottle.src} alt="물병" />
-                  {BOTTLES_REPLY[idx].sparkles?.map((sparkle, idx) => (
-                    <img
-                      key={idx}
-                      src={sparkle.src}
-                      alt="반짝이"
-                      css={[styles.sparkleAnimation, sparkle.position]}
-                    />
-                  ))}
+                  <img src={BOTTLES_REPLY[replyIdx]?.bottle.src} alt="물병" />
+                  {BOTTLES_REPLY[replyIdx].sparkles?.map(
+                    (sparkle, sparkleIdx) => (
+                      <img
+                        key={sparkleIdx}
+                        src={sparkle.src}
+                        alt="반짝이"
+                        css={[styles.sparkleAnimation, sparkle.position]}
+                      />
+                    ),
+                  )}
                 </div>
               ))}
             </article>
