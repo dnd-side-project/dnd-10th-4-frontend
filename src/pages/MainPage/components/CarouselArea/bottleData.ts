@@ -8,7 +8,7 @@ import BottleReply2 from '@/assets/images/bottleReply2.png';
 import SparkleBig from '@/assets/images/sparkleBig.png';
 import SparkleSmall from '@/assets/images/sparkleSmall.png';
 
-export const BOTTLES_RECEPTIONS = [
+export const RECEPTION_BOTTLES = [
   {
     bottle: {
       src: BottleReception1,
@@ -156,7 +156,7 @@ export const BOTTLES_RECEPTIONS = [
   },
 ] as const;
 
-export const BOTTLES_REPLY = [
+export const REPLY_BOTTLES = [
   {
     bottle: {
       src: BottleReply1,

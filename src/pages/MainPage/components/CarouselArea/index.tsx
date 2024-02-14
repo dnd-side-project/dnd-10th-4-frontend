@@ -1,29 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { CaretLeft, CaretRight } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
-import { ROUTER_PATHS } from '@/router';
-import useReadLetterStore from '@/stores/useReadLetterStore';
 import useLetterSlides from '../../hooks/useLetterSlides';
-import TimeChip from '../TimeChip';
 import styles from './styles';
-import { BOTTLES_RECEPTIONS, BOTTLES_REPLY } from './bottleData';
+import ReceptionBottle from './ReceptionBottle';
+import ReplyBottle from './ReplyBottle';
 
 const CarouselArea = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const readReceptions = useReadLetterStore((s) => s.receptions);
-  const readReplies = useReadLetterStore((s) => s.replies);
+  const { slides } = useLetterSlides();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   });
-  const { slides } = useLetterSlides();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!emblaApi) {
@@ -41,71 +33,12 @@ const CarouselArea = () => {
         <div css={styles.container}>
           {slides.map(({ id: slideId, receptions, replies }) => (
             <article key={slideId} css={styles.slide}>
-              {receptions.map((reception, receptionIdx) => (
-                <div
-                  key={reception.letterId}
-                  css={BOTTLES_RECEPTIONS[receptionIdx]?.container.position}
-                >
-                  <div
-                    css={styles.bottleAnimation(
-                      BOTTLES_RECEPTIONS[receptionIdx]?.container.animation,
-                    )}
-                    onClick={() =>
-                      navigate(
-                        ROUTER_PATHS.LETTER_RECEPTION(`${reception.letterId}`),
-                      )
-                    }
-                  >
-                    <img
-                      src={BOTTLES_RECEPTIONS[receptionIdx]?.bottle.src}
-                      alt="물병"
-                    />
-                    {BOTTLES_RECEPTIONS[receptionIdx].sparkles?.map(
-                      (sparkle, sparkleIdx) =>
-                        !readReceptions.includes(reception.letterId) && (
-                          <img
-                            key={sparkleIdx}
-                            src={sparkle.src}
-                            alt="반짝이"
-                            css={[styles.sparkleAnimation, sparkle.position]}
-                          />
-                        ),
-                    )}
-                  </div>
-                  <TimeChip
-                    css={[
-                      BOTTLES_RECEPTIONS[receptionIdx]?.chip.position,
-                      css({ zIndex: 10 }),
-                    ]}
-                    createdAt={reception.createdAt}
-                  />
-                </div>
+              {receptions.map((reception, i) => (
+                <ReceptionBottle key={i} constantId={i} reception={reception} />
               ))}
 
-              {replies.map((reply, replyIdx) => (
-                <div
-                  key={reply.letterId}
-                  css={[
-                    BOTTLES_REPLY[replyIdx]?.container.position,
-                    styles.bottleAnimation(),
-                  ]}
-                  onClick={() =>
-                    navigate(ROUTER_PATHS.LETTER_REPLY(`${reply.letterId}`))
-                  }
-                >
-                  <img src={BOTTLES_REPLY[replyIdx]?.bottle.src} alt="물병" />
-                  {BOTTLES_REPLY[replyIdx].sparkles?.map(
-                    (sparkle, sparkleIdx) =>
-                      !readReplies.includes(reply.letterId) && (
-                        <img
-                          key={sparkleIdx}
-                          src={sparkle.src}
-                          alt="반짝이"
-                          css={[styles.sparkleAnimation, sparkle.position]}
-                        />
-                      ),
-                  )}
-                </div>
+              {replies.map((reply, i) => (
+                <ReplyBottle key={i} constantId={i} reply={reply} />
               ))}
             </article>
           ))}
