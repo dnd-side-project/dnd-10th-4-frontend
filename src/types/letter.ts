@@ -17,3 +17,13 @@ export type Reception = {
   content: string;
   worryType: Worry;
 };
+
+export type Reply = {
+  createdAt: string;
+  letterId: number;
+  senderNickname: string;
+  receiverNickname: string;
+  content: string;
+  repliedContent: string;
+  worryType: Worry;
+};
