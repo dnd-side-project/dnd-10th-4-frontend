@@ -34,20 +34,30 @@ const CarouselArea = () => {
           {slides.map(({ id: slideId, letters, replies }) => (
             <article key={slideId} css={styles.slide}>
               {letters.map((letter, idx) => (
-                <div key={idx} css={BOTTLES_LETTER[idx]?.position}>
-                  <img
-                    src={BOTTLES_LETTER[idx]?.src}
-                    alt="물병"
-                    css={styles.bottleImage(BOTTLES_LETTER[idx]?.animation)}
+                <div key={idx} css={BOTTLES_LETTER[idx]?.container.position}>
+                  <div
+                    css={styles.bottleAnimation(
+                      BOTTLES_LETTER[idx]?.container.animation,
+                    )}
                     onClick={() =>
                       console.log(
                         `TODO: ${letter.letterId} 번 편지 답장 보러가기`,
                       )
                     }
-                  />
+                  >
+                    <img src={BOTTLES_LETTER[idx]?.bottle.src} alt="물병" />
+                    {BOTTLES_LETTER[idx].sparkles?.map((sparkle, idx) => (
+                      <img
+                        key={idx}
+                        src={sparkle.src}
+                        alt="반짝이"
+                        css={[styles.sparkleAnimation, sparkle.position]}
+                      />
+                    ))}
+                  </div>
                   <TimeChip
                     css={[
-                      BOTTLES_LETTER[idx]?.chipPosition,
+                      BOTTLES_LETTER[idx]?.chip.position,
                       css({ zIndex: 10 }),
                     ]}
                     createdAt={letter.createdAt}
@@ -56,17 +66,25 @@ const CarouselArea = () => {
               ))}
 
               {replies.map((reply, idx) => (
-                <div key={idx} css={BOTTLES_REPLY[idx]?.position}>
-                  <img
-                    src={BOTTLES_REPLY[idx]?.src}
-                    alt="물병"
-                    css={styles.bottleImage()}
-                    onClick={() =>
-                      console.log(
-                        `TODO: ${reply.letterId} 번 편지 답장 보러가기`,
-                      )
-                    }
-                  />
+                <div
+                  key={idx}
+                  css={[
+                    BOTTLES_REPLY[idx]?.container.position,
+                    styles.bottleAnimation(),
+                  ]}
+                  onClick={() =>
+                    console.log(`TODO: ${reply.letterId} 번 편지 답장 보러가기`)
+                  }
+                >
+                  <img src={BOTTLES_REPLY[idx]?.bottle.src} alt="물병" />
+                  {BOTTLES_REPLY[idx].sparkles?.map((sparkle, idx) => (
+                    <img
+                      key={idx}
+                      src={sparkle.src}
+                      alt="반짝이"
+                      css={[styles.sparkleAnimation, sparkle.position]}
+                    />
+                  ))}
                 </div>
               ))}
             </article>

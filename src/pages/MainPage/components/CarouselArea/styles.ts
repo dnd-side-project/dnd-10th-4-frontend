@@ -11,6 +11,18 @@ const float = (translateY: string) => keyframes`
   }
 `;
 
+const sparkle = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 const styles = {
   viewport: css`
     position: relative;
@@ -51,7 +63,10 @@ const styles = {
     cursor: pointer;
     transition: background-color 0.15s;
   `,
-  bottleImage: (animation?: { duration: string; translateY: string }) => css`
+  bottleAnimation: (animation?: {
+    duration: string;
+    translateY: string;
+  }) => css`
     cursor: pointer;
 
     ${animation &&
@@ -59,6 +74,9 @@ const styles = {
       animation: ${float(animation.translateY)} ${animation.duration} infinite
         alternate;
     `}
+  `,
+  sparkleAnimation: css`
+    animation: ${sparkle} 3s infinite alternate ease-out;
   `,
 };
 
