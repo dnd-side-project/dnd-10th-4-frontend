@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { CaretLeft, CaretRight } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
+import { ROUTER_PATHS } from '@/router';
 import useLetterSlides from '../../hooks/useLetterSlides';
 import TimeChip from '../TimeChip';
 import styles from './styles';
@@ -16,6 +18,8 @@ const CarouselArea = () => {
     loop: true,
   });
   const { slides } = useLetterSlides();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!emblaApi) {
@@ -40,8 +44,8 @@ const CarouselArea = () => {
                       BOTTLES_LETTER[idx]?.container.animation,
                     )}
                     onClick={() =>
-                      console.log(
-                        `TODO: ${letter.letterId} 번 편지 답장 보러가기`,
+                      navigate(
+                        ROUTER_PATHS.LETTER_RECEPTION(`${letter.letterId}`),
                       )
                     }
                   >
@@ -73,7 +77,7 @@ const CarouselArea = () => {
                     styles.bottleAnimation(),
                   ]}
                   onClick={() =>
-                    console.log(`TODO: ${reply.letterId} 번 편지 답장 보러가기`)
+                    navigate(ROUTER_PATHS.LETTER_REPLY(`${reply.letterId}`))
                   }
                 >
                   <img src={BOTTLES_REPLY[idx]?.bottle.src} alt="물병" />
