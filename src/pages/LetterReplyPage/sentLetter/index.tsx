@@ -8,9 +8,9 @@ import Header from '@/components/Header';
 import LetterCard from '@/components/LetterCard';
 import PolaroidModal from '@/components/PolaroidModal';
 import TagList from '@/pages/LetterReceptionPage/components/TagList';
-import LetterContent from '../components/LetterContent';
+import Button from '@/components/Button';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
-
+import LetterContent from '../components/LetterContent';
 interface SentLetterProps {
   letterId: number;
 }
@@ -54,7 +54,11 @@ const SentLetter = ({ letterId }: SentLetterProps) => {
               topPosition={4.5}
               leftPosition={1.2}
               img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
-            />
+            >
+              <Button variant="secondary" size="sm">
+                닫기
+              </Button>
+            </PolaroidModal>
           </LetterCard>
         </div>
       </Modal>
