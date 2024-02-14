@@ -14,7 +14,14 @@ const LetterReplyPage = () => {
     <div css={style.container}>
       <ReplyHeader />
       <div css={style.content}>
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense
+          fallback={
+            <div css={style.loadingSpinner}>
+              <LoadingSpinner size="4rem" />
+              <p>답장 받은 편지 가져오는 중...</p>
+            </div>
+          }
+        >
           <div css={style.letter}>
             <SentLetter letterId={Number(letterId)} />
             <ReplyLetter letterId={Number(letterId)} />
@@ -46,5 +53,13 @@ const style = {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  `,
+  loadingSpinner: css`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
   `,
 };

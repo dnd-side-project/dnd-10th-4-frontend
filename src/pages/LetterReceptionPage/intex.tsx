@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Suspense } from 'react';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import createFunnel from '@/components/Funnel/createFunnel';
 import { ROUTER_PATHS } from '@/router';
+import createFunnel from '@/components/Funnel/createFunnel';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';
@@ -20,7 +20,14 @@ const LetterReceptionPage = () => {
   const { letterId } = useParams();
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense
+      fallback={
+        <div css={style.loadingSpinner}>
+          <LoadingSpinner size="4rem" />
+          <p>받은 편지 가져오는 중...</p>
+        </div>
+      }
+    >
       <div css={style.container}>
         <ReceptionHeader
           onClickPrev={
