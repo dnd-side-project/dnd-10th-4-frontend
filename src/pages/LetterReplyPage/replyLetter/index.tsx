@@ -1,17 +1,14 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
 import LetterCard from '@/components/LetterCard';
-import letterOptions from '@/api/letter/queryOptions';
 import { formatDate } from '@/utils/dateUtils';
 import LetterContent from '../components/LetterContent';
+import useLetterReply from '../hooks/useLetterReply';
 
 interface ReplyLetterProps {
   letterId: number;
 }
 
 const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
-  const { data } = useSuspenseQuery({
-    ...letterOptions.singleReply(letterId),
-  });
+  const data = useLetterReply(letterId);
 
   return (
     <LetterCard isOpen={true}>

@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { CaretRight, CaretLeft } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
@@ -8,7 +7,7 @@ import Modal from '@/components/Modal';
 import Header from '@/components/Header';
 import LetterCard from '@/components/LetterCard';
 import PolaroidModal from '@/components/PolaroidModal';
-import letterOptions from '@/api/letter/queryOptions';
+import useLetterReply from '../hooks/useLetterReply';
 import LetterContent from '../components/LetterContent';
 
 interface SentLetterProps {
@@ -18,9 +17,7 @@ interface SentLetterProps {
 const SentLetter = ({ letterId }: SentLetterProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
-  const { data } = useSuspenseQuery({
-    ...letterOptions.singleReply(letterId),
-  });
+  const data = useLetterReply(letterId);
 
   return (
     <>
