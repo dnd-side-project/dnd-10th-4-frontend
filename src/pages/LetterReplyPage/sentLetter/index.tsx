@@ -1,9 +1,15 @@
 import { css } from '@emotion/react';
-import { CaretRight } from '@/assets/icons';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { CaretRight, CaretLeft } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
-import SentLetterModal from './SentLetterModal';
+import Modal from '@/components/Modal';
+import Header from '@/components/Header';
+import LetterCard from '@/components/LetterCard';
+import PolaroidModal from '@/components/PolaroidModal';
+import letterOptions from '@/api/letter/queryOptions';
+import LetterContent from '../components/LetterContent';
 
 interface SentLetterProps {
   letterId: number;
@@ -12,13 +18,47 @@ interface SentLetterProps {
 const SentLetter = ({ letterId }: SentLetterProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
+  const { data } = useSuspenseQuery({
+    ...letterOptions.singleReply(letterId),
+  });
+
   return (
     <>
       <div css={style.container} onClick={open}>
         <span css={style.text}>내가 보낸 편지</span>
         <CaretRight stroke={COLORS.gray4} width={24} height={24} />
       </div>
-      <SentLetterModal isOpen={isOpen} close={close} letterId={letterId} />
+      <Modal isOpen={isOpen} close={close}>
+        <Header
+          css={style.header}
+          leftContent={
+            <div css={style.leftHeader}>
+              <CaretLeft
+                css={style.icon}
+                strokeWidth={2.5}
+                color="white"
+                onClick={close}
+              />
+              <span css={style.headerText}>내가 보낸 편지</span>
+            </div>
+          }
+        />
+        <div css={style.content}>
+          <LetterCard isOpen={true}>
+            <LetterContent
+              receiver={data.senderNickname}
+              content={data.content}
+              date="24년 02월 13일"
+              sender={data.receiverNickname}
+            />
+            <PolaroidModal
+              topPosition={4.5}
+              leftPosition={1.2}
+              img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
+            />
+          </LetterCard>
+        </div>
+      </Modal>
     </>
   );
 };
@@ -42,5 +82,28 @@ const style = {
   text: css`
     color: ${COLORS.gray4};
     ${textStyles.b4m}
+  `,
+  header: css`
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
+  `,
+  leftHeader: css`
+    display: flex;
+    gap: 0.625rem;
+    align-items: center;
+  `,
+  icon: css`
+    cursor: pointer;
+  `,
+  headerText: css`
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+  `,
+  content: css`
+    padding-inline: 1rem;
   `,
 };
