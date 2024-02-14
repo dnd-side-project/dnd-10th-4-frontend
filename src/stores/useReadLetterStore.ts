@@ -1,4 +1,4 @@
-import { StateCreator, create } from 'zustand';
+import { StateCreator, createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { pushUniqueItemToArray } from '@/utils/arrayUtils';
@@ -29,7 +29,9 @@ const createReplySlice: StateCreator<ReplySlice> = (set) => ({
     })),
 });
 
-const useReadLetterStore = create<ReceptionSlice & ReplySlice>()(
+type ReadLetterStore = ReceptionSlice & ReplySlice;
+
+export const readLetterStore = createStore<ReadLetterStore>()(
   persist(
     (...a) => ({
       ...createReceptionSlice(...a),
@@ -40,5 +42,8 @@ const useReadLetterStore = create<ReceptionSlice & ReplySlice>()(
     },
   ),
 );
+
+const useReadLetterStore = <T>(selector: (state: ReadLetterStore) => T) =>
+  useStore(readLetterStore, selector);
 
 export default useReadLetterStore;
