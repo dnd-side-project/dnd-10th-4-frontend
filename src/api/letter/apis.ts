@@ -101,7 +101,7 @@ const letterAPI = {
 
   /** 받은 편지 보관함에 보관 */
   patchReceptionStorage: async (letterId: number) => {
-    const { data } = await authInstance.get(
+    const { data } = await authInstance.patch(
       `/api/letter/reception/storage/${letterId}`,
     );
     return data;
