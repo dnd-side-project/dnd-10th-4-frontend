@@ -9,18 +9,26 @@ import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-const BottomButton = () => {
+interface BottomButtonProps {
+  letterId: number;
+}
+
+const BottomButton = ({ letterId }: BottomButtonProps) => {
   const navigate = useNavigate();
   const queryClient = new QueryClient();
+
+  const navigateToRoot = () => {
+    navigate(ROUTER_PATHS.ROOT);
+  };
 
   const { mutateAsync: patchStorage, isPending: isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionStorage,
   });
 
   const handleStorageLetter = async () => {
-    await patchStorage(1);
+    await patchStorage(letterId);
     queryClient.invalidateQueries({ queryKey: letterOptions.all });
-    navigate(ROUTER_PATHS.ROOT);
+    navigateToRoot();
   };
 
   return (
@@ -28,7 +36,7 @@ const BottomButton = () => {
       <Button
         variant="semi-transparent-unaccent"
         size="sm"
-        onClick={() => navigate(ROUTER_PATHS.ROOT)}
+        onClick={navigateToRoot}
       >
         닫기
       </Button>

@@ -1,19 +1,26 @@
+import { Suspense } from 'react';
+import { useParams } from 'react-router-dom';
 import { css } from '@emotion/react';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import ReplyHeader from './ReplyHeader';
 import SentLetter from './sentLetter';
 import ReplyLetter from './replyLetter';
 import BottomButton from './components/BottomButton';
 
 const LetterReplyPage = () => {
+  const { letterId } = useParams();
+
   return (
     <div css={style.container}>
       <ReplyHeader />
       <div css={style.content}>
-        <div css={style.letter}>
-          <SentLetter />
-          <ReplyLetter />
-        </div>
-        <BottomButton />
+        <Suspense fallback={<LoadingSpinner />}>
+          <div css={style.letter}>
+            <SentLetter />
+            <ReplyLetter />
+          </div>
+        </Suspense>
+        <BottomButton letterId={Number(letterId)} />
       </div>
     </div>
   );
