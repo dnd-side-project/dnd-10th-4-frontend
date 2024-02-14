@@ -1,4 +1,4 @@
-import { Reception } from '@/types/letter';
+import { Reception, Reply } from '@/types/letter';
 import { Worry } from '@/constants/users';
 import { WriteInputs } from '@/pages/LetterWritePage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
@@ -95,7 +95,9 @@ const letterAPI = {
 
   /** 답장 받은 편지 단건 조회 */
   getSingleReply: async (letterId: number) => {
-    const { data } = await authInstance.get(`/api/letter/reply/${letterId}`);
+    const { data } = await authInstance.get<Reply>(
+      `/api/letter/reply/${letterId}`,
+    );
     return data;
   },
 

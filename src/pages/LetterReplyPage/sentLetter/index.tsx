@@ -5,7 +5,11 @@ import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
 import SentLetterModal from './SentLetterModal';
 
-const SentLetter = () => {
+interface SentLetterProps {
+  letterId: number;
+}
+
+const SentLetter = ({ letterId }: SentLetterProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
   return (
@@ -14,7 +18,7 @@ const SentLetter = () => {
         <span css={style.text}>내가 보낸 편지</span>
         <CaretRight stroke={COLORS.gray4} width={24} height={24} />
       </div>
-      <SentLetterModal isOpen={isOpen} close={close} />
+      <SentLetterModal isOpen={isOpen} close={close} letterId={letterId} />
     </>
   );
 };

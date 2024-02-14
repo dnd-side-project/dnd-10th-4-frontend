@@ -16,8 +16,8 @@ const LetterReplyPage = () => {
       <div css={style.content}>
         <Suspense fallback={<LoadingSpinner />}>
           <div css={style.letter}>
-            <SentLetter />
-            <ReplyLetter />
+            <SentLetter letterId={Number(letterId)} />
+            <ReplyLetter letterId={Number(letterId)} />
           </div>
         </Suspense>
         <BottomButton letterId={Number(letterId)} />
