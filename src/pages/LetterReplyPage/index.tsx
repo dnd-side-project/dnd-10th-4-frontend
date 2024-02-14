@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { css } from '@emotion/react';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import ReplyHeader from './ReplyHeader';
+import ReplyHeader from './components/ReplyHeader';
 import SentLetter from './sentLetter';
 import ReplyLetter from './replyLetter';
 import BottomButton from './components/BottomButton';

@@ -8,6 +8,7 @@ import { ROUTER_PATHS } from '@/router';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import Tooltip from '@/components/Tooltip';
 
 interface BottomButtonProps {
   letterId: number;
@@ -33,27 +34,27 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
 
   return (
     <Navbar css={styles.navbar}>
-      <Button
-        variant="semi-transparent-unaccent"
-        size="sm"
-        onClick={navigateToRoot}
-      >
+      <Button variant="secondary" size="sm" onClick={navigateToRoot}>
         닫기
       </Button>
-      <Button
-        variant="semi-transparent"
-        size="sm"
-        onClick={handleStorageLetter}
+      <Tooltip
+        side="top"
+        delay={10000}
+        triggerContent={
+          <Button variant="primary" size="sm" onClick={handleStorageLetter}>
+            {isPending ? (
+              <LoadingSpinner />
+            ) : (
+              <>
+                <TreasureChestOutline />
+                보관하기
+              </>
+            )}
+          </Button>
+        }
       >
-        {isPending ? (
-          <LoadingSpinner />
-        ) : (
-          <>
-            <TreasureChestOutline />
-            보관하기
-          </>
-        )}
-      </Button>
+        편지를 보관하면 <br /> 시간이 지나도 사라지지 않아요
+      </Tooltip>
     </Navbar>
   );
 };
