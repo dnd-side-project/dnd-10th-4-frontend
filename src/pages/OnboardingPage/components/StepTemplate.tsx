@@ -36,6 +36,7 @@ const styles = {
     width: 100%;
     margin-bottom: 10rem;
     padding: 0.5rem;
+    word-break: keep-all;
   `,
   buttonSection: css`
     width: 100%;

@@ -14,7 +14,7 @@ const FirstStep = () => {
         </Button>
       }
     >
-      <h3 css={textStyles.t3}>환영해요</h3>
+      <h3 css={textStyles.t1}>환영해요</h3>
     </StepTemplate>
   );
 };

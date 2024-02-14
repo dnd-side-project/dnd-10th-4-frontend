@@ -29,10 +29,10 @@ const InputBirthdayStep = () => {
         </Button>
       }
     >
-      <p css={[textStyles.b4m, css({ marginBottom: '0.25rem' })]}>
+      <p css={[textStyles.b3R, css({ marginBottom: '0.25rem' })]}>
         낯선 {nickname}님의 편지가 잘 전해질 수 있도록
       </p>
-      <h3 css={[textStyles.t3, css({ marginBottom: '1.5625rem' })]}>
+      <h3 css={[textStyles.t1, css({ marginBottom: '1.5625rem' })]}>
         생년월일을 알려주세요
       </h3>
       <section css={styles.inputSection}>
@@ -128,6 +128,7 @@ const styles = {
     input {
       box-sizing: border-box;
       width: 100%;
+      border: 1px solid #fff;
     }
   `,
 };

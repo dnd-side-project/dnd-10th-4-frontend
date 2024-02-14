@@ -34,13 +34,13 @@ const InputWorryStep = () => {
         </Button>
       }
     >
-      <p css={[textStyles.b4m, css({ marginBottom: '0.25rem' })]}>
+      <p css={[textStyles.b3R, css({ marginBottom: '0.25rem' })]}>
         비슷한 고민을 가진 사람과 연결될 수 있도록
       </p>
-      <h3 css={[textStyles.t3, css({ marginBottom: '0.8125rem' })]}>
+      <h3 css={[textStyles.t1, css({ marginBottom: '0.5rem' })]}>
         고민을 알려주세요
       </h3>
-      <p css={[textStyles.c1m, css({ marginBottom: '1.5rem' })]}>
+      <p css={[textStyles.b5m, css({ marginBottom: '1.25rem' })]}>
         3개 까지 선택 할 수 있어요
       </p>
       <section css={styles.chipSection}>
