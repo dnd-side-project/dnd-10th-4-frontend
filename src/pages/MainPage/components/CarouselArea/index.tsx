@@ -6,6 +6,7 @@ import { CaretLeft, CaretRight } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/router';
+import useReadLetterStore from '@/stores/useReadLetterStore';
 import useLetterSlides from '../../hooks/useLetterSlides';
 import TimeChip from '../TimeChip';
 import styles from './styles';
@@ -13,6 +14,9 @@ import { BOTTLES_LETTER, BOTTLES_REPLY } from './bottleData';
 
 const CarouselArea = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const readReceptions = useReadLetterStore((s) => s.receptions);
+  const readReplies = useReadLetterStore((s) => s.replies);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -57,14 +61,15 @@ const CarouselArea = () => {
                       alt="물병"
                     />
                     {BOTTLES_LETTER[letterIdx].sparkles?.map(
-                      (sparkle, sparkleIdx) => (
-                        <img
-                          key={sparkleIdx}
-                          src={sparkle.src}
-                          alt="반짝이"
-                          css={[styles.sparkleAnimation, sparkle.position]}
-                        />
-                      ),
+                      (sparkle, sparkleIdx) =>
+                        !readReceptions.includes(letter.letterId) && (
+                          <img
+                            key={sparkleIdx}
+                            src={sparkle.src}
+                            alt="반짝이"
+                            css={[styles.sparkleAnimation, sparkle.position]}
+                          />
+                        ),
                     )}
                   </div>
                   <TimeChip
@@ -90,14 +95,15 @@ const CarouselArea = () => {
                 >
                   <img src={BOTTLES_REPLY[replyIdx]?.bottle.src} alt="물병" />
                   {BOTTLES_REPLY[replyIdx].sparkles?.map(
-                    (sparkle, sparkleIdx) => (
-                      <img
-                        key={sparkleIdx}
-                        src={sparkle.src}
-                        alt="반짝이"
-                        css={[styles.sparkleAnimation, sparkle.position]}
-                      />
-                    ),
+                    (sparkle, sparkleIdx) =>
+                      !readReplies.includes(reply.letterId) && (
+                        <img
+                          key={sparkleIdx}
+                          src={sparkle.src}
+                          alt="반짝이"
+                          css={[styles.sparkleAnimation, sparkle.position]}
+                        />
+                      ),
                   )}
                 </div>
               ))}
