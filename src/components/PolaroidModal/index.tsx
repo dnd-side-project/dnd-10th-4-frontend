@@ -39,7 +39,12 @@ const PolaroidModal = ({
         <Header
           css={style.modalHeader}
           leftContent={
-            <CaretLeft strokeWidth={2.5} color="white" onClick={close} />
+            <CaretLeft
+              css={style.icon}
+              strokeWidth={2.5}
+              color="white"
+              onClick={close}
+            />
           }
           rightContent={headerRightContent}
         />
