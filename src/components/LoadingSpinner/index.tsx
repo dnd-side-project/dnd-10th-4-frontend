@@ -14,8 +14,9 @@ const LoadingSpinner = ({
   size = '1rem',
   weight = '2px',
   color = 'currentColor',
+  ...props
 }: LoadingSpinnerProps) => {
-  return <div css={styles.spinner(size, weight, color)} />;
+  return <div css={styles.spinner(size, weight, color)} {...props} />;
 };
 
 export default LoadingSpinner;
