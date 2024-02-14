@@ -92,6 +92,20 @@ const letterAPI = {
     );
     return data;
   },
+
+  /** 답장 받은 편지 단건 조회 */
+  getSingleReply: async (letterId: number) => {
+    const { data } = await authInstance.get(`/api/letter/reply/${letterId}`);
+    return data;
+  },
+
+  /** 받은 편지 보관함에 보관 */
+  patchReceptionStorage: async (letterId: number) => {
+    const { data } = await authInstance.get(
+      `/api/letter/reception/storage/${letterId}`,
+    );
+    return data;
+  },
 };
 
 export default letterAPI;

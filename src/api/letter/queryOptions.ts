@@ -23,6 +23,12 @@ const letterOptions = {
       gcTime: 5 * 60 * 1000,
       staleTime: 1 * 60 * 1000,
     }),
+
+  singleReply: (letterId: number) =>
+    queryOptions({
+      queryKey: [...letterOptions.all, 'reply', letterId] as const,
+      queryFn: () => letterAPI.getSingleReply(letterId),
+    }),
 };
 
 export default letterOptions;
