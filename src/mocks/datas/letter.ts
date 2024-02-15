@@ -1,4 +1,3 @@
-import { type ResponseType } from '@/utils/mswUtils';
 import letterAPI from '@/api/letter/apis';
 
 export const ReceivedLetterResponse = [
@@ -154,7 +153,7 @@ export const ReceivedLetterResponse = [
     content: '안녕',
     worryType: 'BREAK_LOVE',
   },
-] satisfies ResponseType<(typeof letterAPI)['getReceivedLetters']>;
+] satisfies Awaited<ReturnType<(typeof letterAPI)['getReceivedLetters']>>;
 
 export const RepliedLettersResponse = [
   {
@@ -247,4 +246,4 @@ export const RepliedLettersResponse = [
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
   },
-] satisfies ResponseType<(typeof letterAPI)['getRepliedLetters']>;
+] satisfies Awaited<ReturnType<(typeof letterAPI)['getRepliedLetters']>>;

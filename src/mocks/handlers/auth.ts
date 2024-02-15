@@ -1,12 +1,21 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '@/utils/mswUtils';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import authAPI from '@/api/auth/apis';
 
 const authHandler = [
-  http.post(baseURL('/api/oauth2/authorization/kakao'), async () => {
+  http.post(baseURL('/api/auth/login/kakao/postman'), async () => {
     await delay(300);
 
-    return HttpResponse.json();
+    const firstLogin = true;
+
+    const result = {
+      accessToken: 'mswAccessToken',
+      refreshToken: 'mswRefreshToken',
+      firstLogin,
+    } satisfies Awaited<ReturnType<(typeof authAPI)['postKakaoCode']>>;
+
+    return HttpResponse.json(result);
   }),
 
   http.get(baseURL('/api/auth/reissue'), async (req) => {

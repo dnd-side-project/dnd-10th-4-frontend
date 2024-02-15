@@ -1,6 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 import memberAPI from '@/api/member/apis';
-import { baseURL, type ResponseType } from '@/utils/mswUtils';
+import { baseURL } from '@/utils/mswUtils';
 import QUERY_STRINGS from '@/constants/queryStrings';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 
@@ -26,7 +26,7 @@ const memberHandler = [
       gender: 'MALE',
       age: 40,
       role: 'USER',
-    } satisfies ResponseType<(typeof memberAPI)['getMemberDetail']>;
+    } satisfies Awaited<ReturnType<(typeof memberAPI)['getMemberDetail']>>;
 
     return HttpResponse.json(result);
   }),
