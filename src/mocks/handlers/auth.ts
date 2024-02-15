@@ -6,11 +6,11 @@ import authAPI from '@/api/auth/apis';
 
 const authHandler = [
   http.post(baseURL('/api/auth/login/kakao/postman'), async () => {
-    const firstLogin = false;
+    const firstLogin = true;
 
     const result = {
-      accessToken: 'mswAccessToken',
-      refreshToken: 'mswRefreshToken',
+      accessToken: 'fresh',
+      refreshToken: 'fresh',
       firstLogin,
     } satisfies Awaited<ReturnType<(typeof authAPI)['postKakaoCode']>>;
 
