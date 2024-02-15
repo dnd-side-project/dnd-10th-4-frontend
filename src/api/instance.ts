@@ -1,7 +1,6 @@
 import axios, { isAxiosError } from 'axios';
 import { BACKEND_ENDPOINT } from '@/constants/endpoint';
 import STORAGE_KEYS from '@/constants/storageKeys';
-import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import authAPI from './auth/apis';
 
@@ -47,7 +46,6 @@ authInstance.interceptors.response.use(
         case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
           localStorage.removeItem(STORAGE_KEYS.refreshToken);
-          window.location.href = ROUTER_PATHS.SIGNIN;
           break;
         }
         default:
