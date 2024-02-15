@@ -50,6 +50,13 @@ const styles = {
     background: rgb(12 140 233 / 0.05);
     color: ${COLORS.primary};
   `,
+  loadingSection: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 3rem;
+  `,
 };
 
 export const bottomSheetStyles = {

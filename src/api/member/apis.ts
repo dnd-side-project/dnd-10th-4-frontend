@@ -1,9 +1,4 @@
-import {
-  type Worry,
-  type Gender,
-  type Role,
-  type Nickname,
-} from '@/constants/users';
+import { type Worry, type Gender, type Role } from '@/constants/users';
 import { authInstance } from '../instance';
 
 const memberAPI = {
@@ -22,7 +17,7 @@ const memberAPI = {
   },
 
   /** 닉네임 수정 */
-  patchNickname: async (params: { nickname: Nickname }) => {
+  patchNickname: async (params: { nickname: string }) => {
     const { data } = await authInstance.patch('/api/member/nickname', {
       params,
     });

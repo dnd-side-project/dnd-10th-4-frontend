@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { readLetterStore } from './stores/useReadLetterStore';
 import App from './App';
 import ModalTestPage from './pages/ModalTestPage';
 import SigninPage from './pages/SigninPage';
@@ -58,20 +59,28 @@ const router = createBrowserRouter([
         element: <OnboardingPage />,
       },
       {
+        path: ROUTER_PATHS.MYPAGE,
+        element: <MyPage />,
+      },
+      {
         path: ROUTER_PATHS.LETTER_WRITE,
         element: <LetterWritePage />,
       },
       {
         path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
         element: <LetterReceptionPage />,
-      },
-      {
-        path: ROUTER_PATHS.MYPAGE,
-        element: <MyPage />,
+        loader: ({ params }) => {
+          readLetterStore.getState().addReception(Number(params.letterId));
+          return {};
+        },
       },
       {
         path: ROUTER_PATHS.LETTER_REPLY(':letterId'),
         element: <LetterReplyPage />,
+        loader: ({ params }) => {
+          readLetterStore.getState().addReply(Number(params.letterId));
+          return {};
+        },
       },
       {
         path: '*',
