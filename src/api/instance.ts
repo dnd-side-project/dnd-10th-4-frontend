@@ -36,7 +36,13 @@ authInstance.interceptors.response.use(
           const res = await authAPI.getReissue();
           localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
           localStorage.setItem(STORAGE_KEYS.refreshToken, res.refreshToken);
-          return axios(config);
+          return axios({
+            ...config,
+            headers: {
+              ...config.headers,
+              accessToken: localStorage.getItem(STORAGE_KEYS.accessToken),
+            },
+          });
         }
         case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
