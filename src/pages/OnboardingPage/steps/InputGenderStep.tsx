@@ -23,10 +23,10 @@ const InputGenderStep = () => {
         </Button>
       }
     >
-      <p css={[textStyles.b4m, css({ marginBottom: '0.25rem' })]}>
+      <p css={[textStyles.b3R, css({ marginBottom: '0.25rem' })]}>
         낯선 {nickname}님의 편지가 잘 전해질 수 있도록
       </p>
-      <h3 css={textStyles.t3}>성별을 알려주세요</h3>
+      <h3 css={textStyles.t1}>성별을 알려주세요</h3>
       <section css={styles.genderSection}>
         <GenderCard
           {...register('gender')}

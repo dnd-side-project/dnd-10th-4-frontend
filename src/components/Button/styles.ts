@@ -71,7 +71,12 @@ const roundedStyles = {
 
 const variantStyles = {
   primary: css`
-    background-color: ${COLORS.primary};
+    background: linear-gradient(
+        0deg,
+        rgb(0 0 0 / 0.2) 0%,
+        rgb(0 0 0 / 0.2) 100%
+      ),
+      ${COLORS.primary};
     color: white;
     box-shadow: 0 8px 16px 0 rgb(13 35 51 / 0.2);
 

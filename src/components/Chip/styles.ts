@@ -74,7 +74,7 @@ const variants = {
     ${baseChipStyle};
     ${baseTextStyles};
     padding: 0.25rem 1rem;
-    background: rgb(255 255 255 / 0.8);
+    background: white;
     border: 1px solid rgb(255 255 255 / 0.3);
     color: var(--kakao-logo, #000);
   `,

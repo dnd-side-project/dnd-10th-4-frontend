@@ -22,11 +22,11 @@ const InputNicknameStep = () => {
     <StepTemplate
       buttonContent={
         <Button variant="primary" onClick={toNext}>
-          다음
+          선택 완료
         </Button>
       }
     >
-      <h3 css={[textStyles.t4, css({ marginBottom: '1.4375rem' })]}>
+      <h3 css={[textStyles.t2, css({ marginBottom: '1.25rem' })]}>
         바다에게 당신의 이름을 알려주세요
       </h3>
       <div css={[onboardingStyles.input, styles.input]}>
