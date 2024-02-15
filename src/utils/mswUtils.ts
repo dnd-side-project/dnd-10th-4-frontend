@@ -5,15 +5,6 @@ export const baseURL = (path: string) => {
   return BACKEND_ENDPOINT + path;
 };
 
-/**
- * MSW 핸들러에서 응답 타입을 추론하기 위한 유틸리티 타입입니다.
- * api 함수의 반환 타입을 통해 응답 타입을 추론합니다.
- * (타입을 명시함으로써 API 명세 변경 시 모킹 핸들러 누락 방지)
- */
-export type ResponseType<T> = T extends (...args: unknown[]) => Promise<infer U>
-  ? U
-  : unknown;
-
 /** MSW 핸들러의 시나리오에서 액세스 토큰 or 리프레쉬 토큰이 유효한지 체크합니다. */
 export const isValidToken = (token: string | null) => {
   return token === 'fresh' || token === 'renewed';

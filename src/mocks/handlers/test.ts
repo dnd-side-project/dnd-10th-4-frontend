@@ -1,6 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 import testAPI from '@/api/test/apis';
-import { baseURL, type ResponseType } from '@/utils/mswUtils';
+import { baseURL } from '@/utils/mswUtils';
 
 /** @NOTE: MSW 핸들러 예시용 임시 코드입니다. */
 const testHandler = [
@@ -11,7 +11,7 @@ const testHandler = [
       id: idx.toString(),
       name: `모킹된 ${idx} 번 데이터`,
       content: '목 데이터를 성공적으로 가져왔습니다.',
-    })) satisfies ResponseType<(typeof testAPI)['getTestList']>;
+    })) satisfies Awaited<ReturnType<(typeof testAPI)['getTestList']>>;
 
     return HttpResponse.json(result);
   }),
@@ -23,7 +23,7 @@ const testHandler = [
       id: req.params.testId as string,
       name: `모킹된 ${req.params.testId} 번 데이터`,
       content: '목 데이터를 성공적으로 가져왔습니다.',
-    } satisfies ResponseType<(typeof testAPI)['getTestDetail']>;
+    } satisfies Awaited<ReturnType<(typeof testAPI)['getTestDetail']>>;
 
     return HttpResponse.json(result);
   }),

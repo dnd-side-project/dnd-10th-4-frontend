@@ -2,13 +2,19 @@ import { http, HttpResponse } from 'msw';
 import { baseURL, isValidToken } from '@/utils/mswUtils';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
+import authAPI from '@/api/auth/apis';
 
 const authHandler = [
-  http.post(baseURL('/api/oauth2/authorization/kakao'), async () => {
-    localStorage.setItem(STORAGE_KEYS.accessToken, 'fresh');
-    localStorage.setItem(STORAGE_KEYS.refreshToken, 'fresh');
+  http.post(baseURL('/api/auth/login/kakao/postman'), async () => {
+    const firstLogin = false;
 
-    return HttpResponse.json();
+    const result = {
+      accessToken: 'mswAccessToken',
+      refreshToken: 'mswRefreshToken',
+      firstLogin,
+    } satisfies Awaited<ReturnType<(typeof authAPI)['postKakaoCode']>>;
+
+    return HttpResponse.json(result);
   }),
 
   http.get(baseURL('/api/auth/reissue'), async (req) => {
