@@ -13,12 +13,6 @@ const style = {
     `}
     ${sizeStyle[size]}
   `,
-  icon: (topPosition: number, leftPosition: number) => css`
-    position: absolute;
-    top: ${topPosition + 13.8}rem;
-    left: ${leftPosition + 3.6}rem;
-    cursor: pointer;
-  `,
 };
 
 const sizeStyle = {
