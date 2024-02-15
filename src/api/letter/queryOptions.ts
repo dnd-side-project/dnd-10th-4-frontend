@@ -20,14 +20,14 @@ const letterOptions = {
     queryOptions({
       queryKey: [...letterOptions.all, 'reception', letterId] as const,
       queryFn: () => letterAPI.getSingleReception(letterId),
-      staleTime: Infinity,
+      staleTime: 24 * 60 * 60,
     }),
 
   singleReply: (letterId: number) =>
     queryOptions({
       queryKey: [...letterOptions.all, 'reply', letterId] as const,
       queryFn: () => letterAPI.getSingleReply(letterId),
-      staleTime: Infinity,
+      staleTime: 24 * 60 * 60,
     }),
 };
 
