@@ -51,7 +51,10 @@ const styles = {
     cursor: pointer;
     transition: background-color 0.15s;
   `,
-  bottleImage: (animation?: { duration: string; translateY: string }) => css`
+  bottleAnimation: (animation?: {
+    duration: string;
+    translateY: string;
+  }) => css`
     cursor: pointer;
 
     ${animation &&

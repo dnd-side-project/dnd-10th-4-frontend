@@ -5,17 +5,17 @@ import { CaretLeft, CaretRight } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import COLORS from '@/constants/colors';
 import useLetterSlides from '../../hooks/useLetterSlides';
-import TimeChip from '../TimeChip';
 import styles from './styles';
-import { BOTTLES_LETTER, BOTTLES_REPLY } from './bottleData';
+import ReceptionBottle from './ReceptionBottle';
+import ReplyBottle from './ReplyBottle';
 
 const CarouselArea = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const { slides } = useLetterSlides();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   });
-  const { slides } = useLetterSlides();
 
   useEffect(() => {
     if (!emblaApi) {
@@ -31,43 +31,14 @@ const CarouselArea = () => {
     <>
       <section css={styles.viewport} ref={emblaRef}>
         <div css={styles.container}>
-          {slides.map(({ id: slideId, letters, replies }) => (
+          {slides.map(({ id: slideId, receptions, replies }) => (
             <article key={slideId} css={styles.slide}>
-              {letters.map((letter, idx) => (
-                <div key={idx} css={BOTTLES_LETTER[idx]?.position}>
-                  <img
-                    src={BOTTLES_LETTER[idx]?.src}
-                    alt="물병"
-                    css={styles.bottleImage(BOTTLES_LETTER[idx]?.animation)}
-                    onClick={() =>
-                      console.log(
-                        `TODO: ${letter.letterId} 번 편지 답장 보러가기`,
-                      )
-                    }
-                  />
-                  <TimeChip
-                    css={[
-                      BOTTLES_LETTER[idx]?.chipPosition,
-                      css({ zIndex: 10 }),
-                    ]}
-                    createdAt={letter.createdAt}
-                  />
-                </div>
+              {receptions.map((reception, i) => (
+                <ReceptionBottle key={i} constantId={i} reception={reception} />
               ))}
 
-              {replies.map((reply, idx) => (
-                <div key={idx} css={BOTTLES_REPLY[idx]?.position}>
-                  <img
-                    src={BOTTLES_REPLY[idx]?.src}
-                    alt="물병"
-                    css={styles.bottleImage()}
-                    onClick={() =>
-                      console.log(
-                        `TODO: ${reply.letterId} 번 편지 답장 보러가기`,
-                      )
-                    }
-                  />
-                </div>
+              {replies.map((reply, i) => (
+                <ReplyBottle key={i} constantId={i} reply={reply} />
               ))}
             </article>
           ))}
