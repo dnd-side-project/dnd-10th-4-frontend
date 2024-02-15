@@ -80,6 +80,7 @@
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "3.2.2",
     "storybook": "^7.6.8",
+    "storybook-addon-react-router-v6": "^2.0.10",
     "stylelint": "^16.1.0",
     "stylelint-config-hudochenkov": "^10.0.0",
     "stylelint-order": "^6.0.4",
