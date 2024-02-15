@@ -21,7 +21,7 @@ Sentry.init({
     }),
   ],
   environment: import.meta.env.PROD ? 'production' : 'development',
-  // enabled: import.meta.env.PROD, // TODO: 추후에 프로덕션 배포에서만 에러 수집하도록 주석 제거하기
+  enabled: import.meta.env.PROD,
   tracesSampleRate: 1.0,
   tracePropagationTargets: ['localhost'],
   replaysSessionSampleRate: 0.1,
