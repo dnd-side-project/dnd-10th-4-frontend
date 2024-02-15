@@ -4,9 +4,9 @@ import { isAxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import Button from '../../Button';
-import styles from '../styles';
+import styles from './styles';
 
-const ApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const shouldSkip =
     !isAxiosError(error) ||
     error.response?.data === ERROR_RESPONSES.accessExpired ||
@@ -17,7 +17,7 @@ const ApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       return;
     }
 
-    console.log('ApiFallback useEffect');
+    console.log('RootApiFallback useEffect');
 
     const scope = Sentry.getCurrentScope();
     scope.setTag('type', 'api');
@@ -60,4 +60,4 @@ const ApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   );
 };
 
-export default ApiFallback;
+export default RootApiFallback;

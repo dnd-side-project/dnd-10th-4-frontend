@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Button from '../Button';
-import RootErrorBoundary from './RootErrorBoundary';
+import UnknownErrorBoundary from './UnknownErrorBoundary';
+import RootUnknownFallback from './fallback/RootUnknownFallback';
 
 const meta = {
-  title: 'Components/ErrorBoundary/RootErrorBoundary',
-  component: RootErrorBoundary,
+  title: 'Components/ErrorBoundary/UnknownErrorBoundary',
+  component: UnknownErrorBoundary,
   tags: ['autodocs'],
   argTypes: {},
-} satisfies Meta<typeof RootErrorBoundary>;
+} satisfies Meta<typeof UnknownErrorBoundary>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    FallbackComponent: RootUnknownFallback,
+  },
   render: () => {
     const ErrorComponent = () => {
       throw new Error('오류 원인은 ... 입니다.');
@@ -35,9 +38,9 @@ export const Primary: Story = {
     };
 
     return (
-      <RootErrorBoundary>
+      <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
         <Component />
-      </RootErrorBoundary>
+      </UnknownErrorBoundary>
     );
   },
 };

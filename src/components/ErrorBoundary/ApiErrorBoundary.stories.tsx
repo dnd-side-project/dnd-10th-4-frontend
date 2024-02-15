@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import ApiErrorBoundary from './ApiErrorBoundary';
+import RootApiFallback from './fallback/RootApiFallback';
 
 const meta = {
   title: 'Components/ErrorBoundary/ApiErrorBoundary',
@@ -16,7 +17,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    FallbackComponent: RootApiFallback,
+  },
   render: () => {
     const Component = () => {
       useSuspenseQuery({
@@ -28,7 +31,7 @@ export const Primary: Story = {
     };
 
     return (
-      <ApiErrorBoundary>
+      <ApiErrorBoundary FallbackComponent={RootApiFallback}>
         <Suspense fallback={<>로딩중...</>}>
           <Component />
         </Suspense>

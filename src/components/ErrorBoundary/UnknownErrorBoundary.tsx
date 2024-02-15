@@ -1,23 +1,23 @@
+import React from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
-import { useLocation } from 'react-router-dom';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-interface ApiErrorBoundaryProps {
+interface UnknownErrorBoundaryProps {
   FallbackComponent: React.ComponentType<FallbackProps>;
   children?: React.ReactNode;
 }
 
-const ApiErrorBoundary = ({
+const UnknownErrorBoundary = ({
   FallbackComponent,
   children,
-}: ApiErrorBoundaryProps) => {
-  const { reset } = useQueryErrorResetBoundary();
+}: UnknownErrorBoundaryProps) => {
+  const navigate = useNavigate();
   const { key } = useLocation();
 
   return (
     <ErrorBoundary
       FallbackComponent={FallbackComponent}
-      onReset={reset}
+      onReset={() => navigate(-1)}
       resetKeys={[key]}
     >
       {children}
@@ -25,4 +25,4 @@ const ApiErrorBoundary = ({
   );
 };
 
-export default ApiErrorBoundary;
+export default UnknownErrorBoundary;

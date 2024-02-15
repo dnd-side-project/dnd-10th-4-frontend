@@ -6,9 +6,9 @@ import * as Sentry from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import { ROUTER_PATHS } from '@/router';
 import Button from '../../Button';
-import styles from '../styles';
+import styles from './styles';
 
-const UnknownFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const RootUnknownFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const shouldSkip =
     isAxiosError(error) &&
     error.response?.data === ERROR_RESPONSES.reissueFailed;
@@ -18,10 +18,10 @@ const UnknownFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       return;
     }
 
-    console.log('UnknownFallback useEffect');
+    console.log('RootUnknownFallback useEffect');
 
     const scope = Sentry.getCurrentScope();
-    scope.setTag('type', 'root');
+    scope.setTag('type', 'unknown');
 
     Sentry.captureException(error);
   }, []);
@@ -48,4 +48,4 @@ const UnknownFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   );
 };
 
-export default UnknownFallback;
+export default RootUnknownFallback;

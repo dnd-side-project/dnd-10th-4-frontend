@@ -3,17 +3,19 @@ import Background from '@/components/Background';
 import BackgroundMusic from '@/assets/background.mp3';
 import BackgroundImg from '@/assets/background.png';
 import Audio from '@/components/Audio';
-import RootErrorBoundary from '@/components/ErrorBoundary/RootErrorBoundary';
+import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import ApiErrorBoundary from '@/components/ErrorBoundary/ApiErrorBoundary';
+import RootUnknownFallback from './components/ErrorBoundary/fallback/RootUnknownFallback';
+import RootApiFallback from './components/ErrorBoundary/fallback/RootApiFallback';
 
 const App = () => {
   return (
     <Background imageUrl={BackgroundImg}>
-      <RootErrorBoundary>
-        <ApiErrorBoundary>
+      <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
+        <ApiErrorBoundary FallbackComponent={RootApiFallback}>
           <Outlet />
         </ApiErrorBoundary>
-      </RootErrorBoundary>
+      </UnknownErrorBoundary>
       <Audio src={BackgroundMusic} />
     </Background>
   );
