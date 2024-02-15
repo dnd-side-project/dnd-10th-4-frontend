@@ -1,5 +1,5 @@
 import { http, HttpResponse, delay } from 'msw';
-import { baseURL } from '@/utils/mswUtils';
+import { baseURL, isValidToken } from '@/utils/mswUtils';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
 
@@ -18,7 +18,7 @@ const authHandler = [
 
     const refreshToken = req.request.headers.get(STORAGE_KEYS.refreshToken);
 
-    if (refreshToken === 'fresh') {
+    if (isValidToken(refreshToken)) {
       return HttpResponse.json({
         accessToken: 'renewed',
         refreshToken: 'renewed',
@@ -33,7 +33,9 @@ const authHandler = [
     const accessToken = req.request.headers.get(STORAGE_KEYS.accessToken);
 
     if (accessToken === 'fresh') {
-      return new HttpResponse('액세스 토큰이 유효합니다.');
+      return new HttpResponse(
+        '액세스 토큰이 유효하여 재발급하지 않아도 됩니다.',
+      );
     } else {
       return new HttpResponse(ERROR_RESPONSES.accessExpired, {
         status: 401,

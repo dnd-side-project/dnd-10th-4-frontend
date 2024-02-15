@@ -13,3 +13,8 @@ export const baseURL = (path: string) => {
 export type ResponseType<T> = T extends (...args: unknown[]) => Promise<infer U>
   ? U
   : unknown;
+
+/** MSW 핸들러의 시나리오에서 액세스 토큰 or 리프레쉬 토큰이 유효한지 체크합니다. */
+export const isValidToken = (token: string | null) => {
+  return token === 'fresh' || token === 'renewed';
+};
