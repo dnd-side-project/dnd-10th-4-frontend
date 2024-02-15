@@ -42,6 +42,11 @@ const textStyles = {
     font-size: 14px;
     line-height: 24px;
   `,
+  b5m: css`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  `,
   b1R: css`
     font-weight: 400;
     font-size: 24px;
@@ -89,9 +94,9 @@ const textStyles = {
     line-height: 1rem;
   `,
   logo: css`
-    font-weight: 700;
+    font-weight: 400;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-family: 'Jalnan OTF';
     line-height: 2.125rem;
   `,

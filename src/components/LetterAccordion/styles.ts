@@ -30,7 +30,6 @@ const style = {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
     display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
     overflow: hidden;
     text-overflow: ellipsis;

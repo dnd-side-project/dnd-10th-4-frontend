@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import LetterTextarea from '@/components/LetterTextarea';
-import { type Inputs } from '../..';
+import { type WriteInputs } from '../..';
 
 const LetterContent = () => {
-  const { register } = useFormContext<Inputs>();
+  const { register } = useFormContext<WriteInputs>();
 
   return (
     <LetterTextarea

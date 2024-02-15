@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { readLetterStore } from './stores/useReadLetterStore';
 import App from './App';
 import ModalTestPage from './pages/ModalTestPage';
 import SigninPage from './pages/SigninPage';
@@ -7,6 +8,8 @@ import OnboardingPage from './pages/OnboardingPage';
 import LetterWritePage from './pages/LetterWritePage';
 import MainPage from './pages/MainPage';
 import LetterReceptionPage from './pages/LetterReceptionPage/intex';
+import MyPage from './pages/MyPage';
+import LetterReplyPage from './pages/LetterReplyPage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -17,7 +20,9 @@ const ROUTER_PATHS = {
   SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
   ONBOARDING: '/onboarding',
   LETTER_WRITE: '/write',
-  LETTER_RECEPTION: '/reception',
+  LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
+  MYPAGE: '/mypage',
+  LETTER_REPLY: (letterId: string) => `/reply/${letterId}`,
 } as const;
 
 const router = createBrowserRouter([
@@ -54,12 +59,32 @@ const router = createBrowserRouter([
         element: <OnboardingPage />,
       },
       {
+        path: ROUTER_PATHS.MYPAGE,
+        element: <MyPage />,
+      },
+      {
         path: ROUTER_PATHS.LETTER_WRITE,
         element: <LetterWritePage />,
       },
       {
-        path: ROUTER_PATHS.LETTER_RECEPTION,
+        path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
         element: <LetterReceptionPage />,
+        loader: ({ params }) => {
+          readLetterStore.getState().addReception(Number(params.letterId));
+          return {};
+        },
+      },
+      {
+        path: ROUTER_PATHS.LETTER_REPLY(':letterId'),
+        element: <LetterReplyPage />,
+        loader: ({ params }) => {
+          readLetterStore.getState().addReply(Number(params.letterId));
+          return {};
+        },
+      },
+      {
+        path: '*',
+        element: <div>잘못된 경로입니다.</div>,
       },
     ],
   },

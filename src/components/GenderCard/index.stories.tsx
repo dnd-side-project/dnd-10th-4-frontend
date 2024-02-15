@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import { type Gender } from '@/constants/users';
+import { GENDER_DICT, type Gender } from '@/constants/users';
 import GenderCard from './';
 
 const meta = {
@@ -18,9 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    gender: 'FEMALE',
-    isSelected: false,
-    onClick: () => {},
+    value: 'FEMALE',
   },
 };
 
@@ -35,27 +33,38 @@ const styles = {
     padding: 1rem;
   `,
 };
+
 export const Primary_Variant: Story = {
   ...Primary,
   render: () => {
     const Component = () => {
       const [gender, setGender] = useState<Gender>();
 
+      const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value as Gender;
+
+        if (value in GENDER_DICT) {
+          setGender(value);
+        }
+      };
+
       return (
         <section
           css={[styles.genderSection, css({ backgroundColor: '#3EAFFF' })]}
         >
           <GenderCard
+            value="MALE"
+            name="gender"
             variant="primary"
-            gender="MALE"
-            isSelected={gender === 'MALE'}
-            onClick={() => setGender('MALE')}
+            selectedValue={gender}
+            onChange={handleSelect}
           />
           <GenderCard
+            value="FEMALE"
+            name="gender"
             variant="primary"
-            gender="FEMALE"
-            isSelected={gender === 'FEMALE'}
-            onClick={() => setGender('FEMALE')}
+            selectedValue={gender}
+            onChange={handleSelect}
           />
         </section>
       );
@@ -71,19 +80,29 @@ export const Secondary_Variant: Story = {
     const Component = () => {
       const [gender, setGender] = useState<Gender>();
 
+      const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value as Gender;
+
+        if (value in GENDER_DICT) {
+          setGender(value);
+        }
+      };
+
       return (
         <section css={styles.genderSection}>
           <GenderCard
+            value="MALE"
+            name="gender"
             variant="secondary"
-            gender="MALE"
-            isSelected={gender === 'MALE'}
-            onClick={() => setGender('MALE')}
+            selectedValue={gender}
+            onChange={handleSelect}
           />
           <GenderCard
+            value="FEMALE"
+            name="gender"
             variant="secondary"
-            gender="FEMALE"
-            isSelected={gender === 'FEMALE'}
-            onClick={() => setGender('FEMALE')}
+            selectedValue={gender}
+            onChange={handleSelect}
           />
         </section>
       );

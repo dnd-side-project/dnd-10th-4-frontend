@@ -46,8 +46,7 @@ const variantStyles = {
 
       ${selected &&
       css`
-        border-color: ${COLORS.gray5};
-        background-color: rgb(255 255 255 / 0.8);
+        background-color: white;
       `}
     `,
     iconCircle: (selected: boolean) => css`
@@ -57,7 +56,7 @@ const variantStyles = {
 
       ${selected &&
       css`
-        background-color: rgba(174 226 245 / 1);
+        background-color: rgb(12 140 233 / 0.1);
         color: ${COLORS.primary};
       `};
     `,

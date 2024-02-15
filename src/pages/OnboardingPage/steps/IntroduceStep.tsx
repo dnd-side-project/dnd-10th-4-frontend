@@ -14,7 +14,7 @@ const IntroduceStep = () => {
         </Button>
       }
     >
-      <h3 css={textStyles.t3}>
+      <h3 css={textStyles.t2}>
         <p>이 곳에선 아무에게도 말 못할 나의 이야기를</p>
         <p>바다에 흘려 보낼 수 있어요.</p>
       </h3>
