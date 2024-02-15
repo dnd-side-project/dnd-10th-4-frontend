@@ -14,12 +14,21 @@ export const chunkArray = <T>(arr: T[], size: number) => {
 };
 
 /**
- * 배열에서 주어진 원소를 추가하거나 제거합니다.
+ * 배열에서 주어진 원소를 추가하거나 제거하여 반환합니다.
  * @param arr 대상 배열
  * @param item 추가하거나 제거할 아이템
  */
 export const toggleItemInArray = <T>(arr: readonly T[], item: T): T[] => {
   return arr.includes(item) ? arr.filter((t) => t !== item) : [...arr, item];
+};
+
+/**
+ * 배열에 주어진 원소가 있는지 체크하고 없다면 추가하여 반환합니다.
+ * @param arr 대상 배열
+ * @param item 추가할 아이템
+ */
+export const pushUniqueItemToArray = <T>(arr: T[], item: T): T[] => {
+  return arr.find((t) => t === item) ? arr : [...arr, item];
 };
 
 /**
