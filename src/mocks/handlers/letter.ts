@@ -1,15 +1,18 @@
 import { http, HttpResponse, delay } from 'msw';
-import { baseURL } from '@/utils/mswUtils';
+import { baseURL, isValidToken } from '@/utils/mswUtils';
 import QUERY_STRINGS from '@/constants/queryStrings';
 import { Reception } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import STORAGE_KEYS from '@/constants/storageKeys';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
 } from '../datas/letter';
 
 const letterHandler = [
-  http.get(baseURL('/api/letter/reception'), async () => {
+  http.get(baseURL('/api/letter/reception'), async (req) => {
+    const accessToken = req.request.headers.get(STORAGE_KEYS.accessToken);
+
     await delay(1000);
 
     const itemCount =
@@ -19,12 +22,18 @@ const letterHandler = [
         ),
       ) || ReceivedLetterResponse.length;
 
-    return HttpResponse.json(
-      ReceivedLetterResponse.slice(0, Number(itemCount)),
-    );
+    if (isValidToken(accessToken)) {
+      return HttpResponse.json(
+        ReceivedLetterResponse.slice(0, Number(itemCount)),
+      );
+    } else {
+      return new HttpResponse(ERROR_RESPONSES.accessExpired, { status: 401 });
+    }
   }),
 
-  http.get(baseURL('/api/letter/reply'), async () => {
+  http.get(baseURL('/api/letter/reply'), async (req) => {
+    const accessToken = req.request.headers.get(STORAGE_KEYS.accessToken);
+
     await delay(1000);
 
     const itemCount =
@@ -34,9 +43,13 @@ const letterHandler = [
         ),
       ) || RepliedLettersResponse.length;
 
-    return HttpResponse.json(
-      RepliedLettersResponse.slice(0, Number(itemCount)),
-    );
+    if (isValidToken(accessToken)) {
+      return HttpResponse.json(
+        RepliedLettersResponse.slice(0, Number(itemCount)),
+      );
+    } else {
+      return new HttpResponse(ERROR_RESPONSES.accessExpired, { status: 401 });
+    }
   }),
 
   http.post(baseURL('/api/letter'), async () => {

@@ -1,12 +1,10 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { baseURL, isValidToken } from '@/utils/mswUtils';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import STORAGE_KEYS from '@/constants/storageKeys';
 
 const authHandler = [
   http.post(baseURL('/api/oauth2/authorization/kakao'), async () => {
-    await delay(300);
-
     localStorage.setItem(STORAGE_KEYS.accessToken, 'fresh');
     localStorage.setItem(STORAGE_KEYS.refreshToken, 'fresh');
 
@@ -14,8 +12,6 @@ const authHandler = [
   }),
 
   http.get(baseURL('/api/auth/reissue'), async (req) => {
-    await delay(300);
-
     const refreshToken = req.request.headers.get(STORAGE_KEYS.refreshToken);
 
     if (isValidToken(refreshToken)) {
