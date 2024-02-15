@@ -1,6 +1,6 @@
 import { type FallbackProps } from 'react-error-boundary';
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
@@ -8,7 +8,9 @@ import { ROUTER_PATHS } from '@/router';
 import Button from '../../Button';
 import styles from './styles';
 
-const RootUnknownFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const RootUnknownFallback = ({ error }: FallbackProps) => {
+  const navigate = useNavigate();
+
   const shouldSkip =
     isAxiosError(error) &&
     error.response?.data === ERROR_RESPONSES.reissueFailed;
@@ -40,7 +42,7 @@ const RootUnknownFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
         variant="primary"
         size="sm"
         type="button"
-        onClick={resetErrorBoundary}
+        onClick={() => navigate(-1)}
       >
         이전 페이지로 돌아가기
       </Button>
