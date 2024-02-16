@@ -3,12 +3,12 @@ import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
 import { type ReplyInputs } from '@/pages/LetterReceptionPage/ReplyToLetter';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
-import { baseInstance, authInstance } from '../instance';
+import { authInstance } from '../instance';
 
 const letterAPI = {
   /** 받은 편지 전체 조회 */
   getReceivedLetters: async () => {
-    const { data } = await baseInstance.get<Reception[]>(
+    const { data } = await authInstance.get<Reception[]>(
       '/api/letter/reception',
     );
     return data;
@@ -16,7 +16,7 @@ const letterAPI = {
 
   /** 답장 받은 편지 페이징 조회 */
   getRepliedLetters: async (page: number) => {
-    const { data } = await baseInstance.get<Reply[]>(`/api/letter/reply`, {
+    const { data } = await authInstance.get<Reply[]>(`/api/letter/reply`, {
       params: {
         page,
       },

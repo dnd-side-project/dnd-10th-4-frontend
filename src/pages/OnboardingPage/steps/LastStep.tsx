@@ -12,10 +12,10 @@ const LastStep = () => {
         </Button>
       }
     >
-      <h3 css={[textStyles.t3, css({ marginBottom: '0.5rem' })]}>
+      <h3 css={[textStyles.t1, css({ marginBottom: '0.375rem' })]}>
         프로필이 완성됐어요
       </h3>
-      <p css={textStyles.b4R}>바다가 당신의 편지를 기다리고 있어요</p>
+      <p css={textStyles.b3R}>바다가 당신의 편지를 기다리고 있어요</p>
     </StepTemplate>
   );
 };

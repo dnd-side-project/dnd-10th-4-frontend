@@ -3,11 +3,30 @@ import { RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClientProvider } from '@tanstack/react-query';
+import * as Sentry from '@sentry/react';
 import queryClient from '@/api/queryClient';
 import { router } from '@/router';
 import { SKIP_MSW_WARNING_URL } from './constants/msw';
 import 'reset-css';
 import './main.css';
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration({
+      maskAllText: false,
+      blockAllMedia: false,
+      networkDetailAllowUrls: [import.meta.env.VITE_BACKEND_ENDPOINT],
+    }),
+  ],
+  environment: import.meta.env.PROD ? 'production' : 'development',
+  enabled: import.meta.env.PROD,
+  tracesSampleRate: 1.0,
+  tracePropagationTargets: ['localhost'],
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1.0,
+});
 
 const enableMocking = async () => {
   if (import.meta.env.VITE_MSW !== 'on') {

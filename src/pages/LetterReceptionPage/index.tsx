@@ -3,10 +3,12 @@ import { Suspense } from 'react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import createFunnel from '@/components/Funnel/createFunnel';
 import { ROUTER_PATHS } from '@/router';
-import ReceivedLetter from './ReceivedLetter';
-import ReplyToLetter from './ReplyToLetter';
-import ReceptionHeader from './components/ReceptionHeader';
+import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
+import ReceptionFallback from '@/components/ErrorBoundary/fallback/ReceptionFallback';
 import style from './styles';
+import ReceptionHeader from './components/ReceptionHeader';
+import ReplyToLetter from './ReplyToLetter';
+import ReceivedLetter from './ReceivedLetter';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'ReceivedLetter',
@@ -20,39 +22,34 @@ const LetterReceptionPage = () => {
   const { letterId } = useParams();
 
   return (
-    <Suspense
-      fallback={
-        <div css={style.loadingSpinner}>
-          <LoadingSpinner size="4rem" />
-          <p>받은 편지 가져오는 중...</p>
+    <UnknownErrorBoundary FallbackComponent={ReceptionFallback}>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div css={style.container}>
+          <ReceptionHeader
+            onClickPrev={
+              step === 'ReceivedLetter'
+                ? () => navigate(ROUTER_PATHS.ROOT)
+                : toPrev
+            }
+            letterId={Number(letterId)}
+          />
+          <Funnel step={step}>
+            <Step name="ReceivedLetter">
+              <ReceivedLetter
+                letterId={Number(letterId)}
+                onNext={() => setStep('ReplyToLetter')}
+              />
+            </Step>
+            <Step name="ReplyToLetter">
+              <ReplyToLetter
+                letterId={Number(letterId)}
+                onPrev={() => setStep('ReceivedLetter')}
+              />
+            </Step>
+          </Funnel>
         </div>
-      }
-    >
-      <div css={style.container}>
-        <ReceptionHeader
-          onClickPrev={
-            step === 'ReceivedLetter'
-              ? () => navigate(ROUTER_PATHS.ROOT)
-              : toPrev
-          }
-          letterId={Number(letterId)}
-        />
-        <Funnel step={step}>
-          <Step name="ReceivedLetter">
-            <ReceivedLetter
-              letterId={Number(letterId)}
-              onNext={() => setStep('ReplyToLetter')}
-            />
-          </Step>
-          <Step name="ReplyToLetter">
-            <ReplyToLetter
-              letterId={Number(letterId)}
-              onPrev={() => setStep('ReceivedLetter')}
-            />
-          </Step>
-        </Funnel>
-      </div>
-    </Suspense>
+      </Suspense>
+    </UnknownErrorBoundary>
   );
 };
 
