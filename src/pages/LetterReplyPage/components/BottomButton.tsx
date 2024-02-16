@@ -18,7 +18,7 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutateAsync: patchStorage, isPending: isPending } = useMutation({
+  const { mutateAsync: patchStorage, isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionStorage,
   });
 
@@ -41,7 +41,12 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
         side="top"
         delay={10000}
         triggerContent={
-          <Button variant="primary" size="sm" onClick={handleStorageLetter}>
+          <Button
+            disabled={isPending}
+            variant="primary"
+            size="sm"
+            onClick={handleStorageLetter}
+          >
             {isPending ? (
               <LoadingSpinner />
             ) : (

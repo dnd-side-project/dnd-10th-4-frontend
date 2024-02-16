@@ -12,10 +12,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import LetterContent from '../components/LetterContent';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 
@@ -52,7 +52,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     formState: { errors },
   } = methods;
 
-  const { mutateAsync: patchReply, isPending: isPending } = useMutation({
+  const { mutateAsync: patchReply, isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionReply,
   });
 
@@ -88,7 +88,12 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
           >
             취소
           </Button>
-          <Button type="submit" variant="semi-transparent" size="sm">
+          <Button
+            disabled={isPending}
+            type="submit"
+            variant="semi-transparent"
+            size="sm"
+          >
             {isPending ? <LoadingSpinner /> : '답장 보내기'}
           </Button>
         </Navbar>
