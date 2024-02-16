@@ -11,7 +11,7 @@ export default defineConfig({
       jsxImportSource: '@emotion/react',
     }),
     sentryVitePlugin({
-      org: 'oceanletter',
+      org: 'oceanletter-y1',
       project: 'oceanletter-react',
     }),
   ],
