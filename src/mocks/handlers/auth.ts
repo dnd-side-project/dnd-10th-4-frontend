@@ -4,7 +4,7 @@ import ERROR_RESPONSES from '@/constants/errorMessages';
 import authAPI from '@/api/auth/apis';
 
 const authHandler = [
-  http.post(baseURL('/api/auth/login/kakao/postman'), async () => {
+  http.post(baseURL('/api/auth/login/kakao'), async () => {
     await delay(300);
 
     const firstLogin = true;
