@@ -5,7 +5,7 @@ import STORAGE_KEYS from '@/constants/storageKeys';
 import authAPI from '@/api/auth/apis';
 
 const authHandler = [
-  http.post(baseURL('/api/auth/login/kakao/postman'), async () => {
+  http.post(baseURL('/api/auth/login/kakao'), async () => {
     const firstLogin = true;
 
     const result = {

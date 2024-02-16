@@ -8,7 +8,7 @@ const authAPI = {
       accessToken: string;
       refreshToken: string;
       firstLogin: boolean;
-    }>(`/api/auth/login/kakao/postman?code=${code}`);
+    }>(`/api/auth/login/kakao?code=${code}`);
     return data;
   },
 
