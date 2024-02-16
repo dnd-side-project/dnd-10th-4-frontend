@@ -18,10 +18,6 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const navigateToRoot = () => {
-    navigate(ROUTER_PATHS.ROOT);
-  };
-
   const { mutateAsync: patchStorage, isPending: isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionStorage,
   });
@@ -29,12 +25,16 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
   const handleStorageLetter = async () => {
     await patchStorage(letterId);
     queryClient.invalidateQueries({ queryKey: letterOptions.all });
-    navigateToRoot();
+    navigate(ROUTER_PATHS.ROOT);
   };
 
   return (
     <Navbar css={styles.navbar}>
-      <Button variant="secondary" size="sm" onClick={navigateToRoot}>
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={() => navigate(ROUTER_PATHS.ROOT)}
+      >
         닫기
       </Button>
       <Tooltip
