@@ -17,8 +17,6 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       return;
     }
 
-    console.log('RootApiFallback useEffect');
-
     const scope = Sentry.getCurrentScope();
     scope.setTag('type', 'api');
 

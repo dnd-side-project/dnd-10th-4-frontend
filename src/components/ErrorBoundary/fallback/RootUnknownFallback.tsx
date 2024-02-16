@@ -20,8 +20,6 @@ const RootUnknownFallback = ({ error }: FallbackProps) => {
       return;
     }
 
-    console.log('RootUnknownFallback useEffect');
-
     const scope = Sentry.getCurrentScope();
     scope.setTag('type', 'unknown');
 
