@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useMutation, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import LetterCard from '@/components/LetterCard';
@@ -12,10 +12,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import style from './styles';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -36,7 +36,7 @@ interface ReplyToLetterProps {
 const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
 
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   const methods = useForm<ReplyInputs>({
     resolver: zodResolver(replySchema),

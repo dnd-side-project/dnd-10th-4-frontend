@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
-import { useMutation, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { TreasureChestOutline } from '@/assets/icons';
@@ -16,7 +16,7 @@ interface BottomButtonProps {
 
 const BottomButton = ({ letterId }: BottomButtonProps) => {
   const navigate = useNavigate();
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   const navigateToRoot = () => {
     navigate(ROUTER_PATHS.ROOT);
