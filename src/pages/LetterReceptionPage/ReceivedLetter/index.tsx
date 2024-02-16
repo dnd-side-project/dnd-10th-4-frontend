@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useMutation, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
@@ -10,10 +10,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
-import TagList from '../components/TagList';
-import useLetterWithTags from '../hooks/useLetterWithTags';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
+import useLetterWithTags from '../hooks/useLetterWithTags';
+import TagList from '../components/TagList';
 import style from './styles';
 interface ReceivedLetterProps {
   letterId: number;
@@ -23,10 +23,10 @@ interface ReceivedLetterProps {
 const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
 
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutateAsync: patchToss, isPending: isPending } = useMutation({
+  const { mutateAsync: patchToss, isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionToss,
   });
 
@@ -54,7 +54,12 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
         <ReceptionPolaroid />
       </LetterCard>
       <Navbar css={style.navbar}>
-        <Button variant="secondary" size="sm" onClick={handleTossLetter}>
+        <Button
+          disabled={isPending}
+          variant="secondary"
+          size="sm"
+          onClick={handleTossLetter}
+        >
           {isPending ? <LoadingSpinner /> : '다시 흘려보내기'}
         </Button>
         <Tooltip

@@ -5,10 +5,10 @@ import createFunnel from '@/components/Funnel/createFunnel';
 import { ROUTER_PATHS } from '@/router';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import ReceptionFallback from '@/components/ErrorBoundary/fallback/ReceptionFallback';
-import ReceivedLetter from './ReceivedLetter';
-import ReplyToLetter from './ReplyToLetter';
-import ReceptionHeader from './components/ReceptionHeader';
 import style from './styles';
+import ReceptionHeader from './components/ReceptionHeader';
+import ReplyToLetter from './ReplyToLetter';
+import ReceivedLetter from './ReceivedLetter';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'ReceivedLetter',

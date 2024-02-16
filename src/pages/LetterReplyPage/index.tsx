@@ -1,43 +1,36 @@
-import { css } from '@emotion/react';
-import ReplyHeader from './ReplyHeader';
+import { Suspense } from 'react';
+import { useParams } from 'react-router-dom';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import ReplyHeader from './components/ReplyHeader';
 import SentLetter from './sentLetter';
 import ReplyLetter from './replyLetter';
 import BottomButton from './components/BottomButton';
+import style from './styles';
 
 const LetterReplyPage = () => {
+  const { letterId } = useParams();
+
   return (
     <div css={style.container}>
       <ReplyHeader />
       <div css={style.content}>
-        <div css={style.letter}>
-          <SentLetter />
-          <ReplyLetter />
-        </div>
-        <BottomButton />
+        <Suspense
+          fallback={
+            <div css={style.loadingSpinner}>
+              <LoadingSpinner size="4rem" />
+              <p>답장 받은 편지 가져오는 중...</p>
+            </div>
+          }
+        >
+          <div css={style.letter}>
+            <SentLetter letterId={Number(letterId)} />
+            <ReplyLetter letterId={Number(letterId)} />
+          </div>
+        </Suspense>
+        <BottomButton letterId={Number(letterId)} />
       </div>
     </div>
   );
 };
 
 export default LetterReplyPage;
-
-const style = {
-  container: css`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  `,
-  content: css`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    padding-inline: 1rem;
-  `,
-  letter: css`
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  `,
-};

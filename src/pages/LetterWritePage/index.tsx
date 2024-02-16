@@ -8,8 +8,8 @@ import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
-import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -56,7 +56,7 @@ const LetterWritePage = () => {
     formState: { errors },
   } = methods;
 
-  const { mutateAsync: postLetter, isPending: isPosting } = useMutation({
+  const { mutateAsync: postLetter, isPending } = useMutation({
     mutationFn: letterAPI.postLetter,
   });
 
@@ -79,7 +79,7 @@ const LetterWritePage = () => {
         />
         <form onSubmit={handleSubmit(onSubmit)} css={style.contentWrapper}>
           <LetterWriteContent />
-          <LetterWriteBottom isPosting={isPosting} />
+          <LetterWriteBottom isPending={isPending} />
         </form>
         {/** 임시 에러 출력용 */}
         {errors.worryType && <p>{errors.worryType.message}</p>}
