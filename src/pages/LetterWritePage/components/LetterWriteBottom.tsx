@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { ROUTER_PATHS } from '@/router';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { ImageSelect } from '.';
 
 interface LetterWriteBottomProps {
   isPosting: boolean;
@@ -26,7 +25,6 @@ const LetterWriteBottom = ({ isPosting }: LetterWriteBottomProps) => {
       <Button disabled={isPosting} type="submit" variant="primary" size="sm">
         {isPosting ? <LoadingSpinner /> : '보내기'}
       </Button>
-      <ImageSelect />
     </Navbar>
   );
 };

@@ -8,7 +8,7 @@ const PolaroidImage = () => {
   const imgUrl = URL.createObjectURL(watch('image')[0]);
 
   return (
-    <PolaroidModal img={imgUrl} topPosition={4.5} leftPosition={1}>
+    <PolaroidModal img={imgUrl} topPosition={5.2} leftPosition={1}>
       <Button variant="secondary" size="sm">
         닫기
       </Button>
