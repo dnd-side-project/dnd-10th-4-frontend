@@ -4,8 +4,8 @@ import style from './styles';
 
 interface ImageUploadButtonProps {
   onChangeImage: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  topPosition: number;
-  leftPosition: number;
+  topPosition?: number;
+  leftPosition?: number;
 }
 
 const ImageUploadButton = ({
