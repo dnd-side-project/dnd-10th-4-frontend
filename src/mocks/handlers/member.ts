@@ -34,6 +34,16 @@ const memberHandler = [
   http.post(baseURL('/api/member'), async () => {
     await delay(1000);
 
+    const mswCase = new URLSearchParams(window.location.search).get(
+      QUERY_STRINGS.mswCase,
+    );
+
+    if (mswCase === '404') {
+      return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+        status: 404,
+      });
+    }
+
     return HttpResponse.json();
   }),
 

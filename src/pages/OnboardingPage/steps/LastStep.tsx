@@ -6,11 +6,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import Button from '@/components/Button';
 import textStyles from '@/styles/textStyles';
 import { ROUTER_PATHS } from '@/router';
 import memberAPI from '@/api/member/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import StepTemplate from '../components/StepTemplate';
 import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
@@ -38,14 +40,26 @@ const LastStep = () => {
 
     const birthday = `${year}-${month}-${day}`;
 
-    await mutateAsync({
-      nickname: data.nickname,
-      worries: data.worries,
-      gender: data.gender,
-      birthday,
-    });
+    try {
+      await mutateAsync({
+        nickname: data.nickname,
+        worries: data.worries,
+        gender: data.gender,
+        birthday,
+      });
 
-    navigate(ROUTER_PATHS.ROOT);
+      navigate(ROUTER_PATHS.ROOT);
+    } catch (err) {
+      if (
+        isAxiosError(err) &&
+        err.response?.data === ERROR_RESPONSES.memberNotFound
+      ) {
+        console.error(err);
+        navigate(ROUTER_PATHS.SIGNIN);
+      } else {
+        throw err;
+      }
+    }
   };
 
   const onError: SubmitErrorHandler<Inputs> = (errors) => {
