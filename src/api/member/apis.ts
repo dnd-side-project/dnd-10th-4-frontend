@@ -17,39 +17,31 @@ const memberAPI = {
   },
 
   /** 온보딩 정보 등록 */
-  postMemberDetail: async (params: {
+  postMemberDetail: async (body: {
     nickname: string;
     birthday: string;
     gender: Gender;
     worries: Worry[];
   }) => {
-    const { data } = await authInstance.post('/api/member', {
-      params,
-    });
+    const { data } = await authInstance.post('/api/member', body);
     return data;
   },
 
   /** 닉네임 수정 */
-  patchNickname: async (params: { nickname: string }) => {
-    const { data } = await authInstance.patch('/api/member/nickname', {
-      params,
-    });
+  patchNickname: async (body: { nickname: string }) => {
+    const { data } = await authInstance.patch('/api/member/nickname', body);
     return data;
   },
 
   /** 생일 수정 */
-  patchBirthday: async (params: { birthday: string }) => {
-    const { data } = await authInstance.patch('/api/member/birthday', {
-      params,
-    });
+  patchBirthday: async (body: { birthday: string }) => {
+    const { data } = await authInstance.patch('/api/member/birthday', body);
     return data;
   },
 
   /** 성별 수정 */
-  patchGender: async (params: { gender: Gender }) => {
-    const { data } = await authInstance.patch('/api/member/gender', {
-      params,
-    });
+  patchGender: async (body: { gender: Gender }) => {
+    const { data } = await authInstance.patch('/api/member/gender', body);
     return data;
   },
 
@@ -60,10 +52,8 @@ const memberAPI = {
   },
 
   /** 고민 등록 */
-  postWorry: async (params: { worries: Worry[] }) => {
-    const { data } = await authInstance.post('/api/member/worry', {
-      params,
-    });
+  postWorry: async (body: { worries: Worry[] }) => {
+    const { data } = await authInstance.post('/api/member/worry', body);
     return data;
   },
 };
