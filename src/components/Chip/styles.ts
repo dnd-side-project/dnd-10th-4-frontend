@@ -8,6 +8,7 @@ export type VariantType =
   | 'bottle-tag'
   | 'bottle-tag-bubble'
   | 'filter'
+  | 'tag'
   | 'form'
   | 'form-selected'
   | 'form-disabled';
@@ -103,7 +104,6 @@ const variants = {
   filter: css`
     ${baseChipStyle};
     padding: 0 8px;
-    border-radius: 100px;
     border: 1px solid ${COLORS.letterChip2};
     background: ${COLORS.letterChip1};
 
@@ -111,6 +111,14 @@ const variants = {
     > span {
       color: ${COLORS.gray2};
     }
+  `,
+  tag: css`
+    ${baseChipStyle};
+    padding: 0 8px;
+    border: 1px solid ${COLORS.gray4};
+    background-color: transparent;
+    ${textStyles.b5m};
+    color: ${COLORS.gray2};
   `,
   form: css`
     ${formChipStyles};

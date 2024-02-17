@@ -127,6 +127,16 @@ export const 필터링_칩: StoryObj = {
   ),
 };
 
+export const 태그_칩: StoryObj = {
+  render: () => (
+    <div css={styles.chipContainer}>
+      <Chip variant="tag">17~</Chip>
+      <Chip variant="tag">모두에게</Chip>
+      <Chip variant="tag">진로</Chip>
+    </div>
+  ),
+};
+
 export const 폼_칩: StoryObj = {
   render: () => (
     <div css={{ backgroundColor: 'white', padding: '0.625rem' }}>
