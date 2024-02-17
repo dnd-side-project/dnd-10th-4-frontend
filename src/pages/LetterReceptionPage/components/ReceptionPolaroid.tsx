@@ -29,7 +29,7 @@ const ReceptionPolaroid = ({
   return (
     <PolaroidModal
       img={img}
-      topPosition={2}
+      topPosition={4.2}
       leftPosition={1.2}
       headerRightContent={
         <IconButton onClick={handleDownload}>
