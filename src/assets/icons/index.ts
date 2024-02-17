@@ -1,3 +1,4 @@
+export { default as AddImage } from './AddImage';
 export { default as ArrowClockWise } from './ArrowClockWise';
 export { default as CaretDown } from './CaretDown';
 export { default as CaretLeft } from './CaretLeft';
