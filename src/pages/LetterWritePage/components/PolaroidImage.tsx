@@ -9,7 +9,7 @@ const PolaroidImage = () => {
   const { watch, setValue } = useFormContext<WriteInputs>();
   const imgUrl = URL.createObjectURL(watch('image')[0]);
 
-  const onClickTrashCan = () => {
+  const handleClickTrashCan = () => {
     setValue('image', undefined);
   };
 
@@ -19,7 +19,7 @@ const PolaroidImage = () => {
       topPosition={5.2}
       leftPosition={1}
       headerRightContent={
-        <IconButton onClick={onClickTrashCan}>
+        <IconButton onClick={handleClickTrashCan}>
           <TrashCan fill="white" />
         </IconButton>
       }
