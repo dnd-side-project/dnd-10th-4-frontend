@@ -13,7 +13,7 @@ const memberHandler = [
     );
 
     if (mswCase === '404') {
-      return new HttpResponse(ERROR_RESPONSES.usernameNotFound, {
+      return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
         status: 404,
       });
     }
@@ -29,6 +29,12 @@ const memberHandler = [
     } satisfies Awaited<ReturnType<(typeof memberAPI)['getMemberDetail']>>;
 
     return HttpResponse.json(result);
+  }),
+
+  http.post(baseURL('/api/member'), async () => {
+    await delay(1000);
+
+    return HttpResponse.json();
   }),
 
   http.patch(baseURL('/api/member/nickname'), async () => {

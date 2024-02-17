@@ -16,6 +16,19 @@ const memberAPI = {
     return data;
   },
 
+  /** 온보딩 정보 등록 */
+  postMemberDetail: async (params: {
+    nickname: string;
+    birthday: string;
+    gender: Gender;
+    worries: Worry[];
+  }) => {
+    const { data } = await authInstance.post('/api/member', {
+      params,
+    });
+    return data;
+  },
+
   /** 닉네임 수정 */
   patchNickname: async (params: { nickname: string }) => {
     const { data } = await authInstance.patch('/api/member/nickname', {
