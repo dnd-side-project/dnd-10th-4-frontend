@@ -1,4 +1,4 @@
-import { useFormContext, useWatch } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Button from '@/components/Button';
 import { useFunnelContext } from '@/contexts/useFunnelContext';
@@ -8,10 +8,10 @@ import StepTemplate from '../components/StepTemplate';
 import { Inputs } from '../hooks/useOnboardingForm';
 
 const InputGenderStep = () => {
-  const { getFieldState, trigger, formState, control, register } =
+  const { getFieldState, trigger, formState, control } =
     useFormContext<Inputs>();
   const { invalid } = getFieldState('gender', formState);
-  const { nickname, gender } = useWatch({ control });
+  const { nickname } = useWatch({ control });
 
   const { toNext } = useFunnelContext();
 
@@ -28,19 +28,37 @@ const InputGenderStep = () => {
       </p>
       <h3 css={textStyles.t1}>성별을 알려주세요</h3>
       <section css={styles.genderSection}>
-        <GenderCard
-          {...register('gender')}
-          variant="primary"
-          value="MALE"
-          selectedValue={gender}
-          onClick={() => trigger('gender')}
+        <Controller
+          control={control}
+          name="gender"
+          render={({ field }) => (
+            <GenderCard
+              {...field}
+              variant="primary"
+              value="MALE"
+              selectedValue={field.value}
+              onChange={(e) => {
+                field.onChange(e);
+                trigger('gender');
+              }}
+            />
+          )}
         />
-        <GenderCard
-          {...register('gender')}
-          variant="primary"
-          value="FEMALE"
-          selectedValue={gender}
-          onClick={() => trigger('gender')}
+        <Controller
+          control={control}
+          name="gender"
+          render={({ field }) => (
+            <GenderCard
+              {...field}
+              variant="primary"
+              value="FEMALE"
+              selectedValue={field.value}
+              onChange={(e) => {
+                field.onChange(e);
+                trigger('gender');
+              }}
+            />
+          )}
         />
       </section>
     </StepTemplate>

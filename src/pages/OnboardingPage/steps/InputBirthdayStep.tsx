@@ -49,7 +49,7 @@ const InputBirthdayStep = () => {
                 placeholder="YYYY"
                 autoComplete="off"
                 maxLength={formLiteral.year.length}
-                onChange={async (e) => {
+                onChange={(e) => {
                   e.target.value = clampValue(
                     e.target.value,
                     formLiteral.year.max,
@@ -74,7 +74,7 @@ const InputBirthdayStep = () => {
                 placeholder="MM"
                 autoComplete="off"
                 maxLength={formLiteral.month.length}
-                onChange={async (e) => {
+                onChange={(e) => {
                   e.target.value = clampValue(
                     e.target.value,
                     formLiteral.month.max,
@@ -99,7 +99,7 @@ const InputBirthdayStep = () => {
                 placeholder="DD"
                 autoComplete="off"
                 maxLength={formLiteral.day.length}
-                onChange={async (e) => {
+                onChange={(e) => {
                   e.target.value = clampValue(
                     e.target.value,
                     formLiteral.day.max,
