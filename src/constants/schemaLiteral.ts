@@ -29,7 +29,7 @@ export const letterWrite = {
       message: '사진은 5MB 이하여야 합니다.',
     },
     acceptType: {
-      list: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
+      list: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'],
       message: '사진은 이미지 파일만 가능합니다.',
     },
   },

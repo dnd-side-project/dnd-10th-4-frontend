@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { ROUTER_PATHS } from '@/router';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { ImageSelect } from '.';
 
 interface LetterWriteBottomProps {
   isPending: boolean;
@@ -26,7 +25,6 @@ const LetterWriteBottom = ({ isPending }: LetterWriteBottomProps) => {
       <Button disabled={isPending} type="submit" variant="primary" size="sm">
         {isPending ? <LoadingSpinner /> : '보내기'}
       </Button>
-      <ImageSelect />
     </Navbar>
   );
 };

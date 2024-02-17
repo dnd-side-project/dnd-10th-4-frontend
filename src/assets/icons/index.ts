@@ -1,3 +1,4 @@
+export { default as AddImage } from './AddImage';
 export { default as ArrowClockWise } from './ArrowClockWise';
 export { default as CaretDown } from './CaretDown';
 export { default as CaretLeft } from './CaretLeft';
@@ -19,6 +20,7 @@ export { default as Shuffle } from './Shuffle';
 export { default as Siren } from './Siren';
 export { default as SoundOff } from './SoundOff';
 export { default as SoundOn } from './SoundOn';
+export { default as TrashCan } from './TrashCan';
 export { default as TreasureChest } from './TreasureChest';
 export { default as TreasureChestOutline } from './TreasureChestOutline';
 export { default as User } from './User';
