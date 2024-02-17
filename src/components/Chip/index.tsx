@@ -17,6 +17,7 @@ const Chip = ({ variant = 'primary', children, ...props }: ChipProps) => {
       disabled={variant === 'primary-disabled' || variant === 'form-disabled'}
       css={style.chip(variant)}
     >
+      {variant === 'filter' && <span>#</span>}
       {children}
     </button>
   );

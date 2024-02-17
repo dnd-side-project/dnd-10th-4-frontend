@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
-
+import textStyles from '@/styles/textStyles';
 export type VariantType =
   | 'primary'
   | 'primary-selected'
@@ -102,14 +102,15 @@ const variants = {
   `,
   filter: css`
     ${baseChipStyle};
-    padding: 0.25rem 0.5rem;
-    font-weight: 500;
-    gap: 0.625rem;
-    border: 1px solid ${COLORS.gray4};
-    background: ${COLORS.gray5};
-    color: ${COLORS.gray1};
-    line-height: 1rem;
-    font-size: 0.875rem;
+    padding: 0 8px;
+    border-radius: 100px;
+    border: 1px solid ${COLORS.letterChip2};
+    background: ${COLORS.letterChip1};
+
+    ${textStyles.b5m};
+    > span {
+      color: ${COLORS.gray2};
+    }
   `,
   form: css`
     ${formChipStyles};
