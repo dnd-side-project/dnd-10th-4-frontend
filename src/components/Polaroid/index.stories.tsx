@@ -72,3 +72,18 @@ export const 편지지_폴라로이드: StoryObj = {
     return <PolaroidComponent />;
   },
 };
+
+export const 사진_없음: StoryObj = {
+  render: () => {
+    const PolaroidImage = () => {
+      return (
+        <>
+          <LetterCard isOpen={true}>
+            <Polaroid topPosition={5.5} leftPosition={2} />
+          </LetterCard>
+        </>
+      );
+    };
+    return <PolaroidImage />;
+  },
+};
