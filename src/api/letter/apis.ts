@@ -15,12 +15,8 @@ const letterAPI = {
   },
 
   /** 답장 받은 편지 페이징 조회 */
-  getRepliedLetters: async (page: number) => {
-    const { data } = await authInstance.get<Reply[]>(`/api/letter/reply`, {
-      params: {
-        page,
-      },
-    });
+  getRepliedLetters: async () => {
+    const { data } = await authInstance.get<Reply[]>(`/api/letter/reply`);
     return data;
   },
 
