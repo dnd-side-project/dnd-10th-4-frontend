@@ -3,24 +3,20 @@ import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
 import { type ReplyInputs } from '@/pages/LetterReceptionPage/ReplyToLetter';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
-import { baseInstance, authInstance } from '../instance';
+import { authInstance } from '../instance';
 
 const letterAPI = {
   /** 받은 편지 전체 조회 */
   getReceivedLetters: async () => {
-    const { data } = await baseInstance.get<Reception[]>(
+    const { data } = await authInstance.get<Reception[]>(
       '/api/letter/reception',
     );
     return data;
   },
 
   /** 답장 받은 편지 페이징 조회 */
-  getRepliedLetters: async (page: number) => {
-    const { data } = await baseInstance.get<Reply[]>(`/api/letter/reply`, {
-      params: {
-        page,
-      },
-    });
+  getRepliedLetters: async () => {
+    const { data } = await authInstance.get<Reply[]>(`/api/letter/reply`);
     return data;
   },
 
@@ -72,6 +68,22 @@ const letterAPI = {
   patchReceptionToss: async (letterId: number) => {
     const { data } = await authInstance.patch(
       `/api/letter/reception/toss/${letterId}`,
+    );
+    return data;
+  },
+
+  /** 답장 받은 편지 단건 조회 */
+  getSingleReply: async (letterId: number) => {
+    const { data } = await authInstance.get<Reply>(
+      `/api/letter/reply/${letterId}`,
+    );
+    return data;
+  },
+
+  /** 받은 편지 보관함에 보관 */
+  patchReceptionStorage: async (letterId: number) => {
+    const { data } = await authInstance.patch(
+      `/api/letter/reception/storage/${letterId}`,
     );
     return data;
   },

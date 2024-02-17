@@ -10,18 +10,22 @@ const letterOptions = {
       queryFn: () => letterAPI.getReceivedLetters(),
     }),
 
-  reply: (page: number) =>
+  reply: () =>
     queryOptions({
-      queryKey: [...letterOptions.all, 'reply', page] as const,
-      queryFn: () => letterAPI.getRepliedLetters(page),
+      queryKey: [...letterOptions.all, 'reply'] as const,
+      queryFn: () => letterAPI.getRepliedLetters(),
     }),
 
   singleReception: (letterId: number) =>
     queryOptions({
       queryKey: [...letterOptions.all, 'reception', letterId] as const,
       queryFn: () => letterAPI.getSingleReception(letterId),
-      gcTime: 5 * 60 * 1000,
-      staleTime: 1 * 60 * 1000,
+    }),
+
+  singleReply: (letterId: number) =>
+    queryOptions({
+      queryKey: [...letterOptions.all, 'reply', letterId] as const,
+      queryFn: () => letterAPI.getSingleReply(letterId),
     }),
 };
 

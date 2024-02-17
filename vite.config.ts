@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -9,15 +10,25 @@ export default defineConfig({
     react({
       jsxImportSource: '@emotion/react',
     }),
+    sentryVitePlugin({
+      org: 'oceanletter-y1',
+      project: 'oceanletter-react',
+    }),
   ],
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
+
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
+  },
+
+  build: {
+    sourcemap: true,
   },
 });

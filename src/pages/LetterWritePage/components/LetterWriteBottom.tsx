@@ -6,10 +6,10 @@ import { ROUTER_PATHS } from '@/router';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 interface LetterWriteBottomProps {
-  isPosting: boolean;
+  isPending: boolean;
 }
 
-const LetterWriteBottom = ({ isPosting }: LetterWriteBottomProps) => {
+const LetterWriteBottom = ({ isPending }: LetterWriteBottomProps) => {
   const navigate = useNavigate();
 
   return (
@@ -22,8 +22,8 @@ const LetterWriteBottom = ({ isPosting }: LetterWriteBottomProps) => {
       >
         취소
       </Button>
-      <Button disabled={isPosting} type="submit" variant="primary" size="sm">
-        {isPosting ? <LoadingSpinner /> : '보내기'}
+      <Button disabled={isPending} type="submit" variant="primary" size="sm">
+        {isPending ? <LoadingSpinner /> : '보내기'}
       </Button>
     </Navbar>
   );

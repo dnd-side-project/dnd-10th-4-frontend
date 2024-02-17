@@ -7,7 +7,7 @@ import SigninKakaoPage from './pages/SigninKakaoPage';
 import OnboardingPage from './pages/OnboardingPage';
 import LetterWritePage from './pages/LetterWritePage';
 import MainPage from './pages/MainPage';
-import LetterReceptionPage from './pages/LetterReceptionPage/intex';
+import LetterReceptionPage from './pages/LetterReceptionPage';
 import MyPage from './pages/MyPage';
 import LetterReplyPage from './pages/LetterReplyPage';
 
