@@ -9,7 +9,8 @@ const memberAPI = {
       email: string;
       nickname: string;
       worryTypes: Worry[];
-      gender: Gender;
+      gender: Gender | 'NONE';
+      birthday?: [number, number, number];
       age: number;
       role: Role;
     }>('/api/member');

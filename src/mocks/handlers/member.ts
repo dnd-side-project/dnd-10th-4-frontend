@@ -16,6 +16,17 @@ const memberHandler = [
       return new HttpResponse(ERROR_RESPONSES.usernameNotFound, {
         status: 404,
       });
+    } else if (mswCase === 'empty') {
+      return HttpResponse.json({
+        id: 8,
+        email: 'aodem@naver.com',
+        nickname: 'NONE',
+        worryTypes: [],
+        gender: 'NONE',
+        birthDay: null,
+        age: null,
+        role: 'USER',
+      });
     }
 
     const result = {
@@ -24,7 +35,8 @@ const memberHandler = [
       nickname: '낯선 거북이',
       worryTypes: ['COURSE', 'STUDY', 'RELATIONSHIP'],
       gender: 'MALE',
-      age: 40,
+      birthday: [1997, 1, 1],
+      age: 28,
       role: 'USER',
     } satisfies Awaited<ReturnType<(typeof memberAPI)['getMemberDetail']>>;
 
