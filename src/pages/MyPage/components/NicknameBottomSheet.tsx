@@ -25,6 +25,10 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
   const { data: member } = useSuspenseQuery({
     ...memberOptions.detail(),
     staleTime: Infinity,
+    select: (data) => ({
+      ...data,
+      nickname: data.nickname === 'NONE' ? NICKNAMES[0] : data.nickname,
+    }),
   });
   const { mutateAsync, isPending } = useMutation({
     mutationFn: memberAPI.patchNickname,
@@ -40,11 +44,12 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
   };
 
   const handleSubmit = async () => {
-    await mutateAsync({ nickname: `낯선 ${nickname}` });
+    await mutateAsync({ nickname });
 
     queryClient.invalidateQueries({
       queryKey: memberOptions.detail().queryKey,
     });
+
     off();
   };
 
