@@ -26,7 +26,7 @@ const ImageUploadButton = ({
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/*"
+        accept=".jpg, .jpeg, .gif, .bmp, .png"
         css={style.input}
         onChange={onChangeImage}
       />
