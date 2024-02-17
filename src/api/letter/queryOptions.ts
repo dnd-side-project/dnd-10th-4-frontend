@@ -10,10 +10,10 @@ const letterOptions = {
       queryFn: () => letterAPI.getReceivedLetters(),
     }),
 
-  reply: (page: number) =>
+  reply: () =>
     queryOptions({
-      queryKey: [...letterOptions.all, 'reply', page] as const,
-      queryFn: () => letterAPI.getRepliedLetters(page),
+      queryKey: [...letterOptions.all, 'reply'] as const,
+      queryFn: () => letterAPI.getRepliedLetters(),
     }),
 
   singleReception: (letterId: number) =>
