@@ -1,7 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 import memberAPI from '@/api/member/apis';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
-import QUERY_STRINGS from '@/constants/queryStrings';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import withAuth from '../middlewares/withAuth';
 
@@ -45,7 +44,7 @@ const memberHandler = [
           }
         case 404:
           return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
-            status: 404,
+            status,
           });
         default:
           return;
@@ -58,17 +57,18 @@ const memberHandler = [
     withAuth(async () => {
       await delay(1000);
 
-      const mswCase = new URLSearchParams(window.location.search).get(
-        QUERY_STRINGS.mswCase,
-      );
+      const status: number = 200;
 
-      if (mswCase === '404') {
-        return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
-          status: 404,
-        });
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 404:
+          return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+            status,
+          });
+        default:
+          return;
       }
-
-      return HttpResponse.json();
     }),
   ),
 
