@@ -18,13 +18,13 @@ const memberAPI = {
   },
 
   /** 온보딩 정보 등록 */
-  postMemberDetail: async (body: {
+  patchMemberDetail: async (body: {
     nickname: string;
     birthday: string;
     gender: Gender;
     worries: Worry[];
   }) => {
-    const { data } = await authInstance.post('/api/member', body);
+    const { data } = await authInstance.patch('/api/member', body);
     return data;
   },
 

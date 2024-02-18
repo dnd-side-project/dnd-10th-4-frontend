@@ -43,7 +43,7 @@ const memberHandler = [
     return HttpResponse.json(result);
   }),
 
-  http.post(baseURL('/api/member'), async () => {
+  http.patch(baseURL('/api/member'), async () => {
     await delay(1000);
 
     const mswCase = new URLSearchParams(window.location.search).get(
