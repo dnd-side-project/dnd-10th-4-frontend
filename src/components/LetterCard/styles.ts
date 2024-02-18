@@ -8,7 +8,7 @@ const style = {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     box-sizing: border-box;
     width: 100%;
     max-width: 600px;
