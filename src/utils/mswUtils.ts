@@ -9,3 +9,8 @@ export const baseURL = (path: string) => {
 export const isValidToken = (token: string | null) => {
   return token === 'fresh' || token === 'renewed';
 };
+
+/** 브라우저의 URI Path에서 특정 쿼리 스트링을 꺼냅니다. */
+export const getSearchParams = (key: string) => {
+  return new URLSearchParams(window.location.search).get(key);
+};

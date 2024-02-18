@@ -1,5 +1,5 @@
 import { http, HttpResponse, delay } from 'msw';
-import { baseURL } from '@/utils/mswUtils';
+import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import { Reception, Reply } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import {
@@ -12,8 +12,7 @@ const letterHandler = [
     await delay(1000);
 
     const itemCount =
-      Number(new URLSearchParams(window.location.search).get('mswItemCount')) ||
-      ReceivedLetterResponse.length;
+      Number(getSearchParams('mswItemCount')) || ReceivedLetterResponse.length;
 
     const status: number = 200;
 
@@ -33,8 +32,7 @@ const letterHandler = [
     await delay(1000);
 
     const itemCount =
-      Number(new URLSearchParams(window.location.search).get('mswItemCount')) ||
-      ReceivedLetterResponse.length;
+      Number(getSearchParams('mswItemCount')) || RepliedLettersResponse.length;
 
     const status: number = 200;
 
