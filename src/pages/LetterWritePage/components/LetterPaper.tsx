@@ -1,9 +1,14 @@
 import { useFormContext } from 'react-hook-form';
-import LetterCard from '@/components/LetterCard';
 import LetterLengthDate from '@/components/LetterLengthDate';
+import LetterCard from '@/components/LetterCard';
 import { type WriteInputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
-import { LetterReceiverContainer, LetterContent, PolaroidImage } from '.';
+import {
+  LetterReceiverContainer,
+  LetterContent,
+  PolaroidImage,
+  ImageSelect,
+} from '.';
 
 const LetterPaper = ({
   isBottomSheetOpen,
@@ -19,7 +24,7 @@ const LetterPaper = ({
       />
       <LetterContent />
       <LetterLengthDate letterLength={watch('content').length} />
-      {watch('image') && <PolaroidImage />}
+      {watch('image') ? <PolaroidImage /> : <ImageSelect />}
     </LetterCard>
   );
 };

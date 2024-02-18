@@ -4,6 +4,23 @@ import COLORS from '@/constants/colors';
 export type PolaroidSize = 'sm' | 'lg';
 
 const style = {
+  empty: (topPosition: number, leftPosition: number) => css`
+    position: absolute;
+    top: ${topPosition + 15}rem;
+    left: ${leftPosition + 1}rem;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    width: 68px;
+    height: 100px;
+    padding: 4px;
+    border: 1px dashed var(--Letter-chips-letter-chip2, #6f6b63);
+    border-radius: 2px;
+    background: var(--Letter-chips-letter-chip-bg, rgb(204 199 190 / 0.3));
+    cursor: pointer;
+    transform: rotate(-15deg);
+  `,
   img: (topPosition: number, leftPosition: number, size: PolaroidSize) => css`
     background: #fff;
     ${size === 'sm' &&
@@ -12,12 +29,6 @@ const style = {
       left: ${leftPosition + 1}rem;
     `}
     ${sizeStyle[size]}
-  `,
-  icon: (topPosition: number, leftPosition: number) => css`
-    position: absolute;
-    top: ${topPosition + 13.8}rem;
-    left: ${leftPosition + 3.6}rem;
-    cursor: pointer;
   `,
 };
 

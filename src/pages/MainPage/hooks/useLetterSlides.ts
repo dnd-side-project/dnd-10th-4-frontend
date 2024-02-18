@@ -11,7 +11,7 @@ const REPLIES_PER_SLIDE = 2;
 
 const useLetterSlides = () => {
   const [{ data: receptions }, { data: replies }] = useSuspenseQueries({
-    queries: [letterOptions.reception(), letterOptions.reply(0)],
+    queries: [letterOptions.reception(), letterOptions.reply()],
   });
 
   const refinedReceptions = chunkArray(

@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import {
-  FormProvider,
-  SubmitHandler,
-  SubmitErrorHandler,
-} from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { FormProvider } from 'react-hook-form';
 import createFunnel from '@/components/Funnel/createFunnel';
 import { FunnelProvider } from '@/contexts/useFunnelContext';
 import Header from '@/components/Header';
 import MusicButton from '@/components/MusicButton';
-import { ROUTER_PATHS } from '@/router';
 import FirstStep from './steps/FirstStep';
 import IntroduceStep from './steps/IntroduceStep';
 import InputNicknameStep from './steps/InputNicknameStep';
@@ -20,7 +14,7 @@ import InputWorryStep from './steps/InputWorryStep';
 import LastStep from './steps/LastStep';
 import NavHeader from './components/NavHeader';
 import styles from './styles';
-import useOnboardingForm, { Inputs } from './hooks/useOnboardingForm';
+import useOnboardingForm from './hooks/useOnboardingForm';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'First',
@@ -35,7 +29,6 @@ const { Funnel, Step, useFunnel } = createFunnel([
 
 const OnboardingPage = () => {
   const { step, toPrev, toNext, toFirst, toLast } = useFunnel();
-  const navigate = useNavigate();
 
   const [progress, setProgress] = useState<
     React.ComponentProps<typeof NavHeader>
@@ -46,22 +39,11 @@ const OnboardingPage = () => {
   });
 
   const form = useOnboardingForm();
-  const { trigger, handleSubmit } = form;
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    alert('온보딩 성공! 🎉 곧 API 연동 작업 예정입니다');
-    // TODO: 서버에 mutation 요청 보내고, 성공하면 navigate(ROUTER_PATHS.ROOT) 해야 합니다.
-  };
-
-  const onError: SubmitErrorHandler<Inputs> = (errors) => {
-    console.error(errors);
-    navigate(ROUTER_PATHS.ROOT);
-  };
+  const { trigger } = form;
 
   return (
     <FunnelProvider value={{ toPrev, toNext, toFirst, toLast }}>
-      <form css={styles.container} onSubmit={handleSubmit(onSubmit, onError)}>
+      <div css={styles.container}>
         <NavHeader {...progress} />
         <Header rightContent={<MusicButton />} />
 
@@ -138,19 +120,20 @@ const OnboardingPage = () => {
             </Step>
             <Step
               name="Last"
-              onEnter={() =>
+              onEnter={() => {
                 setProgress({
                   progressValue: 0,
                   showBackButton: true,
                   showSkipButton: false,
-                })
-              }
+                });
+                trigger();
+              }}
             >
               <LastStep />
             </Step>
           </Funnel>
         </FormProvider>
-      </form>
+      </div>
     </FunnelProvider>
   );
 };
