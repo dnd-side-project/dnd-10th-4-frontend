@@ -25,7 +25,7 @@ const LastStep = () => {
   const navigate = useNavigate();
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: memberAPI.postMemberDetail,
+    mutationFn: memberAPI.patchMemberDetail,
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
