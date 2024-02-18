@@ -10,10 +10,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
+import TagList from '@/components/TagList';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import TagList from '../components/TagList';
 import style from './styles';
 interface ReceivedLetterProps {
   letterId: number;
@@ -40,6 +40,7 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
     <LetterContent>
       <LetterCard isOpen={true}>
         <TagList tags={receptionLetter.tagList} />
+        <LetterHeader nickname={receptionLetter.receiverNickname} />
         <div css={style.text}>
           <p>{receptionLetter.content}</p>
         </div>
