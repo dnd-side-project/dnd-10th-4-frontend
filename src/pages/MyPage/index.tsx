@@ -53,9 +53,7 @@ const SuspendedPage = () => {
         <li css={styles.item}>
           <p>닉네임 변경</p>
           <div css={styles.value} onClick={nicknameBottomSheetProps.on}>
-            <span>
-              {member.nickname === 'NONE' ? '설정되지 않음' : member.nickname}
-            </span>
+            <span>{member.nickname ? member.nickname : '설정되지 않음'}</span>
             <CaretRight color={COLORS.gray3} />
           </div>
         </li>
@@ -74,9 +72,7 @@ const SuspendedPage = () => {
           <p>성별 변경</p>
           <div css={styles.value} onClick={genderBottomSheetProps.on}>
             <span>
-              {member.gender === 'NONE'
-                ? '설정되지 않음'
-                : GENDER_DICT[member.gender]}
+              {member.gender ? GENDER_DICT[member.gender] : '설정되지 않음'}
             </span>
             <CaretRight color={COLORS.gray3} />
           </div>

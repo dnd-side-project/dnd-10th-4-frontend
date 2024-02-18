@@ -7,10 +7,10 @@ const memberAPI = {
     const { data } = await authInstance.get<{
       id: number;
       email: string;
-      nickname: string;
+      nickname: string | null;
       worryTypes: Worry[];
-      gender: Gender | 'NONE';
-      birthday?: [number, number, number];
+      gender: Gender | null;
+      birthday: [number, number, number] | null;
       age: number;
       role: Role;
     }>('/api/member');

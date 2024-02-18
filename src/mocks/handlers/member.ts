@@ -20,9 +20,9 @@ const memberHandler = [
       return HttpResponse.json({
         id: 8,
         email: 'aodem@naver.com',
-        nickname: 'NONE',
+        nickname: null,
         worryTypes: [],
-        gender: 'NONE',
+        gender: null,
         birthDay: null,
         age: null,
         role: 'USER',
