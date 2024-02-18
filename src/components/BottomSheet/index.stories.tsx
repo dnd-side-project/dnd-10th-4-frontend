@@ -33,11 +33,6 @@ const styles = {
     width: 100%;
     max-width: 15rem;
   `,
-  buttonSection: css`
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-  `,
 };
 
 export const 바텀시트: StoryObj = {
@@ -127,14 +122,14 @@ export const 성별_선택_바텀시트: StoryObj = {
               성별은 한 번만 수정할 수 있어요
             </BottomSheet.Description>
             <BottomSheet.Divider />
-            <BottomSheet.Content css={styles.buttonSection}>
+            <BottomSheet.ButtonSection>
               <Button variant="cancel" onClick={off}>
                 닫기
               </Button>
               <Button variant="primary" onClick={off}>
                 변경 완료
               </Button>
-            </BottomSheet.Content>
+            </BottomSheet.ButtonSection>
           </BottomSheet>
         </>
       );
@@ -158,14 +153,14 @@ export const 로그아웃_바텀시트: StoryObj = {
               언제든 다시 로그인 할 수 있어요
             </BottomSheet.Description>
             <BottomSheet.Divider />
-            <BottomSheet.Content css={styles.buttonSection}>
+            <BottomSheet.ButtonSection>
               <Button variant="cancel" onClick={off}>
                 취소
               </Button>
               <Button variant="primary" onClick={off}>
                 로그아웃
               </Button>
-            </BottomSheet.Content>
+            </BottomSheet.ButtonSection>
           </BottomSheet>
         </>
       );

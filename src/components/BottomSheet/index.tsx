@@ -5,6 +5,7 @@ import Title from './components/Title';
 import Content from './components/Content';
 import Description from './components/Description';
 import Divider from './components/Divider';
+import ButtonSection from './components/ButtonSection';
 
 interface BottomSheetProps {
   /** 바텀시트의 열림(true), 닫힘(false) 상태입니다. */
@@ -46,5 +47,6 @@ BottomSheet.Title = Title;
 BottomSheet.Content = Content;
 BottomSheet.Description = Description;
 BottomSheet.Divider = Divider;
+BottomSheet.ButtonSection = ButtonSection;
 
 export default BottomSheet;

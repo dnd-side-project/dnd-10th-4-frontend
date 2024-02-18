@@ -29,6 +29,12 @@ const styles = {
     height: 1px;
     background-color: ${COLORS.gray6};
   `,
+  buttonSection: css`
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+  `,
 };
 
 export default styles;
