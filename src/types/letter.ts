@@ -9,13 +9,21 @@ export type Letter = {
   image: File;
 };
 
+export type LetterTag = {
+  ageStart: number;
+  ageRangeEnd: number;
+  equalGender: boolean;
+};
+
 export type Reception = {
   createdAt: string;
   letterId: number;
+  letterTag?: LetterTag;
   senderNickname: string;
   receiverNickname: string;
   content: string;
   worryType: Worry;
+  imagePath?: string;
 };
 
 export type Reply = {
