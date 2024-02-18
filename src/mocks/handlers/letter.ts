@@ -94,7 +94,7 @@ const letterHandler = [
     return HttpResponse.json();
   }),
 
-  http.patch(baseURL('/api/letter/reception/toss/:letterId'), async () => {
+  http.patch(baseURL('/api/letter/reception/pass/:letterId'), async () => {
     await delay(1000);
 
     return HttpResponse.json();
