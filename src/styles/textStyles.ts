@@ -67,6 +67,11 @@ const textStyles = {
     font-size: 14px;
     line-height: 24px;
   `,
+  b5R: css`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  `,
   c1sb: css`
     font-weight: 600;
     font-size: 12px;
