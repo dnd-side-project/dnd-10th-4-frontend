@@ -4,6 +4,7 @@ import {
   type SubmitErrorHandler,
 } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
@@ -50,20 +51,29 @@ const LastStep = () => {
 
       navigate(ROUTER_PATHS.ROOT);
     } catch (err) {
-      if (
-        isAxiosError(err) &&
-        err.response?.data === ERROR_RESPONSES.memberNotFound
-      ) {
-        console.error(err);
-        navigate(ROUTER_PATHS.SIGNIN);
-      } else {
-        throw err;
+      if (isAxiosError(err)) {
+        if (err.response?.data === ERROR_RESPONSES.memberNotFound) {
+          console.error(err);
+          navigate(ROUTER_PATHS.SIGNIN);
+          return;
+        } else {
+          toast.error(err.response?.data ?? ERROR_RESPONSES.unknown, {
+            position: 'bottom-center',
+          });
+          return;
+        }
       }
+
+      throw err;
     }
   };
 
   const onError: SubmitErrorHandler<Inputs> = (errors) => {
     console.error(errors);
+
+    toast.success('프로필 작성을 건너뛰었어요', {
+      position: 'bottom-center',
+    });
 
     navigate(ROUTER_PATHS.ROOT);
   };
