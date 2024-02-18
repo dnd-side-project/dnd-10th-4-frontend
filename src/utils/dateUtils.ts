@@ -17,6 +17,22 @@ const formatTimechipDate = (from: Date, to: Date): string => {
   }
 };
 
+/** 시간 차이를 계산한 뒤, 흘러온 편지, 내게 온 편지 TimeChip에서 사용되는 문자열 형태로 반환 */
+const formatDetailTimechipDate = (
+  from: Date,
+  to: Date,
+): { expiredAt: string; isAlmostExpired: boolean } => {
+  const { minute, hour } = getTimeDifference(from, to);
+
+  const formattedHour = hour.toString().padStart(2, '0');
+  const formattedMinute = (minute - hour * 60).toString().padStart(2, '0');
+
+  const isAlmostExpired = hour === 0;
+  const expiredAt = `${formattedHour}:${formattedMinute}`;
+
+  return { expiredAt, isAlmostExpired };
+};
+
 /** Date 객체가 정상적인지 확인 */
 const isValidDate = (date: Date): boolean => {
   return date instanceof Date && !isNaN(date as unknown as number);
@@ -37,4 +53,10 @@ const getTimeDifference = (from: Date, to: Date) => {
   return { second, minute, hour };
 };
 
-export { formatDate, isValidDate, getTimeDifference, formatTimechipDate };
+export {
+  formatDate,
+  isValidDate,
+  getTimeDifference,
+  formatTimechipDate,
+  formatDetailTimechipDate,
+};

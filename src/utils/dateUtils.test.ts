@@ -1,5 +1,6 @@
 import {
   formatTimechipDate,
+  formatDetailTimechipDate,
   getTimeDifference,
   isValidDate,
 } from './dateUtils';
@@ -145,6 +146,55 @@ describe('getTimeDifference', () => {
 
     expect(() => {
       getTimeDifference(new Date(), new Date('이상한문자열'));
+    }).toThrowError('Invalid Date');
+  });
+});
+
+describe('formatDetailTimechipDate', () => {
+  it('두 날짜의 차이를 TimeChip에서 사용되는 문자열 형태로 반환해야 한다', () => {
+    expect(
+      formatDetailTimechipDate(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-01T00:01:00'),
+      ),
+    ).toEqual({ expiredAt: '00:01', isAlmostExpired: true });
+
+    expect(
+      formatDetailTimechipDate(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-01T00:59:00'),
+      ),
+    ).toEqual({ expiredAt: '00:59', isAlmostExpired: true });
+
+    expect(
+      formatDetailTimechipDate(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-01T01:01:00'),
+      ),
+    ).toEqual({ expiredAt: '01:01', isAlmostExpired: false });
+
+    expect(
+      formatDetailTimechipDate(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-01T05:30:00'),
+      ),
+    ).toEqual({ expiredAt: '05:30', isAlmostExpired: false });
+
+    expect(
+      formatDetailTimechipDate(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-03T00:00:00'),
+      ),
+    ).toEqual({ expiredAt: '48:00', isAlmostExpired: false });
+  });
+
+  it('유효하지 않은 Date 객체가 들어오면 에러를 반환해야 한다', () => {
+    expect(() => {
+      formatDetailTimechipDate(new Date('이상한문자열'), new Date());
+    }).toThrowError('Invalid Date');
+
+    expect(() => {
+      formatDetailTimechipDate(new Date(), new Date('이상한문자열'));
     }).toThrowError('Invalid Date');
   });
 });
