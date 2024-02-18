@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
@@ -25,35 +24,21 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
   const gender = watch('gender') as '' | EqualGender;
   const worryType = watch('worryType') as '' | Worry;
 
-  const [tags, setTags] = useState<string[]>([]);
+  const tags = [];
 
-  useEffect(() => {
-    const updateTags = () => {
-      console.log('하이');
-
-      const newTags = [];
-
-      if (age.length !== 0) {
-        const ageLabel = `${age[0]}~${age[1]}`;
-        newTags.push(ageLabel);
-      }
-
-      if (gender !== '') {
-        const genderLabel =
-          EQUAL_GENDER_DICT[0] === gender ? '모두에게' : '동성에게';
-        newTags.push(genderLabel);
-      }
-
-      if (worryType !== '') {
-        const worryLabel = WORRY_DICT[worryType];
-        newTags.push(worryLabel);
-      }
-
-      setTags(newTags);
-    };
-
-    updateTags();
-  }, [age, gender, worryType]);
+  if (age.length !== 0) {
+    const ageLabel = `${age[0]}~${age[1]}`;
+    tags.push(ageLabel);
+  }
+  if (gender !== '') {
+    const genderLabel =
+      EQUAL_GENDER_DICT[0] === gender ? '모두에게' : '동성에게';
+    tags.push(genderLabel);
+  }
+  if (worryType !== '') {
+    const worryLabel = WORRY_DICT[worryType];
+    tags.push(worryLabel);
+  }
 
   return (
     <div css={style.ReceiverContainer}>

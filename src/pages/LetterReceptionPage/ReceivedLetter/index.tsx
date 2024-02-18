@@ -10,11 +10,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
-// import TagList from '../components/TagList';
 import TagList from '@/components/TagList';
-import useLetterWithTags from '../hooks/useLetterWithTags';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import style from './styles';
 interface ReceivedLetterProps {
   letterId: number;
