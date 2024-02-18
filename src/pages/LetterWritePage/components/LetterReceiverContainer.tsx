@@ -9,7 +9,7 @@ import {
   EQUAL_GENDER_DICT,
   type EqualGender,
 } from '@/constants/letters';
-import Chip from '@/components/Chip';
+import TagList from '@/components/TagList';
 import { type WriteInputs } from '..';
 
 interface ReceiverContainerProps {
@@ -24,35 +24,42 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
   const gender = watch('gender') as '' | EqualGender;
   const worryType = watch('worryType') as '' | Worry;
 
+  const tags = [];
+
+  if (age.length !== 0) {
+    const ageLabel = `${age[0]}~${age[1]}`;
+    tags.push(ageLabel);
+  }
+  if (gender !== '') {
+    const genderLabel =
+      EQUAL_GENDER_DICT[0] === gender ? '모두에게' : '동성에게';
+    tags.push(genderLabel);
+  }
+  if (worryType !== '') {
+    const worryLabel = WORRY_DICT[worryType];
+    tags.push(worryLabel);
+  }
+
   return (
     <div css={style.ReceiverContainer}>
       <span>To.</span>
-      {age.length !== 0 ? (
+      {tags.length !== 0 ? (
         <div onClick={onClick} css={style.ReceiverBoxSelect}>
-          <div>
-            <Chip variant="form-selected">
-              <span>#</span>
-              {age[0]}~{age[1]}
-            </Chip>
-            {gender !== '' && (
-              <Chip variant="form-selected">
-                <span>#</span>
-                {EQUAL_GENDER_DICT[0] === gender ? '모두에게' : '동성에게'}
-              </Chip>
-            )}
-            {worryType !== '' && (
-              <Chip variant="form-selected">
-                <span>#</span>
-                {WORRY_DICT[worryType]}
-              </Chip>
-            )}
-          </div>
-          <CaretDown css={style.caretDown(isOpen)} />
+          <TagList tags={tags} variant="filter" />
+          <CaretDown
+            css={style.caretDown(isOpen)}
+            stroke={COLORS.gray3}
+            strokeWidth={2}
+          />
         </div>
       ) : (
         <div onClick={onClick} css={style.ReceiverBoxUnSelect}>
           <span>누구에게 보낼까요?</span>
-          <CaretDown css={style.caretDown(isOpen)} />
+          <CaretDown
+            css={style.caretDown(isOpen)}
+            stroke={COLORS.gray3}
+            strokeWidth={2}
+          />
         </div>
       )}
     </div>
@@ -96,11 +103,6 @@ const style = {
     background: rgb(204 199 190 / 0.3);
     letter-spacing: -0.0035rem;
     cursor: pointer;
-
-    div {
-      display: flex;
-      gap: 0.625rem;
-    }
 
     button {
       padding-block: 0;

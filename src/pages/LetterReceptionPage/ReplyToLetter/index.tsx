@@ -12,10 +12,10 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import LetterContent from '../components/LetterContent';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 
@@ -80,18 +80,13 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
           </LetterCard>
         </div>
         <Navbar css={style.navbar}>
-          <Button
-            type="button"
-            variant="semi-transparent-unaccent"
-            size="sm"
-            onClick={onPrev}
-          >
+          <Button type="button" variant="secondary" size="sm" onClick={onPrev}>
             취소
           </Button>
           <Button
             disabled={isPending}
             type="submit"
-            variant="semi-transparent"
+            variant="primary"
             size="sm"
           >
             {isPending ? <LoadingSpinner /> : '답장 보내기'}
