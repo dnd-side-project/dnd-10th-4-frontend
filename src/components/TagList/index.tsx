@@ -1,12 +1,12 @@
 import Chip from '@/components/Chip';
 import style from './styles';
 
-interface tagsProps {
+interface TagsProps {
   tags: string[];
   variant?: 'tag' | 'filter';
 }
 
-const TagList = ({ tags, variant = 'tag' }: tagsProps) => {
+const TagList = ({ tags, variant = 'tag' }: TagsProps) => {
   return (
     <div css={style.tagList}>
       {tags.map((tag) => (
