@@ -7,7 +7,6 @@ const style = {
     color: ${isAlmostExpired ? COLORS.red : COLORS.primary};
   `,
   text: css`
-    padding-top: 0.2rem;
     ${textStyles.b5m}
   `,
 };

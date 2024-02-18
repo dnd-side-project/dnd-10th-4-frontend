@@ -71,7 +71,7 @@ const letterHandler = [
     }
 
     const result: Reception = {
-      createdAt: '2024-02-13T16:50:44',
+      createdAt: '2024-02-17T16:50:44',
       letterId: Number(req.params.letterId),
       senderNickname: '낯선 고양이123',
       receiverNickname: '낯선 강아지456',
@@ -98,7 +98,7 @@ const letterHandler = [
     await delay(300);
 
     const result: Reply = {
-      createdAt: '2024-02-13T16:50:44',
+      createdAt: '2024-02-16T11:30:44',
       letterId: Number(req.params.letterId),
       senderNickname: '낯선 고양이123',
       receiverNickname: '낯선 강아지456',
