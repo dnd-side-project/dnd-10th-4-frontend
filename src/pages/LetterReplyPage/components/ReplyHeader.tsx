@@ -4,20 +4,31 @@ import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import { ROUTER_PATHS } from '@/router';
+import DetailTimeChip from '@/components/DetailTimeChip';
+import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 
-const ReplyHeader = () => {
-  const naviage = useNavigate();
+interface ReplyHeaderProps {
+  letterId: number;
+}
+
+const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
+  const navigate = useNavigate();
+
+  const { replyLetter } = useLetterReplyWithTag(letterId);
 
   return (
     <Header
       css={style.header}
       leftContent={
-        <CaretLeft
-          css={style.icon}
-          strokeWidth={2.5}
-          color="white"
-          onClick={() => naviage(ROUTER_PATHS.ROOT)}
-        />
+        <>
+          <CaretLeft
+            css={style.icon}
+            strokeWidth={2.5}
+            color="white"
+            onClick={() => navigate(ROUTER_PATHS.ROOT)}
+          />
+          <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
+        </>
       }
       rightContent={
         <IconButton>
