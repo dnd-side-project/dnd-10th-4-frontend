@@ -6,4 +6,5 @@ export const SKIP_MSW_WARNING_URL = [
   'cdn.jsdelivr.net/gh/',
   'sb-common-assets/',
   '.storybook/',
+  'ingest.sentry.io',
 ] as const;
