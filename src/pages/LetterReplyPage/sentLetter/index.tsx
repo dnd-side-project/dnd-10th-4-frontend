@@ -7,8 +7,9 @@ import LetterCard from '@/components/LetterCard';
 import PolaroidModal from '@/components/PolaroidModal';
 import TagList from '@/components/TagList';
 import Button from '@/components/Button';
-import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
+import { formatDate } from '@/utils/dateUtils';
 import LetterContent from '../components/LetterContent';
+import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 import style from './styles';
 interface SentLetterProps {
   letterId: number;
@@ -46,18 +47,20 @@ const SentLetter = ({ letterId }: SentLetterProps) => {
             <LetterContent
               receiver={replyLetter.senderNickname}
               content={replyLetter.content}
-              date="24년 02월 13일"
+              date={formatDate(new Date(replyLetter.createdAt))}
               sender={replyLetter.receiverNickname}
             />
-            <PolaroidModal
-              topPosition={4.2}
-              leftPosition={1.2}
-              img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
-            >
-              <Button variant="secondary" size="sm">
-                닫기
-              </Button>
-            </PolaroidModal>
+            {replyLetter.imagePath !== null && (
+              <PolaroidModal
+                topPosition={4.2}
+                leftPosition={1.2}
+                img={replyLetter.imagePath}
+              >
+                <Button variant="secondary" size="sm">
+                  닫기
+                </Button>
+              </PolaroidModal>
+            )}
           </LetterCard>
         </div>
       </Modal>
