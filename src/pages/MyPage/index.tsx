@@ -17,8 +17,9 @@ import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
 import GenderBottomSheet from './components/GenderBottomSheet';
 import WorryBottomSheet from './components/WorryBottomSheet';
-import styles from './style';
 import SignoutBottomSheet from './components/SignoutBottomSheet';
+import ResignBottomSheet from './components/ResignBottomSheet';
+import styles from './style';
 
 const SuspendedPage = () => {
   const { data: member } = useSuspenseQuery(memberOptions.detail());
@@ -36,6 +37,7 @@ const SuspendedPage = () => {
   const genderBottomSheetProps = useBoolean(false);
   const worryBottomSheetProps = useBoolean(false);
   const signoutBottomSheetProps = useBoolean(false);
+  const resignBottomSheetProps = useBoolean(false);
 
   return (
     <main css={styles.main}>
@@ -44,6 +46,7 @@ const SuspendedPage = () => {
       <GenderBottomSheet {...genderBottomSheetProps} />
       <WorryBottomSheet {...worryBottomSheetProps} />
       <SignoutBottomSheet {...signoutBottomSheetProps} />
+      <ResignBottomSheet {...resignBottomSheetProps} />
       <ul css={styles.list}>
         <li css={styles.item}>
           <p>닉네임 변경</p>
@@ -101,8 +104,11 @@ const SuspendedPage = () => {
         >
           <p>로그아웃</p>
         </li>
-        <li css={[styles.item, css({ cursor: 'pointer' })]}>
-          <p css={css({ color: COLORS.red })}>서비스 탈퇴</p>
+        <li
+          css={[styles.item, css({ cursor: 'pointer' })]}
+          onClick={resignBottomSheetProps.on}
+        >
+          <p css={css({ color: COLORS.danger })}>서비스 탈퇴</p>
         </li>
       </ul>
     </main>
