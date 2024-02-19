@@ -10,6 +10,8 @@ const COLORS = {
   primaryHover: '#096DB5',
   primaryDisabled: '#C6CFD6',
   primaryLight: '#0C8CE91A',
+  letterChip1: '#ccc7be',
+  letterChip2: '#6f6b63',
 } as const;
 
 export default COLORS;

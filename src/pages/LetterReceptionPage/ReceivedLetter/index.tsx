@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import TagList from '@/components/TagList';
 import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
@@ -12,7 +13,6 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import TagList from '../components/TagList';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
@@ -55,6 +55,7 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
     <LetterContent>
       <LetterCard isOpen={true}>
         <TagList tags={receptionLetter.tagList} />
+        <LetterHeader nickname={receptionLetter.receiverNickname} />
         <div css={style.text}>
           <p>{receptionLetter.content}</p>
         </div>

@@ -32,7 +32,7 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
   const queryClient = useQueryClient();
 
   const [nickname, setNickname] = useState(
-    member.nickname.replace('낯선 ', ''),
+    member.nickname ? member.nickname.replace('낯선 ', '') : NICKNAMES[0],
   );
 
   const handleChangeNickname = () => {
@@ -40,11 +40,12 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
   };
 
   const handleSubmit = async () => {
-    await mutateAsync({ nickname: `낯선 ${nickname}` });
+    await mutateAsync({ nickname });
 
     queryClient.invalidateQueries({
       queryKey: memberOptions.detail().queryKey,
     });
+
     off();
   };
 

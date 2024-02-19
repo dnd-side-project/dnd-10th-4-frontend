@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { Switch } from '@mui/material';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -14,15 +14,20 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { GENDER_DICT, WORRY_DICT } from '@/constants/users';
 import useMusicStore from '@/stores/useMusicStore';
 import STORAGE_KEYS from '@/constants/storageKeys';
-import styles from './style';
 import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
 import GenderBottomSheet from './components/GenderBottomSheet';
 import WorryBottomSheet from './components/WorryBottomSheet';
+import styles from './style';
 
 const SuspendedPage = () => {
   const { data: member } = useSuspenseQuery(memberOptions.detail());
   const navigate = useNavigate();
+
+  const birthday = useMemo(
+    () => (member.birthday ? new Date(...member.birthday) : null),
+    [member],
+  );
 
   const nicknameBottomSheetProps = useBoolean(false);
   const birthdayBottomSheetProps = useBoolean(false);
@@ -48,33 +53,40 @@ const SuspendedPage = () => {
         <li css={styles.item}>
           <p>닉네임 변경</p>
           <div css={styles.value} onClick={nicknameBottomSheetProps.on}>
-            <span>{member.nickname}</span>
+            <span>{member.nickname ? member.nickname : '설정되지 않음'}</span>
             <CaretRight color={COLORS.gray3} />
           </div>
         </li>
         <li css={styles.item}>
           <p>생년월일 변경</p>
           <div css={styles.value} onClick={birthdayBottomSheetProps.on}>
-            {/* TODO: API 명세에 생년월일 추가 요청해야함 */}
-            <span>1997년 1월 1일</span>
+            <span>
+              {birthday
+                ? `${birthday.getFullYear()}년 ${birthday.getMonth()}월 ${birthday.getDate()}일`
+                : '설정되지 않음'}
+            </span>
             <CaretRight color={COLORS.gray3} />
           </div>
         </li>
         <li css={styles.item}>
           <p>성별 변경</p>
           <div css={styles.value} onClick={genderBottomSheetProps.on}>
-            <span>{GENDER_DICT[member.gender]}</span>
+            <span>
+              {member.gender ? GENDER_DICT[member.gender] : '설정되지 않음'}
+            </span>
             <CaretRight color={COLORS.gray3} />
           </div>
         </li>
         <li css={styles.item}>
           <p>고민 변경</p>
           <div css={styles.value} onClick={worryBottomSheetProps.on}>
-            {member.worryTypes.map((worryType) => (
-              <span css={styles.chip} key={worryType}>
-                {WORRY_DICT[worryType]}
-              </span>
-            ))}
+            {member.worryTypes?.length > 0
+              ? member.worryTypes.map((worryType) => (
+                  <span css={styles.chip} key={worryType}>
+                    {WORRY_DICT[worryType]}
+                  </span>
+                ))
+              : '설정되지 않음'}
             <CaretRight color={COLORS.gray3} />
           </div>
         </li>
