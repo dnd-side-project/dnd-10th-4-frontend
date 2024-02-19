@@ -7,9 +7,9 @@ import * as Sentry from '@sentry/react';
 import queryClient from '@/api/queryClient';
 import { router } from '@/router';
 import { SKIP_MSW_WARNING_URL } from './constants/msw';
-import STORAGE_KEYS from './constants/storageKeys';
 import 'reset-css';
 import './main.css';
+import STORAGE_KEYS from './constants/storageKeys';
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
@@ -19,14 +19,9 @@ Sentry.init({
       maskAllText: false,
       blockAllMedia: false,
       networkDetailAllowUrls: [import.meta.env.VITE_BACKEND_ENDPOINT],
-      networkRequestHeaders: ['accessToken'],
     }),
   ],
-  environment: import.meta.env.VITE_VERCEL_PREVIEW
-    ? 'preview'
-    : import.meta.env.PROD
-      ? 'production'
-      : 'development',
+  environment: import.meta.env.PROD ? 'production' : 'development',
   enabled: import.meta.env.PROD,
   tracesSampleRate: 1.0,
   tracePropagationTargets: ['localhost'],
@@ -39,6 +34,7 @@ const enableMocking = async () => {
     return;
   }
 
+  // Preview 배포 시, 로컬 스토리지에 토큰을 저장하여 로그인 상태로 만듭니다.
   if (
     import.meta.env.PROD &&
     !localStorage.getItem(STORAGE_KEYS.refreshToken)
