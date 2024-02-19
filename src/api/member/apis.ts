@@ -10,8 +10,8 @@ const memberAPI = {
       nickname: string | null;
       worryTypes: Worry[];
       gender: Gender | null;
-      birthday: [number, number, number] | null;
-      age: number;
+      birthDay: [number, number, number] | null;
+      age: number | null;
       role: Role;
     }>('/api/member');
     return data;

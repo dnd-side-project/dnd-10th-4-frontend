@@ -1,12 +1,8 @@
-import { useMemo } from 'react';
 import { css } from '@emotion/react';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
-import Chip from '@/components/Chip';
 import IconButton from '@/components/IconButton';
-import HourGlass from '@/assets/icons/HourGlass';
-import COLORS from '@/constants/colors';
-import { formatTimechipDate } from '@/utils/dateUtils';
+import DetailTimeChip from '@/components/DetailTimeChip';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 
 interface ReceptionHeaderProps {
@@ -16,15 +12,6 @@ interface ReceptionHeaderProps {
 
 const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
-
-  const expiredTime = useMemo(() => {
-    return formatTimechipDate(
-      new Date(),
-      new Date(
-        new Date(receptionLetter.createdAt).getTime() + 48 * 60 * 60 * 1000,
-      ),
-    );
-  }, [receptionLetter.createdAt]);
 
   return (
     <Header
@@ -37,10 +24,7 @@ const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
             color="white"
             onClick={onClickPrev}
           />
-          <Chip variant="primary">
-            <HourGlass height={16} color={COLORS.primary} />
-            <span css={{ color: COLORS.primary }}>{expiredTime}</span>
-          </Chip>
+          <DetailTimeChip createdAt={receptionLetter.createdAt} />
         </>
       }
       leftStyle={style.leftHeader}

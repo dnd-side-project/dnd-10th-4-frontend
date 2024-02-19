@@ -12,7 +12,7 @@ const LetterReplyPage = () => {
 
   return (
     <div css={style.container}>
-      <ReplyHeader />
+      <ReplyHeader letterId={Number(letterId)} />
       <div css={style.content}>
         <Suspense
           fallback={
