@@ -57,6 +57,12 @@ const memberAPI = {
     const { data } = await authInstance.post('/api/member/worry', body);
     return data;
   },
+
+  /** 회원 탈퇴 */
+  deleteMember: async () => {
+    const { data } = await authInstance.delete('/api/member/sign-out');
+    return data;
+  },
 };
 
 export default memberAPI;

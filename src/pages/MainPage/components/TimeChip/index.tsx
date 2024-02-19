@@ -25,12 +25,12 @@ const TimeChip = ({ createdAt, ...props }: TimeChipProps) => {
       <HourGlass
         width="1rem"
         height="1rem"
-        color={isAlmostExpired ? COLORS.red : COLORS.gray3}
+        color={isAlmostExpired ? COLORS.danger : COLORS.gray3}
       />
       <p
         css={[
           textStyles.b4m,
-          css({ color: isAlmostExpired ? COLORS.red : COLORS.gray1 }),
+          css({ color: isAlmostExpired ? COLORS.danger : COLORS.gray1 }),
         ]}
       >
         {timeText}
