@@ -25,7 +25,7 @@ const SuspendedPage = () => {
   const navigate = useNavigate();
 
   const birthday = useMemo(
-    () => (member.birthday ? new Date(...member.birthday) : null),
+    () => (member.birthDay ? new Date(...member.birthDay) : null),
     [member],
   );
 
