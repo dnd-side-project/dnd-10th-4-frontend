@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
@@ -10,10 +11,11 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
-import TagList from '../components/TagList';
-import useLetterWithTags from '../hooks/useLetterWithTags';
-import LetterContent from '../components/LetterContent';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
+import useLetterWithTags from '../hooks/useLetterWithTags';
+import TagList from '../components/TagList';
 import style from './styles';
 
 interface ReceivedLetterProps {
@@ -32,9 +34,25 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
   });
 
   const handleTossLetter = async () => {
-    await patchToss(receptionLetter.letterId);
-    queryClient.invalidateQueries({ queryKey: letterOptions.all });
-    navigate(ROUTER_PATHS.ROOT);
+    try {
+      await patchToss(receptionLetter.letterId);
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+      navigate(ROUTER_PATHS.ROOT);
+    } catch (error) {
+      if (
+        isAxiosError(error) &&
+        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
+      ) {
+        console.error(error);
+      } else if (
+        isAxiosError(error) &&
+        error.response?.data === ERROR_RESPONSES.repliedLetterPass
+      ) {
+        console.error(error);
+      } else {
+        throw error;
+      }
+    }
   };
 
   return (

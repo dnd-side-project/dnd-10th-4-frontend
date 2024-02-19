@@ -1,13 +1,17 @@
 import { type FallbackProps } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import Button from '../../Button';
 import styles from './styles';
 
 const ReceptionFallback = ({ error }: FallbackProps) => {
   const navigate = useNavigate();
 
-  const shouldSkip = !(isAxiosError(error) && error?.response?.status === 400);
+  const shouldSkip = !(
+    isAxiosError(error) &&
+    error.response?.data === ERROR_RESPONSES.accessDeniedLetter
+  );
 
   if (shouldSkip) {
     throw error;

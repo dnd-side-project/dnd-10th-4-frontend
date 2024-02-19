@@ -60,16 +60,6 @@ const letterHandler = [
   http.get(baseURL('/api/letter/reception/:letterId'), async (req) => {
     await delay(300);
 
-    const mswCase = new URLSearchParams(window.location.search).get(
-      QUERY_STRINGS.mswCase,
-    );
-
-    if (mswCase === '400') {
-      return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
-        status: 400,
-      });
-    }
-
     const result: Reception = {
       createdAt: '2024-02-17T16:50:44',
       letterId: Number(req.params.letterId),
@@ -85,7 +75,18 @@ const letterHandler = [
       imagePath: '이미지가 존재하지 않습니다.',
     };
 
-    return HttpResponse.json(result);
+    const status: number = 200;
+
+    switch (status) {
+      case 200:
+        return HttpResponse.json(result);
+      case 400:
+        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+          status: 400,
+        });
+      default:
+        break;
+    }
   }),
 
   http.patch(baseURL('/api/letter/reception/reply/:letterId'), async () => {
@@ -97,7 +98,22 @@ const letterHandler = [
   http.patch(baseURL('/api/letter/reception/pass/:letterId'), async () => {
     await delay(1000);
 
-    return HttpResponse.json();
+    const status: number = 200;
+
+    switch (status) {
+      case 200:
+        return HttpResponse.json();
+      case 400:
+        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+          status: 400,
+        });
+      case 401:
+        return new HttpResponse(ERROR_RESPONSES.repliedLetterPass, {
+          status: 400,
+        });
+      default:
+        break;
+    }
   }),
 
   http.get(baseURL('/api/letter/reply/:letterId'), async (req) => {
