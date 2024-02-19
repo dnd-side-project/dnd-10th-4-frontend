@@ -12,10 +12,10 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import TagList from '../components/TagList';
+import useLetterWithTags from '../hooks/useLetterWithTags';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
 
 interface ReceivedLetterProps {
@@ -41,14 +41,10 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
     } catch (error) {
       if (
         isAxiosError(error) &&
-        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
+        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+          error.response?.data === ERROR_RESPONSES.repliedLetterPass)
       ) {
-        console.error(error);
-      } else if (
-        isAxiosError(error) &&
-        error.response?.data === ERROR_RESPONSES.repliedLetterPass
-      ) {
-        console.error(error);
+        console.error(error.response?.data);
       } else {
         throw error;
       }

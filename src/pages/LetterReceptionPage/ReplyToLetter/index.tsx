@@ -16,10 +16,10 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
 import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import style from './styles';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -70,14 +70,10 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     } catch (error) {
       if (
         isAxiosError(error) &&
-        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
+        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+          error.response?.data === ERROR_RESPONSES.alreadyReplyExist)
       ) {
-        console.error(error);
-      } else if (
-        isAxiosError(error) &&
-        error.response?.data === ERROR_RESPONSES.alreadyReplyExist
-      ) {
-        console.error(error);
+        console.error(error.response?.data);
       } else {
         throw error;
       }
