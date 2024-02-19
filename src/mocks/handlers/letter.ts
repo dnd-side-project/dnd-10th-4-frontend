@@ -92,7 +92,22 @@ const letterHandler = [
   http.patch(baseURL('/api/letter/reception/reply/:letterId'), async () => {
     await delay(1000);
 
-    return HttpResponse.json();
+    const status: number = 200;
+
+    switch (status) {
+      case 200:
+        return HttpResponse.json();
+      case 400:
+        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+          status: 400,
+        });
+      case 401:
+        return new HttpResponse(ERROR_RESPONSES.alreadyReplyExist, {
+          status: 400,
+        });
+      default:
+        break;
+    }
   }),
 
   http.patch(baseURL('/api/letter/reception/pass/:letterId'), async () => {
