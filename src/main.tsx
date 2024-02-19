@@ -19,6 +19,7 @@ Sentry.init({
       maskAllText: false,
       blockAllMedia: false,
       networkDetailAllowUrls: [import.meta.env.VITE_BACKEND_ENDPOINT],
+      networkRequestHeaders: ['accessToken'],
     }),
   ],
   environment: import.meta.env.PROD ? 'production' : 'development',
@@ -34,7 +35,6 @@ const enableMocking = async () => {
     return;
   }
 
-  // Preview 배포 시, 로컬 스토리지에 토큰을 저장하여 로그인 상태로 만듭니다.
   if (
     import.meta.env.PROD &&
     !localStorage.getItem(STORAGE_KEYS.refreshToken)
