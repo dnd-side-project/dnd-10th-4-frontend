@@ -37,15 +37,15 @@ const formatDetailTimechipDate = (
 const formatTimechipDay = (
   from: Date,
   to: Date,
-): { dayText: string; isAlmostExpired: boolean } => {
+): { timeText: string; isAlmostExpired: boolean } => {
   const { hour } = getTimeDifference(from, to);
 
   const formatDay = Math.floor(hour / 24);
 
   const isAlmostExpired = formatDay < 1;
-  const dayText = `${formatDay}일`;
+  const timeText = `${formatDay}일`;
 
-  return { dayText, isAlmostExpired };
+  return { timeText, isAlmostExpired };
 };
 
 /** Date 객체가 정상적인지 확인 */
