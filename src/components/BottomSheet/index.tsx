@@ -1,6 +1,11 @@
 import React from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import styles from './styles';
+import Title from './components/Title';
+import Content from './components/Content';
+import Description from './components/Description';
+import Divider from './components/Divider';
+import ButtonSection from './components/ButtonSection';
 
 interface BottomSheetProps {
   /** 바텀시트의 열림(true), 닫힘(false) 상태입니다. */
@@ -13,7 +18,13 @@ interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-const BottomSheet = ({ open, onClose, onOpen, children }: BottomSheetProps) => {
+const BottomSheet = ({
+  open,
+  onClose,
+  onOpen,
+  children,
+  ...props
+}: BottomSheetProps) => {
   return (
     <SwipeableDrawer
       aria-autocomplete="inline"
@@ -25,9 +36,17 @@ const BottomSheet = ({ open, onClose, onOpen, children }: BottomSheetProps) => {
       PaperProps={{ sx: styles.paper }}
     >
       <div css={styles.header} />
-      <div css={styles.content}>{children}</div>
+      <div css={styles.content} {...props}>
+        {children}
+      </div>
     </SwipeableDrawer>
   );
 };
+
+BottomSheet.Title = Title;
+BottomSheet.Content = Content;
+BottomSheet.Description = Description;
+BottomSheet.Divider = Divider;
+BottomSheet.ButtonSection = ButtonSection;
 
 export default BottomSheet;
