@@ -116,6 +116,15 @@ const memberHandler = [
       return HttpResponse.json();
     }),
   ),
+
+  http.delete(
+    baseURL('/api/member/sign-out'),
+    withAuth(async () => {
+      await delay(1000);
+
+      return HttpResponse.json();
+    }),
+  ),
 ];
 
 export default memberHandler;

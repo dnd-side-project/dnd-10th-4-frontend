@@ -59,27 +59,4 @@ const styles = {
   `,
 };
 
-export const bottomSheetStyles = {
-  mainSection: css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0.75rem 1.125rem 1rem;
-    color: black;
-  `,
-  title: css`
-    margin-bottom: 0.75rem;
-    ${textStyles.t3}
-  `,
-  buttonSection: css`
-    display: flex;
-    width: 100%;
-  `,
-  description: css`
-    margin: 0.75rem 0;
-    ${textStyles.description}
-  `,
-};
-
 export default styles;

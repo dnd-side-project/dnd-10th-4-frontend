@@ -8,7 +8,8 @@ export type ButtonVariant =
   | 'secondary'
   | 'semi-transparent'
   | 'semi-transparent-unaccent'
-  | 'cancel';
+  | 'cancel'
+  | 'danger';
 
 export type ButtonSize = 'md' | 'sm';
 export type ButtonRounded = 'none' | 'sm' | 'md';
@@ -148,6 +149,19 @@ const variantStyles = {
       background-color: ${COLORS.gray5};
       color: ${COLORS.gray1};
       opacity: 0.4;
+    }
+  `,
+  danger: css`
+    background: ${COLORS.danger};
+    color: white;
+
+    /* TODO: hover, disabled 색상은 임의로 넣어뒀습니다. (추후 디자인이 토큰 생긴다면 상수화할 것) */
+    &:hover {
+      background-color: #c64242;
+    }
+
+    &:disabled {
+      background-color: #f5acac;
     }
   `,
 };
