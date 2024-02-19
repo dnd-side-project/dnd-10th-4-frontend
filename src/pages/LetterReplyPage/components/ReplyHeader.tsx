@@ -27,7 +27,7 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
             color="white"
             onClick={() => navigate(ROUTER_PATHS.ROOT)}
           />
-          <DetailTimeChip createdAt={replyLetter.createdAt} />
+          <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
         </>
       }
       rightContent={

@@ -14,22 +14,21 @@ const DetailTimeChip = ({
   type = 'time',
   ...props
 }: DetailTimeChipProps) => {
-  const expiredAt = useMemo(
-    () => new Date(new Date(createdAt).getTime() + 48 * 60 * 60 * 1000),
-    [createdAt],
-  );
+  const expiredAt = useMemo(() => {
+    if (type === 'time') {
+      return new Date(new Date(createdAt).getTime() + 48 * 60 * 60 * 1000);
+    } else {
+      return new Date(new Date(createdAt).getTime() + 168 * 60 * 60 * 1000);
+    }
+  }, [createdAt, type]);
 
-  let timeText;
-  let isAlmostExpired;
-
-  if (type === 'time') {
-    ({ timeText, isAlmostExpired } = formatDetailTimechipDate(
-      new Date(),
-      expiredAt,
-    ));
-  } else {
-    ({ timeText, isAlmostExpired } = formatTimechipDay(new Date(), expiredAt));
-  }
+  const { timeText, isAlmostExpired } = useMemo(() => {
+    if (type === 'time') {
+      return formatDetailTimechipDate(new Date(), expiredAt);
+    } else {
+      return formatTimechipDay(new Date(), expiredAt);
+    }
+  }, [type, expiredAt]);
 
   return (
     <Chip variant="bottle-tag" {...props} css={style.chip(isAlmostExpired)}>
