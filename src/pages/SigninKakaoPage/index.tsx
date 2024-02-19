@@ -26,7 +26,7 @@ const SigninKakaoPage = () => {
         localStorage.setItem(STORAGE_KEYS.refreshToken, data.refreshToken);
 
         await queryClient.prefetchQuery(memberOptions.detail());
-        navigate(ROUTER_PATHS.ONBOARDING);
+        navigate(data.firstLogin ? ROUTER_PATHS.ONBOARDING : ROUTER_PATHS.ROOT);
       } catch (error) {
         console.error(error);
         navigate(ROUTER_PATHS.SIGNIN);
