@@ -16,10 +16,10 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
 import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import style from './styles';
+import LetterContent from '../components/LetterContent';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 

@@ -4,7 +4,6 @@ import useBoolean from '@/hooks/useBoolean';
 import TagList from '@/components/TagList';
 import LetterHeader from '@/components/LetterHeader';
 import { ReceptionLetterType } from '../hooks/useLetterWithTags';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 interface ReceivedAccordionLetterProps {
   receptionLetter: ReceptionLetterType;
@@ -29,7 +28,6 @@ const ReceivedAccordionLetter = ({
         line={2}
         type="send"
       />
-      <ReceptionPolaroid />
     </LetterCard>
   );
 };

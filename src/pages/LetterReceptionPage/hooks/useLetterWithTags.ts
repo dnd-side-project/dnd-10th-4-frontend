@@ -15,8 +15,8 @@ const useLetterWithTags = (letterId: number) => {
   const tagList = data
     ? [
         WORRY_DICT[data.worryType],
-        `${data.letterTag.ageStart}~${data.letterTag.ageRangeEnd}세`,
-        data.letterTag.equalGender ? '동성에게' : '모두에게',
+        `${data.letterTag?.ageStart}~${data.letterTag?.ageRangeEnd}세`,
+        data.letterTag?.equalGender ? '동성에게' : '모두에게',
       ]
     : [];
   const receptionLetter: ReceptionLetterType = { ...data!, tagList };
