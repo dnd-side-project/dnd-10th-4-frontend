@@ -18,7 +18,6 @@ import { clampValue } from '@/utils/stringUtils';
 import memberAPI from '@/api/member/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import memberOptions from '@/api/member/queryOptions';
-import { bottomSheetStyles } from '../style';
 
 interface BirthdayBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
@@ -74,9 +73,9 @@ const BirthdayBottomSheet = ({ value, on, off }: BirthdayBottomSheetProps) => {
 
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>
-      <section css={bottomSheetStyles.mainSection}>
-        <h2 css={bottomSheetStyles.title}>언제로 변경하시겠어요?</h2>
-        <div css={styles.inputSection}>
+      <BottomSheet.Title>언제로 변경하시겠어요?</BottomSheet.Title>
+      <BottomSheet.Content>
+        <section css={styles.inputSection}>
           <span css={css({ flexBasis: '6.25rem' })}>
             <Controller
               name="birthday.year"
@@ -146,25 +145,31 @@ const BirthdayBottomSheet = ({ value, on, off }: BirthdayBottomSheetProps) => {
               )}
             />
           </span>
-        </div>
-        <p css={bottomSheetStyles.description}>
-          생년월일은 한 번만 수정할 수 있어요
-        </p>
-      </section>
-      <section css={bottomSheetStyles.buttonSection}>
-        <Button variant="cancel" rounded="none" size="sm" onClick={off}>
+        </section>
+      </BottomSheet.Content>
+      <BottomSheet.Description>
+        생년월일은 한 번만 수정할 수 있어요
+      </BottomSheet.Description>
+      <BottomSheet.Divider />
+      <BottomSheet.ButtonSection>
+        <Button variant="cancel" size="sm" onClick={off}>
           닫기
         </Button>
         <Button
           variant="primary"
-          rounded="none"
           size="sm"
           disabled={!isValid || isPending}
           onClick={handleSubmit(onSubmit)}
         >
-          {isPending ? <LoadingSpinner /> : isValid ? '완료' : '입력해주세요'}
+          {isPending ? (
+            <LoadingSpinner />
+          ) : isValid ? (
+            '변경 완료'
+          ) : (
+            '입력해주세요'
+          )}
         </Button>
-      </section>
+      </BottomSheet.ButtonSection>
     </BottomSheet>
   );
 };

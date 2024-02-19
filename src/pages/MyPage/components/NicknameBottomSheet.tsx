@@ -17,7 +17,6 @@ import { NICKNAMES } from '@/constants/users';
 import memberOptions from '@/api/member/queryOptions';
 import memberAPI from '@/api/member/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { bottomSheetStyles } from '../style';
 
 interface NicknameBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
@@ -51,8 +50,8 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
 
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>
-      <section css={bottomSheetStyles.mainSection}>
-        <h2 css={bottomSheetStyles.title}>새로운 닉네임을 선택해주세요</h2>
+      <BottomSheet.Title>새로운 닉네임을 선택해주세요</BottomSheet.Title>
+      <BottomSheet.Content>
         <div css={styles.input}>
           <p css={textStyles.t3}>
             <span>낯선 </span>
@@ -66,22 +65,24 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
             <Shuffle width={18} height={18} />
           </IconButton>
         </div>
-        <p css={bottomSheetStyles.description}>언제든지 다시 바꿀 수 있어요</p>
-      </section>
-      <section css={bottomSheetStyles.buttonSection}>
-        <Button variant="cancel" rounded="none" size="sm" onClick={off}>
+      </BottomSheet.Content>
+      <BottomSheet.Description>
+        언제든지 다시 바꿀 수 있어요
+      </BottomSheet.Description>
+      <BottomSheet.Divider />
+      <BottomSheet.ButtonSection>
+        <Button variant="cancel" size="sm" onClick={off}>
           닫기
         </Button>
         <Button
           variant="primary"
-          rounded="none"
           size="sm"
           onClick={handleSubmit}
           disabled={isPending}
         >
-          {isPending ? <LoadingSpinner /> : '변경하기'}
+          {isPending ? <LoadingSpinner /> : '변경 완료'}
         </Button>
-      </section>
+      </BottomSheet.ButtonSection>
     </BottomSheet>
   );
 };

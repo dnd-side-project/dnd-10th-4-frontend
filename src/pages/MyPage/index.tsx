@@ -29,13 +29,13 @@ const SuspendedPage = () => {
     [member],
   );
 
+  const isMusicPlaying = useMusicStore((s) => s.isPlaying);
+  const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
+
   const nicknameBottomSheetProps = useBoolean(false);
   const birthdayBottomSheetProps = useBoolean(false);
   const genderBottomSheetProps = useBoolean(false);
   const worryBottomSheetProps = useBoolean(false);
-
-  const isMusicPlaying = useMusicStore((s) => s.isPlaying);
-  const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
 
   const handleLogout = () => {
     localStorage.removeItem(STORAGE_KEYS.accessToken);
