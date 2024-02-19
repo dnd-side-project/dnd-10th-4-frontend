@@ -12,7 +12,7 @@ interface ReplyHeaderProps {
 }
 
 const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
-  const naviage = useNavigate();
+  const navigate = useNavigate();
 
   const { replyLetter } = useLetterReplyWithTag(letterId);
 
@@ -25,7 +25,7 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
             css={style.icon}
             strokeWidth={2.5}
             color="white"
-            onClick={() => naviage(ROUTER_PATHS.ROOT)}
+            onClick={() => navigate(ROUTER_PATHS.ROOT)}
           />
           <DetailTimeChip createdAt={replyLetter.createdAt} />
         </>
