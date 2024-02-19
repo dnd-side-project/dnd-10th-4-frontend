@@ -2,11 +2,11 @@ import { http, HttpResponse, delay } from 'msw';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import { Reception, Reply } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import withAuth from '../middlewares/withAuth';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
 } from '../datas/letter';
+import withAuth from '../middlewares/withAuth';
 
 const letterHandler = [
   http.get(
@@ -159,7 +159,7 @@ const letterHandler = [
   ),
 
   http.patch(
-    baseURL('/api/letter/reception/storage/:letterId'),
+    baseURL('/api/letter/reply/storage/:letterId'),
     withAuth(async () => {
       await delay(1000);
 
