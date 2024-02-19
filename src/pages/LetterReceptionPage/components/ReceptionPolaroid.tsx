@@ -4,12 +4,10 @@ import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
 interface ReceptionPolaroidProps {
-  img?: string;
+  img: string;
 }
 
-const ReceptionPolaroid = ({
-  img = 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-}: ReceptionPolaroidProps) => {
+const ReceptionPolaroid = ({ img }: ReceptionPolaroidProps) => {
   const handleDownload = async () => {
     const response = await axios.get(img, {
       responseType: 'blob',

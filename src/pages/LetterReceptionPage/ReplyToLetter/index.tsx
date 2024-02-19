@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
+import { isAxiosError } from 'axios';
 import LetterCard from '@/components/LetterCard';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
@@ -12,10 +14,12 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
+import { ROUTER_PATHS } from '@/router';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import style from './styles';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -35,6 +39,8 @@ interface ReplyToLetterProps {
 
 const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
+
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -57,8 +63,21 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
   });
 
   const onSubmit = async (data: ReplyInputs) => {
-    await patchReply({ letterId: receptionLetter.letterId, body: data });
-    queryClient.invalidateQueries({ queryKey: letterOptions.all });
+    try {
+      await patchReply({ letterId: receptionLetter.letterId, body: data });
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+      navigate(ROUTER_PATHS.ROOT);
+    } catch (error) {
+      if (
+        isAxiosError(error) &&
+        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+          error.response?.data === ERROR_RESPONSES.alreadyReplyExist)
+      ) {
+        console.error(error.response?.data);
+      } else {
+        throw error;
+      }
+    }
   };
 
   return (

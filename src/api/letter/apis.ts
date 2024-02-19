@@ -67,10 +67,10 @@ const letterAPI = {
     return data;
   },
 
-  /** 받은 편지 토스 */
-  patchReceptionToss: async (letterId: number) => {
+  /** 받은 편지 패스 */
+  patchReceptionPass: async (letterId: number) => {
     const { data } = await authInstance.patch(
-      `/api/letter/reception/toss/${letterId}`,
+      `/api/letter/reception/pass/${letterId}`,
     );
     return data;
   },
