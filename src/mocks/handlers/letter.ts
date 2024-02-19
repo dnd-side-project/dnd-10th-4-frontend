@@ -100,10 +100,6 @@ const letterHandler = [
       case 200:
         return HttpResponse.json();
       case 400:
-        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
-          status: 400,
-        });
-      case 401:
         return new HttpResponse(ERROR_RESPONSES.alreadyReplyExist, {
           status: 400,
         });
@@ -121,10 +117,6 @@ const letterHandler = [
       case 200:
         return HttpResponse.json();
       case 400:
-        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
-          status: 400,
-        });
-      case 401:
         return new HttpResponse(ERROR_RESPONSES.repliedLetterPass, {
           status: 400,
         });
