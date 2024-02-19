@@ -21,11 +21,7 @@ Sentry.init({
       networkDetailAllowUrls: [import.meta.env.VITE_BACKEND_ENDPOINT],
     }),
   ],
-  environment: import.meta.env.VITE_VERCEL_PREVIEW
-    ? 'preview'
-    : import.meta.env.PROD
-      ? 'production'
-      : 'development',
+  environment: import.meta.env.PROD ? 'production' : 'development',
   enabled: import.meta.env.PROD,
   tracesSampleRate: 1.0,
   tracePropagationTargets: ['localhost'],
