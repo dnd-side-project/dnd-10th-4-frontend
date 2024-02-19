@@ -7,9 +7,9 @@ import * as Sentry from '@sentry/react';
 import queryClient from '@/api/queryClient';
 import { router } from '@/router';
 import { SKIP_MSW_WARNING_URL } from './constants/msw';
+import STORAGE_KEYS from './constants/storageKeys';
 import 'reset-css';
 import './main.css';
-import STORAGE_KEYS from './constants/storageKeys';
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
@@ -21,7 +21,11 @@ Sentry.init({
       networkDetailAllowUrls: [import.meta.env.VITE_BACKEND_ENDPOINT],
     }),
   ],
-  environment: import.meta.env.PROD ? 'production' : 'development',
+  environment: import.meta.env.VITE_VERCEL_PREVIEW
+    ? 'preview'
+    : import.meta.env.PROD
+      ? 'production'
+      : 'development',
   enabled: import.meta.env.PROD,
   tracesSampleRate: 1.0,
   tracePropagationTargets: ['localhost'],
