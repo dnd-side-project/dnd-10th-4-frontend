@@ -31,7 +31,10 @@ const letterAPI = {
     formData.append('ageRangeStart', letter.age[0].toString());
     formData.append('ageRangeEnd', letter.age[1].toString());
     formData.append('worryType', letter.worryType as Worry);
-    formData.append('image', letter.image?.[0]);
+
+    if (letter.image) {
+      formData.append('image', letter.image[0]);
+    }
 
     const { data } = await authInstance.post('/api/letter', formData, {
       headers: {

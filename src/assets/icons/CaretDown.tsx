@@ -3,6 +3,7 @@ const SvgCaretDown = ({
   width = 24,
   height = 24,
   stroke = 'currentColor',
+  strokeWidth = 1.5,
   ...props
 }: SVGProps<SVGSVGElement>) => (
   <svg
@@ -18,7 +19,7 @@ const SvgCaretDown = ({
         stroke={stroke}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={1.5}
+        strokeWidth={strokeWidth}
         d="M19.5 9 12 16.5 4.5 9"
       />
     </g>

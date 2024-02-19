@@ -1,9 +1,10 @@
 import LetterCard from '@/components/LetterCard';
 import LetterAccordion from '@/components/LetterAccordion';
 import useBoolean from '@/hooks/useBoolean';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import TagList from '../components/TagList';
+import TagList from '@/components/TagList';
+import LetterHeader from '@/components/LetterHeader';
 import { ReceptionLetterType } from '../hooks/useLetterWithTags';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 interface ReceivedAccordionLetterProps {
   receptionLetter: ReceptionLetterType;
@@ -17,6 +18,7 @@ const ReceivedAccordionLetter = ({
   return (
     <LetterCard css={{ marginBottom: '1rem' }}>
       <TagList tags={receptionLetter.tagList} />
+      <LetterHeader nickname={receptionLetter.receiverNickname} />
       <LetterAccordion
         isOpen={isOpen}
         onToggle={accordionToggle}
