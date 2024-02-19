@@ -7,6 +7,7 @@ const ERROR_RESPONSES = {
   accessDeniedLetter: '해당 편지에 접근할 수 없습니다.',
   repliedLetterPass: '답장한 편지는 패스할 수 없습니다.',
   alreadyReplyExist: '이미 답장을 완료한 편지입니다.',
+  unAnsweredLetterStore: '답장하지 않은 편지는 보관할 수 없습니다.',
 } as const;
 
 export default ERROR_RESPONSES;

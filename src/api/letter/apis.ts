@@ -87,7 +87,6 @@ const letterAPI = {
   patchReceptionStorage: async (letterId: number) => {
     const { data } = await authInstance.patch(
       `/api/letter/reply/storage/${letterId}`,
-      {},
     );
     return data;
   },
