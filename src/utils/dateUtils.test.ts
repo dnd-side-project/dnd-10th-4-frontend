@@ -1,6 +1,7 @@
 import {
   formatTimechipDate,
   formatDetailTimechipDate,
+  formatTimechipDay,
   getTimeDifference,
   isValidDate,
 } from './dateUtils';
@@ -195,6 +196,55 @@ describe('formatDetailTimechipDate', () => {
 
     expect(() => {
       formatDetailTimechipDate(new Date(), new Date('이상한문자열'));
+    }).toThrowError('Invalid Date');
+  });
+});
+
+describe('formatTimechipDay', () => {
+  it('두 날짜의 차이를 내게 온 편지 TimeChip에서 사용되는 문자열 형태로 반환해야 한다', () => {
+    expect(
+      formatTimechipDay(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-06T00:01:00'),
+      ),
+    ).toEqual({ dayText: '5일', isAlmostExpired: false });
+
+    expect(
+      formatTimechipDay(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-05T23:59:00'),
+      ),
+    ).toEqual({ dayText: '4일', isAlmostExpired: false });
+
+    expect(
+      formatTimechipDay(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-01T23:59:00'),
+      ),
+    ).toEqual({ dayText: '0일', isAlmostExpired: true });
+
+    expect(
+      formatTimechipDay(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-02T00:00:00'),
+      ),
+    ).toEqual({ dayText: '1일', isAlmostExpired: false });
+
+    expect(
+      formatTimechipDay(
+        new Date('2021-01-01T00:00:00'),
+        new Date('2021-01-02T23:59:00'),
+      ),
+    ).toEqual({ dayText: '1일', isAlmostExpired: false });
+  });
+
+  it('유효하지 않은 Date 객체가 들어오면 에러를 반환해야 한다', () => {
+    expect(() => {
+      formatTimechipDay(new Date('이상한문자열'), new Date());
+    }).toThrowError('Invalid Date');
+
+    expect(() => {
+      formatTimechipDay(new Date(), new Date('이상한문자열'));
     }).toThrowError('Invalid Date');
   });
 });
