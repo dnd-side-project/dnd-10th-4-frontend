@@ -19,7 +19,6 @@ Sentry.init({
       maskAllText: false,
       blockAllMedia: false,
       networkDetailAllowUrls: [import.meta.env.VITE_BACKEND_ENDPOINT],
-      networkRequestHeaders: ['accessToken'],
     }),
   ],
   environment: import.meta.env.VITE_VERCEL_PREVIEW
