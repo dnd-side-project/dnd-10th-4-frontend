@@ -18,12 +18,12 @@ export type LetterTag = {
 export type Reception = {
   createdAt: string;
   letterId: number;
-  letterTag?: LetterTag;
+  letterTag: LetterTag;
   senderNickname: string;
   receiverNickname: string;
   content: string;
   worryType: Worry;
-  imagePath?: string;
+  imagePath: string | null;
 };
 
 export type Reply = {

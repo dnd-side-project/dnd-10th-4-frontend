@@ -13,9 +13,9 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
 
 interface ReceivedLetterProps {
@@ -67,7 +67,7 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
           titlePosition="right"
           nickname={receptionLetter.senderNickname}
         />
-        {receptionLetter.imagePath === '이미지가 존재하지 않습니다.' ? null : (
+        {receptionLetter.imagePath !== null && (
           <ReceptionPolaroid img={receptionLetter.imagePath} />
         )}
       </LetterCard>
