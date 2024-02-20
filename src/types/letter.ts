@@ -28,10 +28,13 @@ export type Reception = {
 
 export type Reply = {
   createdAt: string;
+  repliedAt: string;
   letterId: number;
+  letterTag: LetterTag;
   senderNickname: string;
   receiverNickname: string;
   content: string;
   repliedContent: string;
   worryType: Worry;
+  imagePath: string | null;
 };
