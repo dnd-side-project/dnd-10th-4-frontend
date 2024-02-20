@@ -5,6 +5,7 @@ export { default as CaretLeft } from './CaretLeft';
 export { default as CaretRight } from './CaretRight';
 export { default as CaretUp } from './CaretUp';
 export { default as Close } from './Close';
+export { default as Copy } from './Copy';
 export { default as Download } from './Download';
 export { default as Female } from './Female';
 export { default as Heart } from './Heart';
