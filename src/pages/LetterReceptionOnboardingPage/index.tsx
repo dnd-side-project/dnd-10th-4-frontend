@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
@@ -9,16 +10,36 @@ import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
+import { formatDate } from '@/utils/dateUtils';
 import PolaroidModal from './components/PolaroidModal';
 import styles from './styles';
 
 const LetterReceptionOnboardingPage = () => {
   const navigate = useNavigate();
   const modalProps = useBoolean(false);
+  const [showStorageTooltip, setShowStorageTooltip] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowStorageTooltip(true);
+    modalProps.off();
+  };
+
+  const buttons = {
+    close: (
+      <Button variant="secondary" size="sm" rounded="md">
+        닫기
+      </Button>
+    ),
+    store: (
+      <Button variant="primary" size="sm" rounded="md">
+        보관하기
+      </Button>
+    ),
+  } as const;
 
   return (
     <div css={styles.container}>
-      <PolaroidModal {...modalProps} />
+      <PolaroidModal {...modalProps} off={handleCloseModal} />
       <Header
         css={styles.header}
         leftContent={
@@ -72,7 +93,7 @@ const LetterReceptionOnboardingPage = () => {
             <p>너에게도 위로가 되기를</p>
           </section>
           <div css={styles.date}>
-            <span>24년 01월 20일</span>
+            <span>{formatDate(new Date())}</span>
           </div>
           <LetterHeader
             title="From"
@@ -81,7 +102,7 @@ const LetterReceptionOnboardingPage = () => {
           />
           <Tooltip
             side="right"
-            delay={10000}
+            delay={300000}
             triggerContent={
               <div css={styles.polaroidContainer}>
                 <img
@@ -98,12 +119,14 @@ const LetterReceptionOnboardingPage = () => {
         </LetterCard>
       </main>
       <Navbar css={styles.navbar}>
-        <Button variant="secondary" size="sm" rounded="md">
-          닫기
-        </Button>
-        <Button variant="primary" size="sm" rounded="md">
-          보관하기
-        </Button>
+        {buttons.close}
+        {showStorageTooltip ? (
+          <Tooltip side="top" delay={300000} triggerContent={buttons.store}>
+            <p css={textStyles.c1r}>보관하기를 눌러 편지를 간직하세요</p>
+          </Tooltip>
+        ) : (
+          buttons.store
+        )}
       </Navbar>
     </div>
   );
