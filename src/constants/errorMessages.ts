@@ -8,6 +8,10 @@ const ERROR_RESPONSES = {
   repliedLetterPass: '답장한 편지는 패스할 수 없습니다.',
   alreadyReplyExist: '이미 답장을 완료한 편지입니다.',
   unAnsweredLetterStore: '답장하지 않은 편지는 보관할 수 없습니다.',
+  unSupportExt:
+    '업로드 하신 이미지는 지원하지 않는 파일 형식입니다. 이미지가 png, jpg, jpeg, gif, bmp의 형식인지 확인해주세요.',
+  noExt: '업로드 하신 이미지에 확장자가 존재하지 않습니다.',
+  exceedSendLimit: '하루에 보낼 수 있는 편지를 모두 사용하였습니다.',
 } as const;
 
 export default ERROR_RESPONSES;

@@ -2,11 +2,11 @@ import { http, HttpResponse, delay } from 'msw';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import { Reception, Reply } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import withAuth from '../middlewares/withAuth';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
 } from '../datas/letter';
+import withAuth from '../middlewares/withAuth';
 
 const letterHandler = [
   http.get(
@@ -44,7 +44,22 @@ const letterHandler = [
     withAuth(async () => {
       await delay(1000);
 
-      return HttpResponse.json();
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.exceedSendLimit, {
+            status: 400,
+          });
+        case 415:
+          return new HttpResponse(ERROR_RESPONSES.noExt, {
+            status: 415,
+          });
+        default:
+          break;
+      }
     }),
   ),
 
