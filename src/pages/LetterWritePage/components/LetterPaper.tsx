@@ -1,6 +1,9 @@
 import { useFormContext } from 'react-hook-form';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterCard from '@/components/LetterCard';
+import memberOptions from '@/api/member/queryOptions';
+import LetterHeader from '@/components/LetterHeader';
 import { type WriteInputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
 import {
@@ -15,6 +18,7 @@ const LetterPaper = ({
   toggleBottomSheet,
 }: BottomSheetProps) => {
   const { watch } = useFormContext<WriteInputs>();
+  const { data: member } = useSuspenseQuery(memberOptions.detail());
 
   return (
     <LetterCard isOpen={true}>
@@ -24,6 +28,11 @@ const LetterPaper = ({
       />
       <LetterContent />
       <LetterLengthDate letterLength={watch('content').length} />
+      <LetterHeader
+        title="From"
+        titlePosition="right"
+        nickname={member.nickname}
+      />
       {watch('image') ? <PolaroidImage /> : <ImageSelect />}
     </LetterCard>
   );
