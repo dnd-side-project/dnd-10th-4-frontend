@@ -1,3 +1,4 @@
+import React from 'react';
 import { SoundOn, SoundOff } from '@/assets/icons';
 import useMusicStore from '@/stores/useMusicStore';
 import Tooltip from '../Tooltip';
@@ -6,10 +7,19 @@ import IconButton from '../IconButton';
 interface MusicButtonProps {
   /** 아이콘 색상 */
   color?: string;
+  /** 툴팁 컴포넌트에 전달할 props */
+  tooltipProps?: Pick<
+    React.ComponentPropsWithoutRef<typeof Tooltip>,
+    'align' | 'side'
+  >;
 }
 
 /** 바다 소리를 On/Off 하는 컴포넌트입니다. */
-const MusicButton = ({ color = 'white', ...props }: MusicButtonProps) => {
+const MusicButton = ({
+  color = 'white',
+  tooltipProps,
+  ...props
+}: MusicButtonProps) => {
   const isPlaying = useMusicStore((s) => s.isPlaying);
   const toggle = useMusicStore((s) => s.togglePlaying);
 
@@ -24,6 +34,7 @@ const MusicButton = ({ color = 'white', ...props }: MusicButtonProps) => {
             {isPlaying ? <SoundOn color={color} /> : <SoundOff color={color} />}
           </IconButton>
         }
+        {...tooltipProps}
       >
         {isPlaying
           ? '바다 소리를 끌 수 있어요.'

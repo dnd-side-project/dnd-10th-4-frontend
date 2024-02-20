@@ -3,14 +3,13 @@ import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import IconButton, { iconButtonStyles } from '@/components/IconButton';
 import Header from '@/components/Header';
-import { buttonStyles } from '@/components/Button';
-import { PencilLine, TreasureChest, User } from '@/assets/icons';
+import { TreasureChest, User } from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
-import textStyles from '@/styles/textStyles';
-import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/router';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
+import WritingButton from './components/WritingButton';
+import WritingBottomButton from './components/WritingBottomButton';
 
 const MainPage = () => {
   return (
@@ -18,15 +17,20 @@ const MainPage = () => {
       <Header
         variant="primary"
         leftContent={
-          <IconButton variant="header" rounded="r8" css={styles.headerButton}>
-            <PencilLine color="white" />
-            <p css={[textStyles.b4m, css({ color: COLORS.gray1 })]}>4장</p>
-          </IconButton>
+          <Suspense fallback={<></>}>
+            <WritingButton />
+          </Suspense>
         }
         rightStyle={css({ gap: '0.5rem' })}
         rightContent={
           <>
-            <MusicButton css={css({ marginRight: '0.75rem' })} />
+            <MusicButton
+              css={css({ marginRight: '0.75rem' })}
+              tooltipProps={{
+                align: 'start',
+                side: 'bottom',
+              }}
+            />
             <IconButton variant="header" rounded="r8">
               <TreasureChest color="white" />
             </IconButton>
@@ -48,13 +52,9 @@ const MainPage = () => {
       </main>
 
       <section css={styles.buttonSection}>
-        <Link
-          to={ROUTER_PATHS.LETTER_WRITE}
-          css={buttonStyles.button('primary', 'md', 'md')}
-        >
-          <PencilLine />
-          편지 쓰기
-        </Link>
+        <Suspense fallback={<></>}>
+          <WritingBottomButton />
+        </Suspense>
       </section>
     </div>
   );
