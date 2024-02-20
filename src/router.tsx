@@ -10,6 +10,7 @@ import MainPage from './pages/MainPage';
 import LetterReceptionPage from './pages/LetterReceptionPage';
 import MyPage from './pages/MyPage';
 import LetterReplyPage from './pages/LetterReplyPage';
+import LetterStoragePage from './pages/LetterStoragePage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -23,6 +24,7 @@ const ROUTER_PATHS = {
   LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
   MYPAGE: '/mypage',
   LETTER_REPLY: (letterId: string) => `/reply/${letterId}`,
+  LETTER_STORAGE: `/storage`,
 } as const;
 
 const router = createBrowserRouter([
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
           readLetterStore.getState().addReply(Number(params.letterId));
           return {};
         },
+      },
+      {
+        path: ROUTER_PATHS.LETTER_STORAGE,
+        element: <LetterStoragePage />,
       },
       {
         path: '*',
