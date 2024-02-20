@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, FieldError } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import { useMutation } from '@tanstack/react-query';
@@ -11,8 +12,8 @@ import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import style from './styles';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -56,7 +57,7 @@ const LetterWritePage = () => {
 
   const {
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = methods;
 
   const { mutateAsync: postLetter, isPending } = useMutation({
@@ -66,6 +67,11 @@ const LetterWritePage = () => {
   const onSubmit = async (data: WriteInputs) => {
     try {
       await postLetter(data);
+      toast.success('편지를 성공적으로 작성했어요!', {
+        position: 'bottom-center',
+        autoClose: 1500,
+      });
+      navigate(ROUTER_PATHS.ROOT);
     } catch (error) {
       if (isAxiosError(error)) {
         if (
@@ -88,6 +94,21 @@ const LetterWritePage = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const showErrorToast = (error: FieldError) => {
+      if ('message' in error) {
+        toast.warn(error.message, {
+          position: 'bottom-center',
+          autoClose: 1500,
+        });
+      }
+    };
+
+    Object.values(errors).forEach((error) => {
+      showErrorToast(error as FieldError);
+    });
+  }, [errors]);
 
   return (
     <FormProvider {...methods}>
