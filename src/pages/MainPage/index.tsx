@@ -6,11 +6,10 @@ import Header from '@/components/Header';
 import { buttonStyles } from '@/components/Button';
 import { PencilLine, TreasureChest, User } from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
-import textStyles from '@/styles/textStyles';
-import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/router';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
+import WritingButton from './components/WritingButton';
 
 const MainPage = () => {
   return (
@@ -18,10 +17,9 @@ const MainPage = () => {
       <Header
         variant="primary"
         leftContent={
-          <IconButton variant="header" rounded="r8" css={styles.headerButton}>
-            <PencilLine color="white" />
-            <p css={[textStyles.b4m, css({ color: COLORS.gray1 })]}>4장</p>
-          </IconButton>
+          <Suspense fallback={<></>}>
+            <WritingButton />
+          </Suspense>
         }
         rightStyle={css({ gap: '0.5rem' })}
         rightContent={
