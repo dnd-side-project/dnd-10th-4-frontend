@@ -21,10 +21,11 @@ const memberHandler = [
               email: 'aodem@naver.com',
               nickname: null,
               worryTypes: [],
-              gender: null,
+              gender: 'NONE',
               birthDay: null,
               age: null,
               role: 'USER',
+              letterCount: 0,
             } satisfies Awaited<
               ReturnType<(typeof memberAPI)['getMemberDetail']>
             >);
@@ -38,6 +39,7 @@ const memberHandler = [
               birthDay: [1997, 1, 1],
               age: 28,
               role: 'USER',
+              letterCount: 5,
             } satisfies Awaited<
               ReturnType<(typeof memberAPI)['getMemberDetail']>
             >);

@@ -70,7 +70,9 @@ const SuspendedPage = () => {
           <p>성별 변경</p>
           <div css={styles.value} onClick={genderBottomSheetProps.on}>
             <span>
-              {member.gender ? GENDER_DICT[member.gender] : '설정되지 않음'}
+              {member.gender !== 'NONE'
+                ? GENDER_DICT[member.gender]
+                : '설정되지 않음'}
             </span>
             <CaretRight color={COLORS.gray3} />
           </div>
