@@ -8,14 +8,19 @@ import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
+import useBoolean from '@/hooks/useBoolean';
+import PolaroidModal from './components/PolaroidModal';
 import styles from './styles';
 
 const LetterReceptionOnboardingPage = () => {
   const navigate = useNavigate();
+  const modalProps = useBoolean(false);
 
   return (
     <div css={styles.container}>
+      <PolaroidModal {...modalProps} />
       <Header
+        css={styles.header}
         leftContent={
           <CaretLeft
             css={styles.icon}
@@ -25,7 +30,7 @@ const LetterReceptionOnboardingPage = () => {
         }
         rightContent={
           <IconButton>
-            <Siren css={styles.icon} height={20} width={20} />
+            <Siren css={styles.icon} />
           </IconButton>
         }
       />
@@ -83,6 +88,7 @@ const LetterReceptionOnboardingPage = () => {
                   css={styles.polaroid}
                   src="https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg"
                   alt="폴라로이드"
+                  onClick={() => modalProps.on()}
                 />
               </div>
             }

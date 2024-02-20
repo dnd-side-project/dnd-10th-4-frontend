@@ -3,6 +3,10 @@ import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 
 const styles = {
+  header: css`
+    margin: 0.5rem 0;
+  `,
+
   container: css`
     display: flex;
     flex-direction: column;
