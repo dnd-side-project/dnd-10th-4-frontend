@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm, FormProvider, FieldError } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,8 +12,8 @@ import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const L = letterWrite;
 
@@ -67,7 +67,7 @@ const LetterWritePage = () => {
   const onSubmit = async (data: WriteInputs) => {
     try {
       await postLetter(data);
-      toast.success('편지를 성공적으로 작성했어요!', {
+      toast.success('편지를 바다에 띄어보냈어요', {
         position: 'bottom-center',
         autoClose: 1500,
       });
@@ -96,18 +96,25 @@ const LetterWritePage = () => {
   };
 
   useEffect(() => {
-    const showErrorToast = (error: FieldError) => {
-      if ('message' in error) {
-        toast.warn(error.message, {
-          position: 'bottom-center',
-          autoClose: 1500,
-        });
-      }
-    };
-
-    Object.values(errors).forEach((error) => {
-      showErrorToast(error as FieldError);
-    });
+    if (errors.worryType || errors.gender || errors.age) {
+      toast.warn('보낼 사람을 선택하세요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    } else if (errors.content) {
+      toast.warn('내용을 입력하세요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    } else if (errors.image) {
+      toast.warn(errors.image.message?.toString(), {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    }
   }, [errors]);
 
   return (

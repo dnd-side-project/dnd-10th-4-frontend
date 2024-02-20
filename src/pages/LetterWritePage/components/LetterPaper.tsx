@@ -31,7 +31,7 @@ const LetterPaper = ({
       <LetterHeader
         title="From"
         titlePosition="right"
-        nickname={member.nickname}
+        nickname={member.nickname ?? '유저'}
       />
       {watch('image') ? <PolaroidImage /> : <ImageSelect />}
     </LetterCard>

@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form';
+import React from 'react';
 import ImageUploadButton from '@/components/ImageUploadButton';
 import { type WriteInputs } from '../..';
 
