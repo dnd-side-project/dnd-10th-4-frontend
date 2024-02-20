@@ -11,20 +11,20 @@ import SparkleSmall from '@/assets/images/sparkleSmall.png';
 export const RECEPTION_BOTTLES = [
   {
     bottle: {
-      src: BottleReception1,
+      src: BottleReception4,
     },
     container: {
       animation: {
-        duration: '5s',
-        translateY: '0.5rem',
+        duration: '7s',
+        translateY: '1rem',
       },
       position: css`
         position: absolute;
-        right: 20%;
-        bottom: 30%;
+        bottom: 75%;
+        left: 25%;
 
         @media (min-aspect-ratio: 0.4/1) {
-          bottom: 25%;
+          bottom: 65%;
         }
       `,
     },
@@ -35,6 +35,43 @@ export const RECEPTION_BOTTLES = [
           position: absolute;
           top: 30%;
           right: 0;
+        `,
+      },
+    ],
+    chip: {
+      position: css`
+        position: absolute;
+        top: -2.5rem;
+        left: 1rem;
+      `,
+    },
+  },
+  {
+    bottle: {
+      src: BottleReception3,
+    },
+    container: {
+      animation: {
+        duration: '4s',
+        translateY: '1rem',
+      },
+      position: css`
+        position: absolute;
+        right: 20%;
+        bottom: 65%;
+
+        @media (min-aspect-ratio: 0.4/1) {
+          bottom: 55%;
+        }
+      `,
+    },
+    sparkles: [
+      {
+        src: SparkleBig,
+        position: css`
+          position: absolute;
+          top: 30%;
+          left: 0;
         `,
       },
     ],
@@ -83,56 +120,20 @@ export const RECEPTION_BOTTLES = [
   },
   {
     bottle: {
-      src: BottleReception3,
+      src: BottleReception1,
     },
     container: {
       animation: {
-        duration: '4s',
-        translateY: '1rem',
+        duration: '5s',
+        translateY: '0.5rem',
       },
       position: css`
         position: absolute;
         right: 20%;
-        bottom: 65%;
+        bottom: 30%;
 
         @media (min-aspect-ratio: 0.4/1) {
-          bottom: 55%;
-        }
-      `,
-    },
-    sparkles: [
-      {
-        src: SparkleBig,
-        position: css`
-          position: absolute;
-          top: 30%;
-          left: 0;
-        `,
-      },
-    ],
-    chip: {
-      position: css`
-        position: absolute;
-        top: -2.75rem;
-      `,
-    },
-  },
-  {
-    bottle: {
-      src: BottleReception4,
-    },
-    container: {
-      animation: {
-        duration: '7s',
-        translateY: '1rem',
-      },
-      position: css`
-        position: absolute;
-        bottom: 75%;
-        left: 25%;
-
-        @media (min-aspect-ratio: 0.4/1) {
-          bottom: 65%;
+          bottom: 25%;
         }
       `,
     },
@@ -149,8 +150,7 @@ export const RECEPTION_BOTTLES = [
     chip: {
       position: css`
         position: absolute;
-        top: -2.5rem;
-        left: 1rem;
+        top: -2.75rem;
       `,
     },
   },
