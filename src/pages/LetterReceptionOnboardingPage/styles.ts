@@ -12,12 +12,6 @@ const styles = {
     flex-direction: column;
     box-sizing: border-box;
     min-height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgb(29 29 29 / 0.05) 0%,
-      rgb(255 255 255 / 0.3) 100%
-    );
-    backdrop-filter: blur(20px);
   `,
 
   main: css`

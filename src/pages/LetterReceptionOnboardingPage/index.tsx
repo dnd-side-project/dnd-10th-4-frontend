@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
@@ -24,19 +25,6 @@ const LetterReceptionOnboardingPage = () => {
     modalProps.off();
   };
 
-  const buttons = {
-    close: (
-      <Button variant="secondary" size="sm" rounded="md">
-        닫기
-      </Button>
-    ),
-    store: (
-      <Button variant="primary" size="sm" rounded="md">
-        보관하기
-      </Button>
-    ),
-  } as const;
-
   return (
     <div css={styles.container}>
       <PolaroidModal {...modalProps} off={handleCloseModal} />
@@ -55,7 +43,12 @@ const LetterReceptionOnboardingPage = () => {
           </IconButton>
         }
       />
-      <main css={styles.main}>
+      <motion.main
+        css={styles.main}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
         <LetterCard css={styles.card}>
           <LetterHeader title="To" nickname="처음 방문한 너에게" />
           <section css={styles.content}>
@@ -117,16 +110,28 @@ const LetterReceptionOnboardingPage = () => {
             <p css={textStyles.c1r}>사진을 클릭해 볼 수 있어요</p>
           </Tooltip>
         </LetterCard>
-      </main>
+      </motion.main>
       <Navbar css={styles.navbar}>
-        {buttons.close}
-        {showStorageTooltip ? (
-          <Tooltip side="top" delay={300000} triggerContent={buttons.store}>
-            <p css={textStyles.c1r}>보관하기를 눌러 편지를 간직하세요</p>
-          </Tooltip>
-        ) : (
-          buttons.store
-        )}
+        <Button
+          variant="secondary"
+          size="sm"
+          rounded="md"
+          onClick={() => navigate(-1)}
+        >
+          닫기
+        </Button>
+        <Tooltip
+          key={showStorageTooltip ? 0 : 1}
+          delay={showStorageTooltip ? 300000 : 0}
+          side="top"
+          triggerContent={
+            <Button variant="primary" size="sm" rounded="md">
+              보관하기
+            </Button>
+          }
+        >
+          <p css={textStyles.c1r}>보관하기를 눌러 편지를 간직하세요</p>
+        </Tooltip>
       </Navbar>
     </div>
   );
