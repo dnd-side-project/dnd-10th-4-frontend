@@ -26,7 +26,7 @@ const styles = {
 export const Primary: Story = {
   args: {
     defaultPage: 2,
-    count: 10,
+    count: 99,
     onChange: (page: number) => console.log(`${page}번 아이템 클릭`),
   },
   decorators: [

@@ -5,11 +5,10 @@ import textStyles from '@/styles/textStyles';
 const styles = {
   container: css`
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
+    max-width: 390px;
     color: ${COLORS.gray4};
   `,
   pageItem: (selected: boolean) => css`
@@ -19,6 +18,11 @@ const styles = {
     border-radius: 6.25rem;
     cursor: pointer;
     transition: all 0.2s ease;
+
+    @media (max-width: 300px) {
+      width: 2rem;
+      height: 2rem;
+    }
 
     ${selected
       ? css`
