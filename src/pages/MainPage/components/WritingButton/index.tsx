@@ -12,6 +12,8 @@ const WritingButton = () => {
 
   return (
     <Tooltip
+      delay={3000}
+      mountKey="writingButton"
       triggerContent={
         <Link
           css={[iconButtonStyles.button('header', 'r8'), styles.button]}
@@ -23,7 +25,6 @@ const WritingButton = () => {
         </Link>
       }
       align="start"
-      delay={1000}
     >
       <p>편지지는 </p>
       <p>하루마다 충전 돼요</p>
