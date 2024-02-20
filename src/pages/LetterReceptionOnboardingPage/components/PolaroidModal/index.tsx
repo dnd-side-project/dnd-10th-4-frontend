@@ -20,9 +20,11 @@ const PolaroidModal = ({ value, off }: PolaroidModalProps) => {
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
           }
           rightContent={
-            <IconButton>
-              <Download css={styles.icon} />
-            </IconButton>
+            <a href={OnboardingLetterImage} download>
+              <IconButton>
+                <Download css={styles.icon} />
+              </IconButton>
+            </a>
           }
         />
         <section css={styles.main}>
