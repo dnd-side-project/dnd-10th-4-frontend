@@ -15,7 +15,7 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
       <LetterContent
         receiver={replyLetter.receiverNickname}
         content={replyLetter.repliedContent}
-        date={formatDate(new Date(replyLetter.createdAt))}
+        date={formatDate(new Date(replyLetter.repliedAt))}
         sender={replyLetter.senderNickname}
       />
     </LetterCard>

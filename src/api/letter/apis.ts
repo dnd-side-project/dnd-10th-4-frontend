@@ -83,10 +83,10 @@ const letterAPI = {
     return data;
   },
 
-  /** 받은 편지 보관함에 보관 */
-  patchReceptionStorage: async (letterId: number) => {
+  /** 답장 받은 편지 보관함에 보관 */
+  patchReplyStorage: async (letterId: number) => {
     const { data } = await authInstance.patch(
-      `/api/letter/reception/storage/${letterId}`,
+      `/api/letter/reply/storage/${letterId}`,
     );
     return data;
   },
