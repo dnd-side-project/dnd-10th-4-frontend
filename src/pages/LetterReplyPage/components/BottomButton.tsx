@@ -21,7 +21,7 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutateAsync: patchStorage, isPending } = useMutation({
-    mutationFn: letterAPI.patchReceptionStorage,
+    mutationFn: letterAPI.patchReplyStorage,
   });
 
   const handleStorageLetter = async () => {
