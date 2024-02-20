@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
@@ -12,17 +12,25 @@ import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
 import { formatDate } from '@/utils/dateUtils';
+import { ROUTER_PATHS } from '@/router';
 import PolaroidModal from './components/PolaroidModal';
 import styles from './styles';
 
 const LetterReceptionOnboardingPage = () => {
   const navigate = useNavigate();
   const modalProps = useBoolean(false);
-  const [showStorageTooltip, setShowStorageTooltip] = useState(false);
+  const storageTooltipKey = useRef(0);
 
   const handleCloseModal = () => {
-    setShowStorageTooltip(true);
+    storageTooltipKey.current = storageTooltipKey.current + 1;
     modalProps.off();
+  };
+
+  const handleNavigateToRoot = () => {
+    navigate(ROUTER_PATHS.ROOT, {
+      replace: true,
+      state: { from: ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING },
+    });
   };
 
   return (
@@ -34,7 +42,7 @@ const LetterReceptionOnboardingPage = () => {
           <CaretLeft
             css={styles.icon}
             strokeWidth={2.5}
-            onClick={() => navigate(-1)}
+            onClick={handleNavigateToRoot}
           />
         }
         rightContent={
@@ -116,13 +124,13 @@ const LetterReceptionOnboardingPage = () => {
           variant="secondary"
           size="sm"
           rounded="md"
-          onClick={() => navigate(-1)}
+          onClick={handleNavigateToRoot}
         >
           닫기
         </Button>
         <Tooltip
-          key={showStorageTooltip ? 0 : 1}
-          delay={showStorageTooltip ? 300000 : 0}
+          key={storageTooltipKey.current}
+          delay={storageTooltipKey.current > 0 ? 300000 : 0}
           side="top"
           triggerContent={
             <Button variant="primary" size="sm" rounded="md">
