@@ -25,7 +25,8 @@ const WritingButton = () => {
       align="start"
       delay={1000}
     >
-      편지지는 하루마다 충전 돼요
+      <p>편지지는 </p>
+      <p>하루마다 충전 돼요</p>
     </Tooltip>
   );
 };
