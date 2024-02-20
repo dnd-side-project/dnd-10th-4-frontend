@@ -11,6 +11,7 @@ import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
+import OnboardingLetterImage from '@/assets/images/onboardingLetterImage.jpg';
 import { formatDate } from '@/utils/dateUtils';
 import { ROUTER_PATHS } from '@/router';
 import PolaroidModal from './components/PolaroidModal';
@@ -108,7 +109,7 @@ const LetterReceptionOnboardingPage = () => {
               <div css={styles.polaroidContainer}>
                 <img
                   css={styles.polaroid}
-                  src="https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg"
+                  src={OnboardingLetterImage}
                   alt="폴라로이드"
                   onClick={() => modalProps.on()}
                 />
