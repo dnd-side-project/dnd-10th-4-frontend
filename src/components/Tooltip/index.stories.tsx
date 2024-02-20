@@ -29,6 +29,7 @@ export const Primary: Story = {
     side: 'bottom',
     align: 'end',
     delay: 1000,
+    mountKey: undefined,
     triggerContent: (
       <IconButton>
         <SoundOff color="white" />

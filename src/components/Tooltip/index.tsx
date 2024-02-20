@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as T from '@radix-ui/react-tooltip';
 import useTimeout from '@/hooks/useTimeout';
@@ -10,6 +10,8 @@ interface TooltipProps {
   side?: 'left' | 'top' | 'right' | 'bottom';
   /** 화살표 모양의 위치를 지정합니다. */
   align?: 'start' | 'center' | 'end';
+  /** 마운트시 최초로 툴팁을 한 번만 보여주고 싶을 때, sessionStorage에 저장할 키를 지정합니다. (없다면 항시 보여줍니다.) */
+  mountKey?: string;
   /** 마운트시 최초로 툴팁을 보여줄 시간을 지정합니다. */
   delay?: number;
   /** 툴팁을 보여줄 트리거 컨텐츠를 지정합니다. */
@@ -23,12 +25,23 @@ const Tooltip = ({
   side = 'bottom',
   align = 'center',
   delay = 0,
+  mountKey,
   triggerContent,
   children,
 }: TooltipProps) => {
-  const [isOpen, setIsOpen] = useState(delay > 0);
+  const KEY = `tooltip-${mountKey}`;
 
-  useTimeout(() => setIsOpen(false), delay);
+  const [isOpen, setIsOpen] = useState(
+    delay <= 0 ? false : mountKey && sessionStorage.getItem(KEY) ? false : true,
+  );
+
+  useEffect(() => {
+    sessionStorage.setItem(KEY, 'true');
+  }, []);
+
+  useTimeout(() => {
+    setIsOpen(false);
+  }, delay);
 
   return (
     <T.Provider>
