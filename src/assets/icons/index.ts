@@ -16,6 +16,7 @@ export { default as KakaoLogo } from './KakaoLogo';
 export { default as Male } from './Male';
 export { default as MoreHorizontal } from './MoreHorizontal';
 export { default as PencilLine } from './PencilLine';
+export { default as ScrolLetter } from './ScrolLetter';
 export { default as Setting } from './Setting';
 export { default as Shuffle } from './Shuffle';
 export { default as Siren } from './Siren';
