@@ -3,13 +3,13 @@ import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import IconButton, { iconButtonStyles } from '@/components/IconButton';
 import Header from '@/components/Header';
-import { buttonStyles } from '@/components/Button';
-import { PencilLine, TreasureChest, User } from '@/assets/icons';
+import { TreasureChest, User } from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
 import { ROUTER_PATHS } from '@/router';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
 import WritingButton from './components/WritingButton';
+import WritingBottomButton from './components/WritingBottomButton';
 
 const MainPage = () => {
   return (
@@ -52,13 +52,7 @@ const MainPage = () => {
       </main>
 
       <section css={styles.buttonSection}>
-        <Link
-          to={ROUTER_PATHS.LETTER_WRITE}
-          css={buttonStyles.button('primary', 'md', 'md')}
-        >
-          <PencilLine />
-          편지 쓰기
-        </Link>
+        <WritingBottomButton />
       </section>
     </div>
   );
