@@ -22,7 +22,7 @@ const PaginationBar = ({
     boundaryCount: 1,
     defaultPage,
     count,
-    onChange: (e, page) => onChange(page),
+    onChange: (_, page) => onChange(page),
   });
 
   return (
