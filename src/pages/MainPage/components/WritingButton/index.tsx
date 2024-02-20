@@ -22,6 +22,7 @@ const WritingButton = () => {
           <p css={styles.text}>{member.letterCount}장</p>
         </Link>
       }
+      align="start"
       delay={1000}
     >
       편지지는 하루마다 충전 돼요

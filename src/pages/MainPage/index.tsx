@@ -24,7 +24,13 @@ const MainPage = () => {
         rightStyle={css({ gap: '0.5rem' })}
         rightContent={
           <>
-            <MusicButton css={css({ marginRight: '0.75rem' })} />
+            <MusicButton
+              css={css({ marginRight: '0.75rem' })}
+              tooltipProps={{
+                align: 'start',
+                side: 'bottom',
+              }}
+            />
             <IconButton variant="header" rounded="r8">
               <TreasureChest color="white" />
             </IconButton>
