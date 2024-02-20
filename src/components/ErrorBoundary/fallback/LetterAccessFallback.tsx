@@ -5,7 +5,7 @@ import ERROR_RESPONSES from '@/constants/errorMessages';
 import Button from '../../Button';
 import styles from './styles';
 
-const ReceptionFallback = ({ error }: FallbackProps) => {
+const LetterAccessFallback = ({ error }: FallbackProps) => {
   const navigate = useNavigate();
 
   const shouldSkip = !(
@@ -35,4 +35,4 @@ const ReceptionFallback = ({ error }: FallbackProps) => {
   );
 };
 
-export default ReceptionFallback;
+export default LetterAccessFallback;

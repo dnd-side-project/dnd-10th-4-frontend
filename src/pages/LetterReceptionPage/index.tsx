@@ -4,11 +4,11 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import createFunnel from '@/components/Funnel/createFunnel';
 import { ROUTER_PATHS } from '@/router';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
-import ReceptionFallback from '@/components/ErrorBoundary/fallback/ReceptionFallback';
-import style from './styles';
-import ReceptionHeader from './components/ReceptionHeader';
-import ReplyToLetter from './ReplyToLetter';
+import LetterAccessFallback from '@/components/ErrorBoundary/fallback/LetterAccessFallback';
 import ReceivedLetter from './ReceivedLetter';
+import ReplyToLetter from './ReplyToLetter';
+import ReceptionHeader from './components/ReceptionHeader';
+import style from './styles';
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'ReceivedLetter',
@@ -22,8 +22,15 @@ const LetterReceptionPage = () => {
   const { letterId } = useParams();
 
   return (
-    <UnknownErrorBoundary FallbackComponent={ReceptionFallback}>
-      <Suspense fallback={<LoadingSpinner />}>
+    <UnknownErrorBoundary FallbackComponent={LetterAccessFallback}>
+      <Suspense
+        fallback={
+          <div css={style.loadingSpinner}>
+            <LoadingSpinner size="4rem" />
+            <p>흘러온 편지 가져오는 중...</p>
+          </div>
+        }
+      >
         <div css={style.container}>
           <ReceptionHeader
             onClickPrev={

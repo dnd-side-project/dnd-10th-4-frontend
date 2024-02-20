@@ -25,7 +25,7 @@ const style = {
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 7rem;
   `,
 };
 

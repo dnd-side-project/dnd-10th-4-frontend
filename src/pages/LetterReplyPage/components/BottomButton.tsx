@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { TreasureChestOutline } from '@/assets/icons';
@@ -9,6 +10,7 @@ import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import Tooltip from '@/components/Tooltip';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 
 interface BottomButtonProps {
   letterId: number;
@@ -19,13 +21,25 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutateAsync: patchStorage, isPending } = useMutation({
-    mutationFn: letterAPI.patchReceptionStorage,
+    mutationFn: letterAPI.patchReplyStorage,
   });
 
   const handleStorageLetter = async () => {
-    await patchStorage(letterId);
-    queryClient.invalidateQueries({ queryKey: letterOptions.all });
-    navigate(ROUTER_PATHS.ROOT);
+    try {
+      await patchStorage(letterId);
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+      navigate(ROUTER_PATHS.ROOT);
+    } catch (error) {
+      if (
+        isAxiosError(error) &&
+        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+          error.response?.data === ERROR_RESPONSES.unAnsweredLetterStore)
+      ) {
+        console.error(error.response?.data);
+      } else {
+        throw error;
+      }
+    }
   };
 
   return (

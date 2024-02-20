@@ -19,7 +19,7 @@ const useLetterWithTags = (letterId: number) => {
         data.letterTag?.equalGender ? '동성에게' : '모두에게',
       ]
     : [];
-  const receptionLetter: ReceptionLetterType = { ...data!, tagList };
+  const receptionLetter: ReceptionLetterType = { ...data, tagList };
 
   return { receptionLetter };
 };
