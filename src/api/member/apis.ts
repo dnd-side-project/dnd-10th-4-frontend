@@ -6,13 +6,14 @@ const memberAPI = {
   getMemberDetail: async () => {
     const { data } = await authInstance.get<{
       id: number;
+      role: Role;
       email: string;
       nickname: string | null;
-      worryTypes: Worry[];
-      gender: Gender | null;
+      gender: Gender | 'NONE';
       birthDay: [number, number, number] | null;
       age: number | null;
-      role: Role;
+      worryTypes: Worry[];
+      letterCount: number;
     }>('/api/member');
     return data;
   },
