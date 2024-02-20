@@ -52,7 +52,9 @@ const MainPage = () => {
       </main>
 
       <section css={styles.buttonSection}>
-        <WritingBottomButton />
+        <Suspense fallback={<></>}>
+          <WritingBottomButton />
+        </Suspense>
       </section>
     </div>
   );
