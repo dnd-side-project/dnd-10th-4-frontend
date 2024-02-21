@@ -20,10 +20,10 @@ import ImageUploadButton from '@/components/ImageUploadButton';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { TrashCan } from '@/assets/icons';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import style from './styles';
+import LetterContent from '../components/LetterContent';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -80,7 +80,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
 
   const onSubmit = async (data: ReplyInputs) => {
     try {
-      await patchReply({ letterId: receptionLetter.letterId, body: data });
+      await patchReply({ letterId: receptionLetter.letterId, letter: data });
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
       navigate(ROUTER_PATHS.ROOT);
     } catch (error) {

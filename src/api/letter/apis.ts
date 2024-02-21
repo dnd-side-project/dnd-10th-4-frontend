@@ -55,14 +55,26 @@ const letterAPI = {
   /** 받은 편지 답장 */
   patchReceptionReply: async ({
     letterId,
-    body,
+    letter,
   }: {
     letterId: number;
-    body: ReplyInputs;
+    letter: ReplyInputs;
   }) => {
+    const formData = new FormData();
+    formData.append('replyContent', letter.replyContent);
+
+    if (letter.image) {
+      formData.append('image', letter.image[0]);
+    }
+
     const { data } = await authInstance.patch(
       `api/letter/reception/reply/${letterId}`,
-      body,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
     );
     return data;
   },
