@@ -3,6 +3,7 @@ import LetterAccordion from '@/components/LetterAccordion';
 import useBoolean from '@/hooks/useBoolean';
 import TagList from '@/components/TagList';
 import LetterHeader from '@/components/LetterHeader';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import { ReceptionLetterType } from '../hooks/useLetterWithTags';
 
 interface ReceivedAccordionLetterProps {
@@ -28,6 +29,9 @@ const ReceivedAccordionLetter = ({
         line={2}
         type="send"
       />
+      {receptionLetter.imagePath !== null && (
+        <ReceptionPolaroid img={receptionLetter.imagePath} />
+      )}
     </LetterCard>
   );
 };
