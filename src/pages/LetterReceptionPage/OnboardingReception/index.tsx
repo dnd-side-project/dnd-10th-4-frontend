@@ -54,7 +54,7 @@ const OnboardingReception = () => {
   const handleNavigateToRoot = () => {
     navigate(ROUTER_PATHS.ROOT, {
       replace: true,
-      state: { from: ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING },
+      state: { from: ROUTER_PATHS.ONBOARDING },
     });
   };
 

@@ -22,7 +22,6 @@ const ROUTER_PATHS = {
   ONBOARDING: '/onboarding',
   LETTER_WRITE: '/write',
   LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
-  LETTER_RECEPTION_ONBOARDING: '/reception/onboarding',
   MYPAGE: '/mypage',
   LETTER_REPLY: (letterId: string) => `/reply/${letterId}`,
   LETTER_STORAGE: `/storage`,
