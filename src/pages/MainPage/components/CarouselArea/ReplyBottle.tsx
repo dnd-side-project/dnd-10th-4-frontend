@@ -26,7 +26,7 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
   };
 
   return (
-    <div
+    <article
       key={letterId}
       css={[
         REPLY_BOTTLES[constantId].container.position,
@@ -41,7 +41,7 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
             <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
           ),
       )}
-    </div>
+    </article>
   );
 };
 

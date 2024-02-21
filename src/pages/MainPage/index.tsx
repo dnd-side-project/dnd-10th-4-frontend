@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import IconButton from '@/components/IconButton';
@@ -62,9 +62,6 @@ const MainPage = () => {
       />
 
       <main css={styles.main}>
-        <Link to={ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING}>
-          (TODO: 임시) 첫 편지 페이지 보러가기
-        </Link>
         {/* TODO: 로딩 처리 필요 */}
         <Suspense fallback={<></>}>
           <CarouselArea />
