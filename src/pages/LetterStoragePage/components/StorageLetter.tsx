@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import LetterAccordion from '@/components/LetterAccordion';
