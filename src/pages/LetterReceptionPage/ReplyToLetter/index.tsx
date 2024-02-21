@@ -20,10 +20,10 @@ import ImageUploadButton from '@/components/ImageUploadButton';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { TrashCan } from '@/assets/icons';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 
@@ -110,7 +110,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div css={style.letter}>
           <ReceivedAccordionLetter receptionLetter={receptionLetter} />
-          <LetterCard isOpen={true} css={{ marginBottom: '2.5rem' }}>
+          <LetterCard isOpen={true} css={style.card}>
             <LetterHeader
               title="To"
               nickname={receptionLetter.senderNickname}
