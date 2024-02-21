@@ -9,10 +9,11 @@ import { MoreHorizontal, Copy, TrashCan } from '@/assets/icons';
 import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
 import PolaroidModal from '@/components/PolaroidModal';
+import { Reply } from '@/types/letter';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
-  letters: Array<object>;
+  letters: Reply[];
 }
 
 const StorageLetter = ({ letters }: StorageLetterProps) => {
@@ -27,7 +28,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
 
   return (
     <StorageContent>
-      {letters.map((item: any) => (
+      {letters.map((item: Reply) => (
         <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
           <div css={style.tags}>
             <TagList tags={['10~20세', '모두에게', '직장']} />
