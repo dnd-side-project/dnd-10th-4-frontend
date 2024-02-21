@@ -278,7 +278,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'WORK',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -294,7 +295,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -310,7 +312,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -326,7 +329,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -342,7 +346,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -358,7 +363,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -374,7 +380,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -390,7 +397,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -406,7 +414,8 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -422,6 +431,7 @@ export const RepliedLettersResponse = [
     content: '안녕',
     repliedContent: '안녕하세요!',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
+    replyImagePath: null,
   },
 ] satisfies Awaited<ReturnType<(typeof letterAPI)['getRepliedLetters']>>;

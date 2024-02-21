@@ -36,5 +36,6 @@ export type Reply = {
   content: string;
   repliedContent: string;
   worryType: Worry;
-  imagePath: string | null;
+  sendImagePath: string | null;
+  replyImagePath: string | null;
 };

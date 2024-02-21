@@ -111,6 +111,10 @@ const letterHandler = [
           return new HttpResponse(ERROR_RESPONSES.alreadyReplyExist, {
             status: 400,
           });
+        case 415:
+          return new HttpResponse(ERROR_RESPONSES.unSupportExt, {
+            status: 415,
+          });
         default:
           break;
       }
@@ -153,8 +157,9 @@ const letterHandler = [
         content: `${req.params.letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
         repliedContent: `${req.params.letterId} 번째 편지 답장 입니다.`,
         worryType: 'BREAK_LOVE',
-        // imagePath: null,
-        imagePath:
+        sendImagePath:
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        replyImagePath:
           'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       };
 
