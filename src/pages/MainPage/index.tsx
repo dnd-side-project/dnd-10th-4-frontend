@@ -36,7 +36,11 @@ const MainPage = () => {
             />
             <Tooltip
               triggerContent={
-                <IconButton variant="header" rounded="r8">
+                <IconButton
+                  variant="header"
+                  rounded="r8"
+                  onClick={() => navigate(ROUTER_PATHS.LETTER_STORAGE)}
+                >
                   <TreasureChest color="white" />
                 </IconButton>
               }
