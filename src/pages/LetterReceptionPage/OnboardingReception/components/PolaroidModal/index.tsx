@@ -3,14 +3,15 @@ import Header from '@/components/Header';
 import IconButton from '@/components/IconButton';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
-import OnboardingLetterImage from '@/assets/images/onboardingLetterImage.jpg';
 import Button from '@/components/Button';
 import pageStyles from '../../styles';
 import styles from './style';
 
-interface PolaroidModalProps extends ReturnType<typeof useBoolean> {}
+interface PolaroidModalProps extends ReturnType<typeof useBoolean> {
+  imagePath: string | null;
+}
 
-const PolaroidModal = ({ value, off }: PolaroidModalProps) => {
+const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
   return (
     <Modal isOpen={value} close={off}>
       <div css={styles.container}>
@@ -20,7 +21,7 @@ const PolaroidModal = ({ value, off }: PolaroidModalProps) => {
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
           }
           rightContent={
-            <a href={OnboardingLetterImage} download>
+            <a href={imagePath ?? undefined} download>
               <IconButton>
                 <Download css={styles.icon} />
               </IconButton>
@@ -31,7 +32,7 @@ const PolaroidModal = ({ value, off }: PolaroidModalProps) => {
           <div css={styles.polaroidFrame}>
             <img
               css={styles.polaroid}
-              src={OnboardingLetterImage}
+              src={imagePath ?? undefined}
               alt="편지와 함께 보낸 이미지"
             />
           </div>

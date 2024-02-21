@@ -18,7 +18,6 @@ import Button from '@/components/Button';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
-import OnboardingLetterImage from '@/assets/images/onboardingLetterImage.jpg';
 import { formatDate } from '@/utils/dateUtils';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
@@ -80,7 +79,11 @@ const OnboardingReception = () => {
 
   return (
     <div css={styles.container}>
-      <PolaroidModal {...modalProps} off={handleCloseModal} />
+      <PolaroidModal
+        {...modalProps}
+        imagePath={letter.imagePath}
+        off={handleCloseModal}
+      />
       <Header
         css={styles.header}
         leftContent={
@@ -125,12 +128,14 @@ const OnboardingReception = () => {
             delay={300000}
             triggerContent={
               <div css={styles.polaroidContainer}>
-                <img
-                  css={styles.polaroid}
-                  src={OnboardingLetterImage}
-                  alt="폴라로이드"
-                  onClick={() => modalProps.on()}
-                />
+                {letter.imagePath && (
+                  <img
+                    css={styles.polaroid}
+                    src={letter.imagePath}
+                    alt="폴라로이드"
+                    onClick={() => modalProps.on()}
+                  />
+                )}
               </div>
             }
           >
