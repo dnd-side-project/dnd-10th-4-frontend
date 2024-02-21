@@ -70,7 +70,7 @@ const letterHandler = [
       createdAt: '2024-02-17T16:50:44',
       letterId: Number(req.params.letterId),
       letterTag: {
-        ageStart: 20,
+        ageRangeStart: 20,
         ageRangeEnd: 50,
         equalGender: true,
       },
@@ -144,7 +144,7 @@ const letterHandler = [
         repliedAt: '2024-02-19T16:50:44',
         letterId: Number(req.params.letterId),
         letterTag: {
-          ageStart: 20,
+          ageRangeStart: 20,
           ageRangeEnd: 50,
           equalGender: true,
         },
