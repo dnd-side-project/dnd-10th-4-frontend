@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { ScrolLetter } from '@/assets/icons';
 import { ROUTER_PATHS } from '@/router';
 import PaginationBar from '@/components/PaginationBar';
@@ -13,7 +14,7 @@ const ArchiveLetters = () => {
   return (
     <>
       {testData.letters.length > 0 ? (
-        <div css={{ marginBottom: '1rem' }}>
+        <div css={style.container}>
           <StorageLetter letters={testData.letters} />
           {testData.totalPage > 1 && (
             <PaginationBar
@@ -42,3 +43,13 @@ const ArchiveLetters = () => {
 };
 
 export default ArchiveLetters;
+
+const style = {
+  container: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100svh - 72px - 50px - 1rem);
+    margin-bottom: 1rem;
+  `,
+};

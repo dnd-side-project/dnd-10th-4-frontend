@@ -43,7 +43,12 @@ const Dropdown = ({ triggerComponent, options }: DropdownProps) => {
       >
         {triggerComponent}
       </div>
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      <Menu
+        disableScrollLock={true}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
         {options.map((option, index) => (
           <MenuItem
             key={index}
