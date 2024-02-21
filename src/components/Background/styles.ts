@@ -4,17 +4,18 @@ const style = {
   background: (imageUrl: string, path: string) => css`
     @keyframes gradient {
       0% {
-        background-position: 0% center;
+        background-position: 0% 0%;
       }
 
       100% {
-        background-position: 36000% center;
+        background-position: 36000% 0%;
       }
     }
 
     height: ${path === '/storage' ? 'auto' : '100svh'};
+    background-color: #ffeecb;
     background-image: url(${imageUrl});
-    background-size: 390px 100%;
+    background-size: 390px 100svh;
     background-repeat: repeat-x;
     animation: gradient linear infinite;
 
