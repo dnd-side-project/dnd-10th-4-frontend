@@ -38,7 +38,7 @@ const style = {
     height: 100%;
   `,
   content: css`
-    margin-top: 0.5rem;
+    margin-top: 4.5rem;
     padding-inline: 1.25rem;
   `,
 };

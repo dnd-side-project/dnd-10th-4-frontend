@@ -13,7 +13,7 @@ const style = {
   `,
   contentText: (isOpen: boolean, line: number) => css`
     position: relative;
-    height: ${isOpen ? `15rem` : `${line * 1.225}rem`};
+    height: ${isOpen ? `13.8rem` : `${line * 1.225}rem`};
     color: var(--kakao-logo, #000);
     font-weight: 400;
     font-style: normal;

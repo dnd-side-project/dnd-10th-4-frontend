@@ -7,6 +7,7 @@ const styles = {
   list: (variant: TabsVariant) => css`
     display: flex;
     width: 100%;
+    height: 47.5px;
 
     ${variantStyles[variant].list}
   `,
