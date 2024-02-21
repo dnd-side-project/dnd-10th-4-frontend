@@ -65,7 +65,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           />
           {isOpen[item.letterId] && (
             <PolaroidModal
-              topPosition={3}
+              topPosition={3.2}
               leftPosition={1}
               img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
             />

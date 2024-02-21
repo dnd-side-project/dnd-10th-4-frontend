@@ -27,10 +27,15 @@ const PolaroidModal = ({
 }: PolaroidModalProps) => {
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
+  const handleOpen = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    open();
+  };
+
   return (
     <div>
       <Polaroid
-        onClick={open}
+        onClick={handleOpen}
         topPosition={topPosition}
         leftPosition={leftPosition}
         imgUrl={img}
