@@ -107,12 +107,17 @@ const LetterContent = ({
           </div>
         )}
       </div>
-      {isOpen && (
+      {!isOpen && (
         <div css={style.info}>
-          <p css={style.date(type)}>
+          <span css={style.inboxDate}>
             {formatDate(date)}
             {type === 'inbox' && '에 받은 편지'}
-          </p>
+          </span>
+        </div>
+      )}
+      {isOpen && (
+        <div css={style.info}>
+          <span css={style.date}>{formatDate(date)}</span>
           <LetterHeader
             title="From"
             titlePosition="right"

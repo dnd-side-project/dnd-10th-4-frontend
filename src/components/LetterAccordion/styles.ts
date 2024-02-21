@@ -13,7 +13,7 @@ const style = {
   `,
   contentText: (isOpen: boolean, line: number) => css`
     position: relative;
-    height: ${isOpen ? `15rem` : `${line * 1.225}rem`};
+    height: ${isOpen ? `13rem` : `${line * 1.225}rem`};
     color: var(--kakao-logo, #000);
     font-weight: 400;
     font-style: normal;
@@ -41,13 +41,22 @@ const style = {
     flex-direction: column;
     gap: 1rem;
   `,
-  date: (type: letterAccordionType) => css`
+  date: css`
     color: #888;
     font-weight: 400;
     font-style: normal;
     font-size: 0.75rem;
     line-height: 1rem;
-    text-align: ${type === 'send' ? 'end' : 'start'};
+    text-align: end;
+  `,
+  inboxDate: css`
+    margin-top: 0.5rem;
+    color: #888;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-align: end;
   `,
   arrow: (isOpen: boolean) => css`
     width: 1.5rem;

@@ -2,8 +2,8 @@ import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
 import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
-import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 import LetterContent from '../components/LetterContent';
+import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 
 interface ReplyLetterProps {
   letterId: number;
@@ -22,7 +22,7 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
       />
       {replyLetter.replyImagePath !== null && (
         <PolaroidModal
-          topPosition={4.2}
+          topPosition={5.2}
           leftPosition={1.2}
           img={replyLetter.replyImagePath}
         >
