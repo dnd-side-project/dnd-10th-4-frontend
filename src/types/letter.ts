@@ -39,3 +39,10 @@ export type Reply = {
   sendImagePath: string | null;
   replyImagePath: string | null;
 };
+
+export type Storage = {
+  totalElements: number;
+  totalPage: number;
+  hasNextPage: boolean;
+  letters: Reply[];
+};

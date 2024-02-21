@@ -7,6 +7,10 @@ import {
   RepliedLettersResponse,
 } from '../datas/letter';
 import withAuth from '../middlewares/withAuth';
+import {
+  PagedReceivedLettersResponsePage1,
+  PagedReceivedLettersResponsePage2,
+} from '../datas/storage';
 
 const letterHandler = [
   http.get(
@@ -194,6 +198,24 @@ const letterHandler = [
           });
         default:
           break;
+      }
+    }),
+  ),
+
+  http.get(
+    baseURL('/api/letter/storage'),
+    withAuth(async (req) => {
+      await delay(300);
+      const url = req.request.url;
+      const params = new URLSearchParams(new URL(url).search);
+
+      // 'page' 파라미터 값을 가져옴
+      const pageValue = params.get('page');
+
+      if (pageValue === '0') {
+        return HttpResponse.json(PagedReceivedLettersResponsePage1);
+      } else {
+        return HttpResponse.json(PagedReceivedLettersResponsePage2);
       }
     }),
   ),

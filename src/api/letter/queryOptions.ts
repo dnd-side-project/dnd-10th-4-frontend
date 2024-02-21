@@ -27,6 +27,12 @@ const letterOptions = {
       queryKey: [...letterOptions.all, 'reply', letterId] as const,
       queryFn: () => letterAPI.getSingleReply(letterId),
     }),
+
+  storage: (page: string) =>
+    queryOptions({
+      queryKey: [...letterOptions.all, 'storage', page] as const,
+      queryFn: () => letterAPI.getStoragePaging(page),
+    }),
 };
 
 export default letterOptions;

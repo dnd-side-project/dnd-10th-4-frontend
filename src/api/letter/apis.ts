@@ -102,6 +102,12 @@ const letterAPI = {
     );
     return data;
   },
+
+  /** 보관한 편지 페이징 조회 */
+  getStoragePaging: async (page: string) => {
+    const { data } = await authInstance.get(`/api/letter/storage?page=${page}`);
+    return data;
+  },
 };
 
 export default letterAPI;
