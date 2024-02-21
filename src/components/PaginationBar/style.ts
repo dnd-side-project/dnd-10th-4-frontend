@@ -8,7 +8,7 @@ const styles = {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    max-width: 390px;
+    max-width: 600px;
     color: ${COLORS.gray4};
   `,
   pageItem: (selected: boolean) => css`

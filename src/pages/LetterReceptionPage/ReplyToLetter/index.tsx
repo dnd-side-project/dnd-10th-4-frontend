@@ -21,10 +21,10 @@ import ImageUploadButton from '@/components/ImageUploadButton';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { TrashCan } from '@/assets/icons';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 
@@ -140,7 +140,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
             />
             {watch('image') ? (
               <PolaroidModal
-                topPosition={5}
+                topPosition={5.5}
                 leftPosition={1.2}
                 img={URL.createObjectURL(watch('image')[0])}
                 headerRightContent={
@@ -155,7 +155,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
               </PolaroidModal>
             ) : (
               <ImageUploadButton
-                topPosition={5}
+                topPosition={5.5}
                 leftPosition={1.2}
                 onChangeImage={handleFileChange}
               />
