@@ -8,8 +8,8 @@ import PolaroidModal from '@/components/PolaroidModal';
 import TagList from '@/components/TagList';
 import Button from '@/components/Button';
 import { formatDate } from '@/utils/dateUtils';
-import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 import LetterContent from '../components/LetterContent';
+import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 import style from './styles';
 interface SentLetterProps {
   letterId: number;
@@ -52,7 +52,7 @@ const SentLetter = ({ letterId }: SentLetterProps) => {
             />
             {replyLetter.sendImagePath !== null && (
               <PolaroidModal
-                topPosition={4.2}
+                topPosition={5.2}
                 leftPosition={1.2}
                 img={replyLetter.sendImagePath}
               >

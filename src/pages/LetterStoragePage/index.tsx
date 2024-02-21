@@ -40,6 +40,6 @@ const style = {
   `,
   content: css`
     margin-top: 4.5rem;
-    padding-inline: 1.25rem;
+    padding-inline: 1rem;
   `,
 };

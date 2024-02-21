@@ -56,17 +56,17 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           </div>
           <LetterHeader nickname="낯선고양이" />
           <LetterAccordion
-            id={item.letterId}
+            id={item.letterId.toString()}
             text={item.content}
             date={new Date(item.createdAt)}
             nickname={item.senderNickname}
             isOpen={isOpen[item.letterId]}
-            onToggle={() => handleAccordionToggle(item.letterId)}
+            onToggle={() => handleAccordionToggle(item.letterId.toString())}
             line={2}
           />
           {isOpen[item.letterId] && (
             <PolaroidModal
-              topPosition={3.2}
+              topPosition={3}
               leftPosition={1}
               img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
             />

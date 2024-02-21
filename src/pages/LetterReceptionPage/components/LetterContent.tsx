@@ -28,6 +28,6 @@ const style = {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    margin-inline: 0.5rem;
+    margin-inline: 1rem;
   `,
 };

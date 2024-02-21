@@ -5,6 +5,7 @@ export const testData = {
   letters: [
     {
       createdAt: '2024-02-21T00:53:25',
+      repliedAt: '2024-02-23T07:51:08',
       letterId: 1,
       letterTag: {
         ageStart: 10,
@@ -22,6 +23,7 @@ export const testData = {
     },
     {
       createdAt: '2024-02-21T00:53:25',
+      repliedAt: '2024-02-23T07:51:08',
       letterId: 2,
       letterTag: {
         ageStart: 10,
@@ -38,6 +40,7 @@ export const testData = {
     },
     {
       createdAt: '2024-02-21T00:53:25',
+      repliedAt: '2024-02-23T07:51:08',
       letterId: 3,
       letterTag: {
         ageStart: 10,
@@ -56,6 +59,7 @@ export const testData = {
     },
     {
       createdAt: '2024-02-21T00:53:25',
+      repliedAt: '2024-02-23T07:51:08',
       letterId: 4,
       letterTag: {
         ageStart: 10,
@@ -74,6 +78,7 @@ export const testData = {
     },
     {
       createdAt: '2024-02-21T00:53:25',
+      repliedAt: '2024-02-23T07:51:08',
       letterId: 5,
       letterTag: {
         ageStart: 10,
