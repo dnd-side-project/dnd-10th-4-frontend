@@ -6,6 +6,10 @@ import { testData } from '../testData';
 import StorageLetter from '../components/StorageLetter';
 
 const ArchiveLetters = () => {
+  const handlePageChange = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       {testData.letters.length > 0 ? (
@@ -15,7 +19,7 @@ const ArchiveLetters = () => {
             <PaginationBar
               count={testData.totalPage}
               defaultPage={1}
-              onChange={() => console.log('페이지')}
+              onChange={handlePageChange}
             />
           )}
         </div>
