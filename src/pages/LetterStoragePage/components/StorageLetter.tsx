@@ -9,6 +9,7 @@ import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
 import PolaroidModal from '@/components/PolaroidModal';
 import { Reply } from '@/types/letter';
+import { getTagList } from '../utils/tagUtills';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
@@ -30,7 +31,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
       {letters.map((item: Reply) => (
         <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
           <div css={style.tags}>
-            <TagList tags={['10~20세', '모두에게', '직장']} />
+            <TagList tags={getTagList(item)} />
             <Dropdown
               triggerComponent={<MoreHorizontal />}
               options={[
@@ -53,21 +54,21 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
               ]}
             />
           </div>
-          <LetterHeader nickname="낯선고양이" />
+          <LetterHeader nickname={item.senderNickname} />
           <LetterAccordion
             id={item.letterId.toString()}
             text={item.content}
             date={new Date(item.createdAt)}
-            nickname={item.senderNickname}
+            nickname={item.receiverNickname}
             isOpen={isOpen[item.letterId]}
             onToggle={() => handleAccordionToggle(item.letterId.toString())}
             line={2}
           />
-          {isOpen[item.letterId] && (
+          {isOpen[item.letterId] && item.replyImagePath && (
             <PolaroidModal
               topPosition={3}
               leftPosition={1}
-              img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
+              img={item.replyImagePath}
             />
           )}
         </LetterCard>
