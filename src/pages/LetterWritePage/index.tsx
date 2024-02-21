@@ -1,15 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import { useMutation } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import { ROUTER_PATHS } from '@/router';
 import { CaretLeft } from '@/assets/icons';
 import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
-import { LetterWriteContent, LetterWriteBottom } from './components';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const L = letterWrite;
 
@@ -61,8 +65,57 @@ const LetterWritePage = () => {
   });
 
   const onSubmit = async (data: WriteInputs) => {
-    await postLetter(data);
+    try {
+      await postLetter(data);
+      toast.success('편지를 바다에 띄어보냈어요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+      });
+      navigate(ROUTER_PATHS.ROOT);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        if (
+          error.response?.data === ERROR_RESPONSES.unSupportExt ||
+          error.response?.data === ERROR_RESPONSES.noExt
+        ) {
+          toast.error(error.response?.data, {
+            position: 'bottom-center',
+          });
+        } else if (error.response?.data === ERROR_RESPONSES.exceedSendLimit) {
+          toast.error(error.response?.data, {
+            position: 'bottom-center',
+          });
+          navigate(ROUTER_PATHS.ROOT);
+        } else {
+          throw error;
+        }
+      } else {
+        throw error;
+      }
+    }
   };
+
+  useEffect(() => {
+    if (errors.worryType || errors.gender || errors.age) {
+      toast.warn('보낼 사람을 선택하세요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    } else if (errors.content) {
+      toast.warn('내용을 입력하세요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    } else if (errors.image) {
+      toast.warn(errors.image.message?.toString(), {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    }
+  }, [errors]);
 
   return (
     <FormProvider {...methods}>
@@ -73,7 +126,7 @@ const LetterWritePage = () => {
             <CaretLeft
               strokeWidth={2.5}
               stroke="white"
-              onClick={() => navigate(ROUTER_PATHS.ROOT)}
+              onClick={() => navigate(-1)}
             />
           }
         />
@@ -81,12 +134,6 @@ const LetterWritePage = () => {
           <LetterWriteContent />
           <LetterWriteBottom isPending={isPending} />
         </form>
-        {/** 임시 에러 출력용 */}
-        {errors.worryType && <p>{errors.worryType.message}</p>}
-        {errors.gender && <p>{errors.gender.message}</p>}
-        {errors.age && <p>{errors.age.message}</p>}
-        {errors.content && <p>{errors.content.message}</p>}
-        {errors.image && <p>{errors.image.message?.toString()}</p>}
       </div>
     </FormProvider>
   );

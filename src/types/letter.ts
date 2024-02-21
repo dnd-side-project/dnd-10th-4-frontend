@@ -10,7 +10,7 @@ export type Letter = {
 };
 
 export type LetterTag = {
-  ageStart: number;
+  ageRangeStart: number;
   ageRangeEnd: number;
   equalGender: boolean;
 };
@@ -36,5 +36,6 @@ export type Reply = {
   content: string;
   repliedContent: string;
   worryType: Worry;
-  imagePath: string | null;
+  sendImagePath: string | null;
+  replyImagePath: string | null;
 };

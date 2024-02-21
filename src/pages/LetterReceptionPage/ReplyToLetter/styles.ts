@@ -9,6 +9,9 @@ const style = {
     overflow-y: auto;
     max-height: calc(100dvh - 60px - 80px - 16px);
   `,
+  card: css`
+    margin-bottom: 2.5rem;
+  `,
   navbar: css`
     position: fixed;
     bottom: 0;

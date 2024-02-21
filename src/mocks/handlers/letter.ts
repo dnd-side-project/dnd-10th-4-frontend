@@ -2,11 +2,11 @@ import { http, HttpResponse, delay } from 'msw';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import { Reception, Reply } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import withAuth from '../middlewares/withAuth';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
 } from '../datas/letter';
+import withAuth from '../middlewares/withAuth';
 
 const letterHandler = [
   http.get(
@@ -44,7 +44,22 @@ const letterHandler = [
     withAuth(async () => {
       await delay(1000);
 
-      return HttpResponse.json();
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.exceedSendLimit, {
+            status: 400,
+          });
+        case 415:
+          return new HttpResponse(ERROR_RESPONSES.noExt, {
+            status: 415,
+          });
+        default:
+          break;
+      }
     }),
   ),
 
@@ -55,7 +70,7 @@ const letterHandler = [
       createdAt: '2024-02-17T16:50:44',
       letterId: Number(req.params.letterId),
       letterTag: {
-        ageStart: 20,
+        ageRangeStart: 20,
         ageRangeEnd: 50,
         equalGender: true,
       },
@@ -63,9 +78,9 @@ const letterHandler = [
       receiverNickname: '낯선 강아지456',
       content: `${req.params.letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
       worryType: 'BREAK_LOVE',
-      imagePath: null,
-      // imagePath:
-      //   'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      // imagePath: null,
+      imagePath:
+        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     };
 
     const status: number = 200;
@@ -95,6 +110,10 @@ const letterHandler = [
         case 400:
           return new HttpResponse(ERROR_RESPONSES.alreadyReplyExist, {
             status: 400,
+          });
+        case 415:
+          return new HttpResponse(ERROR_RESPONSES.unSupportExt, {
+            status: 415,
           });
         default:
           break;
@@ -129,7 +148,7 @@ const letterHandler = [
         repliedAt: '2024-02-19T16:50:44',
         letterId: Number(req.params.letterId),
         letterTag: {
-          ageStart: 20,
+          ageRangeStart: 20,
           ageRangeEnd: 50,
           equalGender: true,
         },
@@ -138,8 +157,9 @@ const letterHandler = [
         content: `${req.params.letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
         repliedContent: `${req.params.letterId} 번째 편지 답장 입니다.`,
         worryType: 'BREAK_LOVE',
-        // imagePath: null,
-        imagePath:
+        sendImagePath:
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        replyImagePath:
           'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       };
 

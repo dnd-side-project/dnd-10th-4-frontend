@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
@@ -16,6 +17,10 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
 import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import ImageUploadButton from '@/components/ImageUploadButton';
+import PolaroidModal from '@/components/PolaroidModal';
+import IconButton from '@/components/IconButton';
+import { TrashCan } from '@/assets/icons';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
@@ -28,6 +33,17 @@ const replySchema = z.object({
     .string()
     .min(L.content.min.value, { message: L.content.min.message })
     .max(L.content.max.value, { message: L.content.max.message }),
+  image: z
+    .any()
+    .optional()
+    .refine(
+      (files) => !files || files[0].size <= L.image.maxFileSize.value,
+      L.image.maxFileSize.message,
+    )
+    .refine(
+      (files) => !files || L.image.acceptType.list.includes(files[0].type),
+      L.image.acceptType.message,
+    ),
 });
 
 export type ReplyInputs = z.infer<typeof replySchema>;
@@ -55,6 +71,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     handleSubmit,
     register,
     watch,
+    setValue,
     formState: { errors },
   } = methods;
 
@@ -64,20 +81,40 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
 
   const onSubmit = async (data: ReplyInputs) => {
     try {
-      await patchReply({ letterId: receptionLetter.letterId, body: data });
+      await patchReply({ letterId: receptionLetter.letterId, letter: data });
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
       navigate(ROUTER_PATHS.ROOT);
     } catch (error) {
-      if (
-        isAxiosError(error) &&
-        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
-          error.response?.data === ERROR_RESPONSES.alreadyReplyExist)
-      ) {
-        console.error(error.response?.data);
+      if (isAxiosError(error)) {
+        if (
+          error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+          error.response?.data === ERROR_RESPONSES.alreadyReplyExist
+        ) {
+          toast.error(error.response?.data, {
+            position: 'bottom-center',
+          });
+          navigate(ROUTER_PATHS.ROOT);
+        } else if (
+          error.response?.data === ERROR_RESPONSES.unSupportExt ||
+          error.response?.data === ERROR_RESPONSES.noExt
+        ) {
+          toast.error(error.response?.data, {
+            position: 'bottom-center',
+          });
+        }
       } else {
         throw error;
       }
     }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files;
+    setValue('image', file);
+  };
+
+  const handleClickTrashCan = () => {
+    setValue('image', undefined);
   };
 
   return (
@@ -85,7 +122,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div css={style.letter}>
           <ReceivedAccordionLetter receptionLetter={receptionLetter} />
-          <LetterCard isOpen={true}>
+          <LetterCard isOpen={true} css={style.card}>
             <LetterHeader
               title="To"
               nickname={receptionLetter.senderNickname}
@@ -93,9 +130,36 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
             <LetterTextarea
               {...register('replyContent')}
               name="replyContent"
-              placeholder="하고싶은 이야기를 답장으로 적어보세요."
+              placeholder="하고싶은 이야기를 답장으로 적어보세요. (10자 이상)"
             />
             <LetterLengthDate letterLength={watch('replyContent').length} />
+            <LetterHeader
+              title="From"
+              titlePosition="right"
+              nickname={receptionLetter.receiverNickname}
+            />
+            {watch('image') ? (
+              <PolaroidModal
+                topPosition={5}
+                leftPosition={1.2}
+                img={URL.createObjectURL(watch('image')[0])}
+                headerRightContent={
+                  <IconButton onClick={handleClickTrashCan}>
+                    <TrashCan fill="white" />
+                  </IconButton>
+                }
+              >
+                <Button variant="secondary" size="sm">
+                  닫기
+                </Button>
+              </PolaroidModal>
+            ) : (
+              <ImageUploadButton
+                topPosition={5}
+                leftPosition={1.2}
+                onChangeImage={handleFileChange}
+              />
+            )}
           </LetterCard>
         </div>
         <Navbar css={style.navbar}>
@@ -114,6 +178,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
       </form>
       {/** 임시 에러 출력용 */}
       {errors.replyContent && <p>{errors.replyContent.message}</p>}
+      {errors.image && <p>{errors.image.message?.toString()}</p>}
     </LetterContent>
   );
 };

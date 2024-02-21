@@ -9,7 +9,7 @@ const style = {
     align-items: center;
     padding: 1rem 1.25rem;
     border-radius: 0.5rem;
-    background: #fff;
+    background: #f2eade;
     cursor: pointer;
 
     :hover {
@@ -17,7 +17,7 @@ const style = {
     }
   `,
   text: css`
-    color: ${COLORS.gray4};
+    color: ${COLORS.letterChip2};
     ${textStyles.b4m}
   `,
   header: css`

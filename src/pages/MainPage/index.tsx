@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import IconButton, { iconButtonStyles } from '@/components/IconButton';
+import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
 import { TreasureChest, User } from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
 import { ROUTER_PATHS } from '@/router';
+import Tooltip from '@/components/Tooltip';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
 import WritingButton from './components/WritingButton';
 import WritingBottomButton from './components/WritingBottomButton';
 
 const MainPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div css={styles.page}>
       <Header
@@ -31,20 +34,37 @@ const MainPage = () => {
                 side: 'bottom',
               }}
             />
-            <IconButton variant="header" rounded="r8">
-              <TreasureChest color="white" />
-            </IconButton>
-            <Link
-              to={ROUTER_PATHS.MYPAGE}
-              css={iconButtonStyles.button('header', 'r8')}
+            <Tooltip
+              triggerContent={
+                <IconButton variant="header" rounded="r8">
+                  <TreasureChest color="white" />
+                </IconButton>
+              }
             >
-              <User color="white" />
-            </Link>
+              보관함
+            </Tooltip>
+            <Tooltip
+              align="end"
+              triggerContent={
+                <IconButton
+                  variant="header"
+                  rounded="r8"
+                  onClick={() => navigate(ROUTER_PATHS.MYPAGE)}
+                >
+                  <User color="white" />
+                </IconButton>
+              }
+            >
+              마이 페이지
+            </Tooltip>
           </>
         }
       />
 
       <main css={styles.main}>
+        <Link to={ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING}>
+          (TODO: 임시) 첫 편지 페이지 보러가기
+        </Link>
         {/* TODO: 로딩 처리 필요 */}
         <Suspense fallback={<></>}>
           <CarouselArea />

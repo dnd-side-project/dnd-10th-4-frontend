@@ -1,7 +1,9 @@
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
-import LetterContent from '../components/LetterContent';
+import PolaroidModal from '@/components/PolaroidModal';
+import Button from '@/components/Button';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
+import LetterContent from '../components/LetterContent';
 
 interface ReplyLetterProps {
   letterId: number;
@@ -18,6 +20,17 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
         date={formatDate(new Date(replyLetter.repliedAt))}
         sender={replyLetter.senderNickname}
       />
+      {replyLetter.replyImagePath !== null && (
+        <PolaroidModal
+          topPosition={4.2}
+          leftPosition={1.2}
+          img={replyLetter.replyImagePath}
+        >
+          <Button variant="secondary" size="sm">
+            닫기
+          </Button>
+        </PolaroidModal>
+      )}
     </LetterCard>
   );
 };
