@@ -5,6 +5,7 @@ const styles = {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
     width: 100%;
     min-height: 100%;
     background-color: rgb(0 0 0 / 0.6);

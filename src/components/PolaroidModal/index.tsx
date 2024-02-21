@@ -28,7 +28,7 @@ const PolaroidModal = ({
   const { value: isOpen, on: open, off: close } = useBoolean(false);
 
   return (
-    <>
+    <div>
       <Polaroid
         onClick={open}
         topPosition={topPosition}
@@ -53,7 +53,7 @@ const PolaroidModal = ({
           <div onClick={close}>{children}</div>
         </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

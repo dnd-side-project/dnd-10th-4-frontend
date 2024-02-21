@@ -8,6 +8,7 @@ import TagList from '@/components/TagList';
 import { MoreHorizontal, Copy, TrashCan } from '@/assets/icons';
 import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
+import PolaroidModal from '@/components/PolaroidModal';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
@@ -62,6 +63,13 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
             onToggle={() => handleAccordionToggle(item.letterId)}
             line={2}
           />
+          {isOpen[item.letterId] && (
+            <PolaroidModal
+              topPosition={3}
+              leftPosition={1}
+              img="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
+            />
+          )}
         </LetterCard>
       ))}
     </StorageContent>
