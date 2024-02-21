@@ -7,7 +7,7 @@ export const ReceivedLetterResponse = [
     ).toISOString(),
     letterId: 3,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -23,7 +23,7 @@ export const ReceivedLetterResponse = [
     ).toISOString(),
     letterId: 4,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -39,7 +39,7 @@ export const ReceivedLetterResponse = [
     ).toISOString(),
     letterId: 5,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -55,7 +55,7 @@ export const ReceivedLetterResponse = [
     ).toISOString(),
     letterId: 6,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -69,7 +69,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 7,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -83,7 +83,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 8,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -97,7 +97,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 9,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -111,7 +111,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 10,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -125,7 +125,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 11,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -139,7 +139,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 12,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -153,7 +153,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 13,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -167,7 +167,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 14,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -181,7 +181,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 15,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -195,7 +195,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 16,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -209,7 +209,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 17,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -223,7 +223,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 18,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -237,7 +237,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 19,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -251,7 +251,7 @@ export const ReceivedLetterResponse = [
     createdAt: '2024-02-05T15:40:44',
     letterId: 20,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -269,7 +269,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 1,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -285,7 +285,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 2,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -301,7 +301,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 3,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -317,7 +317,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 4,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -333,7 +333,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 5,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -349,7 +349,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 6,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -365,7 +365,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 7,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -381,7 +381,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 8,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -397,7 +397,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 9,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },
@@ -413,7 +413,7 @@ export const RepliedLettersResponse = [
     repliedAt: '2024-02-07T15:40:44',
     letterId: 10,
     letterTag: {
-      ageStart: 20,
+      ageRangeStart: 20,
       ageRangeEnd: 50,
       equalGender: true,
     },

@@ -10,7 +10,7 @@ export type Letter = {
 };
 
 export type LetterTag = {
-  ageStart: number;
+  ageRangeStart: number;
   ageRangeEnd: number;
   equalGender: boolean;
 };
