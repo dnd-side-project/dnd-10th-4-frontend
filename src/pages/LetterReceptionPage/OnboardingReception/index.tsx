@@ -1,7 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import React, { Fragment, useMemo, useRef } from 'react';
+import { Fragment, useMemo, useRef } from 'react';
+import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
@@ -16,6 +22,8 @@ import OnboardingLetterImage from '@/assets/images/onboardingLetterImage.jpg';
 import { formatDate } from '@/utils/dateUtils';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
+import letterAPI from '@/api/letter/apis';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import PolaroidModal from './components/PolaroidModal';
 import styles from './styles';
 
@@ -24,10 +32,15 @@ const OnboardingReception = () => {
   const modalProps = useBoolean(false);
   const storageTooltipKey = useRef(0);
   const { letterId } = useParams();
+  const queryClient = useQueryClient();
 
   const { data: letter } = useSuspenseQuery(
     letterOptions.singleReception(Number(letterId)),
   );
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: letterAPI.patchReplyStorage,
+  });
 
   const createdAt = useMemo(
     () => new Date(letter.createdAt),
@@ -44,6 +57,25 @@ const OnboardingReception = () => {
       replace: true,
       state: { from: ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING },
     });
+  };
+
+  const handleStorage = async () => {
+    try {
+      await mutateAsync(Number(letterId));
+      toast.success('편지를 보관함에 넣었어요', { position: 'bottom-center' });
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+      handleNavigateToRoot();
+    } catch (err) {
+      const defaultMessage = '보관에 실패했어요';
+
+      if (isAxiosError(err)) {
+        toast.error(err.response?.data ?? defaultMessage, {
+          position: 'bottom-center',
+        });
+      } else {
+        toast.error(defaultMessage, { position: 'bottom-center' });
+      }
+    }
   };
 
   return (
@@ -120,8 +152,14 @@ const OnboardingReception = () => {
           delay={storageTooltipKey.current > 0 ? 300000 : 0}
           side="top"
           triggerContent={
-            <Button variant="primary" size="sm" rounded="md">
-              보관하기
+            <Button
+              variant="primary"
+              size="sm"
+              rounded="md"
+              disabled={isPending}
+              onClick={handleStorage}
+            >
+              {isPending ? <LoadingSpinner /> : '보관하기'}
             </Button>
           }
         >
