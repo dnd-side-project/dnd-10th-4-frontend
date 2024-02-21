@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import TagList from '@/components/TagList';
@@ -13,11 +14,10 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
-
 interface ReceivedLetterProps {
   letterId: number;
   onNext: () => void;
@@ -44,7 +44,10 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
         (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
           error.response?.data === ERROR_RESPONSES.repliedLetterPass)
       ) {
-        console.error(error.response?.data);
+        toast.error(error.response?.data, {
+          position: 'bottom-center',
+        });
+        navigate(ROUTER_PATHS.ROOT);
       } else {
         throw error;
       }

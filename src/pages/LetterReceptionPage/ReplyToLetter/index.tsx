@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
@@ -20,10 +21,10 @@ import ImageUploadButton from '@/components/ImageUploadButton';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { TrashCan } from '@/assets/icons';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import style from './styles';
+import LetterContent from '../components/LetterContent';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -84,12 +85,23 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
       navigate(ROUTER_PATHS.ROOT);
     } catch (error) {
-      if (
-        isAxiosError(error) &&
-        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
-          error.response?.data === ERROR_RESPONSES.alreadyReplyExist)
-      ) {
-        console.error(error.response?.data);
+      if (isAxiosError(error)) {
+        if (
+          error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+          error.response?.data === ERROR_RESPONSES.alreadyReplyExist
+        ) {
+          toast.error(error.response?.data, {
+            position: 'bottom-center',
+          });
+          navigate(ROUTER_PATHS.ROOT);
+        } else if (
+          error.response?.data === ERROR_RESPONSES.unSupportExt ||
+          error.response?.data === ERROR_RESPONSES.noExt
+        ) {
+          toast.error(error.response?.data, {
+            position: 'bottom-center',
+          });
+        }
       } else {
         throw error;
       }
@@ -166,6 +178,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
       </form>
       {/** 임시 에러 출력용 */}
       {errors.replyContent && <p>{errors.replyContent.message}</p>}
+      {errors.image && <p>{errors.image.message?.toString()}</p>}
     </LetterContent>
   );
 };
