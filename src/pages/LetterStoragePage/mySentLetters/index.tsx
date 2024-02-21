@@ -1,5 +1,6 @@
-import { PencilLine } from '@/assets/icons';
 import { ROUTER_PATHS } from '@/router';
+import { PencilLine } from '@/assets/icons';
+import PaginationBar from '@/components/PaginationBar';
 import StorageEmpty from '../components/StorageEmpty';
 import StorageLetter from '../components/StorageLetter';
 import { testData } from '../testData';
@@ -7,8 +8,17 @@ import { testData } from '../testData';
 const MySentLetters = () => {
   return (
     <>
-      {testData ? (
-        <StorageLetter letters={testData.letters} />
+      {testData.letters.length > 0 ? (
+        <div css={{ marginBottom: '1rem' }}>
+          <StorageLetter letters={testData.letters} />
+          {testData.totalPage > 1 && (
+            <PaginationBar
+              count={testData.totalPage}
+              defaultPage={1}
+              onChange={() => console.log('페이지')}
+            />
+          )}
+        </div>
       ) : (
         <StorageEmpty
           textTitle="내가 보낸 편지가 없어요"

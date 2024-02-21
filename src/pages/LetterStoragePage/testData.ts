@@ -1,6 +1,6 @@
 export const testData = {
   totalElements: 5,
-  totalPage: 1,
+  totalPage: 3,
   hasNextPage: false,
   letters: [
     {
