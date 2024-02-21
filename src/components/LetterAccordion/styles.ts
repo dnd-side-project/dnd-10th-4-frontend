@@ -41,13 +41,22 @@ const style = {
     flex-direction: column;
     gap: 1rem;
   `,
-  date: (type: letterAccordionType) => css`
+  date: css`
     color: #888;
     font-weight: 400;
     font-style: normal;
     font-size: 0.75rem;
     line-height: 1rem;
-    text-align: ${type === 'send' ? 'end' : 'start'};
+    text-align: end;
+  `,
+  inboxDate: css`
+    margin-top: 0.5rem;
+    color: #888;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-align: end;
   `,
   arrow: (isOpen: boolean) => css`
     width: 1.5rem;

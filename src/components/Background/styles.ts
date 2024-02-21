@@ -12,7 +12,7 @@ const style = {
       }
     }
 
-    height: ${path === '/storage' ? '100%' : '100svh'};
+    height: ${path === '/storage' ? 'auto' : '100svh'};
     background-image: url(${imageUrl});
     background-size: 390px 100%;
     background-repeat: repeat-x;
