@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 const style = {
-  background: (imageUrl: string) => css`
+  background: (imageUrl: string, path: string) => css`
     @keyframes gradient {
       0% {
         background-position: 0% center;
@@ -12,7 +12,7 @@ const style = {
       }
     }
 
-    height: 100svh;
+    height: ${path === '/storage' ? '100%' : '100svh'};
     background-image: url(${imageUrl});
     background-size: 390px 100%;
     background-repeat: repeat-x;

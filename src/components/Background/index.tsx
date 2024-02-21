@@ -4,11 +4,12 @@ import styles from './styles';
 interface BackgroundProps extends React.ComponentPropsWithoutRef<'div'> {
   imageUrl: string;
   children: React.ReactNode;
+  path: string;
 }
 
-const Background = ({ imageUrl, children }: BackgroundProps) => {
+const Background = ({ imageUrl, children, path }: BackgroundProps) => {
   return (
-    <div css={styles.background(imageUrl)}>
+    <div css={styles.background(imageUrl, path)}>
       <div css={styles.wrapper}>{children}</div>
     </div>
   );
