@@ -11,7 +11,6 @@ import LetterReceptionPage from './pages/LetterReceptionPage';
 import MyPage from './pages/MyPage';
 import LetterReplyPage from './pages/LetterReplyPage';
 import LetterStoragePage from './pages/LetterStoragePage';
-import LetterReceptionOnboardingPage from './pages/LetterReceptionOnboardingPage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -69,10 +68,6 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATHS.LETTER_WRITE,
         element: <LetterWritePage />,
-      },
-      {
-        path: ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING,
-        element: <LetterReceptionOnboardingPage />,
       },
       {
         path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),

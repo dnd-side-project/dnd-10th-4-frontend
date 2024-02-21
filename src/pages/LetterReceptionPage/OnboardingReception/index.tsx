@@ -17,7 +17,7 @@ import { ROUTER_PATHS } from '@/router';
 import PolaroidModal from './components/PolaroidModal';
 import styles from './styles';
 
-const LetterReceptionOnboardingPage = () => {
+const OnboardingReception = () => {
   const navigate = useNavigate();
   const modalProps = useBoolean(false);
   const storageTooltipKey = useRef(0);
@@ -146,4 +146,4 @@ const LetterReceptionOnboardingPage = () => {
   );
 };
 
-export default LetterReceptionOnboardingPage;
+export default OnboardingReception;

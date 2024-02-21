@@ -7,6 +7,7 @@ import LetterAccessFallback from '@/components/ErrorBoundary/fallback/LetterAcce
 import letterOptions from '@/api/letter/queryOptions';
 import style from './styles';
 import NormalReception from './NormalReception';
+import OnboardingReception from './OnboardingReception';
 
 const SuspensedPage = () => {
   const { letterId } = useParams();
@@ -16,7 +17,7 @@ const SuspensedPage = () => {
   );
 
   if (letter.letterType === 'Onboarding') {
-    return <div>온보딩 고고</div>;
+    return <OnboardingReception />;
   } else {
     return <NormalReception />;
   }
