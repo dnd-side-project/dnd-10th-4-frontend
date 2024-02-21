@@ -45,6 +45,8 @@ const Dropdown = ({ triggerComponent, options }: DropdownProps) => {
       </div>
       <Menu
         disableScrollLock={true}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
