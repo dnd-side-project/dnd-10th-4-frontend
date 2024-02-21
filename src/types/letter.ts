@@ -16,13 +16,14 @@ export type LetterTag = {
 };
 
 export type Reception = {
-  createdAt: string;
+  letterType: 'Onboarding' | null;
   letterId: number;
-  letterTag: LetterTag;
+  createdAt: string;
+  letterTag: LetterTag | null;
   senderNickname: string;
-  receiverNickname: string;
+  receiverNickname: string | null;
   content: string;
-  worryType: Worry;
+  worryType: Worry | null;
   imagePath: string | null;
 };
 

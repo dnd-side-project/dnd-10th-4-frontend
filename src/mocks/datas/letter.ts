@@ -6,6 +6,7 @@ export const ReceivedLetterResponse = [
       new Date().getTime() - 48 * 60 * 60 * 1000 + 2 * 60 * 1000,
     ).toISOString(),
     letterId: 3,
+    letterType: 'Onboarding',
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -22,6 +23,7 @@ export const ReceivedLetterResponse = [
       new Date().getTime() - 48 * 60 * 60 * 1000 + 60 * 60 * 1000,
     ).toISOString(),
     letterId: 4,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -38,6 +40,7 @@ export const ReceivedLetterResponse = [
       new Date().getTime() - 23 * 60 * 60 * 1000,
     ).toISOString(),
     letterId: 5,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -54,6 +57,7 @@ export const ReceivedLetterResponse = [
       new Date().getTime() - 1 * 60 * 60 * 1000,
     ).toISOString(),
     letterId: 6,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -68,6 +72,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 7,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -82,6 +87,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 8,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -96,6 +102,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 9,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -110,6 +117,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 10,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -124,6 +132,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 11,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -138,6 +147,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 12,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -152,6 +162,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 13,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -166,6 +177,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 14,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -180,6 +192,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 15,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -194,6 +207,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 16,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -208,6 +222,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 17,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -222,6 +237,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 18,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -236,6 +252,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 19,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,
@@ -250,6 +267,7 @@ export const ReceivedLetterResponse = [
   {
     createdAt: '2024-02-05T15:40:44',
     letterId: 20,
+    letterType: null,
     letterTag: {
       ageRangeStart: 20,
       ageRangeEnd: 50,

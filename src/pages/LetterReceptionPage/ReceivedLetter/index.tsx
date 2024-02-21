@@ -58,7 +58,7 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
     <LetterContent>
       <LetterCard isOpen={true}>
         <TagList tags={receptionLetter.tagList} />
-        <LetterHeader nickname={receptionLetter.receiverNickname} />
+        <LetterHeader nickname={receptionLetter.receiverNickname ?? ''} />
         <div css={style.text}>
           <p>{receptionLetter.content}</p>
         </div>
