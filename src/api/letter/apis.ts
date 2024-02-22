@@ -1,4 +1,4 @@
-import { type Reception, type Reply } from '@/types/letter';
+import { Storage, type Reception, type Reply, Send } from '@/types/letter';
 import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
@@ -100,6 +100,36 @@ const letterAPI = {
     const { data } = await authInstance.patch(
       `/api/letter/reply/storage/${letterId}`,
     );
+    return data;
+  },
+
+  /** 보관한 편지 페이징 조회 */
+  getStoragePaging: async (page: string) => {
+    const { data } = await authInstance.get<Storage>(`/api/letter/storage`, {
+      params: { page },
+    });
+    return data;
+  },
+
+  /** 내가 보낸 편지 페이징 조회 */
+  getSendPaging: async (page: string) => {
+    const { data } = await authInstance.get<Send>(`/api/letter/send`, {
+      params: { page },
+    });
+    return data;
+  },
+
+  /** 보관된 편지 보관 취소 */
+  patchDeleteLetter: async (letterId: number) => {
+    const { data } = await authInstance.patch(
+      `/api/letter/storage/${letterId}`,
+    );
+    return data;
+  },
+
+  /** 보낸 편지 삭제 */
+  patchDeleteSend: async (letterId: number) => {
+    const { data } = await authInstance.patch(`/api/letter/send/${letterId}`);
     return data;
   },
 };

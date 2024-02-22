@@ -2,6 +2,7 @@ import { type FallbackProps } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import ErrorImage from '@/assets/images/error.svg';
 import Button from '../../Button';
 import styles from './styles';
 
@@ -19,7 +20,7 @@ const LetterAccessFallback = ({ error }: FallbackProps) => {
 
   return (
     <main css={styles.container}>
-      <div css={styles.skeletonImg} />
+      <img css={styles.image} src={ErrorImage} alt="오류" />
       <h2 css={styles.title}>접근 금지</h2>
       <h2 css={styles.description}>{error.response?.data ?? error.message}</h2>
       <Button

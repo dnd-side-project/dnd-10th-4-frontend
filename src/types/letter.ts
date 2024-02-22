@@ -24,7 +24,7 @@ export type Reception = {
   receiverNickname: string | null;
   content: string;
   worryType: Worry | null;
-  imagePath: string | null;
+  sendImagePath: string | null;
 };
 
 export type Reply = {
@@ -39,4 +39,28 @@ export type Reply = {
   worryType: Worry;
   sendImagePath: string | null;
   replyImagePath: string | null;
+};
+
+export type Storage = {
+  totalElements: number;
+  totalPage: number;
+  hasNextPage: boolean;
+  letters: Reply[];
+};
+
+export type SendLetter = {
+  createdAt: string;
+  letterId: number;
+  letterTag: LetterTag;
+  senderNickname: string;
+  content: string;
+  worryType: Worry;
+  imagePath: string | null;
+};
+
+export type Send = {
+  totalElements: number;
+  totalPage: number;
+  hasNextPage: boolean;
+  postList: SendLetter[];
 };
