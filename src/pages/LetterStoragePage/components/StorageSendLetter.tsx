@@ -32,7 +32,7 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
   };
 
   const { mutateAsync: patchDelete } = useMutation({
-    mutationFn: letterAPI.patchDeleteLetter,
+    mutationFn: letterAPI.patchDeleteSend,
   });
 
   const handleDeleteLetter = async (letterId: number) => {
@@ -102,6 +102,7 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
             isOpen={isOpen[item.letterId]}
             onToggle={() => handleAccordionToggle(item.letterId.toString())}
             line={2}
+            type="sendInbox"
           />
           {isOpen[item.letterId] && item.imagePath && (
             <PolaroidModal

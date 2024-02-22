@@ -119,10 +119,17 @@ const letterAPI = {
     return data;
   },
 
+  /** 보관된 편지 보관 취소 */
   patchDeleteLetter: async (letterId: number) => {
     const { data } = await authInstance.patch(
       `/api/letter/storage/${letterId}`,
     );
+    return data;
+  },
+
+  /** 보낸 편지 삭제 */
+  patchDeleteSend: async (letterId: number) => {
+    const { data } = await authInstance.patch(`/api/letter/send/${letterId}`);
     return data;
   },
 };
