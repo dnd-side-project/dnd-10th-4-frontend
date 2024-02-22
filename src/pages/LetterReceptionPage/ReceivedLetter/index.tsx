@@ -14,9 +14,9 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/router';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import useLetterWithTags from '../hooks/useLetterWithTags';
-import LetterContent from '../components/LetterContent';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import LetterContent from '../components/LetterContent';
+import useLetterWithTags from '../hooks/useLetterWithTags';
 import style from './styles';
 interface ReceivedLetterProps {
   letterId: number;
@@ -70,8 +70,8 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
           titlePosition="right"
           nickname={receptionLetter.senderNickname}
         />
-        {receptionLetter.imagePath !== null && (
-          <ReceptionPolaroid img={receptionLetter.imagePath} />
+        {receptionLetter.sendImagePath !== null && (
+          <ReceptionPolaroid img={receptionLetter.sendImagePath} />
         )}
       </LetterCard>
       <Navbar css={style.navbar}>

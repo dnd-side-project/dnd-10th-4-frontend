@@ -15,7 +15,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저1',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: new Date(
@@ -31,7 +31,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저2',
     content: '안녕',
     worryType: 'WORK',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: new Date(
@@ -47,7 +47,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저3',
     content: '안녕',
     worryType: 'COURSE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: new Date(
@@ -63,7 +63,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저4',
     content: '안녕',
     worryType: 'RELATIONSHIP',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -77,7 +77,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저5',
     content: '안녕',
     worryType: 'LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -91,7 +91,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저6',
     content: '안녕',
     worryType: 'STUDY',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -105,7 +105,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저7',
     content: '안녕',
     worryType: 'FAMILY',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -119,7 +119,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저8',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -133,7 +133,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저9',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -147,7 +147,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저10',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -161,7 +161,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저11',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -175,7 +175,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저12',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -189,7 +189,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저13',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -203,7 +203,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저13',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -217,7 +217,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저13',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -231,7 +231,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저13',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -245,7 +245,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저13',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
   {
     createdAt: '2024-02-05T15:40:44',
@@ -259,7 +259,7 @@ export const ReceivedLetterResponse = [
     receiverNickname: '낯선 유저13',
     content: '안녕',
     worryType: 'BREAK_LOVE',
-    imagePath: null,
+    sendImagePath: null,
   },
 ] satisfies Awaited<ReturnType<(typeof letterAPI)['getReceivedLetters']>>;
 
