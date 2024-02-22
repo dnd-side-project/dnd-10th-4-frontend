@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import {
   useMutation,
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
@@ -39,11 +41,24 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
   };
 
   const handleSubmit = async () => {
-    await mutateAsync({ nickname });
+    try {
+      await mutateAsync({ nickname });
 
-    queryClient.invalidateQueries({
-      queryKey: memberOptions.detail().queryKey,
-    });
+      queryClient.invalidateQueries({
+        queryKey: memberOptions.detail().queryKey,
+      });
+
+      toast.success('닉네임이 변경되었어요', {
+        position: 'bottom-center',
+      });
+    } catch (err) {
+      const message =
+        (isAxiosError(err) && err.response?.data) ?? '닉네임 변경에 실패했어요';
+
+      toast.error(message, {
+        position: 'bottom-center',
+      });
+    }
 
     off();
   };
