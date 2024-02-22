@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
-import { baseURL, getSearchParams } from '@/utils/mswUtils';
-import { Reception, Reply } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import { Reception, Reply } from '@/types/letter';
+import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
@@ -240,6 +240,23 @@ const letterHandler = [
       }
     }),
   ),
+
+  http.patch(baseURL('/api/letter/storage/:letterId'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+
+    switch (status) {
+      case 200:
+        return HttpResponse.json();
+      case 400:
+        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+          status: 400,
+        });
+      default:
+        break;
+    }
+  }),
 ];
 
 export default letterHandler;

@@ -47,7 +47,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
                   icon: <TrashCan width={20} height={20} />,
                   label: '삭제하기',
                   onClick: () => {
-                    console.log('삭제하기 클릭');
+                    console.log(item.letterId);
                   },
                   color: COLORS.danger,
                 },

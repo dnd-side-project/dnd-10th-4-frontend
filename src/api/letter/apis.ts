@@ -118,6 +118,13 @@ const letterAPI = {
     );
     return data;
   },
+
+  pathchDeleteLetter: async (letterId: number) => {
+    const { data } = await authInstance.patch(
+      `/api/letter/storage/${letterId}`,
+    );
+    return data;
+  },
 };
 
 export default letterAPI;
