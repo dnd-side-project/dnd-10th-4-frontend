@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import LetterAccordion from '@/components/LetterAccordion';
 import LetterCard from '@/components/LetterCard';
 import LetterHeader from '@/components/LetterHeader';
@@ -9,6 +11,9 @@ import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
 import PolaroidModal from '@/components/PolaroidModal';
 import { Reply } from '@/types/letter';
+import letterAPI from '@/api/letter/apis';
+import letterOptions from '@/api/letter/queryOptions';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import { getTagList } from '../utils/tagUtills';
 import StorageContent from './StorageContent';
 
@@ -17,6 +22,8 @@ interface StorageLetterProps {
 }
 
 const StorageLetter = ({ letters }: StorageLetterProps) => {
+  const queryClient = useQueryClient();
+
   const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
 
   const handleAccordionToggle = (id: string) => {
@@ -24,6 +31,26 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
       ...prevState,
       [id]: !prevState[id],
     }));
+  };
+
+  const { mutateAsync: patchDelete } = useMutation({
+    mutationFn: letterAPI.patchDeleteLetter,
+  });
+
+  const handleDeleteLetter = async (letterId: number) => {
+    try {
+      await patchDelete(letterId);
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+    } catch (error) {
+      if (
+        isAxiosError(error) &&
+        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
+      ) {
+        console.error(error.response.data);
+      } else {
+        throw error;
+      }
+    }
   };
 
   return (
@@ -47,7 +74,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
                   icon: <TrashCan width={20} height={20} />,
                   label: '삭제하기',
                   onClick: () => {
-                    console.log(item.letterId);
+                    handleDeleteLetter(item.letterId);
                   },
                   color: COLORS.danger,
                 },

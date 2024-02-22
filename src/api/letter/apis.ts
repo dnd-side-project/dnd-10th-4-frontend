@@ -119,7 +119,7 @@ const letterAPI = {
     return data;
   },
 
-  pathchDeleteLetter: async (letterId: number) => {
+  patchDeleteLetter: async (letterId: number) => {
     const { data } = await authInstance.patch(
       `/api/letter/storage/${letterId}`,
     );

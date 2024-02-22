@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import LetterAccordion from '@/components/LetterAccordion';
 import LetterCard from '@/components/LetterCard';
 import TagList from '@/components/TagList';
@@ -8,14 +10,18 @@ import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
 import PolaroidModal from '@/components/PolaroidModal';
 import { SendLetter } from '@/types/letter';
+import letterAPI from '@/api/letter/apis';
+import ERROR_RESPONSES from '@/constants/errorMessages';
+import letterOptions from '@/api/letter/queryOptions';
 import { getTagList } from '../utils/tagUtills';
 import StorageContent from './StorageContent';
-
 interface StorageSendLetterProps {
   letters: SendLetter[];
 }
 
 const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
+  const queryClient = useQueryClient();
+
   const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
 
   const handleAccordionToggle = (id: string) => {
@@ -23,6 +29,26 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
       ...prevState,
       [id]: !prevState[id],
     }));
+  };
+
+  const { mutateAsync: patchDelete } = useMutation({
+    mutationFn: letterAPI.patchDeleteLetter,
+  });
+
+  const handleDeleteLetter = async (letterId: number) => {
+    try {
+      await patchDelete(letterId);
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+    } catch (error) {
+      if (
+        isAxiosError(error) &&
+        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
+      ) {
+        console.error(error.response.data);
+      } else {
+        throw error;
+      }
+    }
   };
 
   return (
@@ -50,7 +76,7 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
                   icon: <TrashCan width={20} height={20} />,
                   label: '삭제하기',
                   onClick: () => {
-                    console.log('삭제하기 클릭');
+                    handleDeleteLetter(item.letterId);
                   },
                   color: COLORS.danger,
                 },
