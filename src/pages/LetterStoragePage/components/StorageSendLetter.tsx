@@ -51,6 +51,17 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
     }
   };
 
+  const handleContentCopy = (content: string) => {
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+        console.log('내용이 복사되었습니다.');
+      })
+      .catch((error) => {
+        console.error('복사실패', error);
+      });
+  };
+
   return (
     <StorageContent>
       {letters.map((item: SendLetter) => (
@@ -68,7 +79,7 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
                   icon: <Copy width={20} height={20} />,
                   label: '복사하기',
                   onClick: () => {
-                    console.log('복사히기 클릭');
+                    handleContentCopy(item.content);
                   },
                   color: COLORS.gray2,
                 },

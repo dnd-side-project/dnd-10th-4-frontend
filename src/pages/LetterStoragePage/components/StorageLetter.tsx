@@ -53,6 +53,17 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
     }
   };
 
+  const handleContentCopy = (content: string) => {
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+        console.log('내용이 복사되었습니다.');
+      })
+      .catch((error) => {
+        console.error('복사실패', error);
+      });
+  };
+
   return (
     <StorageContent>
       {letters.map((item: Reply) => (
@@ -66,7 +77,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
                   icon: <Copy width={20} height={20} />,
                   label: '복사하기',
                   onClick: () => {
-                    console.log('복사히기 클릭');
+                    handleContentCopy(item.repliedContent);
                   },
                   color: COLORS.gray2,
                 },
@@ -84,7 +95,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           <LetterHeader nickname={item.senderNickname} />
           <LetterAccordion
             id={item.letterId.toString()}
-            text={item.content}
+            text={item.repliedContent}
             date={new Date(item.createdAt)}
             nickname={item.receiverNickname}
             isOpen={isOpen[item.letterId]}
