@@ -81,7 +81,7 @@ const OnboardingReception = () => {
     <div css={styles.container}>
       <PolaroidModal
         {...modalProps}
-        imagePath={letter.imagePath}
+        imagePath={letter.sendImagePath}
         off={handleCloseModal}
       />
       <Header
@@ -128,10 +128,10 @@ const OnboardingReception = () => {
             delay={300000}
             triggerContent={
               <div css={styles.polaroidContainer}>
-                {letter.imagePath && (
+                {letter.sendImagePath && (
                   <img
                     css={styles.polaroid}
-                    src={letter.imagePath}
+                    src={letter.sendImagePath}
                     alt="폴라로이드"
                     onClick={() => modalProps.on()}
                   />
