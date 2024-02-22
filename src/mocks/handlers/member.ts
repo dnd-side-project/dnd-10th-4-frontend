@@ -36,7 +36,7 @@ const memberHandler = [
               nickname: '낯선 거북이',
               worryTypes: ['COURSE', 'STUDY', 'RELATIONSHIP'],
               gender: 'MALE',
-              birthDay: [1997, 1, 1],
+              birthDay: [1997, 12, 31],
               age: 28,
               role: 'USER',
               letterCount: 5,
