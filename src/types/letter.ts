@@ -23,7 +23,7 @@ export type Reception = {
   receiverNickname: string;
   content: string;
   worryType: Worry;
-  imagePath: string | null;
+  sendImagePath: string | null;
 };
 
 export type Reply = {
