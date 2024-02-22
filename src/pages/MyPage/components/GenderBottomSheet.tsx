@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
@@ -33,13 +35,26 @@ const GenderBottomSheet = ({ value, on, off }: GenderBottomSheetProps) => {
       return;
     }
 
-    await mutateAsync({ gender });
+    try {
+      await mutateAsync({ gender });
 
-    queryClient.invalidateQueries({
-      queryKey: memberOptions.detail().queryKey,
-    });
+      queryClient.invalidateQueries({
+        queryKey: memberOptions.detail().queryKey,
+      });
 
-    off();
+      toast.success('성별이 변경되었어요', {
+        position: 'bottom-center',
+      });
+
+      off();
+    } catch (err) {
+      const message =
+        (isAxiosError(err) && err.response?.data) ?? '성별 변경에 실패했어요';
+
+      toast.error(message, {
+        position: 'bottom-center',
+      });
+    }
   };
 
   return (

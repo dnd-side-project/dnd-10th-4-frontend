@@ -119,6 +119,19 @@ const memberHandler = [
     withAuth(async () => {
       await delay(1000);
 
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 404:
+          return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+            status,
+          });
+        default:
+          return;
+      }
+
       return HttpResponse.json();
     }),
   ),
