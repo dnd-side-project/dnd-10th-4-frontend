@@ -159,36 +159,6 @@ export const RECEPTION_BOTTLES = [
 export const REPLY_BOTTLES = [
   {
     bottle: {
-      src: BottleReply2,
-    },
-    container: {
-      position: css`
-        position: absolute;
-        right: 10%;
-        bottom: 0%;
-      `,
-    },
-    sparkles: [
-      {
-        src: SparkleBig,
-        position: css`
-          position: absolute;
-          top: -35%;
-          right: 25%;
-        `,
-      },
-      {
-        src: SparkleSmall,
-        position: css`
-          position: absolute;
-          top: 10%;
-          left: 0;
-        `,
-      },
-    ],
-  },
-  {
-    bottle: {
       src: BottleReply1,
     },
     container: {
@@ -213,6 +183,36 @@ export const REPLY_BOTTLES = [
           position: absolute;
           bottom: 20%;
           left: 30%;
+        `,
+      },
+    ],
+  },
+  {
+    bottle: {
+      src: BottleReply2,
+    },
+    container: {
+      position: css`
+        position: absolute;
+        right: 10%;
+        bottom: 0%;
+      `,
+    },
+    sparkles: [
+      {
+        src: SparkleBig,
+        position: css`
+          position: absolute;
+          top: -35%;
+          right: 25%;
+        `,
+      },
+      {
+        src: SparkleSmall,
+        position: css`
+          position: absolute;
+          top: 10%;
+          left: 0;
         `,
       },
     ],
