@@ -1,12 +1,21 @@
 import { http, HttpResponse, delay } from 'msw';
-import { baseURL, getSearchParams } from '@/utils/mswUtils';
-import { Reception, Reply } from '@/types/letter';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import { Reception, Reply } from '@/types/letter';
+import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import withAuth from '../middlewares/withAuth';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
 } from '../datas/letter';
+import {
+  PagedReceivedLettersResponsePage1,
+  PagedReceivedLettersResponsePage2,
+} from '../datas/storage';
+import {
+  PagedSendLettersResponsePage1,
+  PagedSendLettersResponsePage2,
+  PagedSendLettersResponsePage3,
+} from '../datas/send';
 
 const letterHandler = [
   http.get(
@@ -190,6 +199,80 @@ const letterHandler = [
           return HttpResponse.json();
         case 400:
           return new HttpResponse(ERROR_RESPONSES.unAnsweredLetterStore, {
+            status: 400,
+          });
+        default:
+          break;
+      }
+    }),
+  ),
+
+  http.get(
+    baseURL('/api/letter/storage'),
+    withAuth(async (req) => {
+      await delay(300);
+      const url = req.request.url;
+      const params = new URLSearchParams(new URL(url).search);
+      const pageValue = params.get('page');
+
+      if (pageValue === '0') {
+        return HttpResponse.json(PagedReceivedLettersResponsePage1);
+      } else {
+        return HttpResponse.json(PagedReceivedLettersResponsePage2);
+      }
+    }),
+  ),
+
+  http.get(
+    baseURL('/api/letter/send'),
+    withAuth(async (req) => {
+      await delay(300);
+      const url = req.request.url;
+      const params = new URLSearchParams(new URL(url).search);
+      const pageValue = params.get('page');
+
+      if (pageValue === '0') {
+        return HttpResponse.json(PagedSendLettersResponsePage1);
+      } else if (pageValue === '1') {
+        return HttpResponse.json(PagedSendLettersResponsePage2);
+      } else {
+        return HttpResponse.json(PagedSendLettersResponsePage3);
+      }
+    }),
+  ),
+
+  http.patch(
+    baseURL('/api/letter/storage/:letterId'),
+    withAuth(async () => {
+      await delay(1000);
+
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+            status: 400,
+          });
+        default:
+          break;
+      }
+    }),
+  ),
+
+  http.patch(
+    baseURL('/api/letter/send/:letterId'),
+    withAuth(async () => {
+      await delay(1000);
+
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
             status: 400,
           });
         default:

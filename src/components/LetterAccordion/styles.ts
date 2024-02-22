@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import COLORS from '@/constants/colors';
 
-export type letterAccordionType = 'inbox' | 'send';
+export type letterAccordionType = 'sendInbox' | 'inbox' | 'send';
 
 const style = {
   container: css`
