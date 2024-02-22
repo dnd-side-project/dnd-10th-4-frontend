@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { isAxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import ErrorImage from '@/assets/images/error.svg';
 import Button from '../../Button';
 import styles from './styles';
 
@@ -43,7 +44,7 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 
   return (
     <main css={styles.container}>
-      <div css={styles.skeletonImg} />
+      <img css={styles.image} src={ErrorImage} alt="오류" />
       <h2 css={styles.title}>네트워크 오류 발생</h2>
       <h2 css={styles.description}>{error.response?.data ?? error.message}</h2>
       <Button

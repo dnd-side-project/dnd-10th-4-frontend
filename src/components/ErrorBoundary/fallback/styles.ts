@@ -12,11 +12,10 @@ const styles = {
     height: 100%;
     background-color: white;
   `,
-  skeletonImg: css`
-    width: 7.5rem;
-    height: 7.5rem;
+  image: css`
+    width: 14.125rem;
+    height: 10.375rem;
     margin-bottom: 2.5rem;
-    background-color: ${COLORS.gray6};
   `,
   title: css`
     margin-bottom: 0.5rem;

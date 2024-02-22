@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import ErrorImage from '@/assets/images/error.svg';
 import { ROUTER_PATHS } from '@/router';
 import Button from '../../Button';
 import styles from './styles';
@@ -33,7 +34,7 @@ const RootUnknownFallback = ({ error }: FallbackProps) => {
 
   return (
     <main css={styles.container}>
-      <div css={styles.skeletonImg} />
+      <img css={styles.image} src={ErrorImage} alt="오류" />
       <h2 css={styles.title}>문제가 발생했어요</h2>
       <h2 css={styles.description}>{error.response?.data ?? error.message}</h2>
       <Button
