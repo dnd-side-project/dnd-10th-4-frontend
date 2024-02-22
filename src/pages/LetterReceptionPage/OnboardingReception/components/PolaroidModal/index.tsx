@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { CaretLeft, Download } from '@/assets/icons';
 import Header from '@/components/Header';
 import IconButton from '@/components/IconButton';
@@ -12,6 +13,26 @@ interface PolaroidModalProps extends ReturnType<typeof useBoolean> {
 }
 
 const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
+  const handleDownload = async () => {
+    if (!imagePath) {
+      return;
+    }
+
+    const response = await axios.get(imagePath, {
+      responseType: 'blob',
+    });
+
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'image.jpg';
+    document.body.appendChild(link);
+    link.click();
+
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <Modal isOpen={value} close={off}>
       <div css={styles.container}>
@@ -21,11 +42,9 @@ const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
           }
           rightContent={
-            <a href={imagePath ?? undefined} download>
-              <IconButton>
-                <Download css={styles.icon} />
-              </IconButton>
-            </a>
+            <IconButton onClick={handleDownload}>
+              <Download css={styles.icon} />
+            </IconButton>
           }
         />
         <section css={styles.main}>
