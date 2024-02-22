@@ -11,6 +11,11 @@ import {
   PagedReceivedLettersResponsePage1,
   PagedReceivedLettersResponsePage2,
 } from '../datas/storage';
+import {
+  PagedSendLettersResponsePage1,
+  PagedSendLettersResponsePage2,
+  PagedSendLettersResponsePage3,
+} from '../datas/send';
 
 const letterHandler = [
   http.get(
@@ -208,14 +213,30 @@ const letterHandler = [
       await delay(300);
       const url = req.request.url;
       const params = new URLSearchParams(new URL(url).search);
-
-      // 'page' 파라미터 값을 가져옴
       const pageValue = params.get('page');
 
       if (pageValue === '0') {
         return HttpResponse.json(PagedReceivedLettersResponsePage1);
       } else {
         return HttpResponse.json(PagedReceivedLettersResponsePage2);
+      }
+    }),
+  ),
+
+  http.get(
+    baseURL('/api/letter/send'),
+    withAuth(async (req) => {
+      await delay(300);
+      const url = req.request.url;
+      const params = new URLSearchParams(new URL(url).search);
+      const pageValue = params.get('page');
+
+      if (pageValue === '0') {
+        return HttpResponse.json(PagedSendLettersResponsePage1);
+      } else if (pageValue === '1') {
+        return HttpResponse.json(PagedSendLettersResponsePage2);
+      } else {
+        return HttpResponse.json(PagedSendLettersResponsePage3);
       }
     }),
   ),

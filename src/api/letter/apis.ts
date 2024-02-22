@@ -1,4 +1,4 @@
-import { type Reception, type Reply } from '@/types/letter';
+import { Storage, type Reception, type Reply, Send } from '@/types/letter';
 import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
 import { type ReplyInputs } from '@/pages/LetterReceptionPage/ReplyToLetter';
@@ -105,7 +105,17 @@ const letterAPI = {
 
   /** 보관한 편지 페이징 조회 */
   getStoragePaging: async (page: string) => {
-    const { data } = await authInstance.get(`/api/letter/storage?page=${page}`);
+    const { data } = await authInstance.get<Storage>(
+      `/api/letter/storage?page=${page}`,
+    );
+    return data;
+  },
+
+  /** 내가 보낸 편지 페이징 조회 */
+  getSendPaging: async (page: string) => {
+    const { data } = await authInstance.get<Send>(
+      `/api/letter/send?page=${page}`,
+    );
     return data;
   },
 };
