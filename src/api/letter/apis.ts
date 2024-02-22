@@ -105,17 +105,17 @@ const letterAPI = {
 
   /** 보관한 편지 페이징 조회 */
   getStoragePaging: async (page: string) => {
-    const { data } = await authInstance.get<Storage>(
-      `/api/letter/storage?page=${page}`,
-    );
+    const { data } = await authInstance.get<Storage>(`/api/letter/storage`, {
+      params: { page },
+    });
     return data;
   },
 
   /** 내가 보낸 편지 페이징 조회 */
   getSendPaging: async (page: string) => {
-    const { data } = await authInstance.get<Send>(
-      `/api/letter/send?page=${page}`,
-    );
+    const { data } = await authInstance.get<Send>(`/api/letter/send`, {
+      params: { page },
+    });
     return data;
   },
 

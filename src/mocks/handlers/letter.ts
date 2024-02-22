@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
-import ERROR_RESPONSES from '@/constants/errorMessages';
-import { Reception, Reply } from '@/types/letter';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
+import { Reception, Reply } from '@/types/letter';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import {
   ReceivedLetterResponse,
   RepliedLettersResponse,
