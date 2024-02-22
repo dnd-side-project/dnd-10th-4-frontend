@@ -51,6 +51,8 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
       toast.success('닉네임이 변경되었어요', {
         position: 'bottom-center',
       });
+
+      off();
     } catch (err) {
       const message =
         (isAxiosError(err) && err.response?.data) ?? '닉네임 변경에 실패했어요';
@@ -59,8 +61,6 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
         position: 'bottom-center',
       });
     }
-
-    off();
   };
 
   return (
