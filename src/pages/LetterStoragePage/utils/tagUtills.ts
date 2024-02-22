@@ -1,7 +1,7 @@
 import { WORRY_DICT } from '@/constants/users';
-import { Reply } from '@/types/letter';
+import { Reply, SendLetter } from '@/types/letter';
 
-export const getTagList = (item: Reply) => {
+export const getTagList = (item: Reply | SendLetter) => {
   const tagList = [
     WORRY_DICT[item.worryType],
     `${item.letterTag.ageRangeStart}~${item.letterTag.ageRangeEnd}세`,

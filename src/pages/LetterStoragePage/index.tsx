@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import Tabs from '@/components/Tabs';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import Tabs from '@/components/Tabs';
 import StorageHeader from './components/StorageHeader';
 import ArchiveLetters from './archiveLetters';
 import MySentLetters from './mySentLetters';
@@ -30,7 +30,18 @@ const LetterStoragePage = () => {
               label: '보관한 편지',
             },
             {
-              content: <MySentLetters />,
+              content: (
+                <Suspense
+                  fallback={
+                    <div css={style.loadingSpinner}>
+                      <LoadingSpinner size="4rem" />
+                      <p>내가 쓴 편지 가져오는 중...</p>
+                    </div>
+                  }
+                >
+                  <MySentLetters />
+                </Suspense>
+              ),
               key: '2',
               label: '내가 보낸 편지',
             },
