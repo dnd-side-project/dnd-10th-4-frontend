@@ -112,6 +112,7 @@ const LetterContent = ({
           <span css={style.inboxDate}>
             {formatDate(date)}
             {type === 'inbox' && '에 받은 편지'}
+            {type === 'sendInbox' && '에 보낸 편지'}
           </span>
         </div>
       )}

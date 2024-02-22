@@ -1,21 +1,31 @@
-import { ROUTER_PATHS } from '@/router';
-import { PencilLine } from '@/assets/icons';
+import { useState } from 'react';
+import { css } from '@emotion/react';
 import PaginationBar from '@/components/PaginationBar';
+import { PencilLine } from '@/assets/icons';
+import { ROUTER_PATHS } from '@/router';
 import StorageEmpty from '../components/StorageEmpty';
-import StorageLetter from '../components/StorageLetter';
-import { testData } from '../testData';
+import useLetterSend from '../hooks/useLetterSend';
+import StorageSendLetter from '../components/StorageSendLetter';
 
 const MySentLetters = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const data = useLetterSend(currentPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page - 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
-      {testData.letters.length > 0 ? (
-        <div css={{ marginBottom: '1rem' }}>
-          <StorageLetter letters={testData.letters} />
-          {testData.totalPage > 1 && (
+      {data.postList.length > 0 ? (
+        <div css={style.container}>
+          <StorageSendLetter letters={data.postList} />
+          {data.totalPage > 1 && (
             <PaginationBar
-              count={testData.totalPage}
+              count={data.totalPage}
               defaultPage={1}
-              onChange={() => console.log('페이지')}
+              onChange={handlePageChange}
             />
           )}
         </div>
@@ -37,3 +47,13 @@ const MySentLetters = () => {
 };
 
 export default MySentLetters;
+
+const style = {
+  container: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100svh - 72px - 50px - 1rem);
+    margin-bottom: 1rem;
+  `,
+};
