@@ -77,6 +77,8 @@ const BirthdayBottomSheet = ({ value, on, off }: BirthdayBottomSheetProps) => {
 
       off();
     } catch (err) {
+      console.error(err);
+
       const message =
         (isAxiosError(err) && err.response?.data) ??
         '생년월일 변경에 실패했어요.';

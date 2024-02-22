@@ -56,6 +56,8 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
 
       off();
     } catch (err) {
+      console.error(err);
+
       const message =
         (isAxiosError(err) && err.response?.data) ?? '고민 변경에 실패했어요';
 
