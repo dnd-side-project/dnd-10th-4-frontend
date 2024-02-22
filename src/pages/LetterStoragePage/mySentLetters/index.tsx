@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import { ROUTER_PATHS } from '@/router';
-import { PencilLine } from '@/assets/icons';
 import PaginationBar from '@/components/PaginationBar';
+import { PencilLine } from '@/assets/icons';
+import { ROUTER_PATHS } from '@/router';
 import StorageEmpty from '../components/StorageEmpty';
-import { testData } from '../testData';
 import useLetterSend from '../hooks/useLetterSend';
 import StorageSendLetter from '../components/StorageSendLetter';
 
@@ -19,12 +18,12 @@ const MySentLetters = () => {
 
   return (
     <>
-      {testData.letters.length > 0 ? (
+      {data.postList.length > 0 ? (
         <div css={style.container}>
           <StorageSendLetter letters={data.postList} />
-          {testData.totalPage > 1 && (
+          {data.totalPage > 1 && (
             <PaginationBar
-              count={testData.totalPage}
+              count={data.totalPage}
               defaultPage={1}
               onChange={handlePageChange}
             />

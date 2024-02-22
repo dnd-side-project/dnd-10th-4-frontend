@@ -1,6 +1,6 @@
 export const PagedSendLettersResponsePage1 = {
-  totalElements: 3,
-  totalPage: 12,
+  totalElements: 12,
+  totalPage: 3,
   hasNextPage: true,
   postList: [
     {
@@ -76,8 +76,8 @@ export const PagedSendLettersResponsePage1 = {
 };
 
 export const PagedSendLettersResponsePage2 = {
-  totalElements: 3,
-  totalPage: 12,
+  totalElements: 12,
+  totalPage: 3,
   hasNextPage: true,
   postList: [
     {
@@ -151,8 +151,8 @@ export const PagedSendLettersResponsePage2 = {
 };
 
 export const PagedSendLettersResponsePage3 = {
-  totalElements: 3,
-  totalPage: 12,
+  totalElements: 12,
+  totalPage: 3,
   hasNextPage: false,
   postList: [
     {
