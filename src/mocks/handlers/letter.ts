@@ -160,6 +160,7 @@ const letterHandler = [
       await delay(300);
 
       const result: Reply = {
+        letterType: null,
         createdAt: '2024-02-18T16:50:44',
         repliedAt: '2024-02-19T16:50:44',
         letterId: Number(req.params.letterId),

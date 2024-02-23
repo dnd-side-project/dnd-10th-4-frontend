@@ -28,10 +28,11 @@ export type Reception = {
 };
 
 export type Reply = {
+  letterType: 'Onboarding' | null;
   createdAt: string;
   repliedAt: string;
   letterId: number;
-  letterTag: LetterTag;
+  letterTag: LetterTag | null;
   senderNickname: string;
   receiverNickname: string;
   content: string;
@@ -51,7 +52,7 @@ export type Storage = {
 export type SendLetter = {
   createdAt: string;
   letterId: number;
-  letterTag: LetterTag;
+  letterTag: LetterTag | null;
   senderNickname: string;
   content: string;
   worryType: Worry;
