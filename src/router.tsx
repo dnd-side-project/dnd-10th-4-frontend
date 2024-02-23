@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { readLetterStore } from './stores/useReadLetterStore';
+import AuthLayout from './layouts/AuthLayout';
 import App from './App';
 import SigninPage from './pages/SigninPage';
 import SigninKakaoPage from './pages/SigninKakaoPage';
@@ -27,13 +28,9 @@ const ROUTER_PATHS = {
 
 const router = createBrowserRouter([
   {
-    path: ROUTER_PATHS.ROOT,
+    path: '/',
     element: <App />,
     children: [
-      {
-        path: ROUTER_PATHS.ROOT,
-        element: <MainPage />,
-      },
       {
         path: ROUTER_PATHS.SIGNIN,
         element: <SigninPage />,
@@ -43,40 +40,50 @@ const router = createBrowserRouter([
         element: <SigninKakaoPage />,
       },
       {
-        path: ROUTER_PATHS.ONBOARDING,
-        element: <OnboardingPage />,
-      },
-      {
-        path: ROUTER_PATHS.MYPAGE,
-        element: <MyPage />,
-      },
-      {
-        path: ROUTER_PATHS.LETTER_WRITE,
-        element: <LetterWritePage />,
-      },
-      {
-        path: ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING,
-        element: <LetterReceptionOnboardingPage />,
-      },
-      {
-        path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
-        element: <LetterReceptionPage />,
-        loader: ({ params }) => {
-          readLetterStore.getState().addReception(Number(params.letterId));
-          return null;
-        },
-      },
-      {
-        path: ROUTER_PATHS.LETTER_REPLY(':letterId'),
-        element: <LetterReplyPage />,
-        loader: ({ params }) => {
-          readLetterStore.getState().addReply(Number(params.letterId));
-          return null;
-        },
-      },
-      {
-        path: ROUTER_PATHS.LETTER_STORAGE,
-        element: <LetterStoragePage />,
+        path: '/',
+        element: <AuthLayout />,
+        children: [
+          {
+            path: ROUTER_PATHS.ROOT,
+            element: <MainPage />,
+          },
+          {
+            path: ROUTER_PATHS.ONBOARDING,
+            element: <OnboardingPage />,
+          },
+          {
+            path: ROUTER_PATHS.MYPAGE,
+            element: <MyPage />,
+          },
+          {
+            path: ROUTER_PATHS.LETTER_WRITE,
+            element: <LetterWritePage />,
+          },
+          {
+            path: ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING,
+            element: <LetterReceptionOnboardingPage />,
+          },
+          {
+            path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
+            element: <LetterReceptionPage />,
+            loader: ({ params }) => {
+              readLetterStore.getState().addReception(Number(params.letterId));
+              return null;
+            },
+          },
+          {
+            path: ROUTER_PATHS.LETTER_REPLY(':letterId'),
+            element: <LetterReplyPage />,
+            loader: ({ params }) => {
+              readLetterStore.getState().addReply(Number(params.letterId));
+              return null;
+            },
+          },
+          {
+            path: ROUTER_PATHS.LETTER_STORAGE,
+            element: <LetterStoragePage />,
+          },
+        ],
       },
       {
         path: '*',
