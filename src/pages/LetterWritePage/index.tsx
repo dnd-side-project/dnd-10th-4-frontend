@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import { letterWrite } from '@/constants/schemaLiteral';
@@ -13,6 +13,7 @@ import ERROR_RESPONSES from '@/constants/errorMessages';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
+import letterOptions from '@/api/letter/queryOptions';
 import LetteWriteHeader from './components/LetterWriteHeader';
 import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
@@ -67,6 +68,7 @@ const LetterWritePage = () => {
   const { mutateAsync: postLetter, isPending } = useMutation({
     mutationFn: letterAPI.postLetter,
   });
+  const queryClient = useQueryClient();
 
   const onSubmit = async (data: WriteInputs) => {
     try {
@@ -75,6 +77,7 @@ const LetterWritePage = () => {
         position: 'bottom-center',
         autoClose: 1500,
       });
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
       navigate(ROUTER_PATHS.ROOT);
     } catch (error) {
       if (isAxiosError(error)) {
