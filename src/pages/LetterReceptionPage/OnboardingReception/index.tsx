@@ -9,8 +9,7 @@ import {
 } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import Header from '@/components/Header';
-import { CaretLeft, Siren } from '@/assets/icons';
-import IconButton from '@/components/IconButton';
+import { CaretLeft } from '@/assets/icons';
 import LetterCard from '@/components/LetterCard';
 import LetterHeader from '@/components/LetterHeader';
 import Navbar from '@/components/Navbar';
@@ -92,11 +91,6 @@ const OnboardingReception = () => {
             strokeWidth={2.5}
             onClick={handleNavigateToRoot}
           />
-        }
-        rightContent={
-          <IconButton>
-            <Siren css={styles.icon} />
-          </IconButton>
         }
       />
       <motion.main
