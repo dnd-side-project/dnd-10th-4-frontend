@@ -5,6 +5,7 @@ import { ROUTER_PATHS } from '@/router';
 import authAPI from '@/api/auth/apis';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import memberOptions from '@/api/member/queryOptions';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const SigninKakaoPage = () => {
   const [searchParams] = useSearchParams();
@@ -34,7 +35,7 @@ const SigninKakaoPage = () => {
     })();
   }, []);
 
-  return <div>Loading...</div>;
+  return <LoadingScreen />;
 };
 
 export default SigninKakaoPage;
