@@ -15,7 +15,7 @@ const LetteWriteHeader = () => {
   const { watch } = useFormContext<WriteInputs>();
 
   const handleBackward = () => {
-    if (watch('age').length !== 0 || watch('content')) {
+    if (watch('age').length !== 0 || watch('content') || watch('image')) {
       on();
     } else {
       navigate(-1);
