@@ -49,17 +49,18 @@ const CarouselArea = () => {
         </div>
       </section>
 
+      <section css={styles.dotsSection}>
+        {slides.map((slide, idx) => (
+          <p
+            key={slide.id}
+            css={styles.dot(selectedIndex === idx)}
+            onClick={() => emblaApi?.scrollTo(idx)}
+          />
+        ))}
+      </section>
+
       {slides.length > 1 && (
         <>
-          <section css={styles.dotsSection}>
-            {slides.map((slide, idx) => (
-              <p
-                key={slide.id}
-                css={styles.dot(selectedIndex === idx)}
-                onClick={() => emblaApi?.scrollTo(idx)}
-              />
-            ))}
-          </section>
           <IconButton
             variant="carousel"
             css={[styles.carouselButton, css({ left: '1rem' })]}

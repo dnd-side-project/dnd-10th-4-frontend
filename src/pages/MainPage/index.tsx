@@ -9,7 +9,7 @@ import { ROUTER_PATHS } from '@/router';
 import Tooltip from '@/components/Tooltip';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';
-import WritingButton from './components/WritingButton';
+import LetterCountIconButton from './components/LetterCountIconButton';
 import WritingBottomButton from './components/WritingBottomButton';
 
 const MainPage = () => {
@@ -21,7 +21,7 @@ const MainPage = () => {
         variant="primary"
         leftContent={
           <Suspense fallback={<></>}>
-            <WritingButton />
+            <LetterCountIconButton />
           </Suspense>
         }
         rightStyle={css({ gap: '0.5rem' })}

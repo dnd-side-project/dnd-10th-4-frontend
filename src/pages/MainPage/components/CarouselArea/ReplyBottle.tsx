@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { type Reply } from '@/types/letter';
 import { ROUTER_PATHS } from '@/router';
 import useReadLetterStore from '@/stores/useReadLetterStore';
+import Tooltip from '@/components/Tooltip';
+import textStyles from '@/styles/textStyles';
 import Sparkle from '../Sparkle';
 import { REPLY_BOTTLES } from './bottleData';
 import styles from './styles';
@@ -34,13 +36,22 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
       ]}
       onClick={handleNavigate}
     >
-      <img src={REPLY_BOTTLES[constantId].bottle.src} alt="물병" />
-      {REPLY_BOTTLES[constantId].sparkles?.map(
-        (sparkle, i) =>
-          !readReplies.includes(letterId) && (
-            <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
-          ),
-      )}
+      <Tooltip
+        side="top"
+        triggerContent={
+          <div>
+            <img src={REPLY_BOTTLES[constantId].bottle.src} alt="물병" />
+            {REPLY_BOTTLES[constantId].sparkles?.map(
+              (sparkle, i) =>
+                !readReplies.includes(letterId) && (
+                  <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
+                ),
+            )}
+          </div>
+        }
+      >
+        <p css={textStyles.c1r}>답장은 모래 위로 흘러와요</p>
+      </Tooltip>
     </article>
   );
 };

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import { Switch } from '@mui/material';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -23,11 +23,6 @@ import styles from './style';
 
 const SuspendedPage = () => {
   const { data: member } = useSuspenseQuery(memberOptions.detail());
-
-  const birthday = useMemo(
-    () => (member.birthDay ? new Date(...member.birthDay) : null),
-    [member],
-  );
 
   const isMusicPlaying = useMusicStore((s) => s.isPlaying);
   const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
@@ -59,8 +54,8 @@ const SuspendedPage = () => {
           <p>생년월일 변경</p>
           <div css={styles.value} onClick={birthdayBottomSheetProps.on}>
             <span>
-              {birthday
-                ? `${birthday.getFullYear()}년 ${birthday.getMonth()}월 ${birthday.getDate()}일`
+              {member.birthDay
+                ? `${member.birthDay[0]}년 ${member.birthDay[1]}월 ${member.birthDay[2]}일`
                 : '설정되지 않음'}
             </span>
             <CaretRight color={COLORS.gray3} />

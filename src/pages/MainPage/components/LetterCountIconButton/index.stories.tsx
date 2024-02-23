@@ -1,14 +1,14 @@
 import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import WritingButton from './';
+import LetterCountIconButton from '.';
 
 const meta = {
-  title: 'Pages/MainPage/WritingButton',
-  component: WritingButton,
+  title: 'Pages/MainPage/LetterCountIconButton',
+  component: LetterCountIconButton,
   tags: ['autodocs'],
   argTypes: {},
-} satisfies Meta<typeof WritingButton>;
+} satisfies Meta<typeof LetterCountIconButton>;
 
 export default meta;
 
