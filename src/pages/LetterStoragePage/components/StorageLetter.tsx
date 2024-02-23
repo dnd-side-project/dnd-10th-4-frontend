@@ -57,51 +57,53 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
 
   return (
     <StorageContent>
-      {letters.map((item: Reply) => (
-        <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
-          <div css={style.tags}>
-            <TagList tags={getTagList(item)} />
-            <Dropdown
-              triggerComponent={<MoreHorizontal />}
-              options={[
-                {
-                  icon: <Copy width={20} height={20} />,
-                  label: '복사하기',
-                  onClick: () => {
-                    handleContentCopy(item.repliedContent);
+      {letters
+        .filter((item) => item.letterType !== 'Onboarding')
+        .map((item) => (
+          <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
+            <div css={style.tags}>
+              <TagList tags={getTagList(item)} />
+              <Dropdown
+                triggerComponent={<MoreHorizontal />}
+                options={[
+                  {
+                    icon: <Copy width={20} height={20} />,
+                    label: '복사하기',
+                    onClick: () => {
+                      handleContentCopy(item.repliedContent);
+                    },
+                    color: COLORS.gray2,
                   },
-                  color: COLORS.gray2,
-                },
-                {
-                  icon: <TrashCan width={20} height={20} />,
-                  label: '편지 버리기',
-                  onClick: () => {
-                    openBottomSheet(item.letterId);
+                  {
+                    icon: <TrashCan width={20} height={20} />,
+                    label: '편지 버리기',
+                    onClick: () => {
+                      openBottomSheet(item.letterId);
+                    },
+                    color: COLORS.danger,
                   },
-                  color: COLORS.danger,
-                },
-              ]}
+                ]}
+              />
+            </div>
+            <LetterHeader nickname={item.senderNickname} />
+            <LetterAccordion
+              id={item.letterId.toString()}
+              text={item.repliedContent}
+              date={new Date(item.createdAt)}
+              nickname={item.receiverNickname}
+              isOpen={isOpen[item.letterId]}
+              onToggle={() => handleAccordionToggle(item.letterId.toString())}
+              line={2}
             />
-          </div>
-          <LetterHeader nickname={item.senderNickname} />
-          <LetterAccordion
-            id={item.letterId.toString()}
-            text={item.repliedContent}
-            date={new Date(item.createdAt)}
-            nickname={item.receiverNickname}
-            isOpen={isOpen[item.letterId]}
-            onToggle={() => handleAccordionToggle(item.letterId.toString())}
-            line={2}
-          />
-          {isOpen[item.letterId] && item.replyImagePath && (
-            <PolaroidModal
-              topPosition={2.5}
-              leftPosition={1}
-              img={item.replyImagePath}
-            />
-          )}
-        </LetterCard>
-      ))}
+            {isOpen[item.letterId] && item.replyImagePath && (
+              <PolaroidModal
+                topPosition={2.5}
+                leftPosition={1}
+                img={item.replyImagePath}
+              />
+            )}
+          </LetterCard>
+        ))}
       <DeleteBottomSheet value={value} on={on} off={off} letterId={deleteId!} />
     </StorageContent>
   );
