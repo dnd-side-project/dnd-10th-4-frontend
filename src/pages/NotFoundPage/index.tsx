@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import ErrorImage from '@/assets/images/error.svg';
 import Button from '@/components/Button';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import styles from './style';
 
 const NotFoundPage = () => {
