@@ -10,7 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import Button from '@/components/Button';
 import textStyles from '@/styles/textStyles';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import memberAPI from '@/api/member/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ERROR_RESPONSES from '@/constants/errorMessages';

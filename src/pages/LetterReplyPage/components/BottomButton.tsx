@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import { TreasureChestOutline } from '@/assets/icons';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
 import LoadingSpinner from '@/components/LoadingSpinner';

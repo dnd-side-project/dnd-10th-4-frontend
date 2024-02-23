@@ -5,7 +5,7 @@ import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
 import { TreasureChest, User } from '@/assets/icons';
 import MusicButton from '@/components/MusicButton';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import Tooltip from '@/components/Tooltip';
 import styles from './styles';
 import CarouselArea from './components/CarouselArea';

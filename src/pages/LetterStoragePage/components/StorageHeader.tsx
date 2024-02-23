@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import Header from '@/components/Header';
 import { CaretLeft } from '@/assets/icons';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import textStyles from '@/styles/textStyles';
 
 const StorageHeader = () => {

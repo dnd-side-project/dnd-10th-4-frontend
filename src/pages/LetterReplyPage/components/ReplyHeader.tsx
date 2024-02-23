@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import DetailTimeChip from '@/components/DetailTimeChip';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 

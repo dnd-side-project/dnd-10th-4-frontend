@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import KakaoLoginButton from '@/components/KakaoLoginButton';
 import Header from '@/components/Header';
 import textStyles from '@/styles/textStyles';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import MusicButton from '@/components/MusicButton';
 import styles from './styles';
 

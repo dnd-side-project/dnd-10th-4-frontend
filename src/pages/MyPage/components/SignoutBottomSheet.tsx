@@ -4,7 +4,7 @@ import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
 import useBoolean from '@/hooks/useBoolean';
 import STORAGE_KEYS from '@/constants/storageKeys';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 
 interface SignoutBottomSheetProps extends ReturnType<typeof useBoolean> {}
 

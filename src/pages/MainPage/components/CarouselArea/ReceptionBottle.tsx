@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { type Reception } from '@/types/letter';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import useReadLetterStore from '@/stores/useReadLetterStore';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';

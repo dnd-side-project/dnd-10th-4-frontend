@@ -10,7 +10,7 @@ import COLORS from '@/constants/colors';
 import memberAPI from '@/api/member/apis';
 import memberOptions from '@/api/member/queryOptions';
 import STORAGE_KEYS from '@/constants/storageKeys';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import LoadingSpinner from '@/components/LoadingSpinner';
 

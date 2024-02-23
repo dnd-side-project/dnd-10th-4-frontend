@@ -7,7 +7,7 @@ import Header from '@/components/Header';
 import { CaretLeft, CaretRight } from '@/assets/icons';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import useBoolean from '@/hooks/useBoolean';
 import memberOptions from '@/api/member/queryOptions';
 import LoadingSpinner from '@/components/LoadingSpinner';

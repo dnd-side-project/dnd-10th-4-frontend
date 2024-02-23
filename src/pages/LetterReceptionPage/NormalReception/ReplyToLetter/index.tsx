@@ -11,7 +11,7 @@ import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterHeader from '@/components/LetterHeader';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';

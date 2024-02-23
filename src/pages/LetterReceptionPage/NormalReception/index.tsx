@@ -3,7 +3,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import createFunnel from '@/components/Funnel/createFunnel';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import LetterAccessFallback from '@/components/ErrorBoundary/fallback/LetterAccessFallback';
 import { letterWrite } from '@/constants/schemaLiteral';

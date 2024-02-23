@@ -19,7 +19,7 @@ import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useBoolean from '@/hooks/useBoolean';
 import { formatDate } from '@/utils/dateUtils';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterOptions from '@/api/letter/queryOptions';
 import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
