@@ -60,8 +60,10 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
       {letters.map((item) => (
         <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
           <div css={style.tags}>
-            {item.letterType !== 'Onboarding' && (
+            {item.letterType !== 'Onboarding' ? (
               <TagList tags={getTagList(item)} />
+            ) : (
+              <div />
             )}
             <Dropdown
               triggerComponent={<MoreHorizontal />}
