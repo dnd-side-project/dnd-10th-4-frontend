@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import { ScrolLetter } from '@/assets/icons';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import PaginationBar from '@/components/PaginationBar';
 import StorageEmpty from '../components/StorageEmpty';
 import StorageLetter from '../components/StorageLetter';

@@ -12,18 +12,7 @@ import MyPage from './pages/MyPage';
 import LetterReplyPage from './pages/LetterReplyPage';
 import LetterStoragePage from './pages/LetterStoragePage';
 import NotFoundPage from './pages/NotFoundPage';
-
-const ROUTER_PATHS = {
-  ROOT: '/',
-  SIGNIN: '/signin',
-  SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
-  ONBOARDING: '/onboarding',
-  LETTER_WRITE: '/write',
-  LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}`,
-  MYPAGE: '/mypage',
-  LETTER_REPLY: (letterId: string) => `/reply/${letterId}`,
-  LETTER_STORAGE: `/storage`,
-} as const;
+import { ROUTER_PATHS } from './constants/routerPaths';
 
 const router = createBrowserRouter([
   {
@@ -88,4 +77,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-export { ROUTER_PATHS, router };
+export { router };

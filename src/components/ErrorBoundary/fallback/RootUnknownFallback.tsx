@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import ErrorImage from '@/assets/images/error.svg';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import Button from '../../Button';
 import styles from './styles';
 

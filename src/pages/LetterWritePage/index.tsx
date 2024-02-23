@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';

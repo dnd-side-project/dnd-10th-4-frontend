@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { css } from '@emotion/react';
 import { PencilLine } from '@/assets/icons';
 import Button from '@/components/Button';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import memberOptions from '@/api/member/queryOptions';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';

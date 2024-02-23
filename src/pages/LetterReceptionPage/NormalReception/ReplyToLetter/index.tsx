@@ -15,7 +15,7 @@ import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import ImageUploadButton from '@/components/ImageUploadButton';
 import PolaroidModal from '@/components/PolaroidModal';

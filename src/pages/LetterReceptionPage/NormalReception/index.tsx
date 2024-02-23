@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import createFunnel from '@/components/Funnel/createFunnel';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import ReceivedLetter from './ReceivedLetter';
 import ReplyToLetter from './ReplyToLetter';
 import ReceptionHeader from './components/ReceptionHeader';

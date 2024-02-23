@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import memberOptions from '@/api/member/queryOptions';
-import { ROUTER_PATHS } from '@/router';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import LoadingScreen from '@/components/LoadingScreen';
 
 const SuspensedLayout = () => {
