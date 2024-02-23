@@ -12,10 +12,10 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
-import ReceivedLetter from './ReceivedLetter';
-import ReplyToLetter from './ReplyToLetter';
-import ReceptionHeader from './components/ReceptionHeader';
 import style from './styles';
+import ReceptionHeader from './components/ReceptionHeader';
+import ReplyToLetter from './ReplyToLetter';
+import ReceivedLetter from './ReceivedLetter';
 
 const L = letterWrite;
 
@@ -58,7 +58,7 @@ const LetterReceptionPage = () => {
     },
   });
 
-  const { watch } = methods;
+  const { watch, reset } = methods;
 
   const handleBackward = () => {
     if (watch('replyContent')) {
@@ -104,9 +104,9 @@ const LetterReceptionPage = () => {
             </Funnel>
           </div>
           <BottomSheet open={value} onOpen={on} onClose={off}>
-            <BottomSheet.Title>편지쓰기를 취소할까요?</BottomSheet.Title>
+            <BottomSheet.Title>답장 쓰기를 취소할까요?</BottomSheet.Title>
             <BottomSheet.Description>
-              편지 작성 취소시, <br /> 작성중인 글과 사진은 저장되지 않아요.
+              답장 작성 취소시, <br /> 작성중인 글과 사진은 저장되지 않아요.
             </BottomSheet.Description>
             <BottomSheet.ButtonSection>
               <Button variant="cancel" onClick={off}>
@@ -117,6 +117,7 @@ const LetterReceptionPage = () => {
                 onClick={() => {
                   toPrev();
                   off();
+                  reset();
                 }}
               >
                 작성 취소

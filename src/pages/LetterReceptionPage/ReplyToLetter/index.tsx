@@ -5,24 +5,23 @@ import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import LetterCard from '@/components/LetterCard';
-import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import LetterTextarea from '@/components/LetterTextarea';
 import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterHeader from '@/components/LetterHeader';
 import letterAPI from '@/api/letter/apis';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import letterOptions from '@/api/letter/queryOptions';
 import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
-import { ReplyInputs } from '..';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
-import style from './styles';
+import useLetterWithTags from '../hooks/useLetterWithTags';
+import { ReplyInputs } from '..';
+import ReplyButton from './ReplyButton';
 import ReplyImage from './ReplyImage';
+import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 interface ReplyToLetterProps {
   letterId: number;
@@ -124,19 +123,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
             <ReplyImage />
           </LetterCard>
         </div>
-        <Navbar css={style.navbar}>
-          <Button type="button" variant="secondary" size="sm" onClick={onPrev}>
-            취소
-          </Button>
-          <Button
-            disabled={isPending}
-            type="submit"
-            variant="primary"
-            size="sm"
-          >
-            {isPending ? <LoadingSpinner /> : '답장 보내기'}
-          </Button>
-        </Navbar>
+        <ReplyButton isPending={isPending} onPrev={onPrev} />
       </form>
       <BottomSheet open={value} onOpen={on} onClose={off}>
         <BottomSheet.Title>답장을 보낼까요?</BottomSheet.Title>
