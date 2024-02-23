@@ -16,6 +16,8 @@ const styles = {
 
   main: css`
     flex-grow: 1;
+    overflow-y: auto;
+    height: 100%;
     padding: 0 1rem;
   `,
 

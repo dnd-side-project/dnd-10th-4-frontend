@@ -34,7 +34,11 @@ const CarouselArea = () => {
           {slides.map(({ id: slideId, receptions, replies }) => (
             <article key={slideId} css={styles.slide}>
               {receptions.map((reception, i) => (
-                <ReceptionBottle key={i} constantId={i} reception={reception} />
+                <ReceptionBottle
+                  key={reception.letterId}
+                  constantId={i}
+                  reception={reception}
+                />
               ))}
 
               {replies.map((reply, i) => (

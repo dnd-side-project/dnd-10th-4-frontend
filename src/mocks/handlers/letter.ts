@@ -4,6 +4,7 @@ import { Reception, Reply } from '@/types/letter';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
 import withAuth from '../middlewares/withAuth';
 import {
+  OnboardingLetter,
   ReceivedLetterResponse,
   RepliedLettersResponse,
 } from '../datas/letter';
@@ -75,7 +76,11 @@ const letterHandler = [
   http.get(baseURL('/api/letter/reception/:letterId'), async (req) => {
     await delay(300);
 
+    const status: number = 200;
+    const letterId = Number(req.params.letterId);
+
     const result: Reception = {
+      letterType: null,
       createdAt: '2024-02-17T16:50:44',
       letterId: Number(req.params.letterId),
       letterTag: {
@@ -92,10 +97,12 @@ const letterHandler = [
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     };
 
-    const status: number = 200;
-
     switch (status) {
       case 200:
+        if (letterId === 1) {
+          return HttpResponse.json(OnboardingLetter);
+        }
+
         return HttpResponse.json(result);
       case 400:
         return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {

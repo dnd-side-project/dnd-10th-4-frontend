@@ -48,7 +48,7 @@ const Tooltip = ({
       <T.Root open={isOpen} onOpenChange={setIsOpen}>
         <T.Trigger asChild>{triggerContent}</T.Trigger>
         <AnimatePresence>
-          {isOpen && (
+          {isOpen && children && (
             <T.Portal forceMount>
               <T.Content
                 css={[styles.content, textStyles.c1r]}

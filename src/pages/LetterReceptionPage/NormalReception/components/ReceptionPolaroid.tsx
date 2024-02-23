@@ -3,6 +3,7 @@ import Button from '@/components/Button';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
+
 interface ReceptionPolaroidProps {
   img: string;
   topPosition?: number;

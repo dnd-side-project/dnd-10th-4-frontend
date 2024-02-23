@@ -14,7 +14,7 @@ const WritingBottomButton = () => {
   const navigate = useNavigate();
 
   const isFromOnboardingLetter =
-    location.state?.from === ROUTER_PATHS.LETTER_RECEPTION_ONBOARDING;
+    location.state?.from === ROUTER_PATHS.ONBOARDING;
 
   const disabled = member.letterCount === 0;
 
