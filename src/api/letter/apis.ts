@@ -1,7 +1,7 @@
 import { Storage, type Reception, type Reply, Send } from '@/types/letter';
 import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
-import { type ReplyInputs } from '@/pages/LetterReceptionPage/ReplyToLetter';
+import { type ReplyInputs } from '@/pages/LetterReceptionPage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
 import { authInstance } from '../instance';
 
