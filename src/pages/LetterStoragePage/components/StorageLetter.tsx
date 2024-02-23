@@ -12,8 +12,8 @@ import PolaroidModal from '@/components/PolaroidModal';
 import { Reply } from '@/types/letter';
 import useBoolean from '@/hooks/useBoolean';
 import { getTagList } from '../utils/tagUtills';
-import DeleteBottomSheet from './DeleteBottomSheet';
 import StorageContent from './StorageContent';
+import DeleteBottomSheet from './DeleteBottomSheet';
 
 interface StorageLetterProps {
   letters: Reply[];

@@ -7,6 +7,7 @@ import BottomSheet from '@/components/BottomSheet';
 import { ArrowClockWise } from '@/assets/icons';
 import { letterWrite } from '@/constants/schemaLiteral';
 import { type Worry, type EqualGender } from '@/constants/letters';
+import Button from '@/components/Button';
 import { type WriteInputs } from '..';
 import { BottomSheetProps } from './LetterWriteContent';
 import { AgeSlider, GenderSelect, WorrySelect } from '.';
@@ -51,17 +52,22 @@ const LetterReceiverSelect = ({
     >
       <div css={style.bottomSheetContainer}>
         <div css={style.bottomSheetTitle(iconRotation)}>
-          <h2>누구에게 보낼까요?</h2>
+          <BottomSheet.Title>누구에게 보낼까요?</BottomSheet.Title>
           <ArrowClockWise color={COLORS.gray2} onClick={onRefreshIconClick} />
         </div>
         <AgeSlider age={age} setAge={setAge} />
         <GenderSelect gender={gender} setGender={setGender} />
         <WorrySelect worryType={worryType} setWorryType={setWorryType} />
       </div>
-      <div css={style.buttonContainer}>
-        <button onClick={toggleBottomSheet(false)}>닫기</button>
-        <button onClick={onCompleteButtonClick}>완료</button>
-      </div>
+      <BottomSheet.Divider />
+      <BottomSheet.ButtonSection>
+        <Button variant="cancel" onClick={toggleBottomSheet(false)}>
+          닫기
+        </Button>
+        <Button variant="primary" onClick={onCompleteButtonClick}>
+          완료
+        </Button>
+      </BottomSheet.ButtonSection>
     </BottomSheet>
   );
 };
@@ -79,7 +85,7 @@ const style = {
     height: 2.75rem;
 
     h2 {
-      ${textStyles.t2};
+      padding-left: 0;
     }
 
     svg {
