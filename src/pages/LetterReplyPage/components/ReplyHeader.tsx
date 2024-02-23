@@ -5,6 +5,7 @@ import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import DetailTimeChip from '@/components/DetailTimeChip';
+import Tooltip from '@/components/Tooltip';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 
 interface ReplyHeaderProps {
@@ -27,7 +28,18 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
             color="white"
             onClick={() => navigate(ROUTER_PATHS.ROOT)}
           />
-          <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
+          <Tooltip
+            delay={3000}
+            align="start"
+            mountKey="replyTimeChip"
+            triggerContent={
+              <div>
+                <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
+              </div>
+            }
+          >
+            내게 온 답장은 7일이 지나면 사라져요
+          </Tooltip>
         </>
       }
       rightContent={
