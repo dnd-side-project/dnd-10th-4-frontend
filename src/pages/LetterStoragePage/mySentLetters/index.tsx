@@ -18,9 +18,9 @@ const MySentLetters = () => {
 
   return (
     <>
-      {data.postList.length > 0 ? (
+      {data.letters.length > 0 ? (
         <div css={style.container}>
-          <StorageSendLetter letters={data.postList} />
+          <StorageSendLetter letters={data.letters} />
           {data.totalPage > 1 && (
             <PaginationBar
               count={data.totalPage}

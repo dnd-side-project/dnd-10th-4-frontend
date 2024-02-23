@@ -1,8 +1,10 @@
+import { type Send } from '@/types/letter';
+
 export const PagedSendLettersResponsePage1 = {
   totalElements: 12,
   totalPage: 3,
   hasNextPage: true,
-  postList: [
+  letters: [
     {
       createdAt: '2024-02-16T08:33:52',
       letterId: 1,
@@ -73,21 +75,20 @@ export const PagedSendLettersResponsePage1 = {
       imagePath: null,
     },
   ],
-};
+} satisfies Send;
 
 export const PagedSendLettersResponsePage2 = {
   totalElements: 12,
   totalPage: 3,
   hasNextPage: true,
-  postList: [
+  letters: [
     {
       createdAt: '2024-02-16T08:33:52',
       letterId: 6,
       letterTag: {
         ageRangeStart: 20,
         ageRangeEnd: 100,
-        equalGender:
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        equalGender: true,
       },
       senderNickname: '낯선 유저1',
       content: '안녕하세요.',
@@ -148,13 +149,13 @@ export const PagedSendLettersResponsePage2 = {
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
   ],
-};
+} satisfies Send;
 
 export const PagedSendLettersResponsePage3 = {
   totalElements: 12,
   totalPage: 3,
   hasNextPage: false,
-  postList: [
+  letters: [
     {
       createdAt: '2024-02-16T08:33:52',
       letterId: 6,
@@ -198,4 +199,4 @@ export const PagedSendLettersResponsePage3 = {
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
   ],
-};
+} satisfies Send;
