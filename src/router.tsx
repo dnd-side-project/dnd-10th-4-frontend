@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { readLetterStore } from './stores/useReadLetterStore';
 import App from './App';
-import ModalTestPage from './pages/ModalTestPage';
 import SigninPage from './pages/SigninPage';
 import SigninKakaoPage from './pages/SigninKakaoPage';
 import OnboardingPage from './pages/OnboardingPage';
@@ -15,9 +14,6 @@ import LetterReceptionOnboardingPage from './pages/LetterReceptionOnboardingPage
 
 const ROUTER_PATHS = {
   ROOT: '/',
-  TEST_CONSTANT: '/test/const',
-  TEST_VARIABLE: (variableId: string) => `/test/variable/${variableId}`,
-  MODAL_TEST: '/modal-test',
   SIGNIN: '/signin',
   SIGNIN_REDIRECT_KAKAO: '/signin/redirect/kakao',
   ONBOARDING: '/onboarding',
@@ -34,18 +30,6 @@ const router = createBrowserRouter([
     path: ROUTER_PATHS.ROOT,
     element: <App />,
     children: [
-      {
-        path: ROUTER_PATHS.TEST_CONSTANT,
-        element: <div>test constant path</div>,
-      },
-      {
-        path: ROUTER_PATHS.TEST_VARIABLE(':variableId'),
-        element: <div>test variable path</div>,
-      },
-      {
-        path: ROUTER_PATHS.MODAL_TEST,
-        element: <ModalTestPage />,
-      },
       {
         path: ROUTER_PATHS.ROOT,
         element: <MainPage />,
@@ -79,7 +63,7 @@ const router = createBrowserRouter([
         element: <LetterReceptionPage />,
         loader: ({ params }) => {
           readLetterStore.getState().addReception(Number(params.letterId));
-          return {};
+          return null;
         },
       },
       {
@@ -87,7 +71,7 @@ const router = createBrowserRouter([
         element: <LetterReplyPage />,
         loader: ({ params }) => {
           readLetterStore.getState().addReply(Number(params.letterId));
-          return {};
+          return null;
         },
       },
       {
