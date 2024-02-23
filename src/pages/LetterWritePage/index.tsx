@@ -7,16 +7,15 @@ import z from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { ROUTER_PATHS } from '@/router';
-import { CaretLeft } from '@/assets/icons';
-import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
-import style from './styles';
+import LetteWriteHeader from './components/LetterWriteHeader';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -47,7 +46,7 @@ export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
   const navigate = useNavigate();
-  const { value, on, off, toggle } = useBoolean(false);
+  const { value, on, off } = useBoolean(false);
 
   const methods = useForm<WriteInputs>({
     resolver: zodResolver(writeSchema),
@@ -129,17 +128,8 @@ const LetterWritePage = () => {
   return (
     <FormProvider {...methods}>
       <div css={style.container}>
-        <Header
-          css={style.header}
-          leftContent={
-            <CaretLeft
-              strokeWidth={2.5}
-              stroke="white"
-              onClick={() => navigate(-1)}
-            />
-          }
-        />
-        <form onSubmit={handleSubmit(toggle)} css={style.contentWrapper}>
+        <LetteWriteHeader />
+        <form onSubmit={handleSubmit(on)} css={style.contentWrapper}>
           <LetterWriteContent />
           <LetterWriteBottom isPending={isPending} />
         </form>
