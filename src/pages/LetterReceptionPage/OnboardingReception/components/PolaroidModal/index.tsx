@@ -1,16 +1,38 @@
+import axios from 'axios';
 import { CaretLeft, Download } from '@/assets/icons';
 import Header from '@/components/Header';
 import IconButton from '@/components/IconButton';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
-import OnboardingLetterImage from '@/assets/images/onboardingLetterImage.jpg';
 import Button from '@/components/Button';
 import pageStyles from '../../styles';
 import styles from './style';
 
-interface PolaroidModalProps extends ReturnType<typeof useBoolean> {}
+interface PolaroidModalProps extends ReturnType<typeof useBoolean> {
+  imagePath: string | null;
+}
 
-const PolaroidModal = ({ value, off }: PolaroidModalProps) => {
+const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
+  const handleDownload = async () => {
+    if (!imagePath) {
+      return;
+    }
+
+    const response = await axios.get(imagePath, {
+      responseType: 'blob',
+    });
+
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'image.jpg';
+    document.body.appendChild(link);
+    link.click();
+
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <Modal isOpen={value} close={off}>
       <div css={styles.container}>
@@ -20,18 +42,16 @@ const PolaroidModal = ({ value, off }: PolaroidModalProps) => {
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
           }
           rightContent={
-            <a href={OnboardingLetterImage} download>
-              <IconButton>
-                <Download css={styles.icon} />
-              </IconButton>
-            </a>
+            <IconButton onClick={handleDownload}>
+              <Download css={styles.icon} />
+            </IconButton>
           }
         />
         <section css={styles.main}>
           <div css={styles.polaroidFrame}>
             <img
               css={styles.polaroid}
-              src={OnboardingLetterImage}
+              src={imagePath ?? undefined}
               alt="편지와 함께 보낸 이미지"
             />
           </div>

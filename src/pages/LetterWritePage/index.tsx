@@ -7,13 +7,15 @@ import z from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { ROUTER_PATHS } from '@/router';
-import { CaretLeft } from '@/assets/icons';
-import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import style from './styles';
+import BottomSheet from '@/components/BottomSheet';
+import useBoolean from '@/hooks/useBoolean';
+import Button from '@/components/Button';
+import LetteWriteHeader from './components/LetterWriteHeader';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -44,6 +46,7 @@ export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
   const navigate = useNavigate();
+  const { value, on, off } = useBoolean(false);
 
   const methods = useForm<WriteInputs>({
     resolver: zodResolver(writeSchema),
@@ -58,6 +61,7 @@ const LetterWritePage = () => {
   const {
     handleSubmit,
     formState: { errors },
+    watch,
   } = methods;
 
   const { mutateAsync: postLetter, isPending } = useMutation({
@@ -103,7 +107,11 @@ const LetterWritePage = () => {
         hideProgressBar: true,
       });
     } else if (errors.content) {
-      toast.warn('내용을 입력하세요', {
+      const message =
+        watch('content').length === 0
+          ? '내용을 입력하세요'
+          : errors.content.message;
+      toast.warn(message, {
         position: 'bottom-center',
         autoClose: 1500,
         hideProgressBar: true,
@@ -120,21 +128,32 @@ const LetterWritePage = () => {
   return (
     <FormProvider {...methods}>
       <div css={style.container}>
-        <Header
-          css={style.header}
-          leftContent={
-            <CaretLeft
-              strokeWidth={2.5}
-              stroke="white"
-              onClick={() => navigate(-1)}
-            />
-          }
-        />
-        <form onSubmit={handleSubmit(onSubmit)} css={style.contentWrapper}>
+        <LetteWriteHeader />
+        <form onSubmit={handleSubmit(on)} css={style.contentWrapper}>
           <LetterWriteContent />
           <LetterWriteBottom isPending={isPending} />
         </form>
       </div>
+      <BottomSheet open={value} onOpen={on} onClose={off}>
+        <BottomSheet.Title>편지를 보낼까요?</BottomSheet.Title>
+        <BottomSheet.Description>
+          바다로 띄어보낸 편지는 수정할 수 없어요
+        </BottomSheet.Description>
+        <BottomSheet.ButtonSection>
+          <Button variant="cancel" onClick={off}>
+            취소
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleSubmit(onSubmit)();
+              off();
+            }}
+          >
+            보내기
+          </Button>
+        </BottomSheet.ButtonSection>
+      </BottomSheet>
     </FormProvider>
   );
 };
