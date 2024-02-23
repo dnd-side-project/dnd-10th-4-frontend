@@ -36,7 +36,7 @@ const memberHandler = [
               nickname: '낯선 거북이',
               worryTypes: ['COURSE', 'STUDY', 'RELATIONSHIP'],
               gender: 'MALE',
-              birthDay: [1997, 1, 1],
+              birthDay: [1997, 12, 31],
               age: 28,
               role: 'USER',
               letterCount: 5,
@@ -79,7 +79,18 @@ const memberHandler = [
     withAuth(async () => {
       await delay(1000);
 
-      return HttpResponse.json();
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 404:
+          return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+            status,
+          });
+        default:
+          return;
+      }
     }),
   ),
 
@@ -88,7 +99,18 @@ const memberHandler = [
     withAuth(async () => {
       await delay(1000);
 
-      return HttpResponse.json();
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 404:
+          return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+            status,
+          });
+        default:
+          return;
+      }
     }),
   ),
 
@@ -96,6 +118,19 @@ const memberHandler = [
     baseURL('/api/member/gender'),
     withAuth(async () => {
       await delay(1000);
+
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 404:
+          return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+            status,
+          });
+        default:
+          return;
+      }
 
       return HttpResponse.json();
     }),
@@ -105,6 +140,19 @@ const memberHandler = [
     baseURL('/api/member/worry'),
     withAuth(async () => {
       await delay(1000);
+
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 404:
+          return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
+            status,
+          });
+        default:
+          return;
+      }
 
       return HttpResponse.json();
     }),

@@ -50,21 +50,27 @@ const LastStep = () => {
       });
 
       navigate(ROUTER_PATHS.ROOT);
+
+      toast.success('프로필이 완성됐어요', {
+        position: 'bottom-center',
+      });
     } catch (err) {
-      if (isAxiosError(err)) {
-        if (err.response?.data === ERROR_RESPONSES.memberNotFound) {
-          console.error(err);
-          navigate(ROUTER_PATHS.SIGNIN);
-          return;
-        } else {
-          toast.error(err.response?.data ?? ERROR_RESPONSES.unknown, {
-            position: 'bottom-center',
-          });
-          return;
-        }
+      console.error(err);
+
+      const message =
+        (isAxiosError(err) && err.response?.data) ??
+        '프로필 작성에 실패했어요.';
+
+      if (
+        isAxiosError(err) &&
+        err.response?.data === ERROR_RESPONSES.memberNotFound
+      ) {
+        navigate(ROUTER_PATHS.SIGNIN);
       }
 
-      throw err;
+      toast.error(message, {
+        position: 'bottom-center',
+      });
     }
   };
 
