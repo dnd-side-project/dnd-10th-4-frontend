@@ -1,27 +1,26 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import LetterAccordion from '@/components/LetterAccordion';
 import LetterCard from '@/components/LetterCard';
-import LetterHeader from '@/components/LetterHeader';
 import TagList from '@/components/TagList';
 import { MoreHorizontal, Copy, TrashCan } from '@/assets/icons';
 import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
 import PolaroidModal from '@/components/PolaroidModal';
-import { Reply } from '@/types/letter';
+import { SendLetter } from '@/types/letter';
 import letterAPI from '@/api/letter/apis';
-import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import letterOptions from '@/api/letter/queryOptions';
 import { getTagList } from '../utils/tagUtills';
 import StorageContent from './StorageContent';
 
-interface StorageLetterProps {
-  letters: Reply[];
+interface StorageSendLetterProps {
+  letters: SendLetter[];
 }
 
-const StorageLetter = ({ letters }: StorageLetterProps) => {
+const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
   const queryClient = useQueryClient();
 
   const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
@@ -34,7 +33,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
   };
 
   const { mutateAsync: patchDelete } = useMutation({
-    mutationFn: letterAPI.patchDeleteLetter,
+    mutationFn: letterAPI.patchDeleteSend,
   });
 
   const handleDeleteLetter = async (letterId: number) => {
@@ -66,8 +65,12 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
 
   return (
     <StorageContent>
-      {letters.map((item: Reply) => (
-        <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
+      {letters.map((item: SendLetter) => (
+        <LetterCard
+          key={item.letterId}
+          isOpen={isOpen[item.letterId]}
+          css={isOpen[item.letterId] && { height: '24.5rem' }}
+        >
           <div css={style.tags}>
             <TagList tags={getTagList(item)} />
             <Dropdown
@@ -77,7 +80,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
                   icon: <Copy width={20} height={20} />,
                   label: '복사하기',
                   onClick: () => {
-                    handleContentCopy(item.repliedContent);
+                    handleContentCopy(item.content);
                   },
                   color: COLORS.gray2,
                 },
@@ -92,21 +95,21 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
               ]}
             />
           </div>
-          <LetterHeader nickname={item.senderNickname} />
           <LetterAccordion
             id={item.letterId.toString()}
-            text={item.repliedContent}
+            text={item.content}
             date={new Date(item.createdAt)}
-            nickname={item.receiverNickname}
+            nickname={item.senderNickname}
             isOpen={isOpen[item.letterId]}
             onToggle={() => handleAccordionToggle(item.letterId.toString())}
             line={2}
+            type="sendInbox"
           />
-          {isOpen[item.letterId] && item.replyImagePath && (
+          {isOpen[item.letterId] && item.imagePath && (
             <PolaroidModal
-              topPosition={2.5}
+              topPosition={0.5}
               leftPosition={1}
-              img={item.replyImagePath}
+              img={item.imagePath}
             />
           )}
         </LetterCard>
@@ -115,7 +118,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
   );
 };
 
-export default StorageLetter;
+export default StorageSendLetter;
 
 const style = {
   tags: css`

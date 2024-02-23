@@ -7,9 +7,9 @@ interface DescriptionProps {
 
 const Description = ({ children, ...props }: DescriptionProps) => {
   return (
-    <p css={styles.description} {...props}>
+    <div css={styles.description} {...props}>
       {children}
-    </p>
+    </div>
   );
 };
 

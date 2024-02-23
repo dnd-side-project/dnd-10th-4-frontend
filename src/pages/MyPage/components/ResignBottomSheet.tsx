@@ -37,6 +37,8 @@ const ResignBottomSheet = ({ value, on, off }: ResignBottomSheetProps) => {
       navigate(ROUTER_PATHS.SIGNIN);
       off();
     } catch (err) {
+      console.error(err);
+
       const message =
         isAxiosError(err) && err.response?.data
           ? err.response.data

@@ -1,24 +1,29 @@
+import { useState } from 'react';
 import { css } from '@emotion/react';
 import { ScrolLetter } from '@/assets/icons';
 import { ROUTER_PATHS } from '@/router';
 import PaginationBar from '@/components/PaginationBar';
 import StorageEmpty from '../components/StorageEmpty';
-import { testData } from '../testData';
 import StorageLetter from '../components/StorageLetter';
+import useLetterStorage from '../hooks/useLetterStorage';
 
 const ArchiveLetters = () => {
-  const handlePageChange = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const data = useLetterStorage(currentPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page - 1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      {testData.letters.length > 0 ? (
+      {data.letters.length > 0 ? (
         <div css={style.container}>
-          <StorageLetter letters={testData.letters} />
-          {testData.totalPage > 1 && (
+          <StorageLetter letters={data.letters} />
+          {data.totalPage > 1 && (
             <PaginationBar
-              count={testData.totalPage}
+              count={data.totalPage}
               defaultPage={1}
               onChange={handlePageChange}
             />
