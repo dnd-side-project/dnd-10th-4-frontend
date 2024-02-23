@@ -24,8 +24,7 @@ const useLetterSlides = () => {
     REPLIES_PER_SLIDE,
   );
 
-  const slideLength = Math.max(refinedReceptions.length, refinedReplies.length);
-  const slides = Array.from({ length: slideLength }, (_, idx) => ({
+  const slides = Array.from({ length: MAX_SLIDES }, (_, idx) => ({
     id: idx + 1,
     receptions: refinedReceptions[idx] || [],
     replies: refinedReplies[idx] || [],
