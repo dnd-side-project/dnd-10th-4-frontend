@@ -57,53 +57,72 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
 
   return (
     <StorageContent>
-      {letters
-        .filter((item) => item.letterType !== 'Onboarding')
-        .map((item) => (
-          <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
-            <div css={style.tags}>
+      {letters.map((item) => (
+        <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
+          <div css={style.tags}>
+            {item.letterType !== 'Onboarding' && (
               <TagList tags={getTagList(item)} />
-              <Dropdown
-                triggerComponent={<MoreHorizontal />}
-                options={[
-                  {
-                    icon: <Copy width={20} height={20} />,
-                    label: '복사하기',
-                    onClick: () => {
-                      handleContentCopy(item.repliedContent);
-                    },
-                    color: COLORS.gray2,
-                  },
-                  {
-                    icon: <TrashCan width={20} height={20} />,
-                    label: '편지 버리기',
-                    onClick: () => {
-                      openBottomSheet(item.letterId);
-                    },
-                    color: COLORS.danger,
-                  },
-                ]}
-              />
-            </div>
-            <LetterHeader nickname={item.senderNickname} />
-            <LetterAccordion
-              id={item.letterId.toString()}
-              text={item.repliedContent}
-              date={new Date(item.createdAt)}
-              nickname={item.receiverNickname}
-              isOpen={isOpen[item.letterId]}
-              onToggle={() => handleAccordionToggle(item.letterId.toString())}
-              line={2}
-            />
-            {isOpen[item.letterId] && item.replyImagePath && (
-              <PolaroidModal
-                topPosition={2.5}
-                leftPosition={1}
-                img={item.replyImagePath}
-              />
             )}
-          </LetterCard>
-        ))}
+            <Dropdown
+              triggerComponent={<MoreHorizontal />}
+              options={[
+                {
+                  icon: <Copy width={20} height={20} />,
+                  label: '복사하기',
+                  onClick: () => {
+                    // TODO: 온보딩 편지는 임시로 content를 보여주도록 했습니다. 추후 수정 필요
+                    handleContentCopy(
+                      item.letterType !== 'Onboarding'
+                        ? item.repliedContent
+                        : item.content,
+                    );
+                  },
+                  color: COLORS.gray2,
+                },
+                {
+                  icon: <TrashCan width={20} height={20} />,
+                  label: '편지 버리기',
+                  onClick: () => {
+                    openBottomSheet(item.letterId);
+                  },
+                  color: COLORS.danger,
+                },
+              ]}
+            />
+          </div>
+          <LetterHeader
+            nickname={
+              item.letterType !== 'Onboarding'
+                ? item.senderNickname
+                : '처음 방문한 너에게'
+            }
+          />
+          <LetterAccordion
+            id={item.letterId.toString()}
+            text={
+              item.letterType !== 'Onboarding'
+                ? item.repliedContent
+                : item.content
+            }
+            date={new Date(item.createdAt)}
+            nickname={
+              item.letterType !== 'Onboarding'
+                ? item.receiverNickname
+                : item.senderNickname
+            }
+            isOpen={isOpen[item.letterId]}
+            onToggle={() => handleAccordionToggle(item.letterId.toString())}
+            line={2}
+          />
+          {isOpen[item.letterId] && item.replyImagePath && (
+            <PolaroidModal
+              topPosition={2.5}
+              leftPosition={1}
+              img={item.replyImagePath}
+            />
+          )}
+        </LetterCard>
+      ))}
       <DeleteBottomSheet value={value} on={on} off={off} letterId={deleteId!} />
     </StorageContent>
   );
