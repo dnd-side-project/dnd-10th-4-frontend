@@ -12,6 +12,7 @@ import MyPage from './pages/MyPage';
 import LetterReplyPage from './pages/LetterReplyPage';
 import LetterStoragePage from './pages/LetterStoragePage';
 import LetterReceptionOnboardingPage from './pages/LetterReceptionOnboardingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const ROUTER_PATHS = {
   ROOT: '/',
@@ -87,7 +88,7 @@ const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <div>잘못된 경로입니다.</div>,
+        element: <NotFoundPage />,
       },
     ],
   },
