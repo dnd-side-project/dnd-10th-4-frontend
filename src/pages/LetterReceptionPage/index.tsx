@@ -5,9 +5,9 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import LetterAccessFallback from '@/components/ErrorBoundary/fallback/LetterAccessFallback';
 import letterOptions from '@/api/letter/queryOptions';
-import style from './styles';
-import NormalReception from './NormalReception';
 import OnboardingReception from './OnboardingReception';
+import NormalReception from './NormalReception';
+import style from './styles';
 
 const SuspensedPage = () => {
   const { letterId } = useParams();
