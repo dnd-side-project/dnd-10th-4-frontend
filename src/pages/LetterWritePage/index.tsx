@@ -15,8 +15,8 @@ import ERROR_RESPONSES from '@/constants/errorMessages';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
 
 const L = letterWrite;
 
@@ -145,10 +145,13 @@ const LetterWritePage = () => {
         </form>
       </div>
       <BottomSheet open={value} onOpen={on} onClose={off}>
-        <BottomSheet.Title>바텀시트</BottomSheet.Title>
+        <BottomSheet.Title>편지를 보낼까요?</BottomSheet.Title>
+        <BottomSheet.Description>
+          바다로 띄어보낸 편지는 수정할 수 없어요
+        </BottomSheet.Description>
         <BottomSheet.ButtonSection>
           <Button variant="cancel" onClick={off}>
-            닫기
+            취소
           </Button>
           <Button
             variant="primary"
@@ -157,7 +160,7 @@ const LetterWritePage = () => {
               off();
             }}
           >
-            변경 완료
+            보내기
           </Button>
         </BottomSheet.ButtonSection>
       </BottomSheet>
