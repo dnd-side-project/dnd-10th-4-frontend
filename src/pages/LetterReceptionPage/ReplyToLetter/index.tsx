@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
@@ -18,16 +18,13 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import letterOptions from '@/api/letter/queryOptions';
 import { ROUTER_PATHS } from '@/router';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import ImageUploadButton from '@/components/ImageUploadButton';
-import PolaroidModal from '@/components/PolaroidModal';
-import IconButton from '@/components/IconButton';
-import { TrashCan } from '@/assets/icons';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
-import useLetterWithTags from '../hooks/useLetterWithTags';
 import LetterContent from '../components/LetterContent';
-import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import useLetterWithTags from '../hooks/useLetterWithTags';
+import ReplyImage from './ReplyImage';
 import style from './styles';
+import ReceivedAccordionLetter from './ReceivedAccordionLetter';
 
 const L = letterWrite;
 
@@ -74,7 +71,6 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     handleSubmit,
     register,
     watch,
-    setValue,
     formState: { errors },
   } = methods;
 
@@ -135,95 +131,72 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     }
   }, [errors]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files;
-    setValue('image', file);
-  };
-
-  const handleClickTrashCan = () => {
-    setValue('image', undefined);
-  };
-
   return (
-    <LetterContent isBlock={true}>
-      <form onSubmit={handleSubmit(on)}>
-        <div css={style.letter}>
-          <ReceivedAccordionLetter receptionLetter={receptionLetter} />
-          <LetterCard isOpen={true} css={style.card}>
-            <LetterHeader
-              title="To"
-              nickname={receptionLetter.senderNickname}
-            />
-            <LetterTextarea
-              {...register('replyContent')}
-              name="replyContent"
-              placeholder="하고싶은 이야기를 답장으로 적어보세요. (10자 이상)"
-            />
-            <LetterLengthDate letterLength={watch('replyContent').length} />
-            <LetterHeader
-              title="From"
-              titlePosition="right"
-              nickname={receptionLetter.receiverNickname}
-            />
-            {watch('image') ? (
-              <PolaroidModal
-                topPosition={5.5}
-                leftPosition={1.2}
-                img={URL.createObjectURL(watch('image')[0])}
-                headerRightContent={
-                  <IconButton onClick={handleClickTrashCan}>
-                    <TrashCan fill="white" />
-                  </IconButton>
-                }
-              >
-                <Button variant="secondary" size="sm">
-                  닫기
-                </Button>
-              </PolaroidModal>
-            ) : (
-              <ImageUploadButton
-                topPosition={5.5}
-                leftPosition={1.2}
-                onChangeImage={handleFileChange}
+    <FormProvider {...methods}>
+      <LetterContent isBlock={true}>
+        <form onSubmit={handleSubmit(on)}>
+          <div css={style.letter}>
+            <ReceivedAccordionLetter receptionLetter={receptionLetter} />
+            <LetterCard isOpen={true} css={style.card}>
+              <LetterHeader
+                title="To"
+                nickname={receptionLetter.senderNickname}
               />
-            )}
-          </LetterCard>
-        </div>
-        <Navbar css={style.navbar}>
-          <Button type="button" variant="secondary" size="sm" onClick={onPrev}>
-            취소
-          </Button>
-          <Button
-            disabled={isPending}
-            type="submit"
-            variant="primary"
-            size="sm"
-          >
-            {isPending ? <LoadingSpinner /> : '답장 보내기'}
-          </Button>
-        </Navbar>
-      </form>
-      <BottomSheet open={value} onOpen={on} onClose={off}>
-        <BottomSheet.Title>답장을 보낼까요?</BottomSheet.Title>
-        <BottomSheet.Description>
-          낯선이에게 답장은 한번만 가능해요
-        </BottomSheet.Description>
-        <BottomSheet.ButtonSection>
-          <Button variant="cancel" onClick={off}>
-            취소
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              handleSubmit(onSubmit)();
-              off();
-            }}
-          >
-            보내기
-          </Button>
-        </BottomSheet.ButtonSection>
-      </BottomSheet>
-    </LetterContent>
+              <LetterTextarea
+                {...register('replyContent')}
+                name="replyContent"
+                placeholder="하고싶은 이야기를 답장으로 적어보세요. (10자 이상)"
+              />
+              <LetterLengthDate letterLength={watch('replyContent').length} />
+              <LetterHeader
+                title="From"
+                titlePosition="right"
+                nickname={receptionLetter.receiverNickname}
+              />
+              <ReplyImage />
+            </LetterCard>
+          </div>
+          <Navbar css={style.navbar}>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={onPrev}
+            >
+              취소
+            </Button>
+            <Button
+              disabled={isPending}
+              type="submit"
+              variant="primary"
+              size="sm"
+            >
+              {isPending ? <LoadingSpinner /> : '답장 보내기'}
+            </Button>
+          </Navbar>
+        </form>
+        <BottomSheet open={value} onOpen={on} onClose={off}>
+          <BottomSheet.Title>답장을 보낼까요?</BottomSheet.Title>
+          <BottomSheet.Description>
+            낯선이에게 답장은 한번만 가능해요
+          </BottomSheet.Description>
+          <BottomSheet.ButtonSection>
+            <Button variant="cancel" onClick={off}>
+              취소
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                handleSubmit(onSubmit)();
+                off();
+              }}
+            >
+              보내기
+            </Button>
+          </BottomSheet.ButtonSection>
+        </BottomSheet>
+      </LetterContent>
+    </FormProvider>
   );
 };
 
