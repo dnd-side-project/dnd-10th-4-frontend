@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
@@ -56,10 +57,17 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
     navigator.clipboard
       .writeText(content)
       .then(() => {
-        console.log('내용이 복사되었습니다.');
+        toast.success('편지가 복사되었어요.', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
       })
       .catch((error) => {
-        console.error('복사실패', error);
+        console.error(error);
+        toast.error('편지 복사를 실패했어요', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
       });
   };
 
