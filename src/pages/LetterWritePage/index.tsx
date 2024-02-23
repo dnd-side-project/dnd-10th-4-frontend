@@ -12,8 +12,11 @@ import Header from '@/components/Header';
 import { letterWrite } from '@/constants/schemaLiteral';
 import letterAPI from '@/api/letter/apis';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import style from './styles';
+import BottomSheet from '@/components/BottomSheet';
+import useBoolean from '@/hooks/useBoolean';
+import Button from '@/components/Button';
 import { LetterWriteContent, LetterWriteBottom } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -44,6 +47,7 @@ export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
   const navigate = useNavigate();
+  const { value, on, off, toggle } = useBoolean(false);
 
   const methods = useForm<WriteInputs>({
     resolver: zodResolver(writeSchema),
@@ -58,6 +62,7 @@ const LetterWritePage = () => {
   const {
     handleSubmit,
     formState: { errors },
+    watch,
   } = methods;
 
   const { mutateAsync: postLetter, isPending } = useMutation({
@@ -103,7 +108,11 @@ const LetterWritePage = () => {
         hideProgressBar: true,
       });
     } else if (errors.content) {
-      toast.warn('내용을 입력하세요', {
+      const message =
+        watch('content').length === 0
+          ? '내용을 입력하세요'
+          : errors.content.message;
+      toast.warn(message, {
         position: 'bottom-center',
         autoClose: 1500,
         hideProgressBar: true,
@@ -130,11 +139,28 @@ const LetterWritePage = () => {
             />
           }
         />
-        <form onSubmit={handleSubmit(onSubmit)} css={style.contentWrapper}>
+        <form onSubmit={handleSubmit(toggle)} css={style.contentWrapper}>
           <LetterWriteContent />
           <LetterWriteBottom isPending={isPending} />
         </form>
       </div>
+      <BottomSheet open={value} onOpen={on} onClose={off}>
+        <BottomSheet.Title>바텀시트</BottomSheet.Title>
+        <BottomSheet.ButtonSection>
+          <Button variant="cancel" onClick={off}>
+            닫기
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleSubmit(onSubmit)();
+              off();
+            }}
+          >
+            변경 완료
+          </Button>
+        </BottomSheet.ButtonSection>
+      </BottomSheet>
     </FormProvider>
   );
 };

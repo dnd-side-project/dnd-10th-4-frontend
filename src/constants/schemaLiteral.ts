@@ -8,7 +8,7 @@ export const letterWrite = {
   content: {
     min: {
       value: 10,
-      message: '편지 내용은 10자 이상이어야 합니다.',
+      message: '10자 이상 작성해주세요',
     },
     max: {
       value: 300,
