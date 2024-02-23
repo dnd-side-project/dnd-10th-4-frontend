@@ -1,6 +1,6 @@
 import { AddImage } from '@/assets/icons';
+import Tooltip from '../Tooltip';
 import style, { PolaroidSize } from './styles';
-
 interface PolaroidProps {
   /** Polaroid 컴포넌트 사진입니다.  */
   imgUrl?: string;
@@ -31,9 +31,16 @@ const Polaroid = ({
           alt="편지와 함께 보낸 이미지"
         />
       ) : (
-        <div {...props} css={style.empty(topPosition, leftPosition)}>
-          <AddImage fill="#6F6B63" />
-        </div>
+        <Tooltip
+          delay={2000}
+          triggerContent={
+            <div {...props} css={style.empty(topPosition, leftPosition)}>
+              <AddImage fill="#6F6B63" />
+            </div>
+          }
+        >
+          사진을 함께 보낼 수 있어요
+        </Tooltip>
       )}
     </>
   );

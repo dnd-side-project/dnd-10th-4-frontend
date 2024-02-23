@@ -10,8 +10,8 @@ import {
   type EqualGender,
 } from '@/constants/letters';
 import TagList from '@/components/TagList';
+import Tooltip from '@/components/Tooltip';
 import { type WriteInputs } from '..';
-
 interface ReceiverContainerProps {
   onClick: () => void;
   isOpen: boolean;
@@ -55,11 +55,21 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
       ) : (
         <div onClick={onClick} css={style.ReceiverBoxUnSelect}>
           <span>누구에게 보낼까요?</span>
-          <CaretDown
-            css={style.caretDown(isOpen)}
-            stroke={COLORS.gray3}
-            strokeWidth={2}
-          />
+          <Tooltip
+            delay={2000}
+            align="end"
+            triggerContent={
+              <div>
+                <CaretDown
+                  css={style.caretDown(isOpen)}
+                  stroke={COLORS.gray3}
+                  strokeWidth={2}
+                />
+              </div>
+            }
+          >
+            편지를 누구에게 보낼지 선택해 주세요.
+          </Tooltip>
         </div>
       )}
     </div>
