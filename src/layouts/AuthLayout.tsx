@@ -4,6 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import memberOptions from '@/api/member/queryOptions';
 import { ROUTER_PATHS } from '@/router';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const SuspensedLayout = () => {
   useSuspenseQuery(memberOptions.detail());
@@ -17,7 +18,7 @@ const AuthLayout = () => {
   }
 
   return (
-    <Suspense fallback={<>로딩중</>}>
+    <Suspense fallback={<LoadingScreen />}>
       <SuspensedLayout />
     </Suspense>
   );
