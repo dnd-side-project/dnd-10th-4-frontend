@@ -35,6 +35,7 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
         autoClose: 1500,
         position: 'bottom-center',
       });
+      navigate(ROUTER_PATHS.ROOT);
     } catch (error) {
       if (
         isAxiosError(error) &&
