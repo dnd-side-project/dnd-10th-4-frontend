@@ -103,6 +103,14 @@ const letterAPI = {
     return data;
   },
 
+  /** 온보딩 편지 보관함에 보관 */
+  patchOnboardingStorage: async (letterId: number) => {
+    const { data } = await authInstance.patch(
+      `/api/letter/onboarding/storage/${letterId}`,
+    );
+    return data;
+  },
+
   /** 보관한 편지 페이징 조회 */
   getStoragePaging: async (page: string) => {
     const { data } = await authInstance.get<Storage>(`/api/letter/storage`, {

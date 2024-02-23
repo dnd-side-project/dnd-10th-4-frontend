@@ -214,6 +214,26 @@ const letterHandler = [
     }),
   ),
 
+  http.patch(
+    baseURL('/api/letter/onboarding/storage/:letterId'),
+    withAuth(async () => {
+      await delay(1000);
+
+      const status: number = 200;
+
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.unAnsweredLetterStore, {
+            status: 400,
+          });
+        default:
+          break;
+      }
+    }),
+  ),
+
   http.get(
     baseURL('/api/letter/storage'),
     withAuth(async (req) => {

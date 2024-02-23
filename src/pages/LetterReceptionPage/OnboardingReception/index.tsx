@@ -37,7 +37,7 @@ const OnboardingReception = () => {
   );
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: letterAPI.patchReplyStorage,
+    mutationFn: letterAPI.patchOnboardingStorage,
   });
 
   const createdAt = useMemo(

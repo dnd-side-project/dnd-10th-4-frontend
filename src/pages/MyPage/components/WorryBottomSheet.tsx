@@ -17,6 +17,8 @@ import memberOptions from '@/api/member/queryOptions';
 import { toggleItemInArray } from '@/utils/arrayUtils';
 import { formLiteral } from '@/pages/OnboardingPage/hooks/useOnboardingForm';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { ArrowClockWise } from '@/assets/icons';
+import COLORS from '@/constants/colors';
 
 interface WorryBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
@@ -31,14 +33,19 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
   const { mutateAsync: postWorry, isPending: isPosting } = useMutation({
     mutationFn: memberAPI.postWorry,
   });
-  const queryClient = useQueryClient();
-
-  const [worries, setWorries] = useState<Worry[]>(member.worryTypes);
-
   const isPending = isDeleting || isPosting;
+
+  const queryClient = useQueryClient();
+  const [worries, setWorries] = useState<Worry[]>(member.worryTypes);
+  const [iconRotation, setIconRotation] = useState<number>(0);
 
   const handleToggleWorry = (worry: Worry) => {
     setWorries(toggleItemInArray(worries, worry));
+  };
+
+  const onRefreshIconClick = () => {
+    setWorries([]);
+    setIconRotation((prev) => prev + 360);
   };
 
   const handleSubmit = async () => {
@@ -69,7 +76,14 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
 
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>
-      <BottomSheet.Title>어떤 고민으로 변경하시겠어요?</BottomSheet.Title>
+      <BottomSheet.Title css={css({ position: 'relative' })}>
+        <p>어떤 고민으로 변경하시겠어요?</p>
+        <ArrowClockWise
+          css={styles.refreshIcon(iconRotation)}
+          color={COLORS.gray2}
+          onClick={onRefreshIconClick}
+        />
+      </BottomSheet.Title>
       <BottomSheet.Content>
         <section css={styles.chipSection}>
           {Object.entries(WORRY_DICT).map(([key, value]) => (
@@ -118,5 +132,13 @@ const styles = {
     flex-wrap: wrap;
     gap: 0.25rem;
     justify-content: center;
+  `,
+  refreshIcon: (rotaion: number) => css`
+    position: absolute;
+    top: 0.6rem;
+    right: 1rem;
+    cursor: pointer;
+    transition: transform 0.5s;
+    transform: rotate(${rotaion}deg);
   `,
 };
