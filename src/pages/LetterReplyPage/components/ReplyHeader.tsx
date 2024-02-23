@@ -31,7 +31,6 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
           <Tooltip
             delay={3000}
             align="start"
-            mountKey="replyTimeChip"
             triggerContent={
               <div>
                 <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
