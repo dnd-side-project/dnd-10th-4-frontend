@@ -281,6 +281,7 @@ export const ReceivedLetterResponse = [
 
 export const RepliedLettersResponse = [
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 1,
@@ -298,6 +299,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 2,
@@ -315,6 +317,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 3,
@@ -332,6 +335,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 4,
@@ -349,6 +353,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 5,
@@ -366,6 +371,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 6,
@@ -383,6 +389,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 7,
@@ -400,6 +407,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 8,
@@ -417,6 +425,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 9,
@@ -434,6 +443,7 @@ export const RepliedLettersResponse = [
     replyImagePath: null,
   },
   {
+    letterType: null,
     createdAt: '2024-02-05T15:40:44',
     repliedAt: '2024-02-07T15:40:44',
     letterId: 10,
