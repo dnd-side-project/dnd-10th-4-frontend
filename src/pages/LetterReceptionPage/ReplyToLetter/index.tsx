@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
@@ -21,10 +22,12 @@ import ImageUploadButton from '@/components/ImageUploadButton';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { TrashCan } from '@/assets/icons';
-import LetterContent from '../components/LetterContent';
+import useBoolean from '@/hooks/useBoolean';
+import BottomSheet from '@/components/BottomSheet';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import style from './styles';
+import LetterContent from '../components/LetterContent';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -57,7 +60,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
 
   const navigate = useNavigate();
-
+  const { value, on, off } = useBoolean(false);
   const queryClient = useQueryClient();
 
   const methods = useForm<ReplyInputs>({
@@ -84,6 +87,10 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
       await patchReply({ letterId: receptionLetter.letterId, letter: data });
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
       navigate(ROUTER_PATHS.ROOT);
+      toast.success('편지를 바다에 띄어보냈어요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+      });
     } catch (error) {
       if (isAxiosError(error)) {
         if (
@@ -108,6 +115,26 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     }
   };
 
+  useEffect(() => {
+    if (errors.replyContent) {
+      const message =
+        watch('replyContent').length === 0
+          ? '내용을 입력하세요'
+          : errors.replyContent.message;
+      toast.warn(message, {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    } else if (errors.image) {
+      toast.warn(errors.image.message?.toString(), {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    }
+  }, [errors]);
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
     setValue('image', file);
@@ -119,7 +146,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
 
   return (
     <LetterContent isBlock={true}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(on)}>
         <div css={style.letter}>
           <ReceivedAccordionLetter receptionLetter={receptionLetter} />
           <LetterCard isOpen={true} css={style.card}>
@@ -176,9 +203,26 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
           </Button>
         </Navbar>
       </form>
-      {/** 임시 에러 출력용 */}
-      {errors.replyContent && <p>{errors.replyContent.message}</p>}
-      {errors.image && <p>{errors.image.message?.toString()}</p>}
+      <BottomSheet open={value} onOpen={on} onClose={off}>
+        <BottomSheet.Title>답장을 보낼까요?</BottomSheet.Title>
+        <BottomSheet.Description>
+          낯선이에게 답장은 한번만 가능해요
+        </BottomSheet.Description>
+        <BottomSheet.ButtonSection>
+          <Button variant="cancel" onClick={off}>
+            취소
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleSubmit(onSubmit)();
+              off();
+            }}
+          >
+            보내기
+          </Button>
+        </BottomSheet.ButtonSection>
+      </BottomSheet>
     </LetterContent>
   );
 };
