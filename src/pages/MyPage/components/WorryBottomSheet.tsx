@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import {
   useMutation,
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
@@ -40,14 +42,29 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
   };
 
   const handleSubmit = async () => {
-    await deleteWorry();
-    await postWorry({ worries });
+    try {
+      await deleteWorry();
+      await postWorry({ worries });
 
-    queryClient.invalidateQueries({
-      queryKey: memberOptions.detail().queryKey,
-    });
+      queryClient.invalidateQueries({
+        queryKey: memberOptions.detail().queryKey,
+      });
 
-    off();
+      toast.success('고민이 변경되었어요', {
+        position: 'bottom-center',
+      });
+
+      off();
+    } catch (err) {
+      console.error(err);
+
+      const message =
+        (isAxiosError(err) && err.response?.data) ?? '고민 변경에 실패했어요';
+
+      toast.error(message, {
+        position: 'bottom-center',
+      });
+    }
   };
 
   return (

@@ -34,7 +34,11 @@ const CarouselArea = () => {
           {slides.map(({ id: slideId, receptions, replies }) => (
             <article key={slideId} css={styles.slide}>
               {receptions.map((reception, i) => (
-                <ReceptionBottle key={i} constantId={i} reception={reception} />
+                <ReceptionBottle
+                  key={reception.letterId}
+                  constantId={i}
+                  reception={reception}
+                />
               ))}
 
               {replies.map((reply, i) => (
@@ -45,17 +49,18 @@ const CarouselArea = () => {
         </div>
       </section>
 
+      <section css={styles.dotsSection}>
+        {slides.map((slide, idx) => (
+          <p
+            key={slide.id}
+            css={styles.dot(selectedIndex === idx)}
+            onClick={() => emblaApi?.scrollTo(idx)}
+          />
+        ))}
+      </section>
+
       {slides.length > 1 && (
         <>
-          <section css={styles.dotsSection}>
-            {slides.map((slide, idx) => (
-              <p
-                key={slide.id}
-                css={styles.dot(selectedIndex === idx)}
-                onClick={() => emblaApi?.scrollTo(idx)}
-              />
-            ))}
-          </section>
           <IconButton
             variant="carousel"
             css={[styles.carouselButton, css({ left: '1rem' })]}

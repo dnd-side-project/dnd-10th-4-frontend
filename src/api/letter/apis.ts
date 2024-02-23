@@ -1,8 +1,8 @@
 import { Storage, type Reception, type Reply, Send } from '@/types/letter';
 import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
-import { type ReplyInputs } from '@/pages/LetterReceptionPage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
+import { type ReplyInputs } from '@/pages/LetterReceptionPage/NormalReception';
 import { authInstance } from '../instance';
 
 const letterAPI = {

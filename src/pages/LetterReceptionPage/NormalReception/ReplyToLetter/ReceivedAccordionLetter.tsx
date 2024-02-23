@@ -18,7 +18,7 @@ const ReceivedAccordionLetter = ({
   return (
     <LetterCard css={{ marginBottom: '1rem' }}>
       <TagList tags={receptionLetter.tagList} />
-      <LetterHeader nickname={receptionLetter.receiverNickname} />
+      <LetterHeader nickname={receptionLetter.receiverNickname ?? ''} />
       <LetterAccordion
         isOpen={isOpen}
         onToggle={accordionToggle}

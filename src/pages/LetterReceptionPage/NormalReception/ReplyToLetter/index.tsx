@@ -118,7 +118,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
             <LetterHeader
               title="From"
               titlePosition="right"
-              nickname={receptionLetter.receiverNickname}
+              nickname={receptionLetter.receiverNickname ?? ''}
             />
             <ReplyImage />
           </LetterCard>

@@ -14,7 +14,7 @@ const useLetterWithTags = (letterId: number) => {
 
   const tagList = data
     ? [
-        WORRY_DICT[data.worryType],
+        WORRY_DICT[data.worryType as keyof typeof WORRY_DICT],
         `${data.letterTag?.ageRangeStart}~${data.letterTag?.ageRangeEnd}세`,
         data.letterTag?.equalGender ? '동성에게' : '모두에게',
       ]

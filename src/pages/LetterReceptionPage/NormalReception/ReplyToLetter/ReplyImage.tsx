@@ -7,7 +7,7 @@ import { TrashCan } from '@/assets/icons';
 import ImageUploadButton from '@/components/ImageUploadButton';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
-import { ReplyInputs } from '..';
+import { type ReplyInputs } from '..';
 
 const ReplyImage = () => {
   const { value, on, off } = useBoolean(false);

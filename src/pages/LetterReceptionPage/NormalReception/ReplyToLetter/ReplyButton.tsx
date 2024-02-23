@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
-import { ReplyInputs } from '..';
+import { type ReplyInputs } from '..';
 
 interface ReplyButtonProps {
   isPending: boolean;
