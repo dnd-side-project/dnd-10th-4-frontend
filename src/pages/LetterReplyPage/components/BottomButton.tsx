@@ -4,7 +4,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
-import { TreasureChestOutline } from '@/assets/icons';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
@@ -61,18 +60,11 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
             size="sm"
             onClick={handleStorageLetter}
           >
-            {isPending ? (
-              <LoadingSpinner />
-            ) : (
-              <>
-                <TreasureChestOutline />
-                보관하기
-              </>
-            )}
+            {isPending ? <LoadingSpinner /> : <>보관하기</>}
           </Button>
         }
       >
-        편지를 보관하면 <br /> 시간이 지나도 사라지지 않아요
+        편지를 보관하여 간직해보세요
       </Tooltip>
     </Navbar>
   );
