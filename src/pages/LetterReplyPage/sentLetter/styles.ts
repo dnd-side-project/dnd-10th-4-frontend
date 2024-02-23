@@ -13,7 +13,7 @@ const style = {
     cursor: pointer;
 
     :hover {
-      background: ${COLORS.gray6};
+      background: #e5dfcc;
     }
   `,
   text: css`
