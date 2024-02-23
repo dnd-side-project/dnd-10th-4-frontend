@@ -11,7 +11,10 @@ const REPLIES_PER_SLIDE = 2;
 
 const useLetterSlides = () => {
   const [{ data: receptions }, { data: replies }] = useSuspenseQueries({
-    queries: [letterOptions.reception(), letterOptions.reply()],
+    queries: [
+      { ...letterOptions.reception(), refetchInterval: 60000 },
+      { ...letterOptions.reply(), refetchInterval: 60000 },
+    ],
   });
 
   const refinedReceptions = chunkArray(
@@ -24,8 +27,7 @@ const useLetterSlides = () => {
     REPLIES_PER_SLIDE,
   );
 
-  const slideLength = Math.max(refinedReceptions.length, refinedReplies.length);
-  const slides = Array.from({ length: slideLength }, (_, idx) => ({
+  const slides = Array.from({ length: MAX_SLIDES }, (_, idx) => ({
     id: idx + 1,
     receptions: refinedReceptions[idx] || [],
     replies: refinedReplies[idx] || [],

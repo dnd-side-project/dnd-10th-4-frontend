@@ -6,7 +6,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import Button from '@/components/Button';
 import textStyles from '@/styles/textStyles';
@@ -14,6 +14,7 @@ import { ROUTER_PATHS } from '@/constants/routerPaths';
 import memberAPI from '@/api/member/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import memberOptions from '@/api/member/queryOptions';
 import StepTemplate from '../components/StepTemplate';
 import { Inputs, formLiteral } from '../hooks/useOnboardingForm';
 
@@ -27,6 +28,8 @@ const LastStep = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: memberAPI.patchMemberDetail,
   });
+
+  const queryClient = useQueryClient();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const year = data.birthday.year
@@ -49,6 +52,7 @@ const LastStep = () => {
         birthday,
       });
 
+      queryClient.invalidateQueries(memberOptions.detail());
       navigate(ROUTER_PATHS.ROOT);
 
       toast.success('프로필이 완성됐어요', {
