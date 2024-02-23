@@ -15,6 +15,7 @@ const RootUnknownFallback = ({ error }: FallbackProps) => {
   const shouldSkip =
     isAxiosError(error) &&
     (error.response?.data === ERROR_RESPONSES.reissueFailed ||
+      error.response?.data === ERROR_RESPONSES.memberNotFound ||
       error.response?.data === ERROR_RESPONSES.authenticationEntryPoint);
 
   useEffect(() => {

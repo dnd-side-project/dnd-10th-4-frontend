@@ -12,7 +12,8 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     !isAxiosError(error) ||
     error.response?.data === ERROR_RESPONSES.accessExpired ||
     error.response?.data === ERROR_RESPONSES.reissueFailed ||
-    error.response?.data === ERROR_RESPONSES.authenticationEntryPoint;
+    error.response?.data === ERROR_RESPONSES.authenticationEntryPoint ||
+    error.response?.data === ERROR_RESPONSES.memberNotFound;
 
   useEffect(() => {
     if (shouldSkip) {
