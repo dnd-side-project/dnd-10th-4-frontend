@@ -14,10 +14,13 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
+import useBoolean from '@/hooks/useBoolean';
+import BottomSheet from '@/components/BottomSheet';
 import useLetterWithTags from '../hooks/useLetterWithTags';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
+
 interface ReceivedLetterProps {
   letterId: number;
   onNext: () => void;
@@ -28,6 +31,7 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { value, on, off } = useBoolean(false);
 
   const { mutateAsync: patchToss, isPending } = useMutation({
     mutationFn: letterAPI.patchReceptionPass,
@@ -38,6 +42,10 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
       await patchToss(receptionLetter.letterId);
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
       navigate(ROUTER_PATHS.ROOT);
+      toast.success('편지를 다시 바다에 흘러보냈어요', {
+        position: 'bottom-center',
+        autoClose: 1500,
+      });
     } catch (error) {
       if (
         isAxiosError(error) &&
@@ -75,12 +83,7 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
         )}
       </LetterCard>
       <Navbar css={style.navbar}>
-        <Button
-          disabled={isPending}
-          variant="secondary"
-          size="sm"
-          onClick={handleTossLetter}
-        >
+        <Button disabled={isPending} variant="secondary" size="sm" onClick={on}>
           {isPending ? <LoadingSpinner /> : '다시 흘려보내기'}
         </Button>
         <Tooltip
@@ -95,6 +98,26 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
           사라지기전에 답장을 보내보세요!
         </Tooltip>
       </Navbar>
+      <BottomSheet open={value} onOpen={on} onClose={off}>
+        <BottomSheet.Title>편지를 바다에 흘려보낼까요?</BottomSheet.Title>
+        <BottomSheet.Description>
+          흘려보낸 편지는 답장할 수 없어요
+        </BottomSheet.Description>
+        <BottomSheet.ButtonSection>
+          <Button variant="cancel" onClick={off}>
+            취소
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleTossLetter();
+              off();
+            }}
+          >
+            흘려보내기
+          </Button>
+        </BottomSheet.ButtonSection>
+      </BottomSheet>
     </LetterContent>
   );
 };
