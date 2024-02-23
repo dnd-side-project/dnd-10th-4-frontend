@@ -12,7 +12,7 @@ const style = {
 
     display: flex;
     gap: 0.25rem;
-    padding-right: 2.3125rem;
+    padding-right: 1.3rem;
 
     :hover {
       background-color: ${COLORS.gray5};

@@ -1,7 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import LetterAccordion from '@/components/LetterAccordion';
 import LetterCard from '@/components/LetterCard';
 import LetterHeader from '@/components/LetterHeader';
@@ -11,10 +10,9 @@ import Dropdown from '@/components/Dropdown';
 import COLORS from '@/constants/colors';
 import PolaroidModal from '@/components/PolaroidModal';
 import { Reply } from '@/types/letter';
-import letterAPI from '@/api/letter/apis';
-import letterOptions from '@/api/letter/queryOptions';
-import ERROR_RESPONSES from '@/constants/errorMessages';
+import useBoolean from '@/hooks/useBoolean';
 import { getTagList } from '../utils/tagUtills';
+import DeleteBottomSheet from './DeleteBottomSheet';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
@@ -22,9 +20,10 @@ interface StorageLetterProps {
 }
 
 const StorageLetter = ({ letters }: StorageLetterProps) => {
-  const queryClient = useQueryClient();
+  const { value, on, off } = useBoolean(false);
 
   const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const handleAccordionToggle = (id: string) => {
     setIsOpen((prevState) => ({
@@ -33,35 +32,27 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
     }));
   };
 
-  const { mutateAsync: patchDelete } = useMutation({
-    mutationFn: letterAPI.patchDeleteLetter,
-  });
-
-  const handleDeleteLetter = async (letterId: number) => {
-    try {
-      await patchDelete(letterId);
-      queryClient.invalidateQueries({ queryKey: letterOptions.all });
-    } catch (error) {
-      if (
-        isAxiosError(error) &&
-        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
-      ) {
-        console.error(error.response.data);
-      } else {
-        throw error;
-      }
-    }
-  };
-
   const handleContentCopy = (content: string) => {
     navigator.clipboard
       .writeText(content)
       .then(() => {
-        console.log('내용이 복사되었습니다.');
+        toast.success('편지가 복사되었어요.', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
       })
       .catch((error) => {
-        console.error('복사실패', error);
+        console.error(error);
+        toast.error('편지 복사를 실패했어요', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
       });
+  };
+
+  const openBottomSheet = (letterId: number) => {
+    on();
+    setDeleteId(letterId);
   };
 
   return (
@@ -83,9 +74,9 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
                 },
                 {
                   icon: <TrashCan width={20} height={20} />,
-                  label: '삭제하기',
+                  label: '편지 버리기',
                   onClick: () => {
-                    handleDeleteLetter(item.letterId);
+                    openBottomSheet(item.letterId);
                   },
                   color: COLORS.danger,
                 },
@@ -111,6 +102,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           )}
         </LetterCard>
       ))}
+      <DeleteBottomSheet value={value} on={on} off={off} letterId={deleteId!} />
     </StorageContent>
   );
 };
