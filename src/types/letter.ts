@@ -62,5 +62,5 @@ export type Send = {
   totalElements: number;
   totalPage: number;
   hasNextPage: boolean;
-  postList: SendLetter[];
+  letters: SendLetter[];
 };
