@@ -30,6 +30,8 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
 <table>
     <tbody>
         <tr>
+            <td><img src="" width="100px" height="100px"/></td>
+            <td><img src="" width="100px" height="100px"/></td>
             <td>
                 <a href="https://github.com/bbearcookie">
                     <img src="https://avatars.githubusercontent.com/bbearcookie" width="100px" height="100px"/>
@@ -53,30 +55,42 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
         </tr>
         <tr>
             <th>
-            이상훈
+                신지예
             </th>
             <th>
-            이지현
+                박예원
             </th>
             <th>
-            김동웅
+                <a href="https://github.com/bbearcookie">이상훈</a>
             </th>
             <th>
-            신재원
+                <a href="https://github.com/easyhyun00">이지현</a>
+            </th>
+            <th>
+                <a href="https://github.com/Dongwoongkim">김동웅</a>
+            </th>
+            <th>
+                <a href="https://github.com/shinjaewon99">신재원</a>
             </th>
         </tr>
         <tr>
             <th>
-            FrontEnd
+                Design
             </th>
             <th>
-            FrontEnd
+                Design
             </th>
             <th>
-            BackEnd
+                FrontEnd
             </th>
             <th>
-            BackEnd
+                FrontEnd
+            </th>
+            <th>
+                BackEnd
+            </th>
+            <th>
+                BackEnd
             </th>
         </tr>
     </tbody>
