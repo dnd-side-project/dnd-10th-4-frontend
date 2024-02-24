@@ -1,5 +1,15 @@
-## 내 마음 속 바다
-![Logo (1024_1024)](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/fca65f80-0c00-41d1-b39e-b15a0e1ab2ae)
+<table border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/fca65f80-0c00-41d1-b39e-b15a0e1ab2ae" width="150" height="150" />
+            </td>
+            <td>
+                <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/55b7dc98-3977-43a2-9eaa-c828b5e9d845" height="150" />
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 언제나 힐링이 필요한 순간, 바다의 풍경이 감정적인 안정을 가져다주는 영감에서 출발한 서비스입니다.  
 혹시 마음 속 고민이 있지만 주변 지인에게 부담을 줄까봐 쉽게 털어놓지 못했던 경험이 있지는 않으셨나요?
@@ -36,12 +46,12 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
         <tr>
             <td>
                 <a href="https://github.com/bbearcookie">
-                    <img src="https://avatars.githubusercontent.com/bbearcookie" width="100px" height="100px"/>
+                    <img src="https://avatars.githubusercontent.com/bbearcookie" width="100" height="100"/>
                 </a>
             </td>
             <td>
                 <a href="https://github.com/easyhyun00">
-                    <img src="https://avatars.githubusercontent.com/easyhyun00" width="100px" height="100px"/>
+                    <img src="https://avatars.githubusercontent.com/easyhyun00" width="100" height="100"/>
                 </a>  
             </td>
             <td>
