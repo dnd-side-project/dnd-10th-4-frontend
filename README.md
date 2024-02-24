@@ -25,13 +25,15 @@ npm run storybook # 로컬에서 스토리북 실행
 
 https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9-2ee6-44c0-b44c-f922d0e3bf00
 
+## 기술 스택
+
+![image](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/d30c47b2-1892-49a1-b2b1-d206842839a6)
+
 ## 팀 소개
 
 <table>
     <tbody>
         <tr>
-            <td><img src="" width="100px" height="100px"/></td>
-            <td><img src="" width="100px" height="100px"/></td>
             <td>
                 <a href="https://github.com/bbearcookie">
                     <img src="https://avatars.githubusercontent.com/bbearcookie" width="100px" height="100px"/>
@@ -52,14 +54,10 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
                     <img src="https://avatars.githubusercontent.com/shinjaewon99" width="100px" height="100px"/>
                 </a>  
             </td>
+            <td><img src="https://placehold.co/100" width="100px" height="100px"/></td>
+            <td><img src="https://placehold.co/100" width="100px" height="100px"/></td>
         </tr>
         <tr>
-            <th>
-                신지예
-            </th>
-            <th>
-                박예원
-            </th>
             <th>
                 <a href="https://github.com/bbearcookie">이상훈</a>
             </th>
@@ -72,15 +70,15 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
             <th>
                 <a href="https://github.com/shinjaewon99">신재원</a>
             </th>
+            <th>
+                신지예
+            </th>
+            <th>
+                박예원
+            </th>
         </tr>
         <tr>
             <th>
-                Design
-            </th>
-            <th>
-                Design
-            </th>
-            <th>
                 FrontEnd
             </th>
             <th>
@@ -91,6 +89,12 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
             </th>
             <th>
                 BackEnd
+            </th>
+            <th>
+                Design
+            </th>
+            <th>
+                Design
             </th>
         </tr>
     </tbody>
