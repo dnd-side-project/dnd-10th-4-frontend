@@ -90,5 +90,5 @@ jobs:
         with:
           comment_tag: ${{github.event.number}}-vercel
           message: |
-            🚀 React Preview 보러가기: ${{ steps.deploy.outputs.preview_url }}
+            🎮 React Preview 보러가기: ${{ steps.deploy.outputs.preview_url }}
             ⏰ 배포 일시: ${{ steps.current-time.outputs.readableTime }}
