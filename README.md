@@ -49,7 +49,9 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
 
 ## 기술 스택
 
-![image](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/d30c47b2-1892-49a1-b2b1-d206842839a6)
+<p align="center">
+    <img width=800" src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/98106371/6cd41355-c863-4212-a5cb-1c20735052eb" />
+</p>
 
 ## 팀 소개
 
