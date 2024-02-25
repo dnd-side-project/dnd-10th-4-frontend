@@ -17,22 +17,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Node.js 설치
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-          cache: 'npm'
-
-      - name: 의존성 캐싱
-        uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-      - name: 의존성 설치
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Node.js 및 NPM 설치
+        uses: ./.github/actions/install
 
       - name: Chromatic에 배포
         id: chromatic
