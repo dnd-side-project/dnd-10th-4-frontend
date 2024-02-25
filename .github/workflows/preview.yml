@@ -9,8 +9,11 @@ on:
     branches: ['main', feat/**, refactor/**, fix/**, chore/**]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: ['build', 'test']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,8 +21,7 @@ jobs:
       - name: Node.js 및 NPM 설치
         uses: ./.github/actions/install
 
-      - name: React 빌드
-        run: npm run build --if-present
+      - run: npm run ${{ matrix.command }}
 
   chromatic-preview:
     runs-on: ubuntu-latest
