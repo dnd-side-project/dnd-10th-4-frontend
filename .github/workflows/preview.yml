@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        command: ['build', 'test']
+        command: ['lint', 'build', 'test']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
