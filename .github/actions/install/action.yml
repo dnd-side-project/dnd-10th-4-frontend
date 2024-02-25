@@ -17,5 +17,6 @@ runs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
     - name: 의존성 설치
+      shell: bash
       if: steps.npm-cache.outputs.cache-hit != 'true'
       run: npm ci
