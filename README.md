@@ -3,6 +3,8 @@
     <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/55b7dc98-3977-43a2-9eaa-c828b5e9d845" height="150" />
 </section>
 
+<br/>
+
 ## 내 마음 속 바다
 
 언제나 힐링이 필요한 순간, 바다의 풍경이 감정적인 안정을 가져다주는 영감에서 출발한 서비스에요. 
@@ -10,6 +12,8 @@
 
 **🌊 내 마음 속의 바다**에서는 남들에게 털어놓지 못하는 이야기를 물병에 담아 바다에 띄워 보낼 수 있어요. 
 바다를 건너 물병을 받은 상대방은 당신이 누구인지 알 수 없고, 비슷한 고민을 했을지도 모르는 상대방으로부터 위로의 답장을 주고 받을 수 있어요.
+
+<br/>
 
 ## 핵심 기능
 <img align="right" src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/a822556c-f7e9-466e-8688-1f4947a85bb5" height="500" />
@@ -29,10 +33,14 @@
 > 나에게 큰 위로가 되었던, 혹은 마음에 와닿았던 편지는 내 보관함에 저장하고 언제든지 다시 읽을 수 있어요.  
 > 마음에 들지 않거나 불편한 편지는 신고할 수 있어요. 내 마음 속 바다에서는 힐링과 따뜻함만을 느낄 수 있도록 도와드려요.
 
+<br/>
+
 ## 배포 주소
 
 🖥️ 서비스 배포 주소 - https://sea-of-my-heart.vercel.app/  
 🎨 Storybook 주소 - https://main--65a6c73d536a3c43b7c5c9bb.chromatic.com/
+
+<br/>
 
 ## 로컬 실행 커맨드
 
@@ -43,15 +51,21 @@ npm run dev # 로컬에서 개발 서버 실행
 npm run storybook # 로컬에서 스토리북 실행
 ```
 
+<br/>
+
 ## 시연 영상
 
 https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9-2ee6-44c0-b44c-f922d0e3bf00
+
+<br/>
 
 ## 기술 스택
 
 <p align="center">
     <img width=800" src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/98106371/6cd41355-c863-4212-a5cb-1c20735052eb" />
 </p>
+
+<br/>
 
 ## 팀 소개
 
