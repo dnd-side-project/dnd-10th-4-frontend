@@ -1,4 +1,4 @@
-<section>
+<section align="center">
     <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/fca65f80-0c00-41d1-b39e-b15a0e1ab2ae" width="150" height="150" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/55b7dc98-3977-43a2-9eaa-c828b5e9d845" height="150" />
 </section>
@@ -55,7 +55,7 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
 
 ## 팀 소개
 
-<table>
+<table align="center">
     <tbody>
         <tr>
             <td>
