@@ -1,0 +1,22 @@
+name: Install
+description: 'Node.js와 NPM 패키지를 설치합니다.'
+runs:
+  using: composite
+  steps:
+    - name: Node.js 설치
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+
+    - name: 의존성 캐싱
+      uses: actions/cache@v3
+      id: npm-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+    - name: 의존성 설치
+      shell: bash
+      if: steps.npm-cache.outputs.cache-hit != 'true'
+      run: npm ci

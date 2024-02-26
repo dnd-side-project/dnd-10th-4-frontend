@@ -1,39 +1,23 @@
 name: Preview
 
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 on:
   pull_request:
     branches: ['main', feat/**, refactor/**, fix/**, chore/**]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: ['build', 'test']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Node.js 설치
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-          cache: 'npm'
+      - name: Node.js 및 NPM 설치
+        uses: ./.github/actions/install
 
-      - name: 의존성 캐싱
-        uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-      - name: 의존성 설치
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: React 빌드
-        run: npm run build --if-present
+      - run: npm run ${{ matrix.command }}
 
   chromatic-preview:
     runs-on: ubuntu-latest
@@ -43,21 +27,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Node.js 설치
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: 의존성 캐싱
-        uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-      - name: 의존성 설치
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Node.js 및 NPM 설치
+        uses: ./.github/actions/install
 
       - name: Chromatic에 배포
         id: chromatic
@@ -67,11 +38,29 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           onlyChanged: true
           autoAcceptChanges: true
+
+      - name: 현재 시간 가져오기
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDD-HH
+          utcOffset: '+09:00'
+
+      - name: PR 코멘트로 Preview URL 남기기
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: ${{github.event.number}}-chromatic
+          message: |
+            🚀 Storybook Preview 보러가기: ${{ steps.chromatic.outputs.storybookUrl }}
+            ⏰ 배포 일시: ${{ steps.current-time.outputs.readableTime }}
     outputs:
       storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
 
   vercel-preview:
     runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -89,17 +78,18 @@ jobs:
         run: |
           vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > vercel-output.txt
           echo "preview_url=$(cat vercel-output.txt)" >> $GITHUB_OUTPUT
-    outputs:
-      vercel_url: ${{ steps.deploy.outputs.preview_url }}
 
-  github-bot:
-    runs-on: ubuntu-latest
-    needs: [chromatic-preview, vercel-preview]
-    steps:
+      - name: 현재 시간 가져오기
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDD-HH
+          utcOffset: '+09:00'
+
       - name: PR 코멘트로 Preview URL 남기기
         uses: thollander/actions-comment-pull-request@v2
         with:
-          comment_tag: ${{github.event.number}}
+          comment_tag: ${{github.event.number}}-vercel
           message: |
-            🚀 Storybook Preview 보러가기: ${{ needs.chromatic-preview.outputs.storybook_url }}
-            🚀 React Preview 보러가기: ${{ needs.vercel-preview.outputs.vercel_url }}
+            🎮 React Preview 보러가기: ${{ steps.deploy.outputs.preview_url }}
+            ⏰ 배포 일시: ${{ steps.current-time.outputs.readableTime }}
