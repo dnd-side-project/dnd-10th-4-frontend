@@ -83,16 +83,15 @@ const OnboardingReception = () => {
         imagePath={letter.sendImagePath}
         off={handleCloseModal}
       />
-      <Header
-        css={styles.header}
-        leftContent={
+      <Header css={styles.header}>
+        <Header.Left>
           <CaretLeft
             css={styles.icon}
             strokeWidth={2.5}
             onClick={handleNavigateToRoot}
           />
-        }
-      />
+        </Header.Left>
+      </Header>
       <motion.main
         css={styles.main}
         initial={{ opacity: 0 }}

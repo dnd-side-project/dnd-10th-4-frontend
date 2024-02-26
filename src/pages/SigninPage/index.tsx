@@ -13,7 +13,11 @@ const SigninPage = () => {
   return (
     <div css={styles.page}>
       <Header />
-      <Header rightContent={<MusicButton />} />
+      <Header>
+        <Header.Right>
+          <MusicButton />
+        </Header.Right>
+      </Header>
 
       <main css={styles.main}>
         <p css={[textStyles.b2R, css({ marginBottom: '0.375rem' })]}>

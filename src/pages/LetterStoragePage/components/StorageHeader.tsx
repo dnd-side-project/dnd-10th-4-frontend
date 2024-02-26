@@ -9,19 +9,19 @@ const StorageHeader = () => {
   const navigate = useNavigate();
   return (
     <div css={style.container}>
-      <Header
-        variant="primary"
-        css={style.header}
-        leftContent={
+      <Header variant="primary" css={style.header}>
+        <Header.Left>
           <CaretLeft
             strokeWidth={2.5}
             color="white"
             css={style.icon}
             onClick={() => navigate(ROUTER_PATHS.ROOT)}
           />
-        }
-        centerContent={<h2 css={style.title}>보관함</h2>}
-      />
+        </Header.Left>
+        <Header.Center>
+          <h2 css={style.title}>보관함</h2>
+        </Header.Center>
+      </Header>
     </div>
   );
 };

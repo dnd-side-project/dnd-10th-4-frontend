@@ -23,28 +23,30 @@ const NavHeader = ({
   const { toPrev, toLast } = useFunnelContext();
 
   return (
-    <Header
-      leftContent={
-        showBackButton && (
+    <Header>
+      {showBackButton && (
+        <Header.Left>
           <div css={[styles.headerButton, textStyles.b4m]} onClick={toPrev}>
             <CaretLeft />
             뒤로
           </div>
-        )
-      }
-      centerContent={
-        progressValue && progressValue > 0 ? (
+        </Header.Left>
+      )}
+
+      {progressValue && progressValue > 0 ? (
+        <Header.Center>
           <Progress max={4} value={progressValue} />
-        ) : null
-      }
-      rightContent={
-        showSkipButton && (
+        </Header.Center>
+      ) : null}
+
+      {showSkipButton && (
+        <Header.Right>
           <div css={[styles.headerButton, textStyles.b4m]} onClick={toLast}>
             건너 뛰기
           </div>
-        )
-      }
-    />
+        </Header.Right>
+      )}
+    </Header>
   );
 };
 

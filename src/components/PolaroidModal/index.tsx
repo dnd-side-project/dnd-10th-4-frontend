@@ -36,18 +36,17 @@ const PolaroidModal = ({
         imgUrl={img}
       />
       <Modal close={close} isOpen={isOpen}>
-        <Header
-          css={style.modalHeader}
-          leftContent={
+        <Header css={style.modalHeader}>
+          <Header.Left>
             <CaretLeft
               css={style.icon}
               strokeWidth={2.5}
               color="white"
               onClick={close}
             />
-          }
-          rightContent={headerRightContent}
-        />
+          </Header.Left>
+          <Header.Right>{headerRightContent}</Header.Right>
+        </Header>
         <div css={style.modalContainer}>
           <Polaroid imgUrl={img} size="lg" />
           <div onClick={close}>{children}</div>

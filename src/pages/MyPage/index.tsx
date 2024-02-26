@@ -115,14 +115,16 @@ const SuspendedPage = () => {
 const MyPage = () => {
   return (
     <div css={styles.page}>
-      <Header
-        leftContent={
+      <Header>
+        <Header.Left>
           <Link to={ROUTER_PATHS.ROOT}>
             <CaretLeft />
           </Link>
-        }
-        centerContent={<h1 css={textStyles.b4m}>마이페이지</h1>}
-      />
+        </Header.Left>
+        <Header.Center>
+          <h1 css={textStyles.b4m}>마이페이지</h1>
+        </Header.Center>
+      </Header>
       <Suspense
         fallback={
           <section css={styles.loadingSection}>

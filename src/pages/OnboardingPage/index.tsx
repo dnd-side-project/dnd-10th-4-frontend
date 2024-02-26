@@ -45,7 +45,11 @@ const OnboardingPage = () => {
     <FunnelProvider value={{ toPrev, toNext, toFirst, toLast }}>
       <div css={styles.container}>
         <NavHeader {...progress} />
-        <Header rightContent={<MusicButton />} />
+        <Header>
+          <Header.Right>
+            <MusicButton />
+          </Header.Right>
+        </Header>
 
         <FormProvider {...form}>
           <Funnel step={step}>

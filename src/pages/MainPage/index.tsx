@@ -17,53 +17,49 @@ const MainPage = () => {
 
   return (
     <div css={styles.page}>
-      <Header
-        variant="primary"
-        leftContent={
+      <Header variant="primary">
+        <Header.Left>
           <Suspense fallback={<></>}>
             <LetterCountIconButton />
           </Suspense>
-        }
-        rightStyle={css({ gap: '0.5rem' })}
-        rightContent={
-          <>
-            <MusicButton
-              css={css({ marginRight: '0.75rem' })}
-              tooltipProps={{
-                align: 'start',
-                side: 'bottom',
-              }}
-            />
-            <Tooltip
-              triggerContent={
-                <IconButton
-                  variant="header"
-                  rounded="r8"
-                  onClick={() => navigate(ROUTER_PATHS.LETTER_STORAGE)}
-                >
-                  <TreasureChest color="white" />
-                </IconButton>
-              }
-            >
-              보관함
-            </Tooltip>
-            <Tooltip
-              align="end"
-              triggerContent={
-                <IconButton
-                  variant="header"
-                  rounded="r8"
-                  onClick={() => navigate(ROUTER_PATHS.MYPAGE)}
-                >
-                  <User color="white" />
-                </IconButton>
-              }
-            >
-              마이 페이지
-            </Tooltip>
-          </>
-        }
-      />
+        </Header.Left>
+        <Header.Right css={css({ gap: '0.5rem' })}>
+          <MusicButton
+            css={css({ marginRight: '0.75rem' })}
+            tooltipProps={{
+              align: 'start',
+              side: 'bottom',
+            }}
+          />
+          <Tooltip
+            triggerContent={
+              <IconButton
+                variant="header"
+                rounded="r8"
+                onClick={() => navigate(ROUTER_PATHS.LETTER_STORAGE)}
+              >
+                <TreasureChest color="white" />
+              </IconButton>
+            }
+          >
+            보관함
+          </Tooltip>
+          <Tooltip
+            align="end"
+            triggerContent={
+              <IconButton
+                variant="header"
+                rounded="r8"
+                onClick={() => navigate(ROUTER_PATHS.MYPAGE)}
+              >
+                <User color="white" />
+              </IconButton>
+            }
+          >
+            마이 페이지
+          </Tooltip>
+        </Header.Right>
+      </Header>
 
       <main css={styles.main}>
         {/* TODO: 로딩 처리 필요 */}
