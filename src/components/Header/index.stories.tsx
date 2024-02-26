@@ -16,7 +16,6 @@ const meta = {
   title: 'Components/Header',
   component: Header,
   tags: ['autodocs'],
-  argTypes: {},
 } satisfies Meta<typeof Header>;
 
 export default meta;
@@ -79,10 +78,14 @@ const styles = {
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    leftContent: <>왼쪽</>,
-    centerContent: <>가운데</>,
-    rightContent: <>오른쪽</>,
   },
+  render: ({ ...args }) => (
+    <Header {...args}>
+      <Header.Left>왼쪽</Header.Left>
+      <Header.Center>가운데</Header.Center>
+      <Header.Right>오른쪽</Header.Right>
+    </Header>
+  ),
   decorators: [
     (Story) => (
       <div css={styles.background}>
@@ -91,65 +94,58 @@ export const Primary: Story = {
     ),
   ],
 };
+
 export const 메인_페이지: Story = {
   ...Primary,
   render: () => (
-    <Header
-      variant="primary"
-      leftContent={
-        <div css={styles.메인_페이지.countChip}>
-          <div css={styles.메인_페이지.emptyBox} />
-          <p>N개</p>
-        </div>
-      }
-      rightContent={
-        <>
-          <IconButton variant="header">
-            <SoundOn color="white" />
-          </IconButton>
-          <IconButton variant="header">
-            <User color="white" />
-          </IconButton>
-          <IconButton variant="header">
-            <TreasureChestOutline color="white" />
-          </IconButton>
-        </>
-      }
-      rightStyle={styles.메인_페이지.rightStyle}
-    />
+    <Header variant="primary">
+      <Header.Left css={styles.메인_페이지.countChip}>
+        <div css={styles.메인_페이지.emptyBox} />
+        <p>N개</p>
+      </Header.Left>
+      <Header.Right css={styles.메인_페이지.rightStyle}>
+        <IconButton variant="header">
+          <SoundOn color="white" />
+        </IconButton>
+        <IconButton variant="header">
+          <User color="white" />
+        </IconButton>
+        <IconButton variant="header">
+          <TreasureChestOutline color="white" />
+        </IconButton>
+      </Header.Right>
+    </Header>
   ),
 };
 
 export const 흘러온_편지: Story = {
   ...Primary,
   render: () => (
-    <Header
-      variant="primary"
-      leftContent={
-        <>
-          <CaretLeft css={styles.icon} strokeWidth={2} />
-          <div css={styles.흘러온_편지.timeChip}>
-            <HourGlass color={COLORS.gray3} />
-            <p>26h</p>
-          </div>
-        </>
-      }
-      rightContent={
+    <Header variant="primary">
+      <Header.Left>
+        <CaretLeft css={styles.icon} strokeWidth={2} />
+        <div css={styles.흘러온_편지.timeChip}>
+          <HourGlass color={COLORS.gray3} />
+          <p>26h</p>
+        </div>
+      </Header.Left>
+      <Header.Right>
         <IconButton>
           <Siren color="white" />
         </IconButton>
-      }
-    />
+      </Header.Right>
+    </Header>
   ),
 };
 
 export const 보관함_편지: Story = {
   ...Primary,
   render: () => (
-    <Header
-      variant="primary"
-      leftContent={<CaretLeft css={styles.icon} strokeWidth={2} />}
-      centerContent={<>보관함</>}
-    />
+    <Header variant="primary">
+      <Header.Left>
+        <CaretLeft css={styles.icon} strokeWidth={2} />
+      </Header.Left>
+      <Header.Center>보관함</Header.Center>
+    </Header>
   ),
 };
