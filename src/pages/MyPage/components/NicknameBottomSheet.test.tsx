@@ -1,11 +1,12 @@
 import { toast } from 'react-toastify';
-import { HttpResponse, http } from 'msw';
+import { http } from 'msw';
 import { render, renderHook, screen, waitFor } from '@/utils/testing-library';
 import useBoolean from '@/hooks/useBoolean';
 import { server } from '@/mocks/node';
 import { baseURL } from '@/utils/mswUtils';
 import * as arrayUtils from '@/utils/arrayUtils';
-import ERROR_RESPONSES from '@/constants/errorMessages';
+import { API_PATHS } from '@/constants/routerPaths';
+import { memberResolvers } from '@/mocks/resolvers/member';
 import NicknameBottomSheet from './NicknameBottomSheet';
 
 it('닉네임 변경 아이콘을 클릭하면 getRandomItem 함수가 실행된다', async () => {
@@ -37,11 +38,10 @@ describe('닉네임 변경 API 호출', () => {
 
   it('[실패] 요청이 실패하면 실패 토스트가 나타난다.', async () => {
     server.use(
-      http.patch(baseURL('/api/member/nickname'), async () => {
-        return new HttpResponse(ERROR_RESPONSES.memberNotFound, {
-          status: 404,
-        });
-      }),
+      http.patch(
+        baseURL(API_PATHS.MEMBER_NICKNAME),
+        memberResolvers.patchNickname.notFound,
+      ),
     );
 
     const { result: modalProps } = renderHook(() => useBoolean(true));
