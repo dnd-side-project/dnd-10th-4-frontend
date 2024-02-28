@@ -1,6 +1,29 @@
 import { beforeAll, afterEach, afterAll } from 'vitest';
-import { server } from './mocks/node';
+import { server } from '@/mocks/node';
+import '@testing-library/jest-dom';
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+vi.mock('zustand');
+
+vi.mock('react-toastify', () => ({
+  toast: {
+    success: vi.fn(),
+    warn: vi.fn(),
+    error: vi.fn(),
+  },
+}));
+
+beforeAll(() => {
+  server.listen({
+    onUnhandledRequest: 'error',
+  });
+});
+
+afterEach(() => {
+  vi.clearAllMocks();
+  server.resetHandlers();
+});
+
+afterAll(() => {
+  vi.resetAllMocks();
+  server.close();
+});
