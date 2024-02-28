@@ -24,16 +24,15 @@ const LetteWriteHeader = () => {
 
   return (
     <>
-      <Header
-        css={style.header}
-        leftContent={
+      <Header css={style.header}>
+        <Header.Left>
           <CaretLeft
             strokeWidth={2.5}
             stroke="white"
             onClick={handleBackward}
           />
-        }
-      />
+        </Header.Left>
+      </Header>
       <BottomSheet open={value} onOpen={on} onClose={off}>
         <BottomSheet.Title>편지쓰기를 취소할까요?</BottomSheet.Title>
         <BottomSheet.Description>

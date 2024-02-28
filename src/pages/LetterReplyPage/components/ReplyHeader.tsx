@@ -18,35 +18,32 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
   const { replyLetter } = useLetterReplyWithTag(letterId);
 
   return (
-    <Header
-      css={style.header}
-      leftContent={
-        <>
-          <CaretLeft
-            css={style.icon}
-            strokeWidth={2.5}
-            color="white"
-            onClick={() => navigate(ROUTER_PATHS.ROOT)}
-          />
-          <Tooltip
-            delay={3000}
-            align="start"
-            triggerContent={
-              <div>
-                <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
-              </div>
-            }
-          >
-            내게 온 답장은 7일이 지나면 사라져요
-          </Tooltip>
-        </>
-      }
-      rightContent={
+    <Header css={style.header}>
+      <Header.Left>
+        <CaretLeft
+          css={style.icon}
+          strokeWidth={2.5}
+          color="white"
+          onClick={() => navigate(ROUTER_PATHS.ROOT)}
+        />
+        <Tooltip
+          delay={3000}
+          align="start"
+          triggerContent={
+            <div>
+              <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
+            </div>
+          }
+        >
+          내게 온 답장은 7일이 지나면 사라져요
+        </Tooltip>
+      </Header.Left>
+      <Header.Right>
         <IconButton>
           <Siren color="white" height={20} width={20} />
         </IconButton>
-      }
-    />
+      </Header.Right>
+    </Header>
   );
 };
 

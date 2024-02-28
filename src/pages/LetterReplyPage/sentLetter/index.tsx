@@ -27,9 +27,8 @@ const SentLetter = ({ letterId }: SentLetterProps) => {
         <CaretRight stroke={COLORS.gray4} width={24} height={24} />
       </div>
       <Modal isOpen={isOpen} close={close}>
-        <Header
-          css={style.header}
-          leftContent={
+        <Header css={style.header}>
+          <Header.Left>
             <div css={style.leftHeader}>
               <CaretLeft
                 css={style.icon}
@@ -39,8 +38,8 @@ const SentLetter = ({ letterId }: SentLetterProps) => {
               />
               <span css={style.headerText}>내가 보낸 편지</span>
             </div>
-          }
-        />
+          </Header.Left>
+        </Header>
         <div css={style.content}>
           <LetterCard isOpen={true}>
             <TagList tags={replyLetter.tagList} />

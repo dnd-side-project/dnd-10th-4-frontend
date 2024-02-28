@@ -36,17 +36,16 @@ const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
   return (
     <Modal isOpen={value} close={off}>
       <div css={styles.container}>
-        <Header
-          css={pageStyles.header}
-          leftContent={
+        <Header css={pageStyles.header}>
+          <Header.Left>
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
-          }
-          rightContent={
+          </Header.Left>
+          <Header.Right>
             <IconButton onClick={handleDownload}>
               <Download css={styles.icon} />
             </IconButton>
-          }
-        />
+          </Header.Right>
+        </Header>
         <section css={styles.main}>
           <div css={styles.polaroidFrame}>
             <img

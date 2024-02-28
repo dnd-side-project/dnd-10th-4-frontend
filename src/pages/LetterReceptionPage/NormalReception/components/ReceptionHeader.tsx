@@ -14,26 +14,22 @@ const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
 
   return (
-    <Header
-      css={style.header}
-      leftContent={
-        <>
-          <CaretLeft
-            css={style.icon}
-            strokeWidth={2.5}
-            color="white"
-            onClick={onClickPrev}
-          />
-          <DetailTimeChip createdAt={receptionLetter.createdAt} />
-        </>
-      }
-      leftStyle={style.leftHeader}
-      rightContent={
+    <Header css={style.header}>
+      <Header.Left css={style.leftHeader}>
+        <CaretLeft
+          css={style.icon}
+          strokeWidth={2.5}
+          color="white"
+          onClick={onClickPrev}
+        />
+        <DetailTimeChip createdAt={receptionLetter.createdAt} />
+      </Header.Left>
+      <Header.Right>
         <IconButton>
           <Siren color="white" height={20} width={20} />
         </IconButton>
-      }
-    />
+      </Header.Right>
+    </Header>
   );
 };
 
