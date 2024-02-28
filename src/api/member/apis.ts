@@ -1,20 +1,11 @@
-import { type Worry, type Gender, type Role } from '@/constants/users';
+import { type Worry, type Gender } from '@/constants/users';
+import { Member } from '@/types/member';
 import { authInstance } from '../instance';
 
 const memberAPI = {
   /** 자신의 회원 정보 조회 */
   getMemberDetail: async () => {
-    const { data } = await authInstance.get<{
-      id: number;
-      role: Role;
-      email: string;
-      nickname: string | null;
-      gender: Gender | 'NONE';
-      birthDay: [number, number, number] | null;
-      age: number | null;
-      worryTypes: Worry[];
-      letterCount: number;
-    }>('/api/member');
+    const { data } = await authInstance.get<Member>('/api/member');
     return data;
   },
 
