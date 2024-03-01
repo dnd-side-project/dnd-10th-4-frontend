@@ -68,6 +68,7 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
             <span css={{ color: COLORS.primaryHover }}>{nickname}</span>
           </p>
           <IconButton
+            data-testid="change-nickname"
             type="button"
             css={styles.icon}
             onClick={handleChangeNickname}
