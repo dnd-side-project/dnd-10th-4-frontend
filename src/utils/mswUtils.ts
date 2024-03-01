@@ -1,3 +1,8 @@
+import {
+  type DefaultBodyType,
+  type HttpResponseResolver,
+  type PathParams,
+} from 'msw';
 import { BACKEND_ENDPOINT } from '@/constants/endpoint';
 
 /** MSW 핸들러에서 사용할 base URL 경로를 반환합니다. */
@@ -14,3 +19,9 @@ export const isValidToken = (token: string | null) => {
 export const getSearchParams = (key: string) => {
   return new URLSearchParams(window.location.search).get(key);
 };
+
+/** Resolver를 묶은 객체의 타입입니다. */
+export type MSWResolvers = Record<
+  string,
+  Record<string, HttpResponseResolver<PathParams, DefaultBodyType, undefined>>
+>;

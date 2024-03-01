@@ -1,6 +1,28 @@
 import letterAPI from '@/api/letter/apis';
+import { type Reply, type Reception } from '@/types/letter';
 
-export const OnboardingLetter = {
+export const ReceptionLetter = (letterId: number): Reception =>
+  ({
+    letterType: null,
+    createdAt: '2024-02-17T16:50:44',
+    letterId: letterId,
+    letterTag: {
+      ageRangeStart: 20,
+      ageRangeEnd: 50,
+      equalGender: true,
+    },
+    senderNickname: '낯선 고양이123',
+    receiverNickname: '낯선 강아지456',
+    content: `${letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
+    worryType: 'BREAK_LOVE',
+    sendImagePath:
+      'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+  }) as const;
+
+export const ReceptionLetterWithoutImage = (letterId: number): Reception =>
+  ({ ...ReceptionLetter(letterId), sendImagePath: null }) as const;
+
+export const OnboardingLetter: Reception = {
   letterType: 'Onboarding',
   createdAt: '2024-02-21T22:41:42',
   letterId: 1,
@@ -13,6 +35,28 @@ export const OnboardingLetter = {
   sendImagePath:
     'https://letter-img-bucket.s3.ap-northeast-2.amazonaws.com/letter/oceanImage.jpeg',
 } as const;
+
+export const ReplyLetter = (letterId: number): Reply =>
+  ({
+    letterType: null,
+    createdAt: '2024-02-18T16:50:44',
+    repliedAt: '2024-02-19T16:50:44',
+    letterId: letterId,
+    letterTag: {
+      ageRangeStart: 20,
+      ageRangeEnd: 50,
+      equalGender: true,
+    },
+    senderNickname: '낯선 고양이123',
+    receiverNickname: '낯선 강아지456',
+    content: `${letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
+    repliedContent: `${letterId} 번째 편지 답장 입니다.`,
+    worryType: 'BREAK_LOVE',
+    sendImagePath:
+      'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+    replyImagePath:
+      'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+  }) as const;
 
 export const ReceivedLetterResponse = [
   OnboardingLetter,
