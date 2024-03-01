@@ -1,4 +1,8 @@
 export const API_PATHS = {
+  AUTH_ACCESS_CHECK: '/mock/auth/access-check', // 테스트 코드에서만 사용되는 API
+  AUTH_LOGIN_KAKAO: '/api/auth/login/kakao',
+  AUTH_REISSUE: '/api/auth/reissue',
+
   MEMBER: '/api/member',
   MEMBER_NICKNAME: '/api/member/nickname',
   MEMBER_BIRTHDAY: '/api/member/birthday',
