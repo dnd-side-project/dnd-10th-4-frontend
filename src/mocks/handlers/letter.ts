@@ -2,12 +2,9 @@ import { http, HttpResponse, delay } from 'msw';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import { Reception, Reply } from '@/types/letter';
 import { baseURL, getSearchParams } from '@/utils/mswUtils';
+import { API_PATHS } from '@/constants/routerPaths';
 import withAuth from '../middlewares/withAuth';
-import {
-  OnboardingLetter,
-  ReceivedLetterResponse,
-  RepliedLettersResponse,
-} from '../datas/letter';
+import { OnboardingLetter, RepliedLettersResponse } from '../datas/letter';
 import {
   PagedReceivedLettersResponsePage1,
   PagedReceivedLettersResponsePage2,
@@ -17,25 +14,16 @@ import {
   PagedSendLettersResponsePage2,
   PagedSendLettersResponsePage3,
 } from '../datas/send';
+import { letterResolvers } from '../resolvers/letter';
 
 const letterHandler = [
   http.get(
-    baseURL('/api/letter/reception'),
-    withAuth(async () => {
-      await delay(1000);
-
-      const itemCount =
-        Number(getSearchParams('mswItemCount')) ||
-        ReceivedLetterResponse.length;
-
-      return HttpResponse.json(
-        ReceivedLetterResponse.slice(0, Number(itemCount)),
-      );
-    }),
+    baseURL(API_PATHS.LETTER_RECEPTION),
+    withAuth(letterResolvers.getLetterReception.success),
   ),
 
   http.get(
-    baseURL('/api/letter/reply'),
+    baseURL(API_PATHS.LETTER_REPLY),
     withAuth(async () => {
       await delay(1000);
 
@@ -50,7 +38,7 @@ const letterHandler = [
   ),
 
   http.post(
-    baseURL('/api/letter'),
+    baseURL(API_PATHS.LETTER),
     withAuth(async () => {
       await delay(1000);
 
@@ -73,48 +61,51 @@ const letterHandler = [
     }),
   ),
 
-  http.get(baseURL('/api/letter/reception/:letterId'), async (req) => {
-    await delay(300);
+  http.get(
+    baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(':letterId')),
+    async (req) => {
+      await delay(300);
 
-    const status: number = 200;
-    const letterId = Number(req.params.letterId);
+      const status: number = 200;
+      const letterId = Number(req.params.letterId);
 
-    const result: Reception = {
-      letterType: null,
-      createdAt: '2024-02-17T16:50:44',
-      letterId: Number(req.params.letterId),
-      letterTag: {
-        ageRangeStart: 20,
-        ageRangeEnd: 50,
-        equalGender: true,
-      },
-      senderNickname: '낯선 고양이123',
-      receiverNickname: '낯선 강아지456',
-      content: `${req.params.letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
-      worryType: 'BREAK_LOVE',
-      // sendImagePath: null,
-      sendImagePath:
-        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-    };
+      const result: Reception = {
+        letterType: null,
+        createdAt: '2024-02-17T16:50:44',
+        letterId: Number(req.params.letterId),
+        letterTag: {
+          ageRangeStart: 20,
+          ageRangeEnd: 50,
+          equalGender: true,
+        },
+        senderNickname: '낯선 고양이123',
+        receiverNickname: '낯선 강아지456',
+        content: `${req.params.letterId} 번째 편지 입니다. 여기 거 다 남겨두고서 혹시겨두고서 혹시나 기대도 포기하려 하오 그대 부디 잘 지내시오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오 좋은 사람 만나오 사는 동안 날 잊고 사시오 진정 행복하길 바라겠소 이 맘만 가져가오 기나긴 그대 침묵을 이별로 받아두겠소 행여 이 맘 다칠까 근심은 접어두오 오 사랑한 사람이여 더 이상 못보아도 사실 그대 있음으로 힘겨운 날들을 견뎌 왔음에 감사하오`,
+        worryType: 'BREAK_LOVE',
+        // sendImagePath: null,
+        sendImagePath:
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      };
 
-    switch (status) {
-      case 200:
-        if (letterId === 1) {
-          return HttpResponse.json(OnboardingLetter);
-        }
+      switch (status) {
+        case 200:
+          if (letterId === 1) {
+            return HttpResponse.json(OnboardingLetter);
+          }
 
-        return HttpResponse.json(result);
-      case 400:
-        return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
-          status: 400,
-        });
-      default:
-        break;
-    }
-  }),
+          return HttpResponse.json(result);
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+            status: 400,
+          });
+        default:
+          break;
+      }
+    },
+  ),
 
   http.patch(
-    baseURL('/api/letter/reception/reply/:letterId'),
+    baseURL(API_PATHS.LETTER_RECEPTION_REPLY_DETAIL(':letterId')),
     withAuth(async () => {
       await delay(1000);
 
@@ -137,25 +128,28 @@ const letterHandler = [
     }),
   ),
 
-  http.patch(baseURL('/api/letter/reception/pass/:letterId'), async () => {
-    await delay(1000);
+  http.patch(
+    baseURL(API_PATHS.LETTER_RECEPTION_PASS_DETAIL(':letterId')),
+    async () => {
+      await delay(1000);
 
-    const status: number = 200;
+      const status: number = 200;
 
-    switch (status) {
-      case 200:
-        return HttpResponse.json();
-      case 400:
-        return new HttpResponse(ERROR_RESPONSES.repliedLetterPass, {
-          status: 400,
-        });
-      default:
-        break;
-    }
-  }),
+      switch (status) {
+        case 200:
+          return HttpResponse.json();
+        case 400:
+          return new HttpResponse(ERROR_RESPONSES.repliedLetterPass, {
+            status: 400,
+          });
+        default:
+          break;
+      }
+    },
+  ),
 
   http.get(
-    baseURL('/api/letter/reply/:letterId'),
+    baseURL(API_PATHS.LETTER_REPLY_DETAIL(':letterId')),
     withAuth(async (req) => {
       await delay(300);
 
@@ -196,7 +190,7 @@ const letterHandler = [
   ),
 
   http.patch(
-    baseURL('/api/letter/reply/storage/:letterId'),
+    baseURL(API_PATHS.LETTER_REPLY_STORAGE_DETAIL(':letterId')),
     withAuth(async () => {
       await delay(1000);
 
@@ -216,7 +210,7 @@ const letterHandler = [
   ),
 
   http.patch(
-    baseURL('/api/letter/onboarding/storage/:letterId'),
+    baseURL(API_PATHS.LETTER_ONBOARDING_STORAGE_DETAIL(':letterId')),
     withAuth(async () => {
       await delay(1000);
 
@@ -236,7 +230,7 @@ const letterHandler = [
   ),
 
   http.get(
-    baseURL('/api/letter/storage'),
+    baseURL(API_PATHS.LETTER_STORAGE),
     withAuth(async (req) => {
       await delay(300);
       const url = req.request.url;
@@ -252,7 +246,7 @@ const letterHandler = [
   ),
 
   http.get(
-    baseURL('/api/letter/send'),
+    baseURL(API_PATHS.LETTER_SEND),
     withAuth(async (req) => {
       await delay(300);
       const url = req.request.url;
@@ -270,7 +264,7 @@ const letterHandler = [
   ),
 
   http.patch(
-    baseURL('/api/letter/storage/:letterId'),
+    baseURL(API_PATHS.LETTER_STORAGE_DETAIL(':letterId')),
     withAuth(async () => {
       await delay(1000);
 
@@ -290,7 +284,7 @@ const letterHandler = [
   ),
 
   http.patch(
-    baseURL('/api/letter/send/:letterId'),
+    baseURL(API_PATHS.LETTER_SEND_DETAIL(':letterId')),
     withAuth(async () => {
       await delay(1000);
 
