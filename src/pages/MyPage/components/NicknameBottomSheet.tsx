@@ -6,7 +6,6 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
@@ -23,14 +22,19 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 interface NicknameBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
 const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
+  const queryClient = useQueryClient();
   const { data: member } = useSuspenseQuery({
     ...memberOptions.detail(),
     staleTime: Infinity,
   });
-  const { mutateAsync, isPending } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: memberAPI.patchNickname,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: memberOptions.detail().queryKey,
+      });
+    },
   });
-  const queryClient = useQueryClient();
 
   const [nickname, setNickname] = useState(
     member.nickname ? member.nickname.replace('낯선 ', '') : NICKNAMES[0],
@@ -41,28 +45,17 @@ const NicknameBottomSheet = ({ value, on, off }: NicknameBottomSheetProps) => {
   };
 
   const handleSubmit = async () => {
-    try {
-      await mutateAsync({ nickname });
-
-      queryClient.invalidateQueries({
-        queryKey: memberOptions.detail().queryKey,
-      });
-
-      toast.success('닉네임이 변경되었어요', {
-        position: 'bottom-center',
-      });
-
-      off();
-    } catch (err) {
-      console.error(err);
-
-      const message =
-        (isAxiosError(err) && err.response?.data) ?? '닉네임 변경에 실패했어요';
-
-      toast.error(message, {
-        position: 'bottom-center',
-      });
-    }
+    mutate(
+      { nickname },
+      {
+        onSuccess: () => {
+          toast.success('닉네임이 변경되었어요', {
+            position: 'bottom-center',
+          });
+          off();
+        },
+      },
+    );
   };
 
   return (
