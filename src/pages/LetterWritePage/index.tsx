@@ -65,41 +65,33 @@ const LetterWritePage = () => {
     watch,
   } = methods;
 
-  const { mutateAsync: postLetter, isPending } = useMutation({
+  const { mutate: postLetter, isPending } = useMutation({
     mutationFn: letterAPI.postLetter,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+    },
   });
   const queryClient = useQueryClient();
 
-  const onSubmit = async (data: WriteInputs) => {
-    try {
-      await postLetter(data);
-      toast.success('편지를 바다에 띄어보냈어요', {
-        position: 'bottom-center',
-        autoClose: 1500,
-      });
-      queryClient.invalidateQueries({ queryKey: letterOptions.all });
-      navigate(ROUTER_PATHS.ROOT);
-    } catch (error) {
-      if (isAxiosError(error)) {
+  const onSubmit = (data: WriteInputs) => {
+    postLetter(data, {
+      onSuccess: () => {
+        toast.success('편지를 바다에 띄어보냈어요', {
+          position: 'bottom-center',
+          autoClose: 1500,
+        });
+
+        navigate(ROUTER_PATHS.ROOT);
+      },
+      onError: (error) => {
         if (
-          error.response?.data === ERROR_RESPONSES.unSupportExt ||
-          error.response?.data === ERROR_RESPONSES.noExt
+          isAxiosError(error) &&
+          error.response?.data === ERROR_RESPONSES.exceedSendLimit
         ) {
-          toast.error(error.response?.data, {
-            position: 'bottom-center',
-          });
-        } else if (error.response?.data === ERROR_RESPONSES.exceedSendLimit) {
-          toast.error(error.response?.data, {
-            position: 'bottom-center',
-          });
           navigate(ROUTER_PATHS.ROOT);
-        } else {
-          throw error;
         }
-      } else {
-        throw error;
-      }
-    }
+      },
+    });
   };
 
   useEffect(() => {
