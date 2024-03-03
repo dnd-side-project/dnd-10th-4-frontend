@@ -113,8 +113,16 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
                     <img src="https://avatars.githubusercontent.com/shinjaewon99" width="100px" height="100px"/>
                 </a>  
             </td>
-            <td><img src="https://github.com/shinjiye" width="100px" height="100px"/></td>
-            <td><img src="https://github.com/luciap12" width="100px" height="100px"/></td>
+            <td>
+                <a href="https://github.com/shinjiye">
+                    <img src="https://avatars.githubusercontent.com/shinjiye" width="100px" height="100px"/>
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/luciap12">
+                    <img src="https://avatars.githubusercontent.com/luciap12" width="100px" height="100px"/>
+                </a>
+            </td>
         </tr>
         <tr>
             <th>
