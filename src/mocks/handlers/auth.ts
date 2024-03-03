@@ -1,49 +1,23 @@
-import { http, HttpResponse } from 'msw';
-import { baseURL, isValidToken } from '@/utils/mswUtils';
-import ERROR_RESPONSES from '@/constants/errorMessages';
-import STORAGE_KEYS from '@/constants/storageKeys';
-import authAPI from '@/api/auth/apis';
+import { http } from 'msw';
+import { baseURL } from '@/utils/mswUtils';
+import { API_PATHS } from '@/constants/routerPaths';
+import { authResolvers } from '../resolvers/auth';
 
 const authHandler = [
-  http.post(baseURL('/api/auth/login/kakao'), async () => {
-    const firstLogin = true;
+  /** 카카오 인가 코드 전송 후 로그인 토큰 받아오기 */
+  http.post(
+    baseURL(API_PATHS.AUTH_LOGIN_KAKAO),
+    authResolvers.postLoginKakao.firstLogin,
+  ),
 
-    const result = {
-      accessToken: 'fresh',
-      refreshToken: 'fresh',
-      firstLogin,
-    } satisfies Awaited<ReturnType<(typeof authAPI)['postKakaoCode']>>;
+  /** 토큰 재발급 */
+  http.get(baseURL(API_PATHS.AUTH_REISSUE), authResolvers.getReissue.success),
 
-    return HttpResponse.json(result);
-  }),
-
-  http.get(baseURL('/api/auth/reissue'), async (req) => {
-    const refreshToken = req.request.headers.get(STORAGE_KEYS.refreshToken);
-
-    if (isValidToken(refreshToken)) {
-      return HttpResponse.json({
-        accessToken: 'renewed',
-        refreshToken: 'renewed',
-      });
-    } else {
-      return new HttpResponse(ERROR_RESPONSES.reissueFailed, { status: 401 });
-    }
-  }),
-
-  /** 액세스 토큰이 필요한 API를 시뮬레이션하기 위해 테스트 코드에서만 사용되는 API입니다.  */
-  http.get(baseURL('/mock/auth/access-check'), async (req) => {
-    const accessToken = req.request.headers.get(STORAGE_KEYS.accessToken);
-
-    if (accessToken === 'fresh') {
-      return new HttpResponse(
-        '액세스 토큰이 유효하여 재발급하지 않아도 됩니다.',
-      );
-    } else {
-      return new HttpResponse(ERROR_RESPONSES.accessExpired, {
-        status: 401,
-      });
-    }
-  }),
+  /** 액세스 토큰이 필요한 API를 시뮬레이션하기 위해 테스트 코드에서만 사용되는 API */
+  http.get(
+    baseURL(API_PATHS.AUTH_ACCESS_CHECK),
+    authResolvers.getAccessCheck.success,
+  ),
 ];
 
 export default authHandler;

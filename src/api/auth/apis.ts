@@ -1,4 +1,5 @@
 import STORAGE_KEYS from '@/constants/storageKeys';
+import { API_PATHS } from '@/constants/routerPaths';
 import { baseInstance, authInstance } from '../instance';
 
 const authAPI = {
@@ -8,13 +9,17 @@ const authAPI = {
       accessToken: string;
       refreshToken: string;
       firstLogin: boolean;
-    }>(`/api/auth/login/kakao?code=${code}`);
+    }>(API_PATHS.AUTH_LOGIN_KAKAO, null, {
+      params: {
+        code,
+      },
+    });
     return data;
   },
 
   /** 토큰 재발급 */
   getReissue: async () => {
-    const { data } = await authInstance.get('/api/auth/reissue', {
+    const { data } = await authInstance.get(API_PATHS.AUTH_REISSUE, {
       headers: {
         refreshToken: localStorage.getItem(STORAGE_KEYS.refreshToken),
       },
@@ -24,7 +29,7 @@ const authAPI = {
 
   /** 액세스 토큰이 필요한 API를 시뮬레이션하기 위해 테스트 코드에서만 사용되는 API */
   getAccessCheck: async () => {
-    const { data } = await authInstance.get('/mock/auth/access-check');
+    const { data } = await authInstance.get(API_PATHS.AUTH_ACCESS_CHECK);
     return data;
   },
 };

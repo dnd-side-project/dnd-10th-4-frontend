@@ -3,20 +3,21 @@ import { type Worry } from '@/constants/users';
 import { type WriteInputs } from '@/pages/LetterWritePage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
 import { type ReplyInputs } from '@/pages/LetterReceptionPage/NormalReception';
+import { API_PATHS } from '@/constants/routerPaths';
 import { authInstance } from '../instance';
 
 const letterAPI = {
   /** 받은 편지 전체 조회 */
   getReceivedLetters: async () => {
     const { data } = await authInstance.get<Reception[]>(
-      '/api/letter/reception',
+      API_PATHS.LETTER_RECEPTION,
     );
     return data;
   },
 
   /** 답장 받은 편지 페이징 조회 */
   getRepliedLetters: async () => {
-    const { data } = await authInstance.get<Reply[]>(`/api/letter/reply`);
+    const { data } = await authInstance.get<Reply[]>(API_PATHS.LETTER_REPLY);
     return data;
   },
 
@@ -36,7 +37,7 @@ const letterAPI = {
       formData.append('image', letter.image[0]);
     }
 
-    const { data } = await authInstance.post('/api/letter', formData, {
+    const { data } = await authInstance.post(API_PATHS.LETTER, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -47,7 +48,7 @@ const letterAPI = {
   /** 보낸 편지 단건 조회 */
   getSingleReception: async (letterId: number) => {
     const { data } = await authInstance.get<Reception>(
-      `/api/letter/reception/${letterId}`,
+      API_PATHS.LETTER_RECEPTION_DETAIL(`${letterId}`),
     );
     return data;
   },
@@ -68,7 +69,7 @@ const letterAPI = {
     }
 
     const { data } = await authInstance.patch(
-      `api/letter/reception/reply/${letterId}`,
+      API_PATHS.LETTER_RECEPTION_REPLY_DETAIL(`${letterId}`),
       formData,
       {
         headers: {
@@ -82,7 +83,7 @@ const letterAPI = {
   /** 받은 편지 패스 */
   patchReceptionPass: async (letterId: number) => {
     const { data } = await authInstance.patch(
-      `/api/letter/reception/pass/${letterId}`,
+      API_PATHS.LETTER_RECEPTION_PASS_DETAIL(`${letterId}`),
     );
     return data;
   },
@@ -90,7 +91,7 @@ const letterAPI = {
   /** 답장 받은 편지 단건 조회 */
   getSingleReply: async (letterId: number) => {
     const { data } = await authInstance.get<Reply>(
-      `/api/letter/reply/${letterId}`,
+      API_PATHS.LETTER_REPLY_DETAIL(`${letterId}`),
     );
     return data;
   },
@@ -98,7 +99,7 @@ const letterAPI = {
   /** 답장 받은 편지 보관함에 보관 */
   patchReplyStorage: async (letterId: number) => {
     const { data } = await authInstance.patch(
-      `/api/letter/reply/storage/${letterId}`,
+      API_PATHS.LETTER_REPLY_STORAGE_DETAIL(`${letterId}`),
     );
     return data;
   },
@@ -106,14 +107,14 @@ const letterAPI = {
   /** 온보딩 편지 보관함에 보관 */
   patchOnboardingStorage: async (letterId: number) => {
     const { data } = await authInstance.patch(
-      `/api/letter/onboarding/storage/${letterId}`,
+      API_PATHS.LETTER_ONBOARDING_STORAGE_DETAIL(`${letterId}`),
     );
     return data;
   },
 
   /** 보관한 편지 페이징 조회 */
   getStoragePaging: async (page: string) => {
-    const { data } = await authInstance.get<Storage>(`/api/letter/storage`, {
+    const { data } = await authInstance.get<Storage>(API_PATHS.LETTER_STORAGE, {
       params: { page },
     });
     return data;
@@ -121,7 +122,7 @@ const letterAPI = {
 
   /** 내가 보낸 편지 페이징 조회 */
   getSendPaging: async (page: string) => {
-    const { data } = await authInstance.get<Send>(`/api/letter/send`, {
+    const { data } = await authInstance.get<Send>(API_PATHS.LETTER_SEND, {
       params: { page },
     });
     return data;
@@ -130,14 +131,16 @@ const letterAPI = {
   /** 보관된 편지 보관 취소 */
   patchDeleteLetter: async (letterId: number) => {
     const { data } = await authInstance.patch(
-      `/api/letter/storage/${letterId}`,
+      API_PATHS.LETTER_STORAGE_DETAIL(`${letterId}`),
     );
     return data;
   },
 
   /** 보낸 편지 삭제 */
   patchDeleteSend: async (letterId: number) => {
-    const { data } = await authInstance.patch(`/api/letter/send/${letterId}`);
+    const { data } = await authInstance.patch(
+      API_PATHS.LETTER_SEND_DETAIL(`${letterId}`),
+    );
     return data;
   },
 };
