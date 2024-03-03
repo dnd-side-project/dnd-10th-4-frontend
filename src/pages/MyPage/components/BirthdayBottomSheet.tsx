@@ -5,7 +5,6 @@ import { css } from '@emotion/react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
@@ -46,10 +45,14 @@ const BirthdayBottomSheet = ({ value, on, off }: BirthdayBottomSheetProps) => {
     resolver: zodResolver(formSchema),
   });
 
-  const { mutateAsync, isPending } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: memberAPI.patchBirthday,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: memberOptions.detail().queryKey,
+      });
+    },
   });
-
   const queryClient = useQueryClient();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -64,29 +67,18 @@ const BirthdayBottomSheet = ({ value, on, off }: BirthdayBottomSheetProps) => {
       .padStart(formLiteral.day.length, '0');
     const birthday = `${year}-${month}-${day}`;
 
-    try {
-      await mutateAsync({ birthday });
+    mutate(
+      { birthday },
+      {
+        onSuccess: () => {
+          toast.success('생년월일을 변경했어요.', {
+            position: 'bottom-center',
+          });
 
-      queryClient.invalidateQueries({
-        queryKey: memberOptions.detail().queryKey,
-      });
-
-      toast.success('생년월일을 변경했어요.', {
-        position: 'bottom-center',
-      });
-
-      off();
-    } catch (err) {
-      console.error(err);
-
-      const message =
-        (isAxiosError(err) && err.response?.data) ??
-        '생년월일 변경에 실패했어요.';
-
-      toast.error(message, {
-        position: 'bottom-center',
-      });
-    }
+          off();
+        },
+      },
+    );
   };
 
   return (
