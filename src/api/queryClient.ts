@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, type QueryClientConfig } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
 export const mutationDefaultErrorHandler = (err: Error) => {
@@ -14,7 +14,7 @@ export const mutationDefaultErrorHandler = (err: Error) => {
   });
 };
 
-const queryClient = new QueryClient({
+export const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
     queries: {
       retry: false,
@@ -26,6 +26,8 @@ const queryClient = new QueryClient({
       onError: mutationDefaultErrorHandler,
     },
   },
-});
+};
+
+const queryClient = new QueryClient(queryClientConfig);
 
 export default queryClient;
