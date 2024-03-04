@@ -6,9 +6,9 @@ import useBoolean from '@/hooks/useBoolean';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 
-interface SignoutBottomSheetProps extends ReturnType<typeof useBoolean> {}
+interface LogoutBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
-const SignoutBottomSheet = ({ value, on, off }: SignoutBottomSheetProps) => {
+const LogoutBottomSheet = ({ value, on, off }: LogoutBottomSheetProps) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -37,4 +37,4 @@ const SignoutBottomSheet = ({ value, on, off }: SignoutBottomSheetProps) => {
   );
 };
 
-export default SignoutBottomSheet;
+export default LogoutBottomSheet;

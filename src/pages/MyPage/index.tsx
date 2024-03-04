@@ -17,7 +17,7 @@ import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
 import GenderBottomSheet from './components/GenderBottomSheet';
 import WorryBottomSheet from './components/WorryBottomSheet';
-import SignoutBottomSheet from './components/SignoutBottomSheet';
+import LogoutBottomSheet from './components/LogoutBottomSheet';
 import ResignBottomSheet from './components/ResignBottomSheet';
 import styles from './style';
 
@@ -31,7 +31,7 @@ const SuspendedPage = () => {
   const birthdayBottomSheetProps = useBoolean(false);
   const genderBottomSheetProps = useBoolean(false);
   const worryBottomSheetProps = useBoolean(false);
-  const signoutBottomSheetProps = useBoolean(false);
+  const logoutBottomSheetProps = useBoolean(false);
   const resignBottomSheetProps = useBoolean(false);
 
   return (
@@ -40,7 +40,7 @@ const SuspendedPage = () => {
       <BirthdayBottomSheet {...birthdayBottomSheetProps} />
       <GenderBottomSheet {...genderBottomSheetProps} />
       <WorryBottomSheet {...worryBottomSheetProps} />
-      <SignoutBottomSheet {...signoutBottomSheetProps} />
+      <LogoutBottomSheet {...logoutBottomSheetProps} />
       <ResignBottomSheet {...resignBottomSheetProps} />
       <ul css={styles.list}>
         <li css={styles.item}>
@@ -97,7 +97,7 @@ const SuspendedPage = () => {
       <ul css={styles.list}>
         <li
           css={[styles.item, css({ cursor: 'pointer' })]}
-          onClick={signoutBottomSheetProps.on}
+          onClick={logoutBottomSheetProps.on}
         >
           <p>로그아웃</p>
         </li>
