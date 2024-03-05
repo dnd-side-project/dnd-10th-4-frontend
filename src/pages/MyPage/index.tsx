@@ -17,7 +17,7 @@ import NicknameBottomSheet from './components/NicknameBottomSheet';
 import BirthdayBottomSheet from './components/BirthdayBottomSheet';
 import GenderBottomSheet from './components/GenderBottomSheet';
 import WorryBottomSheet from './components/WorryBottomSheet';
-import SignoutBottomSheet from './components/SignoutBottomSheet';
+import LogoutBottomSheet from './components/LogoutBottomSheet';
 import ResignBottomSheet from './components/ResignBottomSheet';
 import styles from './style';
 
@@ -31,7 +31,7 @@ const SuspendedPage = () => {
   const birthdayBottomSheetProps = useBoolean(false);
   const genderBottomSheetProps = useBoolean(false);
   const worryBottomSheetProps = useBoolean(false);
-  const signoutBottomSheetProps = useBoolean(false);
+  const logoutBottomSheetProps = useBoolean(false);
   const resignBottomSheetProps = useBoolean(false);
 
   return (
@@ -40,19 +40,27 @@ const SuspendedPage = () => {
       <BirthdayBottomSheet {...birthdayBottomSheetProps} />
       <GenderBottomSheet {...genderBottomSheetProps} />
       <WorryBottomSheet {...worryBottomSheetProps} />
-      <SignoutBottomSheet {...signoutBottomSheetProps} />
+      <LogoutBottomSheet {...logoutBottomSheetProps} />
       <ResignBottomSheet {...resignBottomSheetProps} />
       <ul css={styles.list}>
         <li css={styles.item}>
           <p>닉네임 변경</p>
-          <div css={styles.value} onClick={nicknameBottomSheetProps.on}>
+          <div
+            role="button"
+            css={styles.value}
+            onClick={nicknameBottomSheetProps.on}
+          >
             <span>{member.nickname ? member.nickname : '설정되지 않음'}</span>
             <CaretRight color={COLORS.gray3} />
           </div>
         </li>
         <li css={styles.item}>
           <p>생년월일 변경</p>
-          <div css={styles.value} onClick={birthdayBottomSheetProps.on}>
+          <div
+            role="button"
+            css={styles.value}
+            onClick={birthdayBottomSheetProps.on}
+          >
             <span>
               {member.birthDay
                 ? `${member.birthDay[0]}년 ${member.birthDay[1]}월 ${member.birthDay[2]}일`
@@ -63,7 +71,11 @@ const SuspendedPage = () => {
         </li>
         <li css={styles.item}>
           <p>성별 변경</p>
-          <div css={styles.value} onClick={genderBottomSheetProps.on}>
+          <div
+            role="button"
+            css={styles.value}
+            onClick={genderBottomSheetProps.on}
+          >
             <span>
               {member.gender !== 'NONE'
                 ? GENDER_DICT[member.gender]
@@ -74,10 +86,14 @@ const SuspendedPage = () => {
         </li>
         <li css={styles.item}>
           <p>고민 변경</p>
-          <div css={styles.value} onClick={worryBottomSheetProps.on}>
+          <div
+            role="button"
+            css={styles.value}
+            onClick={worryBottomSheetProps.on}
+          >
             {member.worryTypes?.length > 0
               ? member.worryTypes.map((worryType) => (
-                  <span css={styles.chip} key={worryType}>
+                  <span role="listitem" css={styles.chip} key={worryType}>
                     {WORRY_DICT[worryType]}
                   </span>
                 ))
@@ -88,20 +104,22 @@ const SuspendedPage = () => {
       </ul>
       <div css={styles.divider} />
       <ul css={styles.list}>
-        <div css={[styles.item, css({ margin: '-0.5rem 0' })]}>
+        <li css={[styles.item, css({ margin: '-0.5rem 0' })]}>
           <p>배경음악</p>
           <Switch checked={isMusicPlaying} onChange={toggleMusicPlaying} />
-        </div>
+        </li>
       </ul>
       <div css={styles.divider} />
-      <ul css={styles.list}>
+      <ul role="menu" css={styles.list}>
         <li
+          role="menuitem"
           css={[styles.item, css({ cursor: 'pointer' })]}
-          onClick={signoutBottomSheetProps.on}
+          onClick={logoutBottomSheetProps.on}
         >
           <p>로그아웃</p>
         </li>
         <li
+          role="menuitem"
           css={[styles.item, css({ cursor: 'pointer' })]}
           onClick={resignBottomSheetProps.on}
         >

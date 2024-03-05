@@ -1,4 +1,5 @@
 import { Member } from '@/types/member';
+import { NonNullableFields } from '@/types/utility';
 
 export const EmptyMemberInfo: Member = {
   id: 8,
@@ -12,7 +13,7 @@ export const EmptyMemberInfo: Member = {
   letterCount: 0,
 };
 
-export const MemberInfo: Member = {
+export const MemberInfo: NonNullableFields<Member> = {
   id: 7,
   email: 'tnlswodnjs99@naver.com',
   nickname: '낯선 거북이',

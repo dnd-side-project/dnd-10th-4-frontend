@@ -29,9 +29,11 @@ const WorryBottomSheet = ({ value, on, off }: WorryBottomSheetProps) => {
   });
   const { mutateAsync: deleteWorry, isPending: isDeleting } = useMutation({
     mutationFn: memberAPI.deleteWorry,
+    onError: () => {},
   });
   const { mutateAsync: postWorry, isPending: isPosting } = useMutation({
     mutationFn: memberAPI.postWorry,
+    onError: () => {},
   });
   const isPending = isDeleting || isPosting;
 
