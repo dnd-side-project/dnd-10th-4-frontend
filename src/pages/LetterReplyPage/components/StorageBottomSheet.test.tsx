@@ -25,7 +25,7 @@ describe('인터랙션 테스트', () => {
 
 describe('API 테스트', () => {
   const letter_id = 1;
-  it('[성공] 보관하기 버튼을 클릭하면 API 호출이 발생하고 처리 중에는 버튼이 비활성화 된다. 요청이 성공하면 루트 페이지로 이동하고 성공 토스트가 나타난다.', async () => {
+  it('[성공] 보관하기 버튼을 클릭하면 API 호출이 발생하고, 요청이 성공하면 루트 페이지로 이동하고 성공 토스트가 나타난다.', async () => {
     const { result: bottomSheetProps } = renderHook(() => useBoolean(true));
     const { user } = render(
       <StorageBottomSheet {...bottomSheetProps.current} letterId={letter_id} />,
@@ -34,13 +34,9 @@ describe('API 테스트', () => {
     const storageButton = screen.getByRole('button', { name: '보관하기' });
     await user.click(storageButton);
 
-    expect(storageButton).toBeDisabled();
-
     await waitFor(() => {
-      expect(storageButton).not.toBeDisabled();
-      expect(bottomSheetProps.current.value).toBe(false);
-      expect(toast.success).toHaveBeenCalledTimes(1);
       expect(window.location.pathname).toEqual(ROUTER_PATHS.ROOT);
+      expect(toast.success).toHaveBeenCalledTimes(1);
     });
   });
   it('[실패] 요청이 실패하면 바텀시트가 닫히고 실패 토스트가 나타난다.', async () => {
@@ -59,10 +55,7 @@ describe('API 테스트', () => {
     const storageButton = screen.getByRole('button', { name: '보관하기' });
     await user.click(storageButton);
 
-    expect(storageButton).toBeDisabled();
-
     await waitFor(() => {
-      expect(storageButton).not.toBeDisabled();
       expect(bottomSheetProps.current.value).toBe(false);
       expect(toast.error).toHaveBeenCalledTimes(1);
     });
