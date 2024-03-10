@@ -37,8 +37,6 @@ describe('인터랙션 테스트', () => {
     const cancelButton = screen.getByRole('button', { name: '닫기' });
     await user.click(cancelButton);
 
-    console.log(navigateFn);
-
     expect(navigateFn).toHaveBeenCalledWith(ROUTER_PATHS.ROOT);
   });
 });
