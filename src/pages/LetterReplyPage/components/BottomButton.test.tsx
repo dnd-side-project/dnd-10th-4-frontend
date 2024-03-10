@@ -2,11 +2,24 @@ import { render, screen } from '@/utils/testing-library';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import BottomButton from './BottomButton';
 
-global.ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+const ResizeObserver = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+vi.stubGlobal('ResizeObserver', ResizeObserver);
+
+const navigateFn = vi.fn();
+
+vi.mock('react-router-dom', async () => {
+  const original = await vi.importActual('react-router-dom');
+  return {
+    ...original,
+    useNavigate: () => navigateFn,
+  };
+});
+
 describe('인터랙션 테스트', () => {
   const letter_id = 1;
   it('보관하기 버튼을 누르면 바텀시트가 열린다.', async () => {
@@ -24,6 +37,8 @@ describe('인터랙션 테스트', () => {
     const cancelButton = screen.getByRole('button', { name: '닫기' });
     await user.click(cancelButton);
 
-    expect(window.location.pathname).toEqual(ROUTER_PATHS.ROOT);
+    console.log(navigateFn);
+
+    expect(navigateFn).toHaveBeenCalledWith(ROUTER_PATHS.ROOT);
   });
 });
