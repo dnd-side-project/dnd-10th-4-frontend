@@ -6,8 +6,8 @@ import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
-import LetterContent from '../components/LetterContent';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
+import LetterContent from '../components/LetterContent';
 
 interface ReplyLetterProps {
   letterId: number;
@@ -51,7 +51,7 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
           leftPosition={1.2}
           img={replyLetter.replyImagePath}
           headerRightContent={
-            <IconButton onClick={handleDownload}>
+            <IconButton id="download-button" onClick={handleDownload}>
               <Download color="white" height={20} width={20} />
             </IconButton>
           }
