@@ -3,7 +3,7 @@ import { server } from '@/mocks/node';
 import { baseURL } from '@/utils/mswUtils';
 import { API_PATHS } from '@/constants/routerPaths';
 import { ReplyLetter as ReplyLetterData } from '@/mocks/datas/letter';
-import { render, screen, waitFor } from '@/utils/testing-library';
+import { render, screen } from '@/utils/testing-library';
 import { formatDate } from '@/utils/dateUtils';
 import ReplyLetter from '.';
 
@@ -56,14 +56,7 @@ describe('인터랙션 테스트', () => {
 
     const { user } = render(<ReplyLetter letterId={letter_id} />);
 
-    await waitFor(() => {
-      screen.getByAltText('편지와 함께 보낸 이미지');
-    });
-
-    const imageElement = (await screen.getByAltText(
-      '편지와 함께 보낸 이미지',
-    )) as HTMLImageElement;
-
+    const imageElement = await screen.findByAltText('편지와 함께 보낸 이미지');
     await user.click(imageElement);
 
     const imageDownButton = document.querySelector('#download-button');
