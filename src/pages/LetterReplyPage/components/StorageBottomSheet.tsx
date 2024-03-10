@@ -1,12 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import Button from '@/components/Button';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
-import ERROR_RESPONSES from '@/constants/errorMessages';
 import BottomSheet from '@/components/BottomSheet';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import useBoolean from '@/hooks/useBoolean';
@@ -24,30 +22,23 @@ const StorageBottomSheet = ({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutateAsync: patchStorage, isPending } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: letterAPI.patchReplyStorage,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+    },
   });
 
   const handleStorageLetter = async () => {
-    try {
-      await patchStorage(letterId);
-      queryClient.invalidateQueries({ queryKey: letterOptions.all });
-      toast.success('편지를 보관함에 넣었어요', {
-        autoClose: 1500,
-        position: 'bottom-center',
-      });
-      navigate(ROUTER_PATHS.ROOT);
-    } catch (error) {
-      if (
-        isAxiosError(error) &&
-        (error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
-          error.response?.data === ERROR_RESPONSES.unAnsweredLetterStore)
-      ) {
-        console.error(error.response?.data);
-      } else {
-        throw error;
-      }
-    }
+    mutate(letterId, {
+      onSuccess: () => {
+        toast.success('편지를 보관함에 넣었어요', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
+        navigate(ROUTER_PATHS.ROOT);
+      },
+    });
     off();
   };
 
