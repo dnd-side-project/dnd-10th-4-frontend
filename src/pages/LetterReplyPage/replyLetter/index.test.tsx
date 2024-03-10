@@ -3,7 +3,7 @@ import { server } from '@/mocks/node';
 import { baseURL } from '@/utils/mswUtils';
 import { API_PATHS } from '@/constants/routerPaths';
 import { ReplyLetter as ReplyLetterData } from '@/mocks/datas/letter';
-import { render, screen } from '@/utils/testing-library';
+import { render, screen, waitFor } from '@/utils/testing-library';
 import { formatDate } from '@/utils/dateUtils';
 import ReplyLetter from '.';
 
@@ -40,5 +40,34 @@ describe('렌더링 테스트', () => {
     expect(repliedAt).toBeInTheDocument();
     expect(senderNickname).toBeInTheDocument();
     expect(imageElement.src).toContain(replyImagePath);
+  });
+});
+
+describe('인터랙션 테스트', () => {
+  it('폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
+    const letter_id = 1;
+
+    server.use(
+      http.get(
+        baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())),
+        () => HttpResponse.json(ReplyLetterData(letter_id)),
+      ),
+    );
+
+    const { user } = render(<ReplyLetter letterId={letter_id} />);
+
+    await waitFor(() => {
+      screen.getByAltText('편지와 함께 보낸 이미지');
+    });
+
+    const imageElement = (await screen.getByAltText(
+      '편지와 함께 보낸 이미지',
+    )) as HTMLImageElement;
+
+    await user.click(imageElement);
+
+    const imageDownButton = document.querySelector('#download-button');
+
+    expect(imageDownButton).toBeInTheDocument();
   });
 });
