@@ -70,3 +70,27 @@ describe('렌더링 테스트', () => {
     expect(imageElement.src).toContain(sendImagePath);
   });
 });
+
+describe('인터랙션 테스트', () => {
+  it('폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
+    const letter_id = 1;
+
+    server.use(
+      http.get(
+        baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
+        () => HttpResponse.json(ReceptionLetterData(letter_id)),
+      ),
+    );
+
+    const { user } = render(
+      <ReceivedLetter letterId={letter_id} onNext={() => {}} />,
+    );
+
+    const imageElement = await screen.findByAltText('편지와 함께 보낸 이미지');
+    await user.click(imageElement);
+
+    const modalCloseButton = screen.getByRole('button', { name: '닫기' });
+
+    expect(modalCloseButton).toBeInTheDocument();
+  });
+});
