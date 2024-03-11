@@ -18,7 +18,7 @@ vi.stubGlobal('ResizeObserver', ResizeObserver);
 
 describe('렌더링 테스트', () => {
   it('흘러온 편지가 렌더링 된다.', async () => {
-    const letter_id = 1;
+    const letter_id = 2;
     server.use(
       http.get(
         baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
@@ -72,9 +72,8 @@ describe('렌더링 테스트', () => {
 });
 
 describe('인터랙션 테스트', () => {
+  const letter_id = 2;
   it('폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
-    const letter_id = 1;
-
     server.use(
       http.get(
         baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
@@ -92,5 +91,20 @@ describe('인터랙션 테스트', () => {
     const modalCloseButton = screen.getByRole('button', { name: '닫기' });
 
     expect(modalCloseButton).toBeInTheDocument();
+  });
+  it('다시 흘려보내기 버튼을 누르면 바텀시트가 열린다.', async () => {
+    const { user } = render(
+      <ReceivedLetter letterId={letter_id} onNext={() => {}} />,
+    );
+
+    await screen.findByText(ReceptionLetterData(letter_id).receiverNickname!);
+
+    const tossButton = await screen.findByRole('button', {
+      name: '다시 흘려보내기',
+    });
+    await user.click(tossButton);
+
+    const bottomSheet = screen.getByText('편지를 바다에 흘려보낼까요?');
+    expect(bottomSheet).toBeVisible();
   });
 });

@@ -6,11 +6,11 @@ import Tooltip from '@/components/Tooltip';
 import LetterHeader from '@/components/LetterHeader';
 import { formatDate } from '@/utils/dateUtils';
 import useBoolean from '@/hooks/useBoolean';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
-import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
-import TossBottomSheet from './TossBottomSheet';
+import LetterContent from '../components/LetterContent';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import style from './styles';
+import TossBottomSheet from './TossBottomSheet';
 
 interface ReceivedLetterProps {
   letterId: number;
