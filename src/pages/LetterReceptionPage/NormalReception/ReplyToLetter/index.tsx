@@ -1,20 +1,11 @@
 import { useFormContext } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import LetterCard from '@/components/LetterCard';
-import Button from '@/components/Button';
 import LetterTextarea from '@/components/LetterTextarea';
 import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterHeader from '@/components/LetterHeader';
-import letterAPI from '@/api/letter/apis';
-import letterOptions from '@/api/letter/queryOptions';
-import { ROUTER_PATHS } from '@/constants/routerPaths';
-import ERROR_RESPONSES from '@/constants/errorMessages';
 import useBoolean from '@/hooks/useBoolean';
-import BottomSheet from '@/components/BottomSheet';
 import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 import { ReplyInputs } from '..';
@@ -22,6 +13,7 @@ import ReplyButton from './ReplyButton';
 import ReplyImage from './ReplyImage';
 import style from './styles';
 import ReceivedAccordionLetter from './ReceivedAccordionLetter';
+import ReplyBottomSheet from './ReplyBottomSheet';
 
 interface ReplyToLetterProps {
   letterId: number;
@@ -30,10 +22,7 @@ interface ReplyToLetterProps {
 
 const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
-
-  const navigate = useNavigate();
-  const { value, on, off } = useBoolean(false);
-  const queryClient = useQueryClient();
+  const replyBottomSheetProps = useBoolean(false);
 
   const {
     handleSubmit,
@@ -41,43 +30,6 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
     watch,
     formState: { errors },
   } = useFormContext<ReplyInputs>();
-
-  const { mutateAsync: patchReply, isPending } = useMutation({
-    mutationFn: letterAPI.patchReceptionReply,
-  });
-
-  const onSubmit = async (data: ReplyInputs) => {
-    try {
-      await patchReply({ letterId: receptionLetter.letterId, letter: data });
-      queryClient.invalidateQueries({ queryKey: letterOptions.all });
-      navigate(ROUTER_PATHS.ROOT);
-      toast.success('편지를 바다에 띄어보냈어요', {
-        position: 'bottom-center',
-        autoClose: 1500,
-      });
-    } catch (error) {
-      if (isAxiosError(error)) {
-        if (
-          error.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
-          error.response?.data === ERROR_RESPONSES.alreadyReplyExist
-        ) {
-          toast.error(error.response?.data, {
-            position: 'bottom-center',
-          });
-          navigate(ROUTER_PATHS.ROOT);
-        } else if (
-          error.response?.data === ERROR_RESPONSES.unSupportExt ||
-          error.response?.data === ERROR_RESPONSES.noExt
-        ) {
-          toast.error(error.response?.data, {
-            position: 'bottom-center',
-          });
-        }
-      } else {
-        throw error;
-      }
-    }
-  };
 
   useEffect(() => {
     if (errors.replyContent) {
@@ -101,7 +53,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
 
   return (
     <LetterContent isBlock={true}>
-      <form onSubmit={handleSubmit(on)}>
+      <form onSubmit={handleSubmit(replyBottomSheetProps.on)}>
         <div css={style.letter}>
           <ReceivedAccordionLetter receptionLetter={receptionLetter} />
           <LetterCard isOpen={true} css={style.card}>
@@ -123,28 +75,9 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
             <ReplyImage />
           </LetterCard>
         </div>
-        <ReplyButton isPending={isPending} onPrev={onPrev} />
+        <ReplyButton onPrev={onPrev} />
       </form>
-      <BottomSheet open={value} onOpen={on} onClose={off}>
-        <BottomSheet.Title>답장을 보낼까요?</BottomSheet.Title>
-        <BottomSheet.Description>
-          낯선이에게 답장은 한번만 가능해요
-        </BottomSheet.Description>
-        <BottomSheet.ButtonSection>
-          <Button variant="cancel" onClick={off}>
-            취소
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              handleSubmit(onSubmit)();
-              off();
-            }}
-          >
-            보내기
-          </Button>
-        </BottomSheet.ButtonSection>
-      </BottomSheet>
+      <ReplyBottomSheet {...replyBottomSheetProps} letterId={letterId} />
     </LetterContent>
   );
 };

@@ -2,17 +2,15 @@ import { useFormContext } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import { type ReplyInputs } from '..';
 
 interface ReplyButtonProps {
-  isPending: boolean;
   onPrev: () => void;
 }
 
-const ReplyButton = ({ isPending, onPrev }: ReplyButtonProps) => {
+const ReplyButton = ({ onPrev }: ReplyButtonProps) => {
   const { value, on, off } = useBoolean(false);
 
   const { watch, reset } = useFormContext<ReplyInputs>();
@@ -36,8 +34,8 @@ const ReplyButton = ({ isPending, onPrev }: ReplyButtonProps) => {
         >
           취소
         </Button>
-        <Button disabled={isPending} type="submit" variant="primary" size="sm">
-          {isPending ? <LoadingSpinner /> : '답장 보내기'}
+        <Button type="submit" variant="primary" size="sm">
+          답장 보내기
         </Button>
       </Navbar>
       <BottomSheet open={value} onOpen={on} onClose={off}>
