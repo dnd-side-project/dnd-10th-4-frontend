@@ -36,10 +36,9 @@ const StorageBottomSheet = ({
           autoClose: 1500,
           position: 'bottom-center',
         });
-        navigate(ROUTER_PATHS.ROOT);
       },
     });
-    off();
+    navigate(ROUTER_PATHS.ROOT);
   };
 
   return (

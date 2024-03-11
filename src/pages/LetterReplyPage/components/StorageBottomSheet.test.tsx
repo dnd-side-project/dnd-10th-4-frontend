@@ -8,6 +8,16 @@ import { baseURL } from '@/utils/mswUtils';
 import { letterResolvers } from '@/mocks/resolvers/letter';
 import StorageBottomSheet from './StorageBottomSheet';
 
+const navigateFn = vi.fn();
+
+vi.mock('react-router-dom', async () => {
+  const original = await vi.importActual('react-router-dom');
+  return {
+    ...original,
+    useNavigate: () => navigateFn,
+  };
+});
+
 describe('인터랙션 테스트', () => {
   const letter_id = 1;
   it('취소 버튼을 누르면 바텀시트가 닫힌다.', async () => {
@@ -35,11 +45,11 @@ describe('API 테스트', () => {
     await user.click(storageButton);
 
     await waitFor(() => {
-      expect(window.location.pathname).toEqual(ROUTER_PATHS.ROOT);
+      expect(navigateFn).toHaveBeenCalledWith(ROUTER_PATHS.ROOT);
       expect(toast.success).toHaveBeenCalledTimes(1);
     });
   });
-  it('[실패] 요청이 실패하면 바텀시트가 닫히고 실패 토스트가 나타난다.', async () => {
+  it('[실패] 요청이 실패하면 루트 페이지로 이동하고 실패 토스트가 나타난다.', async () => {
     server.use(
       http.patch(
         baseURL(API_PATHS.LETTER_REPLY_STORAGE_DETAIL(letter_id.toString())),
@@ -56,7 +66,7 @@ describe('API 테스트', () => {
     await user.click(storageButton);
 
     await waitFor(() => {
-      expect(bottomSheetProps.current.value).toBe(false);
+      expect(navigateFn).toHaveBeenCalledWith(ROUTER_PATHS.ROOT);
       expect(toast.error).toHaveBeenCalledTimes(1);
     });
   });
