@@ -11,6 +11,7 @@ import { formatDate } from '@/utils/dateUtils';
 import { WORRY_DICT } from '@/constants/users';
 import { ReplyInputs, replySchema } from '..';
 import ReplyToLetter from '.';
+import '@/assets/background.png';
 
 const ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
