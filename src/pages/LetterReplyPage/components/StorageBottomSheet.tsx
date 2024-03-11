@@ -37,8 +37,10 @@ const StorageBottomSheet = ({
           position: 'bottom-center',
         });
       },
+      onSettled: () => {
+        navigate(ROUTER_PATHS.ROOT);
+      },
     });
-    navigate(ROUTER_PATHS.ROOT);
   };
 
   return (
