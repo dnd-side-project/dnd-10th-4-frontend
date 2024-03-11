@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { HttpResponse, http } from 'msw';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { server } from '@/mocks/node';
@@ -84,7 +85,7 @@ describe('렌더링 테스트', () => {
   });
 });
 
-describe('인터랙션 테스트', () => {
+describe('아코디언 테스트', () => {
   const letter_id = 2;
 
   const ReplyToLetterComponent = () => {
@@ -137,5 +138,64 @@ describe('인터랙션 테스트', () => {
 
     expect(expandButton).toHaveAttribute('aria-expanded', 'false');
     expect(senderNicknameElements).toHaveLength(1);
+  });
+});
+
+describe('편지 작성 테스트', () => {
+  const letter_id = 2;
+
+  const ReplyToLetterComponent = () => {
+    const methods = useForm<ReplyInputs>({
+      resolver: zodResolver(replySchema),
+      defaultValues: {
+        replyContent: '',
+      },
+    });
+    return (
+      <FormProvider {...methods}>
+        <ReplyToLetter letterId={letter_id} onPrev={() => {}} />
+      </FormProvider>
+    );
+  };
+  it('아무 것도 입력되지 않은 상태에서 답장 보내기 버튼을 누르면 경고 토스트가 뜬다.', async () => {
+    const { user } = render(<ReplyToLetterComponent />);
+
+    const content = await screen.findByPlaceholderText(
+      '하고싶은 이야기를 답장으로 적어보세요. (10자 이상)',
+    );
+    const sendButton = screen.getByRole('button', { name: '답장 보내기' });
+    await user.click(sendButton);
+
+    expect(content).toHaveValue('');
+    expect(toast.warn).toHaveBeenCalledTimes(1);
+  });
+  it('10자 미만 입력하고 답장 보내기 버튼을 누르면 경고 토스트가 뜬다.', async () => {
+    const { user } = render(<ReplyToLetterComponent />);
+
+    const content = await screen.findByPlaceholderText(
+      '하고싶은 이야기를 답장으로 적어보세요. (10자 이상)',
+    );
+
+    await user.type(content, '10자 미만 내용');
+
+    const sendButton = screen.getByRole('button', { name: '답장 보내기' });
+    await user.click(sendButton);
+
+    expect(toast.warn).toHaveBeenCalledTimes(1);
+  });
+  it('10자 이상 입력하면 답장보내기 바텀시트가 나타난다,', async () => {
+    const { user } = render(<ReplyToLetterComponent />);
+
+    const content = await screen.findByPlaceholderText(
+      '하고싶은 이야기를 답장으로 적어보세요. (10자 이상)',
+    );
+
+    await user.type(content, '10자 이상 내용입니다.');
+
+    const sendButton = screen.getByRole('button', { name: '답장 보내기' });
+    await user.click(sendButton);
+
+    const bottomSheet = screen.getByText('답장을 보낼까요?');
+    expect(bottomSheet).toBeVisible();
   });
 });
