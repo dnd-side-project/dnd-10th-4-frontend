@@ -97,8 +97,6 @@ describe('인터랙션 테스트', () => {
       <ReceivedLetter letterId={letter_id} onNext={() => {}} />,
     );
 
-    await screen.findByText(ReceptionLetterData(letter_id).receiverNickname!);
-
     const tossButton = await screen.findByRole('button', {
       name: '다시 흘려보내기',
     });
