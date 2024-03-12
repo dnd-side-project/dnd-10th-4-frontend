@@ -5,6 +5,7 @@ import {
   RECEPTIONS_PER_SLIDE,
   REPLIES_PER_SLIDE,
 } from '@/constants/letters';
+import STORAGE_KEYS from '@/constants/storageKeys';
 
 type StateItem = {
   id: number;
@@ -50,7 +51,7 @@ export const letterSlideStore = createStore<State & Action>()(
         })),
     }),
     {
-      name: 'letterBottleStore',
+      name: STORAGE_KEYS.letterSlide,
     },
   ),
 );
