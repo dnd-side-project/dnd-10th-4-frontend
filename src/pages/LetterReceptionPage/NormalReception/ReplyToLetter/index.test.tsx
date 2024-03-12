@@ -152,6 +152,19 @@ describe('아코디언 테스트', () => {
     expect(expandButton).toHaveAttribute('aria-expanded', 'false');
     expect(senderNicknameElements).toHaveLength(1);
   });
+  it('아코디언 폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
+    const { user } = render(<ReplyToLetterComponent />);
+
+    const expandButton = await screen.findByRole('button', { name: '펼치기' });
+    await user.click(expandButton);
+
+    const imageElement = await screen.findByAltText('편지와 함께 보낸 이미지');
+    await user.click(imageElement);
+
+    const modalCloseButton = screen.getByRole('button', { name: '닫기' });
+
+    expect(modalCloseButton).toBeInTheDocument();
+  });
 });
 
 describe('편지 작성 테스트', () => {
