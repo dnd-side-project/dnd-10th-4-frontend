@@ -17,7 +17,7 @@ export const PagedSendLettersResponsePage1 = {
       content:
         '이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300 글자 입니다. 이 편지의 내용은 300',
       worryType: 'WORK',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
     {
@@ -31,7 +31,7 @@ export const PagedSendLettersResponsePage1 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath: null,
+      sendImagePath: null,
     },
     {
       createdAt: '2024-02-16T08:33:52',
@@ -44,7 +44,7 @@ export const PagedSendLettersResponsePage1 = {
       senderNickname: '낯선 유저1',
       content: '안녕하세요.',
       worryType: 'WORK',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
     {
@@ -58,7 +58,7 @@ export const PagedSendLettersResponsePage1 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
     {
@@ -72,7 +72,7 @@ export const PagedSendLettersResponsePage1 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath: null,
+      sendImagePath: null,
     },
   ],
 } satisfies Send;
@@ -93,7 +93,7 @@ export const PagedSendLettersResponsePage2 = {
       senderNickname: '낯선 유저1',
       content: '안녕하세요.',
       worryType: 'WORK',
-      imagePath: null,
+      sendImagePath: null,
     },
     {
       createdAt: '2024-02-16T09:03:30',
@@ -106,7 +106,7 @@ export const PagedSendLettersResponsePage2 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath: null,
+      sendImagePath: null,
     },
     {
       createdAt: '2024-02-16T08:33:52',
@@ -119,7 +119,7 @@ export const PagedSendLettersResponsePage2 = {
       senderNickname: '낯선 유저1',
       content: '안녕하세요.',
       worryType: 'WORK',
-      imagePath: null,
+      sendImagePath: null,
     },
     {
       createdAt: '2024-02-16T09:03:30',
@@ -132,7 +132,7 @@ export const PagedSendLettersResponsePage2 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath: null,
+      sendImagePath: null,
     },
     {
       createdAt: '2024-02-16T09:03:30',
@@ -145,7 +145,7 @@ export const PagedSendLettersResponsePage2 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
   ],
@@ -167,7 +167,7 @@ export const PagedSendLettersResponsePage3 = {
       senderNickname: '낯선 유저1',
       content: '안녕하세요.',
       worryType: 'WORK',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
     {
@@ -181,7 +181,7 @@ export const PagedSendLettersResponsePage3 = {
       senderNickname: '낯선 유저1',
       content: '고민입니다',
       worryType: 'LOVE',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
     {
@@ -195,7 +195,7 @@ export const PagedSendLettersResponsePage3 = {
       senderNickname: '낯선 유저1',
       content: '안녕하세요.',
       worryType: 'WORK',
-      imagePath:
+      sendImagePath:
         'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
     },
   ],
