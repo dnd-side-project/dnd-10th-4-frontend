@@ -58,7 +58,7 @@
 
 ## 배포 주소
 
-🖥️ 서비스 배포 주소 - https://oceanletter.site/
+🖥️ 서비스 배포 주소 - https://oceanletter.site/  
 🎨 Storybook 주소 - https://main--65a6c73d536a3c43b7c5c9bb.chromatic.com/
 
 <br/>
