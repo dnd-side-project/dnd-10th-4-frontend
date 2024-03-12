@@ -22,11 +22,13 @@ type Action = {
   syncReplies: (newReplyIds: number[]) => void;
   readReception: (id: number) => void;
   readReply: (id: number) => void;
+  hasReadReception: (id: number) => boolean;
+  hasReadReply: (id: number) => boolean;
 };
 
 export const letterSlideStore = createStore<State & Action>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       receptions: new Array(MAX_SLIDES * RECEPTIONS_PER_SLIDE).fill(null),
       replies: new Array(MAX_SLIDES * REPLIES_PER_SLIDE).fill(null),
       syncReceptions: (newReceptionIds) =>
@@ -49,6 +51,12 @@ export const letterSlideStore = createStore<State & Action>()(
             reply?.id === id ? { ...reply, isRead: true } : reply,
           ),
         })),
+      hasReadReception: (id) =>
+        get().receptions.some(
+          (reception) => reception?.id === id && reception.isRead,
+        ),
+      hasReadReply: (id) =>
+        get().replies.some((reply) => reply?.id === id && reply.isRead),
     }),
     {
       name: STORAGE_KEYS.letterSlide,

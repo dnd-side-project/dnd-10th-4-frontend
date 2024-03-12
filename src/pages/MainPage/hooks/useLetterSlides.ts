@@ -33,7 +33,7 @@ const useLetterSlides = () => {
       .map((item) =>
         item
           ? fetchedReceptions.find((value) => value.letterId === item.id)
-          : undefined,
+          : null,
       )
       .slice(0, MAX_SLIDES * RECEPTIONS_PER_SLIDE),
     RECEPTIONS_PER_SLIDE,
@@ -44,7 +44,7 @@ const useLetterSlides = () => {
       .map((item) =>
         item
           ? fetchedReplies.find((value) => value.letterId === item.id)
-          : undefined,
+          : null,
       )
       .slice(0, MAX_SLIDES * RECEPTIONS_PER_SLIDE),
     REPLIES_PER_SLIDE,
