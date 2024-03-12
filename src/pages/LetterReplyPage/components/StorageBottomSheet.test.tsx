@@ -18,8 +18,9 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+const letter_id = 1;
+
 describe('인터랙션 테스트', () => {
-  const letter_id = 1;
   it('취소 버튼을 누르면 바텀시트가 닫힌다.', async () => {
     const { result: bottomSheetProps } = renderHook(() => useBoolean(true));
     const { user } = render(
@@ -34,7 +35,6 @@ describe('인터랙션 테스트', () => {
 });
 
 describe('API 테스트', () => {
-  const letter_id = 1;
   it('[성공] 보관하기 버튼을 클릭하면 API 호출이 발생하고, 요청이 성공하면 루트 페이지로 이동하고 성공 토스트가 나타난다.', async () => {
     const { result: bottomSheetProps } = renderHook(() => useBoolean(true));
     const { user } = render(
