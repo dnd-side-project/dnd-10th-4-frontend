@@ -16,15 +16,19 @@ const ResizeObserver = vi.fn(() => ({
 
 vi.stubGlobal('ResizeObserver', ResizeObserver);
 
+const letter_id = 2;
+
+beforeEach(() => {
+  server.use(
+    http.get(
+      baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
+      () => HttpResponse.json(ReceptionLetterData(letter_id)),
+    ),
+  );
+});
+
 describe('렌더링 테스트', () => {
   it('흘러온 편지가 렌더링 된다.', async () => {
-    const letter_id = 2;
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReceptionLetterData(letter_id)),
-      ),
-    );
     render(<ReceivedLetter letterId={letter_id} onNext={() => {}} />);
 
     const worry = await screen.findByText(
@@ -72,15 +76,7 @@ describe('렌더링 테스트', () => {
 });
 
 describe('인터랙션 테스트', () => {
-  const letter_id = 2;
   it('폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReceptionLetterData(letter_id)),
-      ),
-    );
-
     const { user } = render(
       <ReceivedLetter letterId={letter_id} onNext={() => {}} />,
     );

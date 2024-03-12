@@ -33,30 +33,33 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+const letter_id = 2;
+
+beforeEach(() => {
+  server.use(
+    http.get(
+      baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
+      () => HttpResponse.json(ReceptionLetterData(letter_id)),
+    ),
+  );
+});
+
+const ReplyToLetterComponent = () => {
+  const methods = useForm<ReplyInputs>({
+    resolver: zodResolver(replySchema),
+    defaultValues: {
+      replyContent: '',
+    },
+  });
+  return (
+    <FormProvider {...methods}>
+      <ReplyToLetter letterId={letter_id} onPrev={() => {}} />
+    </FormProvider>
+  );
+};
+
 describe('렌더링 테스트', () => {
   it('흘러온 편지의 답장하기가 렌더링 된다. (아코디언 접혀 있는 상태)', async () => {
-    const letter_id = 2;
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReceptionLetterData(letter_id)),
-      ),
-    );
-
-    const ReplyToLetterComponent = () => {
-      const methods = useForm<ReplyInputs>({
-        resolver: zodResolver(replySchema),
-        defaultValues: {
-          replyContent: '',
-        },
-      });
-      return (
-        <FormProvider {...methods}>
-          <ReplyToLetter letterId={letter_id} onPrev={() => {}} />
-        </FormProvider>
-      );
-    };
-
     render(<ReplyToLetterComponent />);
 
     const worry = await screen.findByText(
@@ -99,29 +102,6 @@ describe('렌더링 테스트', () => {
 });
 
 describe('아코디언 테스트', () => {
-  const letter_id = 2;
-
-  const ReplyToLetterComponent = () => {
-    const methods = useForm<ReplyInputs>({
-      resolver: zodResolver(replySchema),
-      defaultValues: {
-        replyContent: '',
-      },
-    });
-    return (
-      <FormProvider {...methods}>
-        <ReplyToLetter letterId={letter_id} onPrev={() => {}} />
-      </FormProvider>
-    );
-  };
-
-  server.use(
-    http.get(
-      baseURL(API_PATHS.LETTER_RECEPTION_DETAIL(letter_id.toString())),
-      () => HttpResponse.json(ReceptionLetterData(letter_id)),
-    ),
-  );
-
   it('펼치기를 누르면 아코디언이 펼쳐진다.', async () => {
     const { user } = render(<ReplyToLetterComponent />);
 
@@ -168,21 +148,6 @@ describe('아코디언 테스트', () => {
 });
 
 describe('편지 작성 테스트', () => {
-  const letter_id = 2;
-
-  const ReplyToLetterComponent = () => {
-    const methods = useForm<ReplyInputs>({
-      resolver: zodResolver(replySchema),
-      defaultValues: {
-        replyContent: '',
-      },
-    });
-    return (
-      <FormProvider {...methods}>
-        <ReplyToLetter letterId={letter_id} onPrev={() => {}} />
-      </FormProvider>
-    );
-  };
   it('아무 것도 입력되지 않은 상태에서 답장 보내기 버튼을 누르면 경고 토스트가 뜬다.', async () => {
     const { user } = render(<ReplyToLetterComponent />);
 
