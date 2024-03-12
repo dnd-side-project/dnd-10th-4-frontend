@@ -55,7 +55,7 @@ describe('렌더링 테스트', () => {
       ReceptionLetterData(letter_id).senderNickname,
     );
 
-    const imageElement = (await screen.getByAltText(
+    const imageElement = (await screen.findByAltText(
       '편지와 함께 보낸 이미지',
     )) as HTMLImageElement;
     const sendImagePath = ReceptionLetterData(letter_id).sendImagePath;
