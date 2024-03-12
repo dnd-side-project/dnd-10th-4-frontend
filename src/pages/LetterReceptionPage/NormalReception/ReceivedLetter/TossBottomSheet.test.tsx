@@ -28,6 +28,8 @@ describe('인터랙션 테스트', () => {
 
     const cancelButton = screen.getByRole('button', { name: '취소' });
     await user.click(cancelButton);
+
+    expect(bottomSheetProps.current.value).toBe(false);
   });
 });
 
