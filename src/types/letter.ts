@@ -56,7 +56,7 @@ export type SendLetter = {
   senderNickname: string;
   content: string;
   worryType: Worry;
-  imagePath: string | null;
+  sendImagePath: string | null;
 };
 
 export type Send = {
