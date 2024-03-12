@@ -33,17 +33,21 @@ const CarouselArea = () => {
         <div css={styles.container}>
           {slides.map(({ id: slideId, receptions, replies }) => (
             <article key={slideId} css={styles.slide}>
-              {receptions.map((reception, i) => (
-                <ReceptionBottle
-                  key={reception.letterId}
-                  constantId={i}
-                  reception={reception}
-                />
-              ))}
+              {receptions.map(
+                (reception, i) =>
+                  reception && (
+                    <ReceptionBottle
+                      key={reception.letterId}
+                      constantId={i}
+                      reception={reception}
+                    />
+                  ),
+              )}
 
-              {replies.map((reply, i) => (
-                <ReplyBottle key={i} constantId={i} reply={reply} />
-              ))}
+              {replies.map(
+                (reply, i) =>
+                  reply && <ReplyBottle key={i} constantId={i} reply={reply} />,
+              )}
             </article>
           ))}
         </div>
@@ -59,24 +63,20 @@ const CarouselArea = () => {
         ))}
       </section>
 
-      {slides.length > 1 && (
-        <>
-          <IconButton
-            variant="carousel"
-            css={[styles.carouselButton, css({ left: '1rem' })]}
-            onClick={() => emblaApi?.scrollPrev()}
-          >
-            <CaretLeft color={COLORS.gray3} />
-          </IconButton>
-          <IconButton
-            variant="carousel"
-            css={[styles.carouselButton, css({ right: '1rem' })]}
-            onClick={() => emblaApi?.scrollNext()}
-          >
-            <CaretRight color={COLORS.gray3} />
-          </IconButton>
-        </>
-      )}
+      <IconButton
+        variant="carousel"
+        css={[styles.carouselButton, css({ left: '1rem' })]}
+        onClick={() => emblaApi?.scrollPrev()}
+      >
+        <CaretLeft color={COLORS.gray3} />
+      </IconButton>
+      <IconButton
+        variant="carousel"
+        css={[styles.carouselButton, css({ right: '1rem' })]}
+        onClick={() => emblaApi?.scrollNext()}
+      >
+        <CaretRight color={COLORS.gray3} />
+      </IconButton>
     </>
   );
 };
