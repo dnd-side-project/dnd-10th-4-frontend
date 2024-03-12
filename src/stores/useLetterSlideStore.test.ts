@@ -8,7 +8,7 @@ beforeEach(() => {
 });
 
 describe('syncReceptions', () => {
-  it('새로운 newReceptionIds가 들어오면 스토어의 상태가 동기화된다.', () => {
+  it('새로운 ID 배열 인자에 맞춰서 스토어의 상태가 동기화된다.', () => {
     // 최초에는 모든 원소가 null이다.
     expect(letterSlideStore.getState().receptions).toEqual(
       new Array(16).fill(null),
@@ -105,44 +105,8 @@ describe('syncReceptions', () => {
   });
 });
 
-describe('readReception', () => {
-  it('id에 해당하는 reception의 isRead가 true로 변경된다.', () => {
-    letterSlideStore.getState().syncReceptions([0, 1, 2, 3, 4]);
-    letterSlideStore.getState().readReception(3);
-    expect(letterSlideStore.getState().receptions[3]).toEqual({
-      id: 3,
-      isRead: true,
-    });
-
-    letterSlideStore.getState().readReception(1);
-    expect(letterSlideStore.getState().receptions[1]).toEqual({
-      id: 1,
-      isRead: true,
-    });
-
-    expect(letterSlideStore.getState().receptions).toEqual([
-      { id: 0, isRead: false },
-      { id: 1, isRead: true },
-      { id: 2, isRead: false },
-      { id: 3, isRead: true },
-      { id: 4, isRead: false },
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ]);
-  });
-});
-
 describe('syncReplies', () => {
-  it('새로운 newReplyIds가 들어오면 스토어의 상태가 동기화된다.', () => {
+  it('새로운 ID 배열 인자에 맞춰서 스토어의 상태가 동기화된다.', () => {
     // 최초에는 모든 원소가 null이다.
     expect(letterSlideStore.getState().replies).toEqual(
       new Array(8).fill(null),
@@ -203,8 +167,44 @@ describe('syncReplies', () => {
   });
 });
 
+describe('readReception', () => {
+  it('특정 reception을 읽음 처리하여 isRead가 true로 변경된다.', () => {
+    letterSlideStore.getState().syncReceptions([0, 1, 2, 3, 4]);
+    letterSlideStore.getState().readReception(3);
+    expect(letterSlideStore.getState().receptions[3]).toEqual({
+      id: 3,
+      isRead: true,
+    });
+
+    letterSlideStore.getState().readReception(1);
+    expect(letterSlideStore.getState().receptions[1]).toEqual({
+      id: 1,
+      isRead: true,
+    });
+
+    expect(letterSlideStore.getState().receptions).toEqual([
+      { id: 0, isRead: false },
+      { id: 1, isRead: true },
+      { id: 2, isRead: false },
+      { id: 3, isRead: true },
+      { id: 4, isRead: false },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+    ]);
+  });
+});
+
 describe('readReply', () => {
-  it('id에 해당하는 reply의 isRead가 true로 변경된다.', () => {
+  it('특정 reply를 읽음 처리하여 isRead가 true로 변경된다', () => {
     letterSlideStore.getState().syncReplies([0, 1, 2, 3, 4]);
     letterSlideStore.getState().readReply(4);
     expect(letterSlideStore.getState().replies[4]).toEqual({
@@ -228,5 +228,25 @@ describe('readReply', () => {
       null,
       null,
     ]);
+  });
+});
+
+describe('hasReadReception', () => {
+  it('특정 reception이 읽혀진 상태인지를 반환한다.', () => {
+    letterSlideStore.getState().syncReceptions([0, 1, 2, 3, 4]);
+    expect(letterSlideStore.getState().hasReadReception(3)).toBe(false);
+
+    letterSlideStore.getState().readReception(3);
+    expect(letterSlideStore.getState().hasReadReception(3)).toBe(true);
+  });
+});
+
+describe('hasReadReply', () => {
+  it('특정 reply가 읽혀진 상태인지를 반환한다.', () => {
+    letterSlideStore.getState().syncReplies([0, 1, 2, 3, 4]);
+    expect(letterSlideStore.getState().hasReadReply(1)).toBe(false);
+
+    letterSlideStore.getState().readReply(1);
+    expect(letterSlideStore.getState().hasReadReply(1)).toBe(true);
   });
 });
