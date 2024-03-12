@@ -8,15 +8,18 @@ import { formatDate } from '@/utils/dateUtils';
 import { WORRY_DICT } from '@/constants/users';
 import SentLetter from '.';
 
+const letter_id = 1;
+
+beforeEach(() => {
+  server.use(
+    http.get(baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())), () =>
+      HttpResponse.json(ReplyLetterData(letter_id)),
+    ),
+  );
+});
+
 describe('렌더링 테스트', () => {
   it('모달이 열리고 내가 보낸 편지가 렌더링 된다.', async () => {
-    const letter_id = 1;
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReplyLetterData(letter_id)),
-      ),
-    );
     const { user } = render(<SentLetter letterId={letter_id} />);
 
     const sentContainer = await screen.findByText('내가 보낸 편지');
@@ -62,15 +65,6 @@ describe('렌더링 테스트', () => {
 
 describe('인터랙션 테스트', () => {
   it('폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
-    const letter_id = 1;
-
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReplyLetterData(letter_id)),
-      ),
-    );
-
     const { user } = render(<SentLetter letterId={letter_id} />);
 
     const sentContainer = await screen.findByText('내가 보낸 편지');

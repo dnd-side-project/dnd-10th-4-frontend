@@ -10,10 +10,10 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
-import ReceivedLetter from './ReceivedLetter';
-import ReplyToLetter from './ReplyToLetter';
-import ReceptionHeader from './components/ReceptionHeader';
 import style from './styles';
+import ReceptionHeader from './components/ReceptionHeader';
+import ReplyToLetter from './ReplyToLetter';
+import ReceivedLetter from './ReceivedLetter';
 
 const L = letterWrite;
 
@@ -36,6 +36,7 @@ const replySchema = z.object({
 });
 
 export type ReplyInputs = z.infer<typeof replySchema>;
+export { replySchema };
 
 const { Funnel, Step, useFunnel } = createFunnel([
   'ReceivedLetter',

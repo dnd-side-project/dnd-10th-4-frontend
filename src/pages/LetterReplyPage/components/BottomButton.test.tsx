@@ -20,8 +20,9 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+const letter_id = 1;
+
 describe('인터랙션 테스트', () => {
-  const letter_id = 1;
   it('보관하기 버튼을 누르면 바텀시트가 열린다.', async () => {
     const { user } = render(<BottomButton letterId={letter_id} />);
 

@@ -7,15 +7,18 @@ import { render, screen } from '@/utils/testing-library';
 import { formatDate } from '@/utils/dateUtils';
 import ReplyLetter from '.';
 
+const letter_id = 1;
+
+beforeEach(() => {
+  server.use(
+    http.get(baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())), () =>
+      HttpResponse.json(ReplyLetterData(letter_id)),
+    ),
+  );
+});
+
 describe('렌더링 테스트', () => {
   it('답장 받은 편지가 렌더링 된다.', async () => {
-    const letter_id = 1;
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReplyLetterData(letter_id)),
-      ),
-    );
     render(<ReplyLetter letterId={letter_id} />);
 
     const receiverNickname = await screen.findByText(
@@ -45,15 +48,6 @@ describe('렌더링 테스트', () => {
 
 describe('인터랙션 테스트', () => {
   it('폴라로이드 사진을 클릭하면 모달이 열린다.', async () => {
-    const letter_id = 1;
-
-    server.use(
-      http.get(
-        baseURL(API_PATHS.LETTER_REPLY_DETAIL(letter_id.toString())),
-        () => HttpResponse.json(ReplyLetterData(letter_id)),
-      ),
-    );
-
     const { user } = render(<ReplyLetter letterId={letter_id} />);
 
     const imageElement = await screen.findByAltText('편지와 함께 보낸 이미지');

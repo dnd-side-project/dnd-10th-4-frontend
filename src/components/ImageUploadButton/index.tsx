@@ -23,7 +23,11 @@ const ImageUploadButton = ({
 
   return (
     <>
+      <label htmlFor="image-uploader" css={style.input}>
+        이미지 업로드
+      </label>
       <input
+        id="image-uploader"
         ref={fileInputRef}
         type="file"
         accept=".jpg, .jpeg, .gif, .bmp, .png"

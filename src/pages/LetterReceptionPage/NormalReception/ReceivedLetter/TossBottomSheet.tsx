@@ -2,37 +2,37 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Button from '@/components/Button';
-import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterAPI from '@/api/letter/apis';
-import letterOptions from '@/api/letter/queryOptions';
-import BottomSheet from '@/components/BottomSheet';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
+import letterOptions from '@/api/letter/queryOptions';
 import useBoolean from '@/hooks/useBoolean';
+import BottomSheet from '@/components/BottomSheet';
 
-interface StorageBottomSheetProps extends ReturnType<typeof useBoolean> {
+interface TossBottomSheetProps extends ReturnType<typeof useBoolean> {
   letterId: number;
 }
 
-const StorageBottomSheet = ({
+const TossBottomSheet = ({
   value,
   on,
   off,
   letterId,
-}: StorageBottomSheetProps) => {
-  const navigate = useNavigate();
+}: TossBottomSheetProps) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: letterAPI.patchReplyStorage,
+    mutationFn: letterAPI.patchReceptionPass,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
     },
   });
 
-  const handleStorageLetter = async () => {
+  const handleTossLetter = async () => {
     mutate(letterId, {
       onSuccess: () => {
-        toast.success('편지를 보관함에 넣었어요', {
+        toast.success('편지를 다시 바다에 흘러보냈어요', {
           autoClose: 1500,
           position: 'bottom-center',
         });
@@ -45,9 +45,9 @@ const StorageBottomSheet = ({
 
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>
-      <BottomSheet.Title>편지를 보관함에 저장할까요?</BottomSheet.Title>
+      <BottomSheet.Title>편지를 바다에 흘려보낼까요?</BottomSheet.Title>
       <BottomSheet.Description>
-        편지를 보관함에 저장해 언제든지 볼 수 있어요.
+        흘려보낸 편지는 답장할 수 없어요
       </BottomSheet.Description>
       <BottomSheet.ButtonSection>
         <Button variant="cancel" onClick={off}>
@@ -57,14 +57,14 @@ const StorageBottomSheet = ({
           disabled={isPending}
           variant="primary"
           onClick={() => {
-            handleStorageLetter();
+            handleTossLetter();
           }}
         >
-          {isPending ? <LoadingSpinner /> : <>보관하기</>}
+          {isPending ? <LoadingSpinner /> : <>흘려보내기</>}
         </Button>
       </BottomSheet.ButtonSection>
     </BottomSheet>
   );
 };
 
-export default StorageBottomSheet;
+export default TossBottomSheet;
