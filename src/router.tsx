@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { readLetterStore } from './stores/useReadLetterStore';
+import { letterSlideStore } from './stores/useLetterSlideStore';
 import AuthLayout from './layouts/AuthLayout';
 import App from './App';
 import SigninPage from './pages/SigninPage';
@@ -51,7 +51,9 @@ const router = createBrowserRouter([
             path: ROUTER_PATHS.LETTER_RECEPTION(':letterId'),
             element: <LetterReceptionPage />,
             loader: ({ params }) => {
-              readLetterStore.getState().addReception(Number(params.letterId));
+              letterSlideStore
+                .getState()
+                .readReception(Number(params.letterId));
               return null;
             },
           },
@@ -59,7 +61,7 @@ const router = createBrowserRouter([
             path: ROUTER_PATHS.LETTER_REPLY(':letterId'),
             element: <LetterReplyPage />,
             loader: ({ params }) => {
-              readLetterStore.getState().addReply(Number(params.letterId));
+              letterSlideStore.getState().readReply(Number(params.letterId));
               return null;
             },
           },

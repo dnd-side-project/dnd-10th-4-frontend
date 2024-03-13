@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { type Reception } from '@/types/letter';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
-import useReadLetterStore from '@/stores/useReadLetterStore';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
+import useLetterSlideStore from '@/stores/useLetterSlideStore';
 import TimeChip from '../TimeChip';
 import Sparkle from '../Sparkle';
 import { RECEPTION_BOTTLES } from './bottleData';
@@ -22,7 +22,7 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
     throw new Error('constantId가 범위를 벗어났습니다.');
   }
 
-  const readReceptions = useReadLetterStore((s) => s.receptions);
+  const hasReadReception = useLetterSlideStore((s) => s.hasReadReception);
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -43,12 +43,10 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
             onClick={handleNavigate}
           >
             <img src={RECEPTION_BOTTLES[constantId].bottle.src} alt="물병" />
-            {RECEPTION_BOTTLES[constantId].sparkles?.map(
-              (sparkle, i) =>
-                !readReceptions.includes(letterId) && (
-                  <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
-                ),
-            )}
+            {!hasReadReception(letterId) &&
+              RECEPTION_BOTTLES[constantId].sparkles?.map((sparkle, i) => (
+                <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
+              ))}
           </div>
         }
       >

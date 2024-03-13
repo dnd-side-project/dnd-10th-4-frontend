@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { type Reply } from '@/types/letter';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
-import useReadLetterStore from '@/stores/useReadLetterStore';
 import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
+import useLetterSlideStore from '@/stores/useLetterSlideStore';
 import Sparkle from '../Sparkle';
 import { REPLY_BOTTLES } from './bottleData';
 import styles from './styles';
@@ -20,7 +20,7 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
     throw new Error('constantId가 범위를 벗어났습니다.');
   }
 
-  const readReplies = useReadLetterStore((s) => s.replies);
+  const hasReadReply = useLetterSlideStore((s) => s.hasReadReply);
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -41,12 +41,10 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
         triggerContent={
           <div>
             <img src={REPLY_BOTTLES[constantId].bottle.src} alt="물병" />
-            {REPLY_BOTTLES[constantId].sparkles?.map(
-              (sparkle, i) =>
-                !readReplies.includes(letterId) && (
-                  <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
-                ),
-            )}
+            {!hasReadReply(letterId) &&
+              REPLY_BOTTLES[constantId].sparkles?.map((sparkle, i) => (
+                <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
+              ))}
           </div>
         }
       >
