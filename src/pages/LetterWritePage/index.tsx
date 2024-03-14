@@ -14,9 +14,9 @@ import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
 import letterOptions from '@/api/letter/queryOptions';
-import LetteWriteHeader from './components/LetterWriteHeader';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import style from './styles';
+import { LetterWriteContent, LetterWriteBottom } from './components';
+import LetteWriteHeader from './components/LetterWriteHeader';
 
 const L = letterWrite;
 
@@ -43,6 +43,7 @@ const writeSchema = z.object({
     ),
 });
 
+export { writeSchema };
 export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
