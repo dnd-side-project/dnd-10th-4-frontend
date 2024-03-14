@@ -14,9 +14,9 @@ import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
 import letterOptions from '@/api/letter/queryOptions';
-import style from './styles';
-import { LetterWriteContent, LetterWriteBottom } from './components';
 import LetteWriteHeader from './components/LetterWriteHeader';
+import { LetterWriteBottom, LetterPaper } from './components';
+import style from './styles';
 
 const L = letterWrite;
 
@@ -126,7 +126,7 @@ const LetterWritePage = () => {
       <div css={style.container}>
         <LetteWriteHeader />
         <form onSubmit={handleSubmit(on)} css={style.contentWrapper}>
-          <LetterWriteContent />
+          <LetterPaper />
           <LetterWriteBottom isPending={isPending} />
         </form>
       </div>

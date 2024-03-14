@@ -8,14 +8,15 @@ import { ArrowClockWise } from '@/assets/icons';
 import { letterWrite } from '@/constants/schemaLiteral';
 import { type Worry, type EqualGender } from '@/constants/letters';
 import Button from '@/components/Button';
-import { type WriteInputs } from '..';
-import { BottomSheetProps } from './LetterWriteContent';
-import { AgeSlider, GenderSelect, WorrySelect } from '.';
+import useBoolean from '@/hooks/useBoolean';
+import { AgeSlider, GenderSelect, WorrySelect } from '..';
+import { type WriteInputs } from '../..';
 
-const LetterReceiverSelect = ({
-  isBottomSheetOpen,
-  toggleBottomSheet,
-}: BottomSheetProps) => {
+const LetterReceiverBottomSheet = ({
+  value,
+  on,
+  off,
+}: ReturnType<typeof useBoolean>) => {
   const { setValue } = useFormContext<WriteInputs>();
 
   const [age, setAge] = useState<[number, number]>([
@@ -31,7 +32,7 @@ const LetterReceiverSelect = ({
     setValue('age', age);
     setValue('worryType', worryType);
     setValue('gender', gender);
-    toggleBottomSheet(false)();
+    off();
   };
 
   const onRefreshIconClick = () => {
@@ -45,11 +46,7 @@ const LetterReceiverSelect = ({
   };
 
   return (
-    <BottomSheet
-      open={isBottomSheetOpen}
-      onClose={toggleBottomSheet(false)}
-      onOpen={toggleBottomSheet(true)}
-    >
+    <BottomSheet open={value} onOpen={on} onClose={off}>
       <div css={style.bottomSheetContainer}>
         <div css={style.bottomSheetTitle(iconRotation)}>
           <BottomSheet.Title>누구에게 보낼까요?</BottomSheet.Title>
@@ -61,7 +58,7 @@ const LetterReceiverSelect = ({
       </div>
       <BottomSheet.Divider />
       <BottomSheet.ButtonSection>
-        <Button variant="cancel" onClick={toggleBottomSheet(false)}>
+        <Button variant="cancel" onClick={off}>
           닫기
         </Button>
         <Button variant="primary" onClick={onCompleteButtonClick}>
@@ -72,7 +69,7 @@ const LetterReceiverSelect = ({
   );
 };
 
-export default LetterReceiverSelect;
+export default LetterReceiverBottomSheet;
 
 const style = {
   bottomSheetContainer: css`

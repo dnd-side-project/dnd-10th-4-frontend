@@ -11,14 +11,13 @@ import {
 } from '@/constants/letters';
 import TagList from '@/components/TagList';
 import Tooltip from '@/components/Tooltip';
+import useBoolean from '@/hooks/useBoolean';
+import { LetterReceiverBottomSheet } from '..';
 import { type WriteInputs } from '../..';
-interface ReceiverContainerProps {
-  onClick: () => void;
-  isOpen: boolean;
-}
 
-const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
+const ReceiverContainer = () => {
   const { watch } = useFormContext<WriteInputs>();
+  const receiverBottomSheetProps = useBoolean(false);
 
   const age = watch('age');
   const gender = watch('gender') as '' | EqualGender;
@@ -44,16 +43,22 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
     <div css={style.ReceiverContainer}>
       <span>To.</span>
       {tags.length !== 0 ? (
-        <div onClick={onClick} css={style.ReceiverBoxSelect}>
+        <div
+          onClick={receiverBottomSheetProps.on}
+          css={style.ReceiverBoxSelect}
+        >
           <TagList tags={tags} variant="filter" />
           <CaretDown
-            css={style.caretDown(isOpen)}
+            css={style.caretDown(receiverBottomSheetProps.value)}
             stroke={COLORS.gray3}
             strokeWidth={2}
           />
         </div>
       ) : (
-        <div onClick={onClick} css={style.ReceiverBoxUnSelect}>
+        <div
+          onClick={receiverBottomSheetProps.on}
+          css={style.ReceiverBoxUnSelect}
+        >
           <span>누구에게 보낼까요?</span>
           <Tooltip
             delay={2000}
@@ -61,7 +66,7 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
             triggerContent={
               <div>
                 <CaretDown
-                  css={style.caretDown(isOpen)}
+                  css={style.caretDown(receiverBottomSheetProps.value)}
                   stroke={COLORS.gray3}
                   strokeWidth={2}
                 />
@@ -72,6 +77,7 @@ const ReceiverContainer = ({ onClick, isOpen }: ReceiverContainerProps) => {
           </Tooltip>
         </div>
       )}
+      <LetterReceiverBottomSheet {...receiverBottomSheetProps} />
     </div>
   );
 };
