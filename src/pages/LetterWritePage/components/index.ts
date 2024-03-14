@@ -8,7 +8,7 @@ import PolaroidImage from './LetterPaper/PolaroidImage';
 import LetterReceiverBottomSheet from './LetterReceiverBottomSheet';
 import LetterReceiverContainer from './LetterPaper/LetterReceiverContainer';
 import LetterWriteBottom from './LetterWriteBottom';
-import LetterWriteContent from './LetterPaper/LetterWriteContent';
+import LetterWriteContent from './LetterWriteContent';
 
 export {
   AgeSlider,

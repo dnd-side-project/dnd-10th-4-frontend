@@ -4,14 +4,14 @@ import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterCard from '@/components/LetterCard';
 import memberOptions from '@/api/member/queryOptions';
 import LetterHeader from '@/components/LetterHeader';
+import { BottomSheetProps } from '../LetterWriteContent';
+import { type WriteInputs } from '../..';
 import {
   LetterReceiverContainer,
   LetterContent,
   PolaroidImage,
   ImageSelect,
 } from '..';
-import { type WriteInputs } from '../..';
-import { BottomSheetProps } from './LetterWriteContent';
 
 const LetterPaper = ({
   isBottomSheetOpen,
