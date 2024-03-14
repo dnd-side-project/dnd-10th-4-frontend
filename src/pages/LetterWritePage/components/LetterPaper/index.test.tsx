@@ -7,8 +7,8 @@ import { API_PATHS } from '@/constants/routerPaths';
 import { server } from '@/mocks/node';
 import { MemberInfo } from '@/mocks/datas/member';
 import { formatDate } from '@/utils/dateUtils';
-import { LetterPaper } from '..';
 import { WriteInputs, writeSchema } from '../..';
+import { LetterPaper } from '..';
 
 const ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
@@ -36,11 +36,7 @@ const LetterPaperComponent = () => {
   });
   return (
     <FormProvider {...methods}>
-      <LetterPaper
-        isBottomSheetOpen={false}
-        toggleBottomSheet={() => () => {}}
-      />
-      ,
+      <LetterPaper />,
     </FormProvider>
   );
 };
@@ -49,7 +45,9 @@ describe('렌더링 테스트', () => {
   it('편지쓰기 페이지가 렌더링 된다.', async () => {
     render(<LetterPaperComponent />);
 
-    const receivername = await screen.findByText('누구에게 보낼까요?');
+    const receivername = await screen.findByText('누구에게 보낼까요?', {
+      selector: 'span',
+    });
     const textarea =
       await screen.findByPlaceholderText('하고싶은 이야기를 적어보세요.');
     const date = await screen.findByText(formatDate(new Date()));

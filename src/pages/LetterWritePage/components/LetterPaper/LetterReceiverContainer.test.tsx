@@ -24,17 +24,24 @@ const LetterReceiverContainerComponent = () => {
   });
   return (
     <FormProvider {...methods}>
-      <LetterReceiverContainer isOpen={false} onClick={() => {}} />,
+      <LetterReceiverContainer />,
     </FormProvider>
   );
 };
 
 describe('인터랙션 테스트', () => {
-  it('다시 흘려보내기 버튼을 누르면 바텀시트가 열린다.', async () => {
+  it('누구에게 보낼까요? 를 누르면 바텀시트가 열린다.', async () => {
     const { user } = render(<LetterReceiverContainerComponent />);
 
-    const receiverContainer = await screen.findByText('누구에게 보낼까요?');
+    const receiverContainer = await screen.findByText('누구에게 보낼까요?', {
+      selector: 'span',
+    });
 
-    user.click(receiverContainer);
+    await user.click(receiverContainer);
+
+    const bottomSheet = await screen.findByText(
+      '고민을 선택을 하면 나와 비슷한 고민을 가진 낯선 친구에게 전달돼요',
+    );
+    expect(bottomSheet).toBeVisible();
   });
 });
