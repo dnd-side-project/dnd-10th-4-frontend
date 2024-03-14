@@ -6,7 +6,7 @@ import IconButton from '@/components/IconButton';
 import { TrashCan } from '@/assets/icons';
 import BottomSheet from '@/components/BottomSheet';
 import useBoolean from '@/hooks/useBoolean';
-import { type WriteInputs } from '..';
+import { type WriteInputs } from '../..';
 
 const PolaroidImage = () => {
   const { value, on, off } = useBoolean(false);

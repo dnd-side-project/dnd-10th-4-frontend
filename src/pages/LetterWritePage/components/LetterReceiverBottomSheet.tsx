@@ -9,7 +9,7 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import { type Worry, type EqualGender } from '@/constants/letters';
 import Button from '@/components/Button';
 import { type WriteInputs } from '..';
-import { BottomSheetProps } from './LetterWriteContent';
+import { BottomSheetProps } from './LetterPaper/LetterWriteContent';
 import { AgeSlider, GenderSelect, WorrySelect } from '.';
 
 const LetterReceiverSelect = ({

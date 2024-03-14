@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LetterPaper, LetterReceiverBottomSheet } from '.';
+import { LetterPaper, LetterReceiverBottomSheet } from '..';
 
 export interface BottomSheetProps {
   isBottomSheetOpen: boolean;

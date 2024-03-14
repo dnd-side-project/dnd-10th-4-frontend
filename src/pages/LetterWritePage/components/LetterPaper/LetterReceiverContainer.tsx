@@ -11,7 +11,7 @@ import {
 } from '@/constants/letters';
 import TagList from '@/components/TagList';
 import Tooltip from '@/components/Tooltip';
-import { type WriteInputs } from '..';
+import { type WriteInputs } from '../..';
 interface ReceiverContainerProps {
   onClick: () => void;
   isOpen: boolean;

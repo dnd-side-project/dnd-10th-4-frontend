@@ -7,8 +7,8 @@ import { API_PATHS } from '@/constants/routerPaths';
 import { server } from '@/mocks/node';
 import { MemberInfo } from '@/mocks/datas/member';
 import { formatDate } from '@/utils/dateUtils';
-import { WriteInputs, writeSchema } from '..';
-import { LetterPaper } from '.';
+import { LetterPaper } from '..';
+import { WriteInputs, writeSchema } from '../..';
 
 const ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
