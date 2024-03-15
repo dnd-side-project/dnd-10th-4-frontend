@@ -18,10 +18,8 @@ const LetterCountIconButton = () => {
         letterCount={member.letterCount}
         {...bottomSheet}
       />
-      <Tooltip
-        delay={3000}
-        mountKey="letterCountIconButton"
-        triggerContent={
+      <Tooltip delay={3000} mountKey="letterCountIconButton">
+        <Tooltip.Trigger>
           <IconButton
             css={styles.button}
             variant="header"
@@ -31,11 +29,11 @@ const LetterCountIconButton = () => {
             <PencilLine color="white" />
             <p css={styles.text}>{member.letterCount}장</p>
           </IconButton>
-        }
-        align="start"
-      >
-        <p>편지지는 </p>
-        <p>하루마다 충전 돼요</p>
+        </Tooltip.Trigger>
+        <Tooltip.Content align="start">
+          <p>편지지는 </p>
+          <p>하루마다 충전 돼요</p>
+        </Tooltip.Content>
       </Tooltip>
     </>
   );

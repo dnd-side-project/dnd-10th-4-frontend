@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import { SoundOff } from '@/assets/icons';
 import IconButton from '../IconButton';
-import Tooltip from './';
+import Tooltip from '.';
 
 const meta = {
   title: 'Components/Tooltip',
@@ -24,24 +24,27 @@ const styles = {
   `,
 };
 
-export const Primary: Story = {
+export const Composition: Story = {
   args: {
-    side: 'bottom',
-    align: 'end',
-    delay: 1000,
-    mountKey: undefined,
-    triggerContent: (
-      <IconButton>
-        <SoundOff color="white" />
-      </IconButton>
-    ),
-    children: '소리를 켜 바다를 느껴보세요',
+    delay: 3000,
   },
-  decorators: (Story) => {
-    return (
-      <div css={styles.background}>
-        <Story />
-      </div>
-    );
-  },
+  decorators: (Story) => (
+    <div css={styles.background}>
+      <Story />
+    </div>
+  ),
+  render: (args) => (
+    <section>
+      <Tooltip {...args}>
+        <Tooltip.Trigger>
+          <IconButton>
+            <SoundOff color="white" />
+          </IconButton>
+        </Tooltip.Trigger>
+        <Tooltip.Content>
+          <p>소리를 켜 바다를 느껴보세요</p>
+        </Tooltip.Content>
+      </Tooltip>
+    </section>
+  ),
 };

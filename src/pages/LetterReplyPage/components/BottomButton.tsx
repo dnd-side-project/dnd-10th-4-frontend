@@ -25,10 +25,8 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
         >
           닫기
         </Button>
-        <Tooltip
-          side="top"
-          delay={10000}
-          triggerContent={
+        <Tooltip delay={10000}>
+          <Tooltip.Trigger>
             <Button
               variant="primary"
               size="sm"
@@ -36,9 +34,10 @@ const BottomButton = ({ letterId }: BottomButtonProps) => {
             >
               보관하기
             </Button>
-          }
-        >
-          편지를 보관하여 간직해보세요
+          </Tooltip.Trigger>
+          <Tooltip.Content side="top">
+            편지를 보관하여 간직해보세요
+          </Tooltip.Content>
         </Tooltip>
       </Navbar>
       <StorageBottomSheet {...storageBottomSheetProps} letterId={letterId} />

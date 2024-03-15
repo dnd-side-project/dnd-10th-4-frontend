@@ -31,11 +31,8 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
 
   return (
     <article css={RECEPTION_BOTTLES[constantId].container.position}>
-      <Tooltip
-        side="top"
-        delay={30000}
-        mountKey="onboarding-bottle"
-        triggerContent={
+      <Tooltip>
+        <Tooltip.Trigger>
           <div
             css={styles.bottleAnimation(
               RECEPTION_BOTTLES[constantId].container.animation,
@@ -48,10 +45,11 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
                 <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
               ))}
           </div>
-        }
-      >
+        </Tooltip.Trigger>
         {reception.letterType === 'Onboarding' && (
-          <p css={textStyles.c1r}>새로운 편지가 도착 했어요</p>
+          <Tooltip.Content side="top">
+            <p css={textStyles.c1r}>새로운 편지가 도착 했어요</p>
+          </Tooltip.Content>
         )}
       </Tooltip>
 

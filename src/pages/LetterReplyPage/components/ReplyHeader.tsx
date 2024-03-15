@@ -26,16 +26,15 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
           color="white"
           onClick={() => navigate(ROUTER_PATHS.ROOT)}
         />
-        <Tooltip
-          delay={3000}
-          align="start"
-          triggerContent={
+        <Tooltip delay={3000}>
+          <Tooltip.Trigger>
             <div>
               <DetailTimeChip type="day" createdAt={replyLetter.createdAt} />
             </div>
-          }
-        >
-          내게 온 답장은 7일이 지나면 사라져요
+          </Tooltip.Trigger>
+          <Tooltip.Content align="start">
+            내게 온 답장은 7일이 지나면 사라져요
+          </Tooltip.Content>
         </Tooltip>
       </Header.Left>
       <Header.Right>
