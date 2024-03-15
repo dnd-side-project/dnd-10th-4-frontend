@@ -4,25 +4,28 @@ import { css } from '@emotion/react';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
 import useBoolean from '@/hooks/useBoolean';
-import BottomSheet from '@/components/BottomSheet';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import { WriteInputs } from '..';
+import BackwardBottomSheet from './BackwardBottomSheet';
+import { LetterPaper } from '.';
 
-const LetterWriteButton = () => {
+const LetterWriteContainer = () => {
   const navigate = useNavigate();
-  const { value, on, off } = useBoolean(false);
+  const backwardBottomSheetProps = useBoolean(false);
 
   const { watch } = useFormContext<WriteInputs>();
 
   const handleBackward = () => {
     if (watch('age').length !== 0 || watch('content') || watch('image')) {
-      on();
+      backwardBottomSheetProps.on();
     } else {
-      navigate(-1);
+      navigate(ROUTER_PATHS.ROOT);
     }
   };
 
   return (
     <>
+      <LetterPaper />
       <Navbar css={style.navbar}>
         <Button
           onClick={handleBackward}
@@ -36,25 +39,12 @@ const LetterWriteButton = () => {
           보내기
         </Button>
       </Navbar>
-      <BottomSheet open={value} onOpen={on} onClose={off}>
-        <BottomSheet.Title>편지쓰기를 취소할까요?</BottomSheet.Title>
-        <BottomSheet.Description>
-          편지 작성 취소시, <br /> 작성중인 글과 사진은 저장되지 않아요.
-        </BottomSheet.Description>
-        <BottomSheet.ButtonSection>
-          <Button variant="cancel" onClick={off}>
-            계속 쓰기
-          </Button>
-          <Button variant="danger" onClick={() => navigate(-1)}>
-            작성 취소
-          </Button>
-        </BottomSheet.ButtonSection>
-      </BottomSheet>
+      <BackwardBottomSheet {...backwardBottomSheetProps} />
     </>
   );
 };
 
-export default LetterWriteButton;
+export default LetterWriteContainer;
 
 const style = {
   navbar: css`

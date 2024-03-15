@@ -15,7 +15,7 @@ import useBoolean from '@/hooks/useBoolean';
 import { LetterReceiverBottomSheet } from '..';
 import { type WriteInputs } from '../..';
 
-const ReceiverContainer = () => {
+const LetterReceiverContainer = () => {
   const { watch } = useFormContext<WriteInputs>();
   const receiverBottomSheetProps = useBoolean(false);
 
@@ -82,7 +82,7 @@ const ReceiverContainer = () => {
   );
 };
 
-export default ReceiverContainer;
+export default LetterReceiverContainer;
 
 const style = {
   ReceiverContainer: css`

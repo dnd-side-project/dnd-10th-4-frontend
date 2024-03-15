@@ -15,11 +15,7 @@ import { WriteInputs } from '..';
 
 interface LetterWriteBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
-const LetterWriteBottomSheet = ({
-  value,
-  on,
-  off,
-}: LetterWriteBottomSheetProps) => {
+const WriteBottomSheet = ({ value, on, off }: LetterWriteBottomSheetProps) => {
   const { handleSubmit } = useFormContext<WriteInputs>();
   const navigate = useNavigate();
 
@@ -77,4 +73,4 @@ const LetterWriteBottomSheet = ({
   );
 };
 
-export default LetterWriteBottomSheet;
+export default WriteBottomSheet;

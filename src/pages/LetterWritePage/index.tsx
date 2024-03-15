@@ -3,12 +3,12 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-import { letterWrite } from '@/constants/schemaLiteral';
 import useBoolean from '@/hooks/useBoolean';
+import { letterWrite } from '@/constants/schemaLiteral';
 import LetteWriteHeader from './components/LetterWriteHeader';
-import { LetterWriteButton, LetterPaper } from './components';
 import style from './styles';
-import LetterWriteBottomSheet from './components/LetterWriteBottomSheet';
+import WriteBottomSheet from './components/WriteBottomSheet';
+import LetterWriteContainer from './components/LetterWriteContainer';
 
 const L = letterWrite;
 
@@ -39,7 +39,7 @@ export { writeSchema };
 export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
-  const LetterWriteBottomSheetProps = useBoolean(false);
+  const WriteBottomSheetProps = useBoolean(false);
 
   const methods = useForm<WriteInputs>({
     resolver: zodResolver(writeSchema),
@@ -57,7 +57,7 @@ const LetterWritePage = () => {
     watch,
   } = methods;
 
-  const showToast = (message: string) => {
+  const showToast = (message: string | undefined) => {
     toast.warn(message, {
       position: 'bottom-center',
       autoClose: 1500,
@@ -84,14 +84,13 @@ const LetterWritePage = () => {
       <div css={style.container}>
         <LetteWriteHeader />
         <form
-          onSubmit={handleSubmit(LetterWriteBottomSheetProps.on)}
+          onSubmit={handleSubmit(WriteBottomSheetProps.on)}
           css={style.contentWrapper}
         >
-          <LetterPaper />
-          <LetterWriteButton />
+          <LetterWriteContainer />
         </form>
       </div>
-      <LetterWriteBottomSheet {...LetterWriteBottomSheetProps} />
+      <WriteBottomSheet {...WriteBottomSheetProps} />
     </FormProvider>
   );
 };
