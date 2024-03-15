@@ -26,13 +26,13 @@ const MainPage = () => {
         <Header.Right css={css({ gap: '0.5rem' })}>
           <MusicButton
             css={css({ marginRight: '0.75rem' })}
-            tooltipProps={{
+            tooltipContentProps={{
               align: 'start',
               side: 'bottom',
             }}
           />
-          <Tooltip
-            triggerContent={
+          <Tooltip>
+            <Tooltip.Trigger>
               <IconButton
                 variant="header"
                 rounded="r8"
@@ -40,13 +40,11 @@ const MainPage = () => {
               >
                 <TreasureChest color="white" />
               </IconButton>
-            }
-          >
-            보관함
+            </Tooltip.Trigger>
+            <Tooltip.Content>보관함</Tooltip.Content>
           </Tooltip>
-          <Tooltip
-            align="end"
-            triggerContent={
+          <Tooltip>
+            <Tooltip.Trigger>
               <IconButton
                 variant="header"
                 rounded="r8"
@@ -54,9 +52,8 @@ const MainPage = () => {
               >
                 <User color="white" />
               </IconButton>
-            }
-          >
-            마이 페이지
+            </Tooltip.Trigger>
+            <Tooltip.Content align="end">마이 페이지</Tooltip.Content>
           </Tooltip>
         </Header.Right>
       </Header>

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { SoundOff } from '@/assets/icons';
-import { Composition } from '../NewTooltip.stories';
-import NewTooltip from '../NewTooltip';
+import { Composition } from '../index.stories';
+import Tooltip from '..';
 import IconButton from '../../IconButton';
 import Content from './Content';
 
 const meta = {
-  title: 'Components/NewTooltip/Content',
+  title: 'Components/Tooltip/Content',
   component: Content,
   tags: ['autodocs'],
   argTypes: {},
@@ -25,13 +25,13 @@ export const Primary: Story = {
   },
   decorators: Composition.decorators,
   render: (args) => (
-    <NewTooltip>
-      <NewTooltip.Trigger>
+    <Tooltip>
+      <Tooltip.Trigger>
         <IconButton>
           <SoundOff color="white" />
         </IconButton>
-      </NewTooltip.Trigger>
+      </Tooltip.Trigger>
       <Content {...args} />
-    </NewTooltip>
+    </Tooltip>
   ),
 };

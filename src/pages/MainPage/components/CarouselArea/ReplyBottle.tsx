@@ -4,7 +4,7 @@ import { type Reply } from '@/types/letter';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import textStyles from '@/styles/textStyles';
 import useLetterSlideStore from '@/stores/useLetterSlideStore';
-import NewTooltip from '@/components/Tooltip/NewTooltip';
+import NewTooltip from '@/components/Tooltip';
 import Sparkle from '../Sparkle';
 import { REPLY_BOTTLES } from './bottleData';
 import styles from './styles';

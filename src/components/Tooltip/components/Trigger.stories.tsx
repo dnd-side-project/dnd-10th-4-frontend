@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Composition } from '../NewTooltip.stories';
-import NewTooltip from '../NewTooltip';
+import { Composition } from '../index.stories';
+import Tooltip from '..';
 import Trigger from './Trigger';
 
 const meta = {
-  title: 'Components/NewTooltip/Trigger',
+  title: 'Components/Tooltip/Trigger',
   component: Trigger,
   tags: ['autodocs'],
   argTypes: {},
@@ -20,13 +20,13 @@ export const Primary: Story = {
   },
   decorators: Composition.decorators,
   render: (args) => (
-    <NewTooltip>
-      <NewTooltip.Trigger>
+    <Tooltip>
+      <Tooltip.Trigger>
         <p>{args.children}</p>
-      </NewTooltip.Trigger>
-      <NewTooltip.Content>
+      </Tooltip.Trigger>
+      <Tooltip.Content>
         <p>소리를 켜 바다를 느껴보세요</p>
-      </NewTooltip.Content>
-    </NewTooltip>
+      </Tooltip.Content>
+    </Tooltip>
   ),
 };

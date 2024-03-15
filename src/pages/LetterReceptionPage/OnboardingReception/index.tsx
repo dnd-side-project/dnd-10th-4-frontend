@@ -116,10 +116,8 @@ const OnboardingReception = () => {
             titlePosition="right"
             nickname={letter.senderNickname}
           />
-          <Tooltip
-            side="right"
-            delay={300000}
-            triggerContent={
+          <Tooltip delay={300000}>
+            <Tooltip.Trigger>
               <div css={styles.polaroidContainer}>
                 {letter.sendImagePath && (
                   <img
@@ -130,9 +128,10 @@ const OnboardingReception = () => {
                   />
                 )}
               </div>
-            }
-          >
-            <p css={textStyles.c1r}>사진을 클릭해 볼 수 있어요</p>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="right">
+              <p css={textStyles.c1r}>사진을 클릭해 볼 수 있어요</p>
+            </Tooltip.Content>
           </Tooltip>
         </LetterCard>
       </motion.main>
@@ -148,8 +147,8 @@ const OnboardingReception = () => {
         <Tooltip
           key={storageTooltipKey.current}
           delay={storageTooltipKey.current > 0 ? 300000 : 0}
-          side="top"
-          triggerContent={
+        >
+          <Tooltip.Trigger>
             <Button
               variant="primary"
               size="sm"
@@ -159,9 +158,10 @@ const OnboardingReception = () => {
             >
               {isPending ? <LoadingSpinner /> : '보관하기'}
             </Button>
-          }
-        >
-          <p css={textStyles.c1r}>보관하기를 눌러 편지를 간직하세요</p>
+          </Tooltip.Trigger>
+          <Tooltip.Content side="top">
+            <p css={textStyles.c1r}>보관하기를 눌러 편지를 간직하세요</p>
+          </Tooltip.Content>
         </Tooltip>
       </Navbar>
     </div>

@@ -19,9 +19,8 @@ const WritingBottomButton = () => {
   const disabled = member.letterCount === 0;
 
   return (
-    <Tooltip
-      delay={isFromOnboardingLetter ? 5000 : 0}
-      triggerContent={
+    <Tooltip delay={isFromOnboardingLetter ? 5000 : 0}>
+      <Tooltip.Trigger>
         <Button
           css={css({ width: '100%' })}
           variant="primary"
@@ -32,15 +31,16 @@ const WritingBottomButton = () => {
         >
           <PencilLine /> 편지 쓰기
         </Button>
-      }
-    >
-      <p css={textStyles.c1r}>
-        {isFromOnboardingLetter
-          ? '나의 첫 편지를 바다에 띄어보내 보세요'
-          : disabled
-            ? '오늘은 더 이상 편지를 쓸 수 없어요'
-            : `오늘 편지를 ${member.letterCount}번 더 쓸수 있어요`}
-      </p>
+      </Tooltip.Trigger>
+      <Tooltip.Content>
+        <p css={textStyles.c1r}>
+          {isFromOnboardingLetter
+            ? '나의 첫 편지를 바다에 띄어보내 보세요'
+            : disabled
+              ? '오늘은 더 이상 편지를 쓸 수 없어요'
+              : `오늘 편지를 ${member.letterCount}번 더 쓸수 있어요`}
+        </p>
+      </Tooltip.Content>
     </Tooltip>
   );
 };

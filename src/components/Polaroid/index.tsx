@@ -31,15 +31,13 @@ const Polaroid = ({
           alt="편지와 함께 보낸 이미지"
         />
       ) : (
-        <Tooltip
-          delay={2000}
-          triggerContent={
+        <Tooltip delay={2000}>
+          <Tooltip.Trigger>
             <div {...props} css={style.empty(topPosition, leftPosition)}>
               <AddImage fill="#6F6B63" />
             </div>
-          }
-        >
-          사진을 함께 보낼 수 있어요
+          </Tooltip.Trigger>
+          <Tooltip.Content>사진을 함께 보낼 수 있어요</Tooltip.Content>
         </Tooltip>
       )}
     </>
