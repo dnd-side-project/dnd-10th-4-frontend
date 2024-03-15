@@ -14,6 +14,7 @@ interface TooltipProps {
   children?: React.ReactNode;
 }
 
+/** 마우스를 hover할 때 툴팁 컨텐츠를 보여주는 컴포넌트입니다. */
 const NewTooltip = ({ mountKey, delay = 0, children }: TooltipProps) => {
   const KEY = `newtooltip-${mountKey}`;
 
