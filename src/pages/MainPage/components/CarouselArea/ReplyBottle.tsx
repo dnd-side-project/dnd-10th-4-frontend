@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { css } from '@emotion/react';
 import { type Reply } from '@/types/letter';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
-import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useLetterSlideStore from '@/stores/useLetterSlideStore';
+import NewTooltip from '@/components/Tooltip/NewTooltip';
 import Sparkle from '../Sparkle';
 import { REPLY_BOTTLES } from './bottleData';
 import styles from './styles';
@@ -36,9 +37,8 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
       ]}
       onClick={handleNavigate}
     >
-      <Tooltip
-        side="top"
-        triggerContent={
+      <NewTooltip delay={3000}>
+        <NewTooltip.Trigger>
           <div>
             <img src={REPLY_BOTTLES[constantId].bottle.src} alt="물병" />
             {!hasReadReply(letterId) &&
@@ -46,10 +46,13 @@ const ReplyBottle = ({ constantId, reply }: ReplyBottleProps) => {
                 <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
               ))}
           </div>
-        }
-      >
-        <p css={textStyles.c1r}>답장은 모래 위로 흘러와요</p>
-      </Tooltip>
+        </NewTooltip.Trigger>
+        <NewTooltip.Content side="top" withPortal={false}>
+          <p css={[textStyles.c1r, css({ color: 'black' })]}>
+            답장은 모래 위로 흘러와요
+          </p>
+        </NewTooltip.Content>
+      </NewTooltip>
     </article>
   );
 };

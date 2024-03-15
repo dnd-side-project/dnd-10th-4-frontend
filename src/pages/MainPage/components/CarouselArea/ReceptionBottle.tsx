@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { type Reception } from '@/types/letter';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
-import Tooltip from '@/components/Tooltip';
+import NewTooltip from '@/components/Tooltip/NewTooltip';
 import textStyles from '@/styles/textStyles';
 import useLetterSlideStore from '@/stores/useLetterSlideStore';
 import TimeChip from '../TimeChip';
@@ -31,11 +31,8 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
 
   return (
     <article css={RECEPTION_BOTTLES[constantId].container.position}>
-      <Tooltip
-        side="top"
-        delay={30000}
-        mountKey="onboarding-bottle"
-        triggerContent={
+      <NewTooltip>
+        <NewTooltip.Trigger>
           <div
             css={styles.bottleAnimation(
               RECEPTION_BOTTLES[constantId].container.animation,
@@ -48,12 +45,13 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
                 <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
               ))}
           </div>
-        }
-      >
+        </NewTooltip.Trigger>
         {reception.letterType === 'Onboarding' && (
-          <p css={textStyles.c1r}>새로운 편지가 도착 했어요</p>
+          <NewTooltip.Content side="top">
+            <p css={textStyles.c1r}>새로운 편지가 도착 했어요</p>
+          </NewTooltip.Content>
         )}
-      </Tooltip>
+      </NewTooltip>
 
       {reception.letterType !== 'Onboarding' && (
         <TimeChip
