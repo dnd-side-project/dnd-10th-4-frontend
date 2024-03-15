@@ -7,7 +7,7 @@ import LetterPaper from './LetterPaper';
 import PolaroidImage from './LetterPaper/PolaroidImage';
 import LetterReceiverBottomSheet from './LetterPaper/LetterReceiverBottomSheet';
 import LetterReceiverContainer from './LetterPaper/LetterReceiverContainer';
-import LetterWriteBottom from './LetterWriteBottom';
+import LetterWriteButton from './LetterWriteButton';
 
 export {
   AgeSlider,
@@ -19,5 +19,5 @@ export {
   PolaroidImage,
   LetterReceiverBottomSheet,
   LetterReceiverContainer,
-  LetterWriteBottom,
+  LetterWriteButton,
 };

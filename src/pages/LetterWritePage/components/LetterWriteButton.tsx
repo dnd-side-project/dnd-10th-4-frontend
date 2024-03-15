@@ -3,16 +3,11 @@ import { useFormContext } from 'react-hook-form';
 import { css } from '@emotion/react';
 import Navbar from '@/components/Navbar';
 import Button from '@/components/Button';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
 import { WriteInputs } from '..';
 
-interface LetterWriteBottomProps {
-  isPending: boolean;
-}
-
-const LetterWriteBottom = ({ isPending }: LetterWriteBottomProps) => {
+const LetterWriteButton = () => {
   const navigate = useNavigate();
   const { value, on, off } = useBoolean(false);
 
@@ -37,8 +32,8 @@ const LetterWriteBottom = ({ isPending }: LetterWriteBottomProps) => {
         >
           취소
         </Button>
-        <Button disabled={isPending} type="submit" variant="primary" size="sm">
-          {isPending ? <LoadingSpinner /> : '보내기'}
+        <Button type="submit" variant="primary" size="sm">
+          보내기
         </Button>
       </Navbar>
       <BottomSheet open={value} onOpen={on} onClose={off}>
@@ -59,7 +54,7 @@ const LetterWriteBottom = ({ isPending }: LetterWriteBottomProps) => {
   );
 };
 
-export default LetterWriteBottom;
+export default LetterWriteButton;
 
 const style = {
   navbar: css`
