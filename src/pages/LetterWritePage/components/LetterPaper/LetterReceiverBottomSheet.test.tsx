@@ -3,8 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { render, screen } from '@/utils/testing-library';
 import useBoolean from '@/hooks/useBoolean';
 import { WORRY_DICT } from '@/constants/users';
-import { LetterReceiverBottomSheet } from '..';
 import { WriteInputs, writeSchema } from '../..';
+import { LetterReceiverBottomSheet } from '..';
 
 const ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
@@ -44,17 +44,17 @@ describe('렌더링 테스트', () => {
 
     genderList.forEach(async (gender) => {
       const genderChip = screen.getByRole('button', { name: gender });
-      expect(genderChip).toBeInTheDocument();
+      expect(genderChip).toBeVisible();
     });
 
     worryList.forEach(async (worry) => {
       const worryChip = screen.getByRole('button', { name: worry });
-      expect(worryChip).toBeInTheDocument();
+      expect(worryChip).toBeVisible();
     });
 
     buttonList.forEach(async (button) => {
       const buttonElement = screen.getByRole('button', { name: button });
-      expect(buttonElement).toBeInTheDocument();
+      expect(buttonElement).toBeVisible();
     });
   });
 });
