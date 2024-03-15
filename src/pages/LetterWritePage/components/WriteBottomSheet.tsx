@@ -28,6 +28,7 @@ const WriteBottomSheet = ({ value, on, off }: LetterWriteBottomSheetProps) => {
   const queryClient = useQueryClient();
 
   const onSubmit = (data: WriteInputs) => {
+    console.log(data);
     postLetter(data, {
       onSuccess: () => {
         toast.success('편지를 바다에 띄어보냈어요', {
