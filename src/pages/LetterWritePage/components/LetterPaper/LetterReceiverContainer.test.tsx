@@ -67,7 +67,7 @@ describe('편지 받는 사람 input 테스트', () => {
     const age = await screen.findByText('10~40');
     expect(age).toBeInTheDocument();
   });
-  it('모두에게 보내기를 선택하면, 모두에게가 화면에 보인다.', async () => {
+  it('받는 사람 성별 선택 후 완료 버튼을 누르면, 모두에게가 화면에 보인다.', async () => {
     const genderchip = screen.getByRole('button', {
       name: '모두에게 보내기',
     });
@@ -79,7 +79,7 @@ describe('편지 받는 사람 input 테스트', () => {
     const gender = await screen.findByText('모두에게');
     expect(gender).toBeInTheDocument();
   });
-  it('학업을 선택하면, 학업이 화면에 보인다.', async () => {
+  it('받는 사람 고민 선택 후 완료 버튼을 누르면, 학업이 화면에 보인다.', async () => {
     const worrychip = screen.getByRole('button', {
       name: '학업',
     });

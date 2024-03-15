@@ -12,8 +12,8 @@ import {
 import TagList from '@/components/TagList';
 import Tooltip from '@/components/Tooltip';
 import useBoolean from '@/hooks/useBoolean';
-import { type WriteInputs } from '../..';
 import { LetterReceiverBottomSheet } from '..';
+import { type WriteInputs } from '../..';
 
 const ReceiverContainer = () => {
   const { watch } = useFormContext<WriteInputs>();

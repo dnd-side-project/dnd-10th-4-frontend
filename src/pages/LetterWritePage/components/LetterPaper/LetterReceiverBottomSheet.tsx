@@ -9,8 +9,8 @@ import { letterWrite } from '@/constants/schemaLiteral';
 import { type Worry, type EqualGender } from '@/constants/letters';
 import Button from '@/components/Button';
 import useBoolean from '@/hooks/useBoolean';
-import { AgeSlider, GenderSelect, WorrySelect } from '..';
 import { type WriteInputs } from '../..';
+import { AgeSlider, GenderSelect, WorrySelect } from '..';
 
 const LetterReceiverBottomSheet = ({
   value,
@@ -50,7 +50,11 @@ const LetterReceiverBottomSheet = ({
       <div css={style.bottomSheetContainer}>
         <div css={style.bottomSheetTitle(iconRotation)}>
           <BottomSheet.Title>누구에게 보낼까요?</BottomSheet.Title>
-          <ArrowClockWise color={COLORS.gray2} onClick={onRefreshIconClick} />
+          <ArrowClockWise
+            data-testid="refresh-icon"
+            onClick={onRefreshIconClick}
+            color={COLORS.gray2}
+          />
         </div>
         <AgeSlider age={age} setAge={setAge} />
         <GenderSelect gender={gender} setGender={setGender} />
