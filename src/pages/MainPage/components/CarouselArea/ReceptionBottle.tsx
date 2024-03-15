@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { type Reception } from '@/types/letter';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
-import NewTooltip from '@/components/Tooltip';
+import Tooltip from '@/components/Tooltip';
 import textStyles from '@/styles/textStyles';
 import useLetterSlideStore from '@/stores/useLetterSlideStore';
 import TimeChip from '../TimeChip';
@@ -31,8 +31,8 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
 
   return (
     <article css={RECEPTION_BOTTLES[constantId].container.position}>
-      <NewTooltip>
-        <NewTooltip.Trigger>
+      <Tooltip>
+        <Tooltip.Trigger>
           <div
             css={styles.bottleAnimation(
               RECEPTION_BOTTLES[constantId].container.animation,
@@ -45,13 +45,13 @@ const ReceptionBottle = ({ constantId, reception }: ReceptionBottleProps) => {
                 <Sparkle key={i} src={sparkle.src} css={sparkle.position} />
               ))}
           </div>
-        </NewTooltip.Trigger>
+        </Tooltip.Trigger>
         {reception.letterType === 'Onboarding' && (
-          <NewTooltip.Content side="top">
+          <Tooltip.Content side="top">
             <p css={textStyles.c1r}>새로운 편지가 도착 했어요</p>
-          </NewTooltip.Content>
+          </Tooltip.Content>
         )}
-      </NewTooltip>
+      </Tooltip>
 
       {reception.letterType !== 'Onboarding' && (
         <TimeChip
