@@ -1,11 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import { HttpResponse, http } from 'msw';
+import { toast } from 'react-toastify';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { render } from '@/utils/testing-library';
-import { baseURL } from '@/utils/mswUtils';
-import { API_PATHS } from '@/constants/routerPaths';
-import { server } from '@/mocks/node';
-import { MemberInfo } from '@/mocks/datas/member';
+import { render, screen } from '@/utils/testing-library';
 import { WriteInputs, writeSchema } from '..';
 import LetterWriteContainer from './LetterWriteContainer';
 
@@ -16,12 +12,6 @@ const ResizeObserver = vi.fn(() => ({
 }));
 
 vi.stubGlobal('ResizeObserver', ResizeObserver);
-
-beforeEach(() => {
-  server.use(
-    http.get(baseURL(API_PATHS.MEMBER), () => HttpResponse.json(MemberInfo)),
-  );
-});
 
 const LetterPaperComponent = () => {
   const methods = useForm<WriteInputs>({
@@ -40,8 +30,13 @@ const LetterPaperComponent = () => {
   );
 };
 
-describe('렌더링 테스트', () => {
-  it('편지쓰기 페이지가 렌더링 된다.', async () => {
-    render(<LetterPaperComponent />);
+describe('보내기 버튼 토스트 테스트', () => {
+  it('아무것도 입력하지 않은 상태에서 경고 토스트가 뜬다.', async () => {
+    const { user } = render(<LetterPaperComponent />);
+
+    const sendButton = await screen.findByRole('button', { name: '보내기' });
+    await user.click(sendButton);
+
+    expect(toast.warn).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,13 +1,9 @@
 import { useForm, FormProvider } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-import useBoolean from '@/hooks/useBoolean';
 import { letterWrite } from '@/constants/schemaLiteral';
 import LetteWriteHeader from './components/LetterWriteHeader';
 import style from './styles';
-import WriteBottomSheet from './components/WriteBottomSheet';
 import LetterWriteContainer from './components/LetterWriteContainer';
 
 const L = letterWrite;
@@ -39,8 +35,6 @@ export { writeSchema };
 export type WriteInputs = z.infer<typeof writeSchema>;
 
 const LetterWritePage = () => {
-  const WriteBottomSheetProps = useBoolean(false);
-
   const methods = useForm<WriteInputs>({
     resolver: zodResolver(writeSchema),
     defaultValues: {
@@ -51,46 +45,12 @@ const LetterWritePage = () => {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = methods;
-
-  const showToast = (message: string | undefined) => {
-    toast.warn(message, {
-      position: 'bottom-center',
-      autoClose: 1500,
-      hideProgressBar: true,
-    });
-  };
-
-  useEffect(() => {
-    if (errors.worryType || errors.gender || errors.age) {
-      showToast('보낼 사람을 선택하세요');
-    } else if (errors.content) {
-      const message =
-        watch('content').length === 0
-          ? '내용을 입력하세요'
-          : errors.content.message;
-      showToast(message);
-    } else if (errors.image) {
-      showToast(errors.image.message?.toString());
-    }
-  }, [errors]);
-
   return (
     <FormProvider {...methods}>
       <div css={style.container}>
         <LetteWriteHeader />
-        <form
-          onSubmit={handleSubmit(WriteBottomSheetProps.on)}
-          css={style.contentWrapper}
-        >
-          <LetterWriteContainer />
-        </form>
+        <LetterWriteContainer />
       </div>
-      <WriteBottomSheet {...WriteBottomSheetProps} />
     </FormProvider>
   );
 };

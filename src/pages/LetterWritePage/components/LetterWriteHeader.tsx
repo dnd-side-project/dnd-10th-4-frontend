@@ -27,6 +27,7 @@ const LetteWriteHeader = () => {
       <Header css={style.header}>
         <Header.Left>
           <CaretLeft
+            css={style.icon}
             strokeWidth={2.5}
             stroke="white"
             onClick={handleBackward}
@@ -45,9 +46,8 @@ const style = {
     height: 2.5rem;
     padding-top: 1.25rem;
     padding-bottom: 0.5rem;
-
-    & > div:nth-of-type(1) {
-      cursor: pointer;
-    }
+  `,
+  icon: css`
+    cursor: pointer;
   `,
 };
