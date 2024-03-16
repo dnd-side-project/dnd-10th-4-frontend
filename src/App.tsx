@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { css } from '@emotion/react';
 import Background from '@/components/Background';
 import BackgroundMusic from '@/assets/background.mp3';
 import BackgroundImg from '@/assets/background.png';
@@ -19,7 +20,13 @@ const App = () => {
         </ApiErrorBoundary>
       </UnknownErrorBoundary>
       <Audio src={BackgroundMusic} />
-      <ToastContainer />
+      <ToastContainer
+        css={css({
+          margin: '4rem 0 5rem 0',
+          padding: '0 1rem',
+          boxSizing: 'border-box',
+        })}
+      />
     </Background>
   );
 };
