@@ -16,7 +16,7 @@ export const PagedReceivedLettersResponsePage1 = {
       repliedContent: '온보딩 편지에 대한 답장',
       worryType: null,
       sendImagePath:
-        'https://letter-img-bucket.s3.ap-northeast-2.amazonaws.com/letter/oceanImage.jpeg',
+        'https://d2bunq4des8hir.cloudfront.net/letter/oceanImage.jpeg',
       replyImagePath: null,
     },
     {
@@ -237,7 +237,7 @@ export const PagedReceivedLettersResponsePage2 = {
       worryType: 'BREAK_LOVE',
       sendImagePath: null,
       replyImagePath:
-        'https://letter-img-bucket.s3.ap-northeast-2.amazonaws.com/letter/3.jpg',
+        'https://d2bunq4des8hir.cloudfront.net/letter/oceanImage.jpeg',
     },
     {
       createdAt: '2024-02-21T00:53:25',
@@ -255,7 +255,7 @@ export const PagedReceivedLettersResponsePage2 = {
       worryType: 'BREAK_LOVE',
       sendImagePath: null,
       replyImagePath:
-        'https://letter-img-bucket.s3.ap-northeast-2.amazonaws.com/letter/3.jpg',
+        'https://d2bunq4des8hir.cloudfront.net/letter/oceanImage.jpeg',
     },
   ],
 };
