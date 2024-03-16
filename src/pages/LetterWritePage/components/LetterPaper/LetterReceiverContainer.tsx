@@ -60,10 +60,8 @@ const LetterReceiverContainer = () => {
           css={style.ReceiverBoxUnSelect}
         >
           <span>누구에게 보낼까요?</span>
-          <Tooltip
-            delay={2000}
-            align="end"
-            triggerContent={
+          <Tooltip delay={2000}>
+            <Tooltip.Trigger>
               <div>
                 <CaretDown
                   css={style.caretDown(receiverBottomSheetProps.value)}
@@ -71,9 +69,10 @@ const LetterReceiverContainer = () => {
                   strokeWidth={2}
                 />
               </div>
-            }
-          >
-            편지를 누구에게 보낼지 선택해 주세요.
+            </Tooltip.Trigger>
+            <Tooltip.Content align="end">
+              편지를 누구에게 보낼지 선택해 주세요.
+            </Tooltip.Content>
           </Tooltip>
         </div>
       )}

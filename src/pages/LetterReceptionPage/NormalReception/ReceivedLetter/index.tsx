@@ -45,16 +45,15 @@ const ReceivedLetter = ({ letterId, onNext }: ReceivedLetterProps) => {
         <Button variant="secondary" size="sm" onClick={tossBottomSheetProps.on}>
           다시 흘려보내기
         </Button>
-        <Tooltip
-          side="top"
-          delay={10000}
-          triggerContent={
+        <Tooltip delay={10000}>
+          <Tooltip.Trigger>
             <Button variant="primary" size="sm" onClick={onNext}>
               답장하기
             </Button>
-          }
-        >
-          사라지기전에 답장을 보내보세요!
+          </Tooltip.Trigger>
+          <Tooltip.Content side="top">
+            사라지기전에 답장을 보내보세요!
+          </Tooltip.Content>
         </Tooltip>
       </Navbar>
       <TossBottomSheet {...tossBottomSheetProps} letterId={letterId} />
