@@ -8,7 +8,7 @@ const styles = {
     justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    min-height: 100%;
+    min-height: 100svh;
     text-align: center;
   `,
   main: css`

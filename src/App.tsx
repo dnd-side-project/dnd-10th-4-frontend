@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Background from '@/components/Background';
 import BackgroundMusic from '@/assets/background.mp3';
@@ -11,9 +11,8 @@ import RootUnknownFallback from './components/ErrorBoundary/fallback/RootUnknown
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const location = useLocation();
   return (
-    <Background imageUrl={BackgroundImg} path={location.pathname}>
+    <Background imageUrl={BackgroundImg}>
       <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
         <ApiErrorBoundary FallbackComponent={RootApiFallback}>
           <Outlet />
