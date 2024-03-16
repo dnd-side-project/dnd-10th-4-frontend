@@ -78,18 +78,18 @@ describe('편지 받는 사람 선택 완료 후, 렌더링 테스트', () => {
     await user.click(receiverContainer);
   });
 
-  it('아무것도 선택하지 않은 상황에서 완료 버튼을 누르면, "10~40"이 화면에 보인다.', async () => {
+  it('바텀시트에서 아무것도 선택하지 않은 상황에서 완료 버튼을 누르면, "10~40"이 화면에 보인다.', async () => {
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);
 
     const age = await screen.findByText('10~40');
     expect(age).toBeVisible();
   });
-  it('받는 사람 성별 선택 후 완료 버튼을 누르면, "모두에게"가 화면에 보인다.', async () => {
-    const genderchip = screen.getByRole('button', {
+  it('바텀시트에서 받는 사람 성별 선택 후 완료 버튼을 누르면, "모두에게"가 화면에 보인다.', async () => {
+    const genderChip = screen.getByRole('button', {
       name: '모두에게 보내기',
     });
-    await user.click(genderchip);
+    await user.click(genderChip);
 
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);
@@ -97,11 +97,11 @@ describe('편지 받는 사람 선택 완료 후, 렌더링 테스트', () => {
     const gender = await screen.findByText('모두에게');
     expect(gender).toBeVisible();
   });
-  it('받는 사람 고민 선택 후 완료 버튼을 누르면, "학업"이 화면에 보인다.', async () => {
-    const worrychip = screen.getByRole('button', {
+  it('바텀시트에서 받는 사람 고민 선택 후 완료 버튼을 누르면, "학업"이 화면에 보인다.', async () => {
+    const worryChip = screen.getByRole('button', {
       name: '학업',
     });
-    await user.click(worrychip);
+    await user.click(worryChip);
 
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);
@@ -129,15 +129,15 @@ describe('편지 받는 사람 선택 닫기 후, 렌더링 테스트', () => {
   });
 
   it('성별, 학업 선택 후 닫기 버튼을 누르면, 누구에게 보낼까요? 가 보인다.', async () => {
-    const genderchip = screen.getByRole('button', {
+    const genderChip = screen.getByRole('button', {
       name: '모두에게 보내기',
     });
-    await user.click(genderchip);
+    await user.click(genderChip);
 
-    const worrychip = screen.getByRole('button', {
+    const worryChip = screen.getByRole('button', {
       name: '학업',
     });
-    await user.click(worrychip);
+    await user.click(worryChip);
 
     const buttonElement = screen.getByRole('button', { name: '닫기' });
     await user.click(buttonElement);
@@ -162,14 +162,14 @@ describe('편지 받는 사람 수정 완료 후, 렌더링 테스트', () => {
   });
 
   it('나이, 성별, 고민이 정해져 있는 상태에서, 성별을 모두에게 보내기 재선택 후 완료 버튼을 누르면 모두에게가 보인다.', async () => {
-    const genderchip = screen.getByRole('button', {
+    const genderChip = screen.getByRole('button', {
       name: '모두에게 보내기',
     });
-    expect(genderchip).toHaveAttribute('aria-selected', 'false');
+    expect(genderChip).toHaveAttribute('aria-selected', 'false');
 
-    await user.click(genderchip);
+    await user.click(genderChip);
 
-    expect(genderchip).toHaveAttribute('aria-selected', 'true');
+    expect(genderChip).toHaveAttribute('aria-selected', 'true');
 
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);
@@ -179,11 +179,11 @@ describe('편지 받는 사람 수정 완료 후, 렌더링 테스트', () => {
   });
 
   it('나이, 성별, 고민이 정해져 있는 상태에서, 고민을 학업으로 재선택 후 완료 버튼을 누르면 학업이 보인다.', async () => {
-    const worrychip = screen.getByRole('button', {
+    const worryChip = screen.getByRole('button', {
       name: '학업',
     });
-    expect(worrychip).toHaveAttribute('aria-selected', 'false');
-    await user.click(worrychip);
+    expect(worryChip).toHaveAttribute('aria-selected', 'false');
+    await user.click(worryChip);
 
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);

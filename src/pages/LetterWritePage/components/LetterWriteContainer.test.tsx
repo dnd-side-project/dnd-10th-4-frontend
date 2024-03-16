@@ -59,7 +59,7 @@ const ReceiverEmptyComponent = () => {
 };
 
 describe('보내기 버튼 토스트 테스트', () => {
-  it('아무것도 입력하지 않은 상태에서 경고 토스트가 뜬다.', async () => {
+  it('아무것도 입력하지 않은 상태에서 보내기 버튼을 누르면 경고 토스트가 뜬다.', async () => {
     const { user } = render(<ReceiverEmptyComponent />);
 
     const sendButton = await screen.findByRole('button', { name: '보내기' });
@@ -67,7 +67,7 @@ describe('보내기 버튼 토스트 테스트', () => {
 
     expect(toast.warn).toHaveBeenCalledTimes(1);
   });
-  it('받을 사람만 선택하면 경고 토스트가 뜬다.', async () => {
+  it('받을 사람만 선택하고 보내기 버튼을 누르면 경고 토스트가 뜬다.', async () => {
     const { user } = render(<ReceiverSelectedComponent />);
 
     const sendButton = await screen.findByRole('button', { name: '보내기' });
@@ -75,7 +75,7 @@ describe('보내기 버튼 토스트 테스트', () => {
 
     expect(toast.warn).toHaveBeenCalledTimes(1);
   });
-  it('받을 사람만 선택 후, 10자 미만이면 경고 토스트가 뜬다.', async () => {
+  it('받을 사람만 선택 후 편지 내용이 10자 미만일 때, 보내기 버튼을 누르면 경고 토스트가 뜬다.', async () => {
     const { user } = render(<ReceiverSelectedComponent />);
 
     const content =
@@ -87,7 +87,7 @@ describe('보내기 버튼 토스트 테스트', () => {
 
     expect(toast.warn).toHaveBeenCalledTimes(1);
   });
-  it('받을 사람만 선택 후, 10자 이상이면 바텀시트가 뜬다.', async () => {
+  it('받을 사람만 선택 후 편지 내용이 10자 이상일 때, 보내기 버튼을 누르면 보내기 바텀시트가 뜬다.', async () => {
     const { user } = render(<ReceiverSelectedComponent />);
 
     const content =

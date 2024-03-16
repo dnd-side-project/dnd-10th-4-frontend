@@ -3,8 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { render, screen } from '@/utils/testing-library';
 import useBoolean from '@/hooks/useBoolean';
 import { WORRY_DICT } from '@/constants/users';
-import { WriteInputs, writeSchema } from '../..';
 import { LetterReceiverBottomSheet } from '..';
+import { WriteInputs, writeSchema } from '../..';
 
 const ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
@@ -39,7 +39,7 @@ describe('렌더링 테스트', () => {
   const worryList = Object.values(WORRY_DICT);
   const buttonList = ['닫기', '완료'];
 
-  it('바텀시트 내용이 렌더링 된다.', async () => {
+  it('편지 받는 사람 선택 바텀시트 내용이 렌더링 된다.', async () => {
     render(<BottomSheetComponent />);
 
     genderList.forEach(async (gender) => {
@@ -63,32 +63,32 @@ describe('바텀시트 내용 초기화 테스트', () => {
   it('받는 사람 성별 선택 후, 초기화 버튼을 누르면 초기화 된다.', async () => {
     const { user } = render(<BottomSheetComponent />);
 
-    const genderchip = screen.getByRole('button', {
+    const genderChip = screen.getByRole('button', {
       name: '모두에게 보내기',
     });
-    await user.click(genderchip);
+    await user.click(genderChip);
 
-    expect(genderchip).toHaveAttribute('aria-selected', 'true');
+    expect(genderChip).toHaveAttribute('aria-selected', 'true');
 
     const refreshIcon = await screen.findByTestId('refresh-icon');
     await user.click(refreshIcon);
 
-    expect(genderchip).toHaveAttribute('aria-selected', 'false');
+    expect(genderChip).toHaveAttribute('aria-selected', 'false');
   });
   it('받는 사람 고민 선택 후, 초기화 버튼을 누르면 초기화 된다.', async () => {
     const { user } = render(<BottomSheetComponent />);
 
-    const worrychip = screen.getByRole('button', {
+    const worryChip = screen.getByRole('button', {
       name: '인간관계',
     });
-    await user.click(worrychip);
+    await user.click(worryChip);
 
-    expect(worrychip).toHaveAttribute('aria-selected', 'true');
+    expect(worryChip).toHaveAttribute('aria-selected', 'true');
 
     const refreshIcon = await screen.findByTestId('refresh-icon');
     await user.click(refreshIcon);
 
-    expect(worrychip).toHaveAttribute('aria-selected', 'false');
+    expect(worryChip).toHaveAttribute('aria-selected', 'false');
   });
   it('받는 사람 성별, 고민 선택 후, 초기화 버튼을 누르면 초기화 된다.', async () => {
     const { user } = render(<BottomSheetComponent />);
