@@ -1,3 +1,4 @@
+import { type ComponentType } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import { SoundOff } from '@/assets/icons';
@@ -7,6 +8,10 @@ import Tooltip from '.';
 const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
+  subcomponents: {
+    Trigger: Tooltip.Trigger as ComponentType<unknown>,
+    Content: Tooltip.Content as ComponentType<unknown>,
+  },
   tags: ['autodocs'],
   argTypes: {},
 } satisfies Meta<typeof Tooltip>;
