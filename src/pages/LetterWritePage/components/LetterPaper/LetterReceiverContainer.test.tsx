@@ -106,7 +106,7 @@ describe('편지 받는 사람 선택 완료 후, 렌더링 테스트', () => {
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);
 
-    const worry = await screen.getAllByText('학업', {
+    const worry = screen.getAllByText('학업', {
       selector: 'button',
     });
     const hashSymbol = within(worry[0]).getByText('#');
@@ -188,7 +188,7 @@ describe('편지 받는 사람 수정 완료 후, 렌더링 테스트', () => {
     const buttonElement = screen.getByRole('button', { name: '완료' });
     await user.click(buttonElement);
 
-    const worry = await screen.getAllByText('학업', {
+    const worry = screen.getAllByText('학업', {
       selector: 'button',
     });
     const hashSymbol = within(worry[0]).getByText('#');

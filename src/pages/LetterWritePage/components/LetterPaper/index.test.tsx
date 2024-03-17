@@ -7,8 +7,8 @@ import { API_PATHS } from '@/constants/routerPaths';
 import { server } from '@/mocks/node';
 import { MemberInfo } from '@/mocks/datas/member';
 import { formatDate } from '@/utils/dateUtils';
-import { WriteInputs, writeSchema } from '../..';
 import { LetterPaper } from '..';
+import { WriteInputs, writeSchema } from '../..';
 
 const ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
@@ -52,7 +52,7 @@ describe('렌더링 테스트', () => {
       await screen.findByPlaceholderText('하고싶은 이야기를 적어보세요.');
     const date = await screen.findByText(formatDate(new Date()));
     const username = await screen.findByText(MemberInfo.nickname);
-    const imageUploader = await screen.getByLabelText('이미지 업로드');
+    const imageUploader = screen.getByLabelText('이미지 업로드');
 
     expect(receivername).toBeInTheDocument();
     expect(textarea).toBeInTheDocument();
