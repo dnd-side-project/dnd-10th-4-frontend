@@ -10,12 +10,15 @@ interface ChipProps {
 }
 
 const Chip = ({ variant = 'primary', children, ...props }: ChipProps) => {
+  const ariaSelected =
+    variant === 'primary-selected' || variant === 'form-selected';
   return (
     <button
       {...props}
       type="button"
       disabled={variant === 'primary-disabled' || variant === 'form-disabled'}
       css={style.chip(variant)}
+      aria-selected={ariaSelected}
     >
       {(variant === 'filter' || variant === 'tag') && <span>#</span>}
       {children}

@@ -4,21 +4,21 @@ import { css } from '@emotion/react';
 import Header from '@/components/Header';
 import { CaretLeft } from '@/assets/icons';
 import useBoolean from '@/hooks/useBoolean';
-import BottomSheet from '@/components/BottomSheet';
-import Button from '@/components/Button';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import { WriteInputs } from '..';
+import BackwardBottomSheet from './BackwardBottomSheet';
 
 const LetteWriteHeader = () => {
   const navigate = useNavigate();
-  const { value, on, off } = useBoolean(false);
+  const backwardBottomSheetProps = useBoolean(false);
 
   const { watch } = useFormContext<WriteInputs>();
 
   const handleBackward = () => {
     if (watch('age').length !== 0 || watch('content') || watch('image')) {
-      on();
+      backwardBottomSheetProps.on();
     } else {
-      navigate(-1);
+      navigate(ROUTER_PATHS.ROOT);
     }
   };
 
@@ -27,26 +27,14 @@ const LetteWriteHeader = () => {
       <Header css={style.header}>
         <Header.Left>
           <CaretLeft
+            css={style.icon}
             strokeWidth={2.5}
             stroke="white"
             onClick={handleBackward}
           />
         </Header.Left>
       </Header>
-      <BottomSheet open={value} onOpen={on} onClose={off}>
-        <BottomSheet.Title>편지쓰기를 취소할까요?</BottomSheet.Title>
-        <BottomSheet.Description>
-          편지 작성 취소시, <br /> 작성중인 글과 사진은 저장되지 않아요.
-        </BottomSheet.Description>
-        <BottomSheet.ButtonSection>
-          <Button variant="cancel" onClick={off}>
-            계속 쓰기
-          </Button>
-          <Button variant="danger" onClick={() => navigate(-1)}>
-            작성 취소
-          </Button>
-        </BottomSheet.ButtonSection>
-      </BottomSheet>
+      <BackwardBottomSheet {...backwardBottomSheetProps} />
     </>
   );
 };
@@ -58,9 +46,8 @@ const style = {
     height: 2.5rem;
     padding-top: 1.25rem;
     padding-bottom: 0.5rem;
-
-    & > div:nth-of-type(1) {
-      cursor: pointer;
-    }
+  `,
+  icon: css`
+    cursor: pointer;
   `,
 };
