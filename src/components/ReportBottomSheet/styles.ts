@@ -39,7 +39,8 @@ const style = {
     border: 1px solid ${COLORS.gray5};
 
     :focus {
-      border: 1px solid ${COLORS.gray3};
+      border: 1px solid ${COLORS.gray4};
+      box-shadow: 0.25rem 0.25rem 0.25rem rgb(0 0 0 / 0.1);
     }
   `,
 };
