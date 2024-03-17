@@ -7,7 +7,7 @@ const styles = {
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    min-height: 100%;
+    min-height: 100svh;
     background-color: white;
   `,
   main: css`
