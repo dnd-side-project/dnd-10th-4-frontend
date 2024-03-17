@@ -6,6 +6,8 @@ import IconButton from '@/components/IconButton';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import DetailTimeChip from '@/components/DetailTimeChip';
 import Tooltip from '@/components/Tooltip';
+import ReportBottomSheet from '@/components/ReportBottomSheet';
+import useBoolean from '@/hooks/useBoolean';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 
 interface ReplyHeaderProps {
@@ -16,6 +18,7 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
   const navigate = useNavigate();
 
   const { replyLetter } = useLetterReplyWithTag(letterId);
+  const reportBottomSheetProps = useBoolean(false);
 
   return (
     <Header css={style.header}>
@@ -38,10 +41,11 @@ const ReplyHeader = ({ letterId }: ReplyHeaderProps) => {
         </Tooltip>
       </Header.Left>
       <Header.Right>
-        <IconButton>
+        <IconButton onClick={reportBottomSheetProps.on}>
           <Siren color="white" height={20} width={20} />
         </IconButton>
       </Header.Right>
+      <ReportBottomSheet {...reportBottomSheetProps} />
     </Header>
   );
 };

@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import { CaretLeft, Siren } from '@/assets/icons';
 import IconButton from '@/components/IconButton';
 import DetailTimeChip from '@/components/DetailTimeChip';
+import ReportBottomSheet from '@/components/ReportBottomSheet';
+import useBoolean from '@/hooks/useBoolean';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 
 interface ReceptionHeaderProps {
@@ -12,6 +14,7 @@ interface ReceptionHeaderProps {
 
 const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
   const { receptionLetter } = useLetterWithTags(letterId);
+  const reportBottomSheetProps = useBoolean(false);
 
   return (
     <Header css={style.header}>
@@ -25,10 +28,11 @@ const ReceptionHeader = ({ onClickPrev, letterId }: ReceptionHeaderProps) => {
         <DetailTimeChip createdAt={receptionLetter.createdAt} />
       </Header.Left>
       <Header.Right>
-        <IconButton>
+        <IconButton onClick={reportBottomSheetProps.on}>
           <Siren color="white" height={20} width={20} />
         </IconButton>
       </Header.Right>
+      <ReportBottomSheet {...reportBottomSheetProps} />
     </Header>
   );
 };
