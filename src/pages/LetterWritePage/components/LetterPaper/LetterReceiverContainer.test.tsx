@@ -128,7 +128,7 @@ describe('편지 받는 사람 선택 닫기 후, 렌더링 테스트', () => {
     await user.click(receiverContainer);
   });
 
-  it('성별, 학업 선택 후 닫기 버튼을 누르면, 누구에게 보낼까요? 가 보인다.', async () => {
+  it('보낼 대상을 선택하더라도 닫기 버튼을 누르면 누구에게 보낼까요? 가 보인다.', async () => {
     const genderChip = screen.getByRole('button', {
       name: '모두에게 보내기',
     });
