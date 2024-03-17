@@ -11,7 +11,7 @@ const styles = {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    min-height: 100svh;
+    height: 100svh;
   `,
 
   main: css`
