@@ -1,14 +1,12 @@
 import AgeSlider from './inputs/AgeSlider';
-import WorrySelect from './inputs/WorrySelect';
 import GenderSelect from './inputs/GenderSelect';
-import LetterContent from './inputs/LetterContent';
 import ImageSelect from './inputs/ImageSelect';
+import LetterContent from './inputs/LetterContent';
+import WorrySelect from './inputs/WorrySelect';
 import LetterPaper from './LetterPaper';
-import PolaroidImage from './PolaroidImage';
-import LetterReceiverBottomSheet from './LetterReceiverBottomSheet';
-import LetterReceiverContainer from './LetterReceiverContainer';
-import LetterWriteBottom from './LetterWriteBottom';
-import LetterWriteContent from './LetterWriteContent';
+import LetterReceiverBottomSheet from './LetterPaper/LetterReceiverBottomSheet';
+import LetterReceiverContainer from './LetterPaper/LetterReceiverContainer';
+import PolaroidImage from './LetterPaper/PolaroidImage';
 
 export {
   AgeSlider,
@@ -20,6 +18,4 @@ export {
   PolaroidImage,
   LetterReceiverBottomSheet,
   LetterReceiverContainer,
-  LetterWriteBottom,
-  LetterWriteContent,
 };
