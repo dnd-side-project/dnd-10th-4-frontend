@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/react';
 import {
   reactRouterParameters,
   withRouter,
-} from 'storybook-addon-react-router-v6';
+} from 'storybook-addon-remix-react-router';
 import { initialize as initializeMSW, mswLoader } from 'msw-storybook-addon';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '../src/api/queryClient';
@@ -40,7 +40,6 @@ const preview: Preview = {
     withRouter,
   ],
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
