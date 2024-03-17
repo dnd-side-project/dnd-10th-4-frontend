@@ -24,7 +24,7 @@ const style = {
     flex-direction: column;
     width: 100%;
 
-    > label {
+    label {
       ${textStyles.t3}
       padding: 1rem 0;
     }
@@ -35,11 +35,11 @@ const style = {
     resize: none;
     ${textStyles.l1m}
     padding: .75rem 1rem;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     border: 1px solid ${COLORS.gray5};
 
     :focus {
-      border: 1px solid ${COLORS.danger};
+      border: 1px solid ${COLORS.gray3};
     }
   `,
 };
