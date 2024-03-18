@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, forwardRef } from 'react';
 import style from './styles';
 
 interface RadioProps {
@@ -6,22 +6,27 @@ interface RadioProps {
   text: string;
   selectedValue: string | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  name: string;
 }
 
-const Radio = ({ value, text, selectedValue, onChange }: RadioProps) => {
-  return (
-    <label css={style.radio}>
-      <input
-        css={style.radioButton}
-        type="radio"
-        name="report"
-        value={value}
-        onChange={onChange}
-        checked={value === selectedValue}
-      />
-      <span css={style.radioSpan(value, selectedValue)}>{text}</span>
-    </label>
-  );
-};
+const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ value, name, text, selectedValue, onChange }, ref) => {
+    return (
+      <label css={style.radio}>
+        <input
+          css={style.radioButton}
+          type="radio"
+          name={name}
+          value={value}
+          onChange={onChange}
+          ref={ref}
+        />
+        <span css={style.radioSpan(value, selectedValue)}>{text}</span>
+      </label>
+    );
+  },
+);
+
+Radio.displayName = 'Radio';
 
 export default Radio;
