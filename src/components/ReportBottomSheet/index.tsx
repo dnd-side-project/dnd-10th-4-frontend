@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
@@ -21,8 +20,6 @@ type ReportInputs = {
 };
 
 const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
-  const [selectedReport, setSelectedReport] = useState<string | null>(null);
-
   const methods = useForm<ReportInputs>({
     defaultValues: {
       reportType: null,
@@ -30,7 +27,8 @@ const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
     },
   });
 
-  const { register, handleSubmit } = methods;
+  const { register, handleSubmit, control } = methods;
+  const selectedValue = useWatch({ control, name: 'reportType' });
 
   const onSubmit = (data: ReportInputs) => {
     console.log(data);
@@ -50,10 +48,8 @@ const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
                 key={report.value}
                 value={report.value}
                 text={report.text}
-                selectedValue={selectedReport}
-                {...register('reportType', {
-                  onChange: (e) => setSelectedReport(e.target.value),
-                })}
+                selectedValue={selectedValue}
+                {...register('reportType')}
               />
             ))}
           </div>
