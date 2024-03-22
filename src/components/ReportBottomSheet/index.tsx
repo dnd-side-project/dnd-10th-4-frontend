@@ -1,12 +1,9 @@
-import { useForm, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
-import z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import useBoolean from '@/hooks/useBoolean';
-import { REPORT_TYPE_DICT, type ReportType } from '@/constants/report';
 import reportAPI from '@/api/report/api';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
@@ -15,35 +12,17 @@ import Button from '../Button';
 import LoadingSpinner from '../LoadingSpinner';
 import style from './styles';
 import Radio from './components/Radio';
+import useReportForm, { reportList, ReportInputs } from './hooks/useReportForm';
 
-interface ReportBottomSheetProps extends ReturnType<typeof useBoolean> {}
-
-const reportList = Object.entries(REPORT_TYPE_DICT).map(([key, value]) => ({
-  text: value,
-  value: key,
-}));
-
-const [report, ...otherReport] = Object.keys(REPORT_TYPE_DICT) as ReportType[];
-
-const reportSchema = z.object({
-  reportType: z.enum([report, ...otherReport]),
-  reportContent: z.string(),
-});
-
-export type ReportInputs = z.infer<typeof reportSchema>;
-
-const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
+const ReportBottomSheet = ({
+  value,
+  on,
+  off,
+}: ReturnType<typeof useBoolean>) => {
   const navigate = useNavigate();
   const { letterId } = useParams();
 
-  const methods = useForm<ReportInputs>({
-    resolver: zodResolver(reportSchema),
-    defaultValues: {
-      reportContent: '',
-    },
-  });
-
-  const { register, handleSubmit, control, reset } = methods;
+  const { register, handleSubmit, control, reset } = useReportForm();
   const selectedValue = useWatch({ control, name: 'reportType' });
 
   const { mutate, isPending } = useMutation({
@@ -51,6 +30,7 @@ const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
   });
 
   const onSubmit = async (data: ReportInputs) => {
+    console.log(data);
     mutate(
       { letterId: Number(letterId), ...data },
       {
@@ -109,7 +89,13 @@ const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
           </div>
         </div>
         <BottomSheet.ButtonSection>
-          <Button variant="cancel" onClick={off}>
+          <Button
+            type="button"
+            variant="cancel"
+            onClick={() => {
+              off(), reset();
+            }}
+          >
             취소하기
           </Button>
           <Button type="submit" variant="danger">
