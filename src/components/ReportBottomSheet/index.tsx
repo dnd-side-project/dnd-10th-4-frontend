@@ -1,12 +1,11 @@
 import { useWatch } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
-import useBoolean from '@/hooks/useBoolean';
-import reportAPI from '@/api/report/api';
-import ERROR_RESPONSES from '@/constants/errorMessages';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
+import reportAPI from '@/api/report/api';
+import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
 import LoadingSpinner from '../LoadingSpinner';
@@ -22,7 +21,13 @@ const ReportBottomSheet = ({
   const navigate = useNavigate();
   const { letterId } = useParams();
 
-  const { register, handleSubmit, control, reset } = useReportForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useReportForm();
   const selectedValue = useWatch({ control, name: 'reportType' });
 
   const { mutate, isPending } = useMutation({
@@ -30,7 +35,6 @@ const ReportBottomSheet = ({
   });
 
   const onSubmit = async (data: ReportInputs) => {
-    console.log(data);
     mutate(
       { letterId: Number(letterId), ...data },
       {
@@ -40,23 +44,21 @@ const ReportBottomSheet = ({
             autoClose: 1500,
           });
         },
-        onError: (err) => {
-          if (isAxiosError(err)) {
-            if (
-              err.response?.data === ERROR_RESPONSES.memberNotFound ||
-              err.response?.data === ERROR_RESPONSES.accessDeniedLetter
-            ) {
-              navigate(ROUTER_PATHS.ROOT);
-            }
-          }
-        },
         onSettled: () => {
-          off();
-          reset();
+          navigate(ROUTER_PATHS.ROOT);
         },
       },
     );
   };
+
+  useEffect(() => {
+    if (errors.reportType) {
+      toast.warn(errors.reportType.message, {
+        position: 'bottom-center',
+        autoClose: 1500,
+      });
+    }
+  }, [errors]);
 
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>

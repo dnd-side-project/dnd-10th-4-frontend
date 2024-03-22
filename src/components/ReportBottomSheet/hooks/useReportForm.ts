@@ -11,6 +11,9 @@ export const reportList = Object.entries(REPORT_TYPE_DICT).map(
 );
 
 export const reportLiteral = {
+  reportType: {
+    message: '신고 타입을 선택해주세요.',
+  },
   reportContent: {
     max: {
       value: 150,
@@ -24,7 +27,9 @@ const L = reportLiteral;
 const [report, ...otherReport] = Object.keys(REPORT_TYPE_DICT) as ReportType[];
 
 const reportSchema = z.object({
-  reportType: z.enum([report, ...otherReport]),
+  reportType: z.enum([report, ...otherReport], {
+    errorMap: () => ({ message: L.reportType.message }),
+  }),
   reportContent: z
     .string()
     .max(L.reportContent.max.value, L.reportContent.max.message),
