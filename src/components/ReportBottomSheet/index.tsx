@@ -2,10 +2,10 @@ import { useWatch } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { ROUTER_PATHS } from '@/constants/routerPaths';
-import reportAPI from '@/api/report/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useBoolean from '@/hooks/useBoolean';
+import reportAPI from '@/api/report/api';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
 import LoadingSpinner from '../LoadingSpinner';
@@ -29,9 +29,13 @@ const ReportBottomSheet = ({
     formState: { errors },
   } = useReportForm();
   const selectedValue = useWatch({ control, name: 'reportType' });
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationFn: reportAPI.postReportSend,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
+    },
   });
 
   const onSubmit = async (data: ReportInputs) => {
@@ -39,7 +43,7 @@ const ReportBottomSheet = ({
       { letterId: Number(letterId), ...data },
       {
         onSuccess: () => {
-          toast.success('신고가 접수되었어요', {
+          toast.success('신고가 접수되었어요.', {
             position: 'bottom-center',
             autoClose: 1500,
           });
