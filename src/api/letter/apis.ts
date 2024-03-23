@@ -4,6 +4,7 @@ import { type WriteInputs } from '@/pages/LetterWritePage';
 import { EQUAL_GENDER_DICT } from '@/constants/letters';
 import { type ReplyInputs } from '@/pages/LetterReceptionPage/NormalReception';
 import { API_PATHS } from '@/constants/routerPaths';
+import { stringFilter1 } from '@/utils/stringFilter';
 import { authInstance } from '../instance';
 
 const letterAPI = {
@@ -24,7 +25,7 @@ const letterAPI = {
   /** 편지 작성 */
   postLetter: async (letter: WriteInputs) => {
     const formData = new FormData();
-    formData.append('content', letter.content);
+    formData.append('content', stringFilter1(letter.content));
     formData.append(
       'equalGender',
       EQUAL_GENDER_DICT[1] === letter.gender ? 'true' : 'false',
@@ -62,7 +63,7 @@ const letterAPI = {
     letter: ReplyInputs;
   }) => {
     const formData = new FormData();
-    formData.append('replyContent', letter.replyContent);
+    formData.append('replyContent', stringFilter1(letter.replyContent));
 
     if (letter.image) {
       formData.append('image', letter.image[0]);
