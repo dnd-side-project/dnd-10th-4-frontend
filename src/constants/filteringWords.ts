@@ -1,4 +1,4 @@
-export const filterWordList = [
+export const wordList = [
   'D쥐고',
   'D지고',
   'jonna',
