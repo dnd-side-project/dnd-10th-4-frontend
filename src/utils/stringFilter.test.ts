@@ -1,4 +1,4 @@
-import { stringFilter1, stringFilter2 } from './stringFilter';
+import { stringFilter } from './stringFilter';
 
 const text = '이 문장은 욕설이 없는 깨긋한 문장입니다!!!!!!!!!';
 const text10 = '안녕하세요 개새끼야';
@@ -16,45 +16,22 @@ const text300Filter =
 describe('욕설 필터링 - 정규식 사용', () => {
   it('정규식 사용', () => {
     console.time();
-    expect(stringFilter1(text)).toBe(text);
+    expect(stringFilter(text)).toBe(text);
     console.timeEnd();
   });
   it('정규식 사용 - 10글자', () => {
     console.time();
-    expect(stringFilter1(text10)).toBe(text10Filter);
+    expect(stringFilter(text10)).toBe(text10Filter);
     console.timeEnd();
   });
   it('정규식 사용 - 100글자', () => {
     console.time();
-    expect(stringFilter1(text100)).toBe(text100Filter);
+    expect(stringFilter(text100)).toBe(text100Filter);
     console.timeEnd();
   });
   it('정규식 사용 - 300글자', () => {
     console.time();
-    expect(stringFilter1(text300)).toBe(text300Filter);
-    console.timeEnd();
-  });
-});
-
-describe('욕설 필터링 - 반복문 사용', () => {
-  it('반복문 사용', () => {
-    console.time();
-    expect(stringFilter1(text)).toBe(text);
-    console.timeEnd();
-  });
-  it('반복문 사용 - 10글자', () => {
-    console.time();
-    expect(stringFilter2(text10)).toBe(text10Filter);
-    console.timeEnd();
-  });
-  it('반복문 사용 - 100글자', () => {
-    console.time();
-    expect(stringFilter2(text100)).toBe(text100Filter);
-    console.timeEnd();
-  });
-  it('반복문 사용 - 300글자', () => {
-    console.time();
-    expect(stringFilter2(text300)).toBe(text300Filter);
+    expect(stringFilter(text300)).toBe(text300Filter);
     console.timeEnd();
   });
 });
