@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import Button from '@/components/Button';
 import letterAPI from '@/api/letter/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
@@ -8,6 +9,7 @@ import { ROUTER_PATHS } from '@/constants/routerPaths';
 import letterOptions from '@/api/letter/queryOptions';
 import useBoolean from '@/hooks/useBoolean';
 import BottomSheet from '@/components/BottomSheet';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 
 interface TossBottomSheetProps extends ReturnType<typeof useBoolean> {
   letterId: number;
@@ -36,9 +38,17 @@ const TossBottomSheet = ({
           autoClose: 1500,
           position: 'bottom-center',
         });
-      },
-      onSettled: () => {
         navigate(ROUTER_PATHS.ROOT);
+      },
+      onError: (err) => {
+        if (isAxiosError(err)) {
+          if (
+            err.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+            err.response?.data === ERROR_RESPONSES.repliedLetterPass
+          ) {
+            navigate(ROUTER_PATHS.ROOT);
+          }
+        }
       },
     });
   };
