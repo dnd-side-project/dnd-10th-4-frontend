@@ -3,10 +3,12 @@ import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ROUTER_PATHS } from '@/constants/routerPaths';
-import reportAPI from '@/api/report/api';
-import useBoolean from '@/hooks/useBoolean';
+import { isAxiosError } from 'axios';
 import letterOptions from '@/api/letter/queryOptions';
+import useBoolean from '@/hooks/useBoolean';
+import reportAPI from '@/api/report/api';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
 import LoadingSpinner from '../LoadingSpinner';
@@ -48,9 +50,18 @@ const ReportBottomSheet = ({
             position: 'bottom-center',
             autoClose: 1500,
           });
-        },
-        onSettled: () => {
           navigate(ROUTER_PATHS.ROOT);
+        },
+        onError: (err) => {
+          if (isAxiosError(err)) {
+            if (
+              err.response?.data === ERROR_RESPONSES.memberNotFound ||
+              err.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+              err.response?.data === ERROR_RESPONSES.alreadyReportExist
+            ) {
+              navigate(ROUTER_PATHS.ROOT);
+            }
+          }
         },
       },
     );
