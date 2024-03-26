@@ -49,6 +49,7 @@ const TossBottomSheet = ({
             navigate(ROUTER_PATHS.ROOT);
           }
         }
+        off();
       },
     });
   };

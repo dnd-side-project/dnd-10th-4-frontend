@@ -55,6 +55,7 @@ const ReplyBottomSheet = ({
               navigate(ROUTER_PATHS.ROOT);
             }
           }
+          off();
         },
       },
     );
@@ -75,7 +76,6 @@ const ReplyBottomSheet = ({
           variant="primary"
           onClick={() => {
             handleSubmit(onSubmit)();
-            off();
           }}
         >
           {isPending ? <LoadingSpinner /> : <>보내기</>}

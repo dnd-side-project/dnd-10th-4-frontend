@@ -44,6 +44,7 @@ const WriteBottomSheet = ({ value, on, off }: LetterWriteBottomSheetProps) => {
         ) {
           navigate(ROUTER_PATHS.ROOT);
         }
+        off();
       },
     });
   };
@@ -63,7 +64,6 @@ const WriteBottomSheet = ({ value, on, off }: LetterWriteBottomSheetProps) => {
           variant="primary"
           onClick={() => {
             handleSubmit(onSubmit)();
-            off();
           }}
         >
           {isPending ? <LoadingSpinner /> : <>보내기</>}

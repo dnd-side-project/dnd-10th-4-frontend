@@ -49,6 +49,7 @@ const StorageBottomSheet = ({
             navigate(ROUTER_PATHS.ROOT);
           }
         }
+        off();
       },
     });
   };

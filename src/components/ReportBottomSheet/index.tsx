@@ -4,11 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import letterOptions from '@/api/letter/queryOptions';
-import useBoolean from '@/hooks/useBoolean';
-import reportAPI from '@/api/report/api';
-import { ROUTER_PATHS } from '@/constants/routerPaths';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
+import reportAPI from '@/api/report/api';
+import useBoolean from '@/hooks/useBoolean';
+import letterOptions from '@/api/letter/queryOptions';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
 import LoadingSpinner from '../LoadingSpinner';
@@ -62,6 +62,7 @@ const ReportBottomSheet = ({
               navigate(ROUTER_PATHS.ROOT);
             }
           }
+          off();
         },
       },
     );
@@ -116,7 +117,7 @@ const ReportBottomSheet = ({
           >
             취소하기
           </Button>
-          <Button type="submit" variant="danger">
+          <Button disabled={isPending} type="submit" variant="danger">
             {isPending ? <LoadingSpinner /> : <>신고하기</>}
           </Button>
         </BottomSheet.ButtonSection>
