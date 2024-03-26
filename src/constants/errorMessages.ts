@@ -12,6 +12,7 @@ const ERROR_RESPONSES = {
     '업로드 하신 이미지는 지원하지 않는 파일 형식입니다. 이미지가 png, jpg, jpeg, gif, bmp의 형식인지 확인해주세요.',
   noExt: '업로드 하신 이미지에 확장자가 존재하지 않습니다.',
   exceedSendLimit: '하루에 보낼 수 있는 편지를 모두 사용하였습니다.',
+  alreadyReportExist: '이미 신고한 편지입니다.',
 } as const;
 
 export default ERROR_RESPONSES;

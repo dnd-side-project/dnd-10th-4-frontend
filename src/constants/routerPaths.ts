@@ -35,6 +35,8 @@ export const API_PATHS = {
   LETTER_SEND: '/api/letter/send',
   LETTER_SEND_DETAIL: (letterId: string) =>
     `/api/letter/send/${letterId}` as const,
+
+  REPORT_SEND: '/api/report',
 } as const;
 
 export const ROUTER_PATHS = {

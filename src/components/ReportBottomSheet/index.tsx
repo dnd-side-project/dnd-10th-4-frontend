@@ -1,39 +1,81 @@
-import { useForm, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
+import ERROR_RESPONSES from '@/constants/errorMessages';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
+import reportAPI from '@/api/report/api';
 import useBoolean from '@/hooks/useBoolean';
+import letterOptions from '@/api/letter/queryOptions';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
+import LoadingSpinner from '../LoadingSpinner';
 import style from './styles';
 import Radio from './components/Radio';
+import useReportForm, { reportList, ReportInputs } from './hooks/useReportForm';
 
-interface ReportBottomSheetProps extends ReturnType<typeof useBoolean> {}
+const ReportBottomSheet = ({
+  value,
+  on,
+  off,
+}: ReturnType<typeof useBoolean>) => {
+  const navigate = useNavigate();
+  const { letterId } = useParams();
 
-const reportList = [
-  { text: '욕설', value: 'a' },
-  { text: '광고 및 도배', value: 'b' },
-  { text: '음란성 게시물', value: 'c' },
-  { text: '그 외 부적절한 내용', value: 'd' },
-];
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useReportForm();
+  const selectedValue = useWatch({ control, name: 'reportType' });
+  const queryClient = useQueryClient();
 
-type ReportInputs = {
-  reportType: null | string;
-  reportContent: string;
-};
-
-const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
-  const methods = useForm<ReportInputs>({
-    defaultValues: {
-      reportType: null,
-      reportContent: '',
+  const { mutate, isPending } = useMutation({
+    mutationFn: reportAPI.postReportSend,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: letterOptions.all });
     },
   });
 
-  const { register, handleSubmit, control } = methods;
-  const selectedValue = useWatch({ control, name: 'reportType' });
-
-  const onSubmit = (data: ReportInputs) => {
-    console.log(data);
-    off();
+  const onSubmit = async (data: ReportInputs) => {
+    mutate(
+      { letterId: Number(letterId), ...data },
+      {
+        onSuccess: () => {
+          toast.success('신고가 접수되었어요.', {
+            position: 'bottom-center',
+            autoClose: 1500,
+          });
+          navigate(ROUTER_PATHS.ROOT);
+        },
+        onError: (err) => {
+          if (isAxiosError(err)) {
+            if (
+              err.response?.data === ERROR_RESPONSES.memberNotFound ||
+              err.response?.data === ERROR_RESPONSES.accessDeniedLetter ||
+              err.response?.data === ERROR_RESPONSES.alreadyReportExist
+            ) {
+              navigate(ROUTER_PATHS.ROOT);
+            }
+          }
+          off();
+        },
+      },
+    );
   };
+
+  useEffect(() => {
+    if (errors.reportType) {
+      toast.warn(errors.reportType.message, {
+        position: 'bottom-center',
+        autoClose: 1500,
+      });
+    }
+  }, [errors]);
 
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>
@@ -66,11 +108,17 @@ const ReportBottomSheet = ({ value, on, off }: ReportBottomSheetProps) => {
           </div>
         </div>
         <BottomSheet.ButtonSection>
-          <Button variant="cancel" onClick={off}>
+          <Button
+            type="button"
+            variant="cancel"
+            onClick={() => {
+              off(), reset();
+            }}
+          >
             취소하기
           </Button>
-          <Button type="submit" variant="danger">
-            신고하기
+          <Button disabled={isPending} type="submit" variant="danger">
+            {isPending ? <LoadingSpinner /> : <>신고하기</>}
           </Button>
         </BottomSheet.ButtonSection>
       </form>
