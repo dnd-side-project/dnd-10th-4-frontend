@@ -11,42 +11,36 @@ const LetterStoragePage = () => {
     <div css={style.container}>
       <StorageHeader />
       <div css={style.content}>
-        <Tabs
-          tabItems={[
-            {
-              content: (
-                <Suspense
-                  fallback={
-                    <div css={style.loadingSpinner}>
-                      <LoadingSpinner size="4rem" />
-                      <p>보관한 편지 가져오는 중...</p>
-                    </div>
-                  }
-                >
-                  <ArchiveLetters />
-                </Suspense>
-              ),
-              key: '1',
-              label: '보관한 편지',
-            },
-            {
-              content: (
-                <Suspense
-                  fallback={
-                    <div css={style.loadingSpinner}>
-                      <LoadingSpinner size="4rem" />
-                      <p>내가 쓴 편지 가져오는 중...</p>
-                    </div>
-                  }
-                >
-                  <MySentLetters />
-                </Suspense>
-              ),
-              key: '2',
-              label: '내가 보낸 편지',
-            },
-          ]}
-        />
+        <Tabs variant="primary" defaultValue="1">
+          <Tabs.List>
+            <Tabs.Trigger value="1">보관한 편지</Tabs.Trigger>
+            <Tabs.Trigger value="2">내가 보낸 편지</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="1">
+            <Suspense
+              fallback={
+                <div css={style.loadingSpinner}>
+                  <LoadingSpinner size="4rem" />
+                  <p>보관한 편지 가져오는 중...</p>
+                </div>
+              }
+            >
+              <ArchiveLetters />
+            </Suspense>
+          </Tabs.Content>
+          <Tabs.Content value="2">
+            <Suspense
+              fallback={
+                <div css={style.loadingSpinner}>
+                  <LoadingSpinner size="4rem" />
+                  <p>내가 쓴 편지 가져오는 중...</p>
+                </div>
+              }
+            >
+              <MySentLetters />
+            </Suspense>
+          </Tabs.Content>
+        </Tabs>
       </div>
     </div>
   );
