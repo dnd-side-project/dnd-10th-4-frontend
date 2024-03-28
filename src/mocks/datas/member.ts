@@ -1,6 +1,18 @@
 import { Member } from '@/types/member';
 import { NonNullableFields } from '@/types/utility';
 
+export const AdminMemberInfo: NonNullableFields<Member> = {
+  id: 1,
+  role: 'ADMIN',
+  email: 'admin@gmail.com',
+  nickname: '낯선 바다',
+  gender: 'MALE',
+  birthDay: [1995, 4, 27],
+  age: 28,
+  worryTypes: [],
+  letterCount: 5,
+};
+
 export const EmptyMemberInfo: Member = {
   id: 8,
   email: 'aodem@naver.com',
