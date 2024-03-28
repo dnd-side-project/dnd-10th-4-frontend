@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import {
   Table,
@@ -13,6 +13,7 @@ import { Copy, MoreHorizontal, TrashCan } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import useBoolean from '@/hooks/useBoolean';
+import { debounce } from '@/utils/timerUtils';
 import usePagedUserQuery from '../hooks/usePagedUserQuery';
 import styles from '../style';
 import UserExpelBottomSheet from '../components/UserExpelBottomSheet';
@@ -84,12 +85,19 @@ const SuspensedUserTab = ({ searchEmail }: SuspensedUserTabProps) => {
 const UserTab = () => {
   const [email, setEmail] = useState('');
 
+  const handleDebouncedSearch = useMemo(
+    () =>
+      debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+      }, 500),
+    [],
+  );
+
   return (
     <div css={styles.tabContent}>
       <input
         css={styles.input}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleDebouncedSearch}
         placeholder="검색할 이메일을 입력하세요"
       />
 
