@@ -6,25 +6,21 @@ import {
 import { authInstance } from '../instance';
 
 const adminAPI = {
-  getReport: async (email?: string) => {
+  getReport: async (params?: { page?: string; email?: string }) => {
     const { data } = await authInstance.get<PagedReportResponse>(
       API_PATHS.ADMIN_REPORT,
       {
-        params: {
-          email,
-        },
+        params,
       },
     );
     return data;
   },
 
-  getMemberSearch: async (email: string) => {
+  getMemberSearch: async (params?: { page?: string; email?: string }) => {
     const { data } = await authInstance.get<PagedMemberResponse>(
       API_PATHS.ADMIN_MEMBER_SEARCH,
       {
-        params: {
-          email,
-        },
+        params,
       },
     );
     return data;
