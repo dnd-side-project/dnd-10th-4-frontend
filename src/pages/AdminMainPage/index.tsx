@@ -1,21 +1,33 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { css } from '@emotion/react';
 import PaginationBar from '@/components/PaginationBar';
 import Tabs from '@/components/Tabs';
 import Header from '@/components/Header';
 import STORAGE_KEYS from '@/constants/storageKeys';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
+import useAdminPageStore from '@/stores/useAdminPageStore';
 import styles from './style';
 import UserTab from './tabs/UserTab';
 import ReportTab from './tabs/ReportTab';
 
 const AdminMainPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page') || '1';
   const navigate = useNavigate();
+  const totalPage = useAdminPageStore((s) => s.totalPage);
 
   const handleLogout = () => {
     localStorage.removeItem(STORAGE_KEYS.accessToken);
     localStorage.removeItem(STORAGE_KEYS.refreshToken);
     navigate(ROUTER_PATHS.SIGNIN);
+  };
+
+  const handleTabChange = () => {
+    setSearchParams({ ...searchParams, page: '1' });
+  };
+
+  const handlePageChange = (page: number) => {
+    setSearchParams({ ...searchParams, page: page.toString() });
   };
 
   return (
@@ -29,7 +41,7 @@ const AdminMainPage = () => {
         </Header.Right>
       </Header>
       <main css={styles.main}>
-        <Tabs>
+        <Tabs defaultValue="user" onValueChange={handleTabChange}>
           <Tabs.List>
             <Tabs.Trigger value="user">사용자 관리</Tabs.Trigger>
             <Tabs.Trigger value="report">신고 관리</Tabs.Trigger>
@@ -42,7 +54,12 @@ const AdminMainPage = () => {
           </Tabs.Content>
         </Tabs>
       </main>
-      <PaginationBar count={100} defaultPage={1} />
+      <PaginationBar
+        count={totalPage}
+        page={Number(page)}
+        defaultPage={1}
+        onChange={handlePageChange}
+      />
     </div>
   );
 };
