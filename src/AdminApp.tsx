@@ -12,26 +12,20 @@ import 'react-toastify/dist/ReactToastify.css';
 const AdminApp = () => {
   return (
     <Background imageUrl={BackgroundImg}>
-      <div css={styles.root}>
-        <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
-          <ApiErrorBoundary FallbackComponent={RootApiFallback}>
-            <Outlet />
-          </ApiErrorBoundary>
-        </UnknownErrorBoundary>
-        <ToastContainer
-          css={css({
-            margin: '4rem 0 5rem 0',
-            padding: '0 1rem',
-            boxSizing: 'border-box',
-          })}
-        />
-      </div>
+      <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
+        <ApiErrorBoundary FallbackComponent={RootApiFallback}>
+          <Outlet />
+        </ApiErrorBoundary>
+      </UnknownErrorBoundary>
+      <ToastContainer
+        css={css({
+          margin: '4rem 0 5rem 0',
+          padding: '0 1rem',
+          boxSizing: 'border-box',
+        })}
+      />
     </Background>
   );
-};
-
-const styles = {
-  root: css``,
 };
 
 export default AdminApp;
