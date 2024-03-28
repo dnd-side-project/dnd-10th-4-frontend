@@ -12,59 +12,72 @@ import Dropdown from '@/components/Dropdown';
 import { Copy, MoreHorizontal, TrashCan } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import useBoolean from '@/hooks/useBoolean';
 import usePagedUserQuery from '../hooks/usePagedUserQuery';
 import styles from '../style';
+import UserExpelBottomSheet from '../components/UserExpelBottomSheet';
 
 interface SuspensedUserTabProps {
-  email: string;
+  searchEmail: string;
 }
 
-const SuspensedUserTab = ({ email }: SuspensedUserTabProps) => {
-  const { data } = usePagedUserQuery(email);
+const SuspensedUserTab = ({ searchEmail }: SuspensedUserTabProps) => {
+  const { data } = usePagedUserQuery(searchEmail);
+  const [expelEmail, setExpelEmail] = useState('');
+  const userExpelBottomSheetProps = useBoolean(false);
+
+  const handleOpenExpelModal = (email: string) => {
+    setExpelEmail(email);
+    userExpelBottomSheetProps.on();
+  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>이메일</TableCell>
-            <TableCell>닉네임</TableCell>
-            <TableCell align="right">동작</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.members.map((member) => (
-            <TableRow key={member.id}>
-              <TableCell>{member.email}</TableCell>
-              <TableCell>{member.nickname}</TableCell>
-              <TableCell align="right">
-                <Dropdown
-                  triggerComponent={<MoreHorizontal />}
-                  options={[
-                    {
-                      icon: <Copy width={20} height={20} />,
-                      label: '복사하기',
-                      onClick: () => {
-                        console.log('복사히기 클릭');
-                      },
-                      color: COLORS.gray2,
-                    },
-                    {
-                      icon: <TrashCan width={20} height={20} />,
-                      label: '삭제하기',
-                      onClick: () => {
-                        console.log('삭제하기 클릭');
-                      },
-                      color: COLORS.danger,
-                    },
-                  ]}
-                />
-              </TableCell>
+    <>
+      <UserExpelBottomSheet
+        expelEmail={expelEmail}
+        {...userExpelBottomSheetProps}
+      />
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>이메일</TableCell>
+              <TableCell>닉네임</TableCell>
+              <TableCell align="right">동작</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data.members.map((member) => (
+              <TableRow key={member.id}>
+                <TableCell>{member.email}</TableCell>
+                <TableCell>{member.nickname}</TableCell>
+                <TableCell align="right">
+                  <Dropdown
+                    triggerComponent={<MoreHorizontal />}
+                    options={[
+                      {
+                        icon: <Copy width={20} height={20} />,
+                        label: '편지 보내기',
+                        onClick: () => {
+                          alert('TODO: 편지 보내기는 준비중인 기능이에요');
+                        },
+                        color: COLORS.gray2,
+                      },
+                      {
+                        icon: <TrashCan width={20} height={20} />,
+                        label: '회원 탈퇴',
+                        onClick: () => handleOpenExpelModal(member.email),
+                        color: COLORS.danger,
+                      },
+                    ]}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 
@@ -81,7 +94,7 @@ const UserTab = () => {
       />
 
       <Suspense fallback={<LoadingSpinner />}>
-        <SuspensedUserTab email={email} />
+        <SuspensedUserTab searchEmail={email} />
       </Suspense>
     </div>
   );

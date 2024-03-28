@@ -14,6 +14,11 @@ const adminHandler = [
     baseURL(API_PATHS.ADMIN_REPORT),
     withAuth(adminResolvers.getReport.success),
   ),
+
+  http.delete(
+    baseURL(API_PATHS.ADMIN_MEMBER_SEARCH),
+    withAuth(adminResolvers.deleteMember.success),
+  ),
 ];
 
 export default adminHandler;

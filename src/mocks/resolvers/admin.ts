@@ -57,4 +57,11 @@ export const adminResolvers = {
       return HttpResponse.json(result);
     },
   },
+
+  deleteMember: {
+    success: async () => {
+      await delay();
+      return HttpResponse.json();
+    },
+  },
 } satisfies MSWResolvers;

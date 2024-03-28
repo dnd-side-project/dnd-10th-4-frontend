@@ -10,11 +10,13 @@ import {
 } from '@mui/material';
 import Dropdown from '@/components/Dropdown';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { Copy, MoreHorizontal, TrashCan } from '@/assets/icons';
+import { MoreHorizontal, TrashCan } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import { REPORT_TYPE_DICT } from '@/constants/report';
+import useBoolean from '@/hooks/useBoolean';
 import usePagedReportQuery from '../hooks/usePagedReportQuery';
 import styles from '../style';
+import UserExpelBottomSheet from '../components/UserExpelBottomSheet';
 
 interface SuspensedReportTabProps {
   email?: string;
@@ -22,54 +24,58 @@ interface SuspensedReportTabProps {
 
 const SuspensedReportTab = ({ email }: SuspensedReportTabProps) => {
   const { data } = usePagedReportQuery(email);
+  const [expelEmail, setExpelEmail] = useState('');
+  const userExpelBottomSheetProps = useBoolean(false);
+
+  const handleOpenExpelModal = (email: string) => {
+    setExpelEmail(email);
+    userExpelBottomSheetProps.on();
+  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>유형</TableCell>
-            <TableCell>신고 대상</TableCell>
-            <TableCell>제보자</TableCell>
-            <TableCell>신고 내용</TableCell>
-            <TableCell align="right">동작</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.letters.map((letter) => (
-            <TableRow key={letter.id}>
-              <TableCell>{REPORT_TYPE_DICT[letter.reportType]}</TableCell>
-              <TableCell>{letter.reportedEmail}</TableCell>
-              <TableCell>{letter.reporterEmail}</TableCell>
-              <TableCell>{letter.content}</TableCell>
-              <TableCell align="right">
-                <Dropdown
-                  triggerComponent={<MoreHorizontal />}
-                  options={[
-                    {
-                      icon: <Copy width={20} height={20} />,
-                      label: '복사하기',
-                      onClick: () => {
-                        console.log('복사히기 클릭');
-                      },
-                      color: COLORS.gray2,
-                    },
-                    {
-                      icon: <TrashCan width={20} height={20} />,
-                      label: '삭제하기',
-                      onClick: () => {
-                        console.log('삭제하기 클릭');
-                      },
-                      color: COLORS.danger,
-                    },
-                  ]}
-                />
-              </TableCell>
+    <>
+      <UserExpelBottomSheet
+        expelEmail={expelEmail}
+        {...userExpelBottomSheetProps}
+      />
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>유형</TableCell>
+              <TableCell>신고 대상</TableCell>
+              <TableCell>제보자</TableCell>
+              <TableCell>신고 내용</TableCell>
+              <TableCell align="right">동작</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data.letters.map((letter) => (
+              <TableRow key={letter.id}>
+                <TableCell>{REPORT_TYPE_DICT[letter.reportType]}</TableCell>
+                <TableCell>{letter.reportedEmail}</TableCell>
+                <TableCell>{letter.reporterEmail}</TableCell>
+                <TableCell>{letter.content}</TableCell>
+                <TableCell align="right">
+                  <Dropdown
+                    triggerComponent={<MoreHorizontal />}
+                    options={[
+                      {
+                        icon: <TrashCan width={20} height={20} />,
+                        label: '회원 탈퇴',
+                        onClick: () =>
+                          handleOpenExpelModal(letter.reportedEmail),
+                        color: COLORS.danger,
+                      },
+                    ]}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 
