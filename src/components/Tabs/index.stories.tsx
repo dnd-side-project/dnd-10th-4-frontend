@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ComponentType } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import Tabs from './';
@@ -6,6 +6,11 @@ import Tabs from './';
 const meta = {
   title: 'Components/Tabs',
   component: Tabs,
+  subcomponents: {
+    List: Tabs.List as ComponentType<unknown>,
+    Trigger: Tabs.Trigger as ComponentType<unknown>,
+    Content: Tabs.Content as ComponentType<unknown>,
+  },
   tags: ['autodocs'],
   argTypes: {},
 } satisfies Meta<typeof Tabs>;
@@ -14,95 +19,68 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  render: (args) => (
-    <div
-      css={css`
-        padding: 1.25rem;
-        background-color: #8acef5;
-      `}
-    >
-      <Tabs {...args} />
-    </div>
-  ),
-  args: {
-    defaultValue: 'tab2',
-    variant: 'primary',
-    tabItems: [
-      {
-        key: 'tab1',
-        label: 'One',
-        content: 'Tab one content',
-      },
-      {
-        key: 'tab2',
-        label: 'Two',
-        content: 'Tab two content',
-      },
-      {
-        key: 'tab3',
-        label: 'Three',
-        content: 'Tab three content',
-      },
-    ],
-  },
+const styles = {
+  container: css`
+    padding: 1.25rem;
+    background-color: #8acef5;
+  `,
+  content: css`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    &:empty {
+      display: none;
+    }
+  `,
 };
 
-const 보관함Components = {
-  Content: ({ children }: React.PropsWithChildren) => {
-    return (
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          margin-top: 1rem;
-        `}
-      >
-        {children}
-      </div>
-    );
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+    defaultValue: 'tab2',
   },
+  decorators: (Story) => (
+    <div css={styles.container}>
+      <Story />
+    </div>
+  ),
+  render: (args) => (
+    <Tabs {...args}>
+      <Tabs.List>
+        <Tabs.Trigger value="tab1">One</Tabs.Trigger>
+        <Tabs.Trigger value="tab2">Two</Tabs.Trigger>
+        <Tabs.Trigger value="tab3">Three</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="tab1">Tab one content</Tabs.Content>
+      <Tabs.Content value="tab2">Tab two content</Tabs.Content>
+      <Tabs.Content value="tab3">Tab three content</Tabs.Content>
+    </Tabs>
+  ),
 };
 
 export const 보관함: Story = {
-  render: (args) => (
-    <div
-      css={css`
-        padding: 1.25rem;
-        background-color: #8acef5;
-      `}
-    >
-      <Tabs {...args} />
-    </div>
-  ),
+  ...Primary,
   args: {
-    variant: 'primary',
-    tabItems: [
-      {
-        key: '1',
-        label: '보관한 편지',
-        content: (
-          <보관함Components.Content>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i}>from. 낯선 고양이.... 보관한 편지 내용... {i}</div>
-            ))}
-          </보관함Components.Content>
-        ),
-      },
-      {
-        key: '2',
-        label: '내가 보낸 편지',
-        content: (
-          <보관함Components.Content>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i}>
-                from. 낯선 고양이.... 내가 보낸 편지 내용... {i}
-              </div>
-            ))}
-          </보관함Components.Content>
-        ),
-      },
-    ],
+    defaultValue: 'tab1',
   },
+  render: (args) => (
+    <Tabs {...args}>
+      <Tabs.List>
+        <Tabs.Trigger value="tab1">One</Tabs.Trigger>
+        <Tabs.Trigger value="tab2">Two</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="tab1" css={styles.content}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i}>from. 낯선 고양이.... 보관한 편지 내용... {i}</div>
+        ))}
+      </Tabs.Content>
+      <Tabs.Content value="tab2" css={styles.content}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i}>from. 낯선 고양이.... 보관한 편지 내용... {i}</div>
+        ))}
+      </Tabs.Content>
+    </Tabs>
+  ),
 };
