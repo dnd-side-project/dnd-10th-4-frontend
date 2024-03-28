@@ -63,15 +63,6 @@ const style = {
       animation-duration: 40000s;
     }
   `,
-
-  wrapper: css`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-  `,
 };
 
 export default style;
