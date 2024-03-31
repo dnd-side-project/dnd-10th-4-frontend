@@ -53,4 +53,5 @@ export const ROUTER_PATHS = {
   MYPAGE: '/mypage',
   LETTER_REPLY: (letterId: string) => `/reply/${letterId}` as const,
   LETTER_STORAGE: `/storage`,
+  ADMIN: '/admin',
 } as const;
