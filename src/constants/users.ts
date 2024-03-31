@@ -42,6 +42,7 @@ export const GENDER_DICT = {
 
 export const ROLE_DICT = {
   USER: '사용자',
+  ADMIN: '관리자',
 } as const;
 
 export type Nickname = (typeof NICKNAMES)[number];

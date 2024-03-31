@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { jwtDecode } from 'jwt-decode';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import authAPI from '@/api/auth/apis';
 import STORAGE_KEYS from '@/constants/storageKeys';
@@ -26,8 +27,26 @@ const SigninKakaoPage = () => {
         localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
         localStorage.setItem(STORAGE_KEYS.refreshToken, data.refreshToken);
 
+        const jwtPayload = jwtDecode<
+          Partial<{
+            ID: string;
+            AUTHORITY: 'USER' | 'ADMIN';
+            EMAIL: string;
+            exp: number;
+          }>
+        >(data.accessToken);
+
+        let nextPath = '';
+        if (jwtPayload.AUTHORITY === 'ADMIN') {
+          nextPath = ROUTER_PATHS.ADMIN;
+        } else if (data.firstLogin) {
+          nextPath = ROUTER_PATHS.ONBOARDING;
+        } else {
+          nextPath = ROUTER_PATHS.ROOT;
+        }
+
         await queryClient.prefetchQuery(memberOptions.detail());
-        navigate(data.firstLogin ? ROUTER_PATHS.ONBOARDING : ROUTER_PATHS.ROOT);
+        navigate(nextPath);
       } catch (error) {
         console.error(error);
         navigate(ROUTER_PATHS.SIGNIN);

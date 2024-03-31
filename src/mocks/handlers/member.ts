@@ -8,7 +8,7 @@ const memberHandler = [
   /** 자신의 회원 정보 조회 */
   http.get(
     baseURL(API_PATHS.MEMBER),
-    withAuth(memberResolvers.getMember.success),
+    withAuth(memberResolvers.getMember.admin),
   ),
 
   /** 온보딩 정보 등록 */

@@ -13,6 +13,9 @@ import LetterReplyPage from './pages/LetterReplyPage';
 import LetterStoragePage from './pages/LetterStoragePage';
 import NotFoundPage from './pages/NotFoundPage';
 import { ROUTER_PATHS } from './constants/routerPaths';
+import AdminLayout from './layouts/AdminLayout';
+import AdminMainPage from './pages/AdminMainPage';
+import AdminApp from './AdminApp';
 
 const router = createBrowserRouter([
   {
@@ -68,6 +71,26 @@ const router = createBrowserRouter([
           {
             path: ROUTER_PATHS.LETTER_STORAGE,
             element: <LetterStoragePage />,
+          },
+        ],
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
+      },
+    ],
+  },
+  {
+    path: '/',
+    element: <AdminApp />,
+    children: [
+      {
+        path: '/',
+        element: <AdminLayout />,
+        children: [
+          {
+            path: ROUTER_PATHS.ADMIN,
+            element: <AdminMainPage />,
           },
         ],
       },

@@ -34,6 +34,7 @@
     "clsx": "^2.1.0",
     "embla-carousel-react": "^8.0.0-rc22",
     "framer-motion": "^10.18.0",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.12",

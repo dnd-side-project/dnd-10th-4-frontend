@@ -3,6 +3,7 @@ import authHandler from './auth';
 import memberHandler from './member';
 import letterHandler from './letter';
 import reportHandler from './report';
+import adminHandler from './admin';
 
 const mockHandlers = [
   ...testHandler,
@@ -10,6 +11,7 @@ const mockHandlers = [
   ...authHandler,
   ...memberHandler,
   ...reportHandler,
+  ...adminHandler,
 ];
 
 export default mockHandlers;
