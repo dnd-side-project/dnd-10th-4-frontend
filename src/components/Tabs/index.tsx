@@ -11,14 +11,28 @@ interface TabsProps {
   variant?: TabsVariant;
   /** 기본으로 활성화 되어 있을 탭 아이템의 key를 지정합니다.  */
   defaultValue?: string;
+  /** 탭 아이템이 변경될 때 호출되는 콜백 함수입니다. */
+  onValueChange?: (value: string) => void;
   /** Tabs 컴포넌트 안에 포함될 내용입니다. */
   children?: React.ReactNode;
 }
 
-const Tabs = ({ variant = 'primary', defaultValue, children }: TabsProps) => {
+const Tabs = ({
+  variant = 'primary',
+  defaultValue,
+  onValueChange,
+  children,
+  ...props
+}: TabsProps) => {
   return (
     <TabsProvider value={{ variant }}>
-      <T.Root defaultValue={defaultValue}>{children}</T.Root>
+      <T.Root
+        defaultValue={defaultValue}
+        onValueChange={onValueChange}
+        {...props}
+      >
+        {children}
+      </T.Root>
     </TabsProvider>
   );
 };

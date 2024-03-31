@@ -14,21 +14,34 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <Background imageUrl={BackgroundImg}>
-      <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
-        <ApiErrorBoundary FallbackComponent={RootApiFallback}>
-          <Outlet />
-        </ApiErrorBoundary>
-      </UnknownErrorBoundary>
-      <Audio src={BackgroundMusic} />
-      <ToastContainer
-        css={css({
-          margin: '4rem 0 5rem 0',
-          padding: '0 1rem',
-          boxSizing: 'border-box',
-        })}
-      />
+      <div css={styles.root}>
+        <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
+          <ApiErrorBoundary FallbackComponent={RootApiFallback}>
+            <Outlet />
+          </ApiErrorBoundary>
+        </UnknownErrorBoundary>
+        <Audio src={BackgroundMusic} />
+        <ToastContainer
+          css={css({
+            margin: '4rem 0 5rem 0',
+            padding: '0 1rem',
+            boxSizing: 'border-box',
+          })}
+        />
+      </div>
     </Background>
   );
+};
+
+const styles = {
+  root: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  `,
 };
 
 export default App;

@@ -1,13 +1,18 @@
 import { HttpResponse, delay } from 'msw';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import { type MSWResolvers } from '@/utils/mswUtils';
-import { EmptyMemberInfo, MemberInfo } from '../datas/member';
+import { AdminMemberInfo, EmptyMemberInfo, MemberInfo } from '../datas/member';
 
 export const memberResolvers = {
   getMember: {
     success: async () => {
       await delay();
       return HttpResponse.json(MemberInfo);
+    },
+
+    admin: async () => {
+      await delay();
+      return HttpResponse.json(AdminMemberInfo);
     },
 
     empty: async () => {

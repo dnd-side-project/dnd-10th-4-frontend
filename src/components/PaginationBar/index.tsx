@@ -4,6 +4,8 @@ import IconButton from '../IconButton';
 import styles from './style';
 
 interface PaginationBarProps {
+  /** 현재 페이지 번호 */
+  page?: number;
   /** 기본 페이지 번호 */
   defaultPage: number;
   /** 페이지 갯수 */
@@ -13,6 +15,7 @@ interface PaginationBarProps {
 }
 
 const PaginationBar = ({
+  page,
   defaultPage,
   count,
   onChange = () => {},
@@ -20,6 +23,7 @@ const PaginationBar = ({
   const { items } = usePagination({
     siblingCount: 0,
     boundaryCount: 1,
+    page,
     defaultPage,
     count,
     onChange: (_, page) => onChange(page),

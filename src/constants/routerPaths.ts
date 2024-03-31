@@ -37,6 +37,10 @@ export const API_PATHS = {
     `/api/letter/send/${letterId}` as const,
 
   REPORT_SEND: '/api/report',
+
+  ADMIN_REPORT: '/api/report',
+  ADMIN_MEMBER_SEARCH: '/api/member/search',
+  ADMIN_LETTER_SPECIAL: '/api/letter/special',
 } as const;
 
 export const ROUTER_PATHS = {
@@ -49,4 +53,5 @@ export const ROUTER_PATHS = {
   MYPAGE: '/mypage',
   LETTER_REPLY: (letterId: string) => `/reply/${letterId}` as const,
   LETTER_STORAGE: `/storage`,
+  ADMIN: '/admin',
 } as const;

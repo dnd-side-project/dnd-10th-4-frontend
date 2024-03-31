@@ -1,4 +1,5 @@
 import { type Worry } from '@/constants/letters';
+import { type Pagination } from './pagination';
 
 export type Letter = {
   content: string;
@@ -42,10 +43,7 @@ export type Reply = {
   replyImagePath: string | null;
 };
 
-export type Storage = {
-  totalElements: number;
-  totalPage: number;
-  hasNextPage: boolean;
+export type Storage = Pagination & {
   letters: Reply[];
 };
 
@@ -59,9 +57,6 @@ export type SendLetter = {
   sendImagePath: string | null;
 };
 
-export type Send = {
-  totalElements: number;
-  totalPage: number;
-  hasNextPage: boolean;
+export type Send = Pagination & {
   letters: SendLetter[];
 };
