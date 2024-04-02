@@ -257,5 +257,23 @@ export const PagedReceivedLettersResponsePage2 = {
       replyImagePath:
         'https://d2bunq4des8hir.cloudfront.net/letter/oceanImage.jpeg',
     },
+    {
+      createdAt: '2024-02-21T00:53:25',
+      repliedAt: '2024-02-23T07:51:08',
+      letterId: 16,
+      letterTag: {
+        ageRangeStart: 10,
+        ageRangeEnd: 30,
+        equalGender: true,
+      },
+      senderNickname: '낯선 소',
+      receiverNickname: '낯선 유저1',
+      content: '안녕',
+      repliedContent: '답장입니다.',
+      worryType: 'BREAK_LOVE',
+      sendImagePath: null,
+      replyImagePath:
+        'https://d2bunq4des8hir.cloudfront.net/letter/oceanImage.jpeg',
+    },
   ],
 };
