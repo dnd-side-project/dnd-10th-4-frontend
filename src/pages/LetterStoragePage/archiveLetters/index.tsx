@@ -53,8 +53,7 @@ const style = {
   container: css`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: calc(100svh - 72px - 50px - 1rem);
-    margin-bottom: 1rem;
+    justify-content: space-around;
+    height: calc(100svh - 8rem);
   `,
 };

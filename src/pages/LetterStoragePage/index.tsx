@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import Tabs from '@/components/Tabs';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import StorageHeader from './components/StorageHeader';
 import ArchiveLetters from './archiveLetters';
 import MySentLetters from './mySentLetters';
@@ -53,8 +53,7 @@ const style = {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100svh;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
   `,
   content: css`
     margin-top: 4.5rem;
