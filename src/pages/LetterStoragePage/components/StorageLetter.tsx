@@ -57,19 +57,20 @@ const style = {
   `,
   bottles: css`
     display: flex;
-    gap: 2vh;
+    gap: 4vh;
     justify-content: space-around;
     margin-bottom: 13svh;
   `,
   bottle: css`
+    width: 3.4vh;
     height: 11vh;
-    margin-inline: 0.6rem;
     cursor: pointer;
   `,
   empty: css`
-    width: 2rem;
+    width: 3.4vh;
     height: 11vh;
-    padding-inline: 0.52rem;
+    margin-inline: -0.8vh;
+    padding-inline: 0.8vh;
     border-radius: 8px;
     background-color: rgb(255 255 255 / 0.4);
   `,
