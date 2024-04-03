@@ -6,12 +6,11 @@ import Button from '@/components/Button';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
 import ERROR_RESPONSES from '@/constants/errorMessages';
+import useBoolean from '@/hooks/useBoolean';
 
-interface DeleteBottomSheetProsp {
-  value: boolean;
-  on: () => void;
-  off: () => void;
+interface DeleteBottomSheetProsp extends ReturnType<typeof useBoolean> {
   letterId: number;
+  modalOff?: () => void;
   type?: 'Letter' | 'Send';
 }
 
@@ -20,6 +19,7 @@ const DeleteBottomSheet = ({
   on,
   off,
   letterId,
+  modalOff,
   type = 'Letter',
 }: DeleteBottomSheetProsp) => {
   const queryClient = useQueryClient();
@@ -41,6 +41,7 @@ const DeleteBottomSheet = ({
       }
       queryClient.invalidateQueries({ queryKey: letterOptions.all });
       off();
+      modalOff();
       toast.error('편지가 삭제됐어요', {
         autoClose: 1500,
         position: 'bottom-center',

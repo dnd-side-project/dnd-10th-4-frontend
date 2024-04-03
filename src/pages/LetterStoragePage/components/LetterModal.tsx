@@ -1,10 +1,11 @@
 import { Fragment } from 'react';
+import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
 import { Reply } from '@/types/letter';
 import Header from '@/components/Header';
-import { CaretLeft } from '@/assets/icons';
+import { CaretLeft, TrashCan, Copy } from '@/assets/icons';
 import LetterCard from '@/components/LetterCard';
 import LetterHeader from '@/components/LetterHeader';
 import TagList from '@/components/TagList';
@@ -13,13 +14,35 @@ import COLORS from '@/constants/colors';
 import { formatDate } from '@/utils/dateUtils';
 import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
+import IconButton from '@/components/IconButton';
 import { getTagList } from '../utils/tagUtills';
+import DeleteBottomSheet from './DeleteBottomSheet';
 
 interface LetterModalProps extends ReturnType<typeof useBoolean> {
   letter: Reply;
 }
 
 const LetterModal = ({ value, off, letter }: LetterModalProps) => {
+  const deleteBottomSheetProps = useBoolean(false);
+
+  const handleContentCopy = (content: string) => {
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+        toast.success('편지가 복사되었어요.', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error('편지 복사를 실패했어요', {
+          autoClose: 1500,
+          position: 'bottom-center',
+        });
+      });
+  };
+
   return (
     <Modal isOpen={value} close={off}>
       <Header css={style.header}>
@@ -34,6 +57,24 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
             <span css={style.headerText}>보관한 편지</span>
           </div>
         </Header.Left>
+        <Header.Right>
+          <div css={style.rightHeader}>
+            <IconButton
+              onClick={() => {
+                handleContentCopy(
+                  letter.letterType !== 'Onboarding'
+                    ? letter.repliedContent
+                    : letter.content,
+                );
+              }}
+            >
+              <Copy stroke="white" />
+            </IconButton>
+            <IconButton onClick={deleteBottomSheetProps.on}>
+              <TrashCan fill="white" />
+            </IconButton>
+          </div>
+        </Header.Right>
       </Header>
       <div css={style.container}>
         <LetterCard css={style.card(letter.letterType)}>
@@ -91,6 +132,11 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
           )}
         </LetterCard>
       </div>
+      <DeleteBottomSheet
+        letterId={letter.letterId}
+        modalOff={off}
+        {...deleteBottomSheetProps}
+      />
     </Modal>
   );
 };
@@ -108,6 +154,10 @@ const style = {
     display: flex;
     gap: 0.625rem;
     align-items: center;
+  `,
+  rightHeader: css`
+    display: flex;
+    gap: 0.625rem;
   `,
   icon: css`
     cursor: pointer;
