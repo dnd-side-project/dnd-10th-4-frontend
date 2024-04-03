@@ -11,8 +11,8 @@ import PolaroidModal from '@/components/PolaroidModal';
 import { SendLetter } from '@/types/letter';
 import useBoolean from '@/hooks/useBoolean';
 import { getTagList } from '../utils/tagUtills';
-import StorageContent from './StorageContent';
 import DeleteBottomSheet from './DeleteBottomSheet';
+import StorageContent from './StorageContent';
 
 interface StorageSendLetterProps {
   letters: SendLetter[];
@@ -98,7 +98,7 @@ const StorageSendLetter = ({ letters }: StorageSendLetterProps) => {
           />
           {isOpen[item.letterId] && item.sendImagePath && (
             <PolaroidModal
-              topPosition={0.5}
+              bottomPosition={0}
               leftPosition={1}
               img={item.sendImagePath}
             />

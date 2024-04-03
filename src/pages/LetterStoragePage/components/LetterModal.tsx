@@ -39,6 +39,7 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
         <LetterCard css={style.card(letter.letterType)}>
           {letter.letterType === 'Onboarding' ? (
             <>
+              <TagList tags={['첫 편지', '모두에게']} />
               <LetterHeader nickname={'처음 방문한 너에게'} />
               <section css={style.content}>
                 {letter.content.split('\n').map((line, i) => (
@@ -57,11 +58,7 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
                 nickname={letter.senderNickname}
               />
               {letter.sendImagePath && (
-                <PolaroidModal
-                  topPosition={20}
-                  leftPosition={1.2}
-                  img={letter.sendImagePath}
-                >
+                <PolaroidModal leftPosition={1.2} img={letter.sendImagePath}>
                   <Button variant="secondary" size="sm">
                     닫기
                   </Button>
@@ -84,11 +81,7 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
                 nickname={letter.receiverNickname}
               />
               {letter.replyImagePath && (
-                <PolaroidModal
-                  topPosition={4.7}
-                  leftPosition={1.2}
-                  img={letter.replyImagePath}
-                >
+                <PolaroidModal leftPosition={1.2} img={letter.replyImagePath}>
                   <Button variant="secondary" size="sm">
                     닫기
                   </Button>
@@ -128,11 +121,11 @@ const style = {
   container: css`
     overflow-y: auto;
     max-height: calc(100svh - 60px);
-    padding-inline: 1rem;
+    padding: 0 1rem;
   `,
   card: (type: string | null) => css`
     min-height: 26.6rem;
-    margin-bottom: ${type === 'Onboarding' && '2.5rem'};
+    margin-bottom: ${type === 'Onboarding' ? '2.5rem' : '1.8rem'};
   `,
   content: css`
     ${textStyles.l1m}

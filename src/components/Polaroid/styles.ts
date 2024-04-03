@@ -4,9 +4,9 @@ import COLORS from '@/constants/colors';
 export type PolaroidSize = 'sm' | 'lg';
 
 const style = {
-  empty: (topPosition: number, leftPosition: number) => css`
+  empty: (bottomPosition: number, leftPosition: number) => css`
     position: absolute;
-    top: ${topPosition + 15}rem;
+    bottom: ${bottomPosition}rem;
     left: ${leftPosition + 1}rem;
     display: flex;
     flex-shrink: 0;
@@ -21,11 +21,15 @@ const style = {
     cursor: pointer;
     transform: rotate(-15deg);
   `,
-  img: (topPosition: number, leftPosition: number, size: PolaroidSize) => css`
+  img: (
+    bottomPosition: number,
+    leftPosition: number,
+    size: PolaroidSize,
+  ) => css`
     background: #fff;
     ${size === 'sm' &&
     `
-      top: ${topPosition + 15}rem;
+      bottom: ${bottomPosition}rem;
       left: ${leftPosition + 1}rem;
     `}
     ${sizeStyle[size]}

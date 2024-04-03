@@ -4,13 +4,13 @@ import style from './styles';
 
 interface ImageUploadButtonProps {
   onChangeImage: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  topPosition?: number;
+  bottomPosition?: number;
   leftPosition?: number;
 }
 
 const ImageUploadButton = ({
   onChangeImage,
-  topPosition,
+  bottomPosition,
   leftPosition,
 }: ImageUploadButtonProps) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -36,7 +36,7 @@ const ImageUploadButton = ({
       />
       <Polaroid
         onClick={handlePolaroidClick}
-        topPosition={topPosition}
+        bottomPosition={bottomPosition}
         leftPosition={leftPosition}
       />
     </>

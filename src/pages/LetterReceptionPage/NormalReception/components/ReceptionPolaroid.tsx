@@ -7,13 +7,10 @@ import { Download } from '@/assets/icons';
 
 interface ReceptionPolaroidProps {
   img: string;
-  topPosition?: number;
+  bottomPosition?: number;
 }
 
-const ReceptionPolaroid = ({
-  img,
-  topPosition = 5,
-}: ReceptionPolaroidProps) => {
+const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
   const handleDownload = async () => {
     const response = await axios.get(img, {
       responseType: 'blob',
@@ -38,7 +35,7 @@ const ReceptionPolaroid = ({
   return (
     <PolaroidModal
       img={img}
-      topPosition={topPosition}
+      bottomPosition={bottomPosition}
       leftPosition={1.2}
       headerRightContent={
         <IconButton onClick={handleDownload}>

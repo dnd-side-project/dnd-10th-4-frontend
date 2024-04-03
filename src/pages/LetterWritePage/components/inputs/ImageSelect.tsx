@@ -12,11 +12,7 @@ const ImageSelect = () => {
   };
 
   return (
-    <ImageUploadButton
-      onChangeImage={handleFileChange}
-      topPosition={5.2}
-      leftPosition={1}
-    />
+    <ImageUploadButton onChangeImage={handleFileChange} leftPosition={1} />
   );
 };
 

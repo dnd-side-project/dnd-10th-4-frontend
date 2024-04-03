@@ -31,7 +31,6 @@ const ReplyImage = () => {
     <>
       {watch('image') ? (
         <PolaroidModal
-          topPosition={5.5}
           leftPosition={1.2}
           img={URL.createObjectURL(watch('image')[0])}
           headerRightContent={
@@ -46,7 +45,6 @@ const ReplyImage = () => {
         </PolaroidModal>
       ) : (
         <ImageUploadButton
-          topPosition={5.5}
           leftPosition={1.2}
           onChangeImage={handleFileChange}
         />
