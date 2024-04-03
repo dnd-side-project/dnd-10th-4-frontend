@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { css } from '@emotion/react';
 import { Reply } from '@/types/letter';
 import DrowerImage from '@/assets/storageDrawer.png';
 import BottleImage from '@/assets/images/bottleStorage.png';
+import useBoolean from '@/hooks/useBoolean';
+import LetterModal from './LetterModal';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
@@ -9,6 +12,14 @@ interface StorageLetterProps {
 }
 
 const StorageLetter = ({ letters }: StorageLetterProps) => {
+  const [clickLetter, setClickLetter] = useState<Reply | null>(null);
+  const letterModalProps = useBoolean(false);
+
+  const handleBottleClick = (item: Reply) => {
+    setClickLetter(item);
+    letterModalProps.on();
+  };
+
   return (
     <StorageContent>
       <img css={style.drower} src={DrowerImage} />
@@ -24,7 +35,7 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           return (
             <div css={style.bottles} key={`line-${index}`}>
               {lettersSlice.map((item) => (
-                <li key={item.letterId}>
+                <li key={item.letterId} onClick={() => handleBottleClick(item)}>
                   <img src={BottleImage} css={style.bottle} />
                 </li>
               ))}
@@ -37,6 +48,9 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           );
         })}
       </ol>
+      {clickLetter && (
+        <LetterModal {...letterModalProps} letter={clickLetter} />
+      )}
     </StorageContent>
   );
 };
