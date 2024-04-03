@@ -20,7 +20,7 @@ const ArchiveLetters = () => {
     <>
       {data.letters.length > 0 ? (
         <div css={style.container}>
-          <StorageLetter letters={data.letters} />
+          <StorageLetter letters={data.letters} type="reply" />
           {data.totalPage > 1 && (
             <PaginationBar
               count={data.totalPage}

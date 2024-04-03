@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import PaginationBar from '@/components/PaginationBar';
-import { PencilLine } from '@/assets/icons';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
+import { PencilLine } from '@/assets/icons';
+import PaginationBar from '@/components/PaginationBar';
 import StorageEmpty from '../components/StorageEmpty';
 import useLetterSend from '../hooks/useLetterSend';
-import StorageSendLetter from '../components/StorageSendLetter';
+import StorageLetter from '../components/StorageLetter';
 
 const MySentLetters = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -20,7 +20,7 @@ const MySentLetters = () => {
     <>
       {data.letters.length > 0 ? (
         <div css={style.container}>
-          <StorageSendLetter letters={data.letters} />
+          <StorageLetter letters={data.letters} />
           {data.totalPage > 1 && (
             <PaginationBar
               count={data.totalPage}
@@ -52,8 +52,7 @@ const style = {
   container: css`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: calc(100svh - 72px - 50px - 1rem);
-    margin-bottom: 1rem;
+    justify-content: space-around;
+    height: calc(100svh - 8rem);
   `,
 };

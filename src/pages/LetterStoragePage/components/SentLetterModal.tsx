@@ -1,9 +1,8 @@
-import { Fragment } from 'react';
 import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
-import { Reply } from '@/types/letter';
+import { type SendLetter } from '@/types/letter';
 import Header from '@/components/Header';
 import { CaretLeft, TrashCan, Copy } from '@/assets/icons';
 import LetterCard from '@/components/LetterCard';
@@ -18,11 +17,11 @@ import IconButton from '@/components/IconButton';
 import { getTagList } from '../utils/tagUtills';
 import DeleteBottomSheet from './DeleteBottomSheet';
 
-interface LetterModalProps extends ReturnType<typeof useBoolean> {
-  letter: Reply;
+interface SentLetterModalProps extends ReturnType<typeof useBoolean> {
+  letter: SendLetter;
 }
 
-const LetterModal = ({ value, off, letter }: LetterModalProps) => {
+const SentLetterModal = ({ value, off, letter }: SentLetterModalProps) => {
   const deleteBottomSheetProps = useBoolean(false);
 
   const handleContentCopy = (content: string) => {
@@ -54,18 +53,14 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
               color="white"
               onClick={off}
             />
-            <span css={style.headerText}>보관한 편지</span>
+            <span css={style.headerText}>내가 보낸 편지</span>
           </div>
         </Header.Left>
         <Header.Right>
           <div css={style.rightHeader}>
             <IconButton
               onClick={() => {
-                handleContentCopy(
-                  letter.letterType !== 'Onboarding'
-                    ? letter.repliedContent
-                    : letter.content,
-                );
+                handleContentCopy(letter.content);
               }}
             >
               <Copy stroke="white" />
@@ -77,58 +72,26 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
         </Header.Right>
       </Header>
       <div css={style.container}>
-        <LetterCard css={style.card(letter.letterType)}>
-          {letter.letterType === 'Onboarding' ? (
-            <>
-              <TagList tags={['첫 편지', '모두에게']} />
-              <LetterHeader nickname={'처음 방문한 너에게'} />
-              <section css={style.content}>
-                {letter.content.split('\n').map((line, i) => (
-                  <Fragment key={i}>
-                    <p>{line}</p>
-                    <br />
-                  </Fragment>
-                ))}
-              </section>
-              <div css={style.date}>
-                <span>{formatDate(new Date(letter.createdAt))}</span>
-              </div>
-              <LetterHeader
-                title="From"
-                titlePosition="right"
-                nickname={letter.senderNickname}
-              />
-              {letter.sendImagePath && (
-                <PolaroidModal leftPosition={1.2} img={letter.sendImagePath}>
-                  <Button variant="secondary" size="sm">
-                    닫기
-                  </Button>
-                </PolaroidModal>
-              )}
-            </>
-          ) : (
-            <>
-              <TagList tags={getTagList(letter)} />
-              <LetterHeader nickname={letter.senderNickname} />
-              <section css={style.content}>
-                <p>{letter.repliedContent}</p>
-              </section>
-              <div css={style.date}>
-                <span>{formatDate(new Date(letter.repliedAt))}</span>
-              </div>
-              <LetterHeader
-                title="From"
-                titlePosition="right"
-                nickname={letter.receiverNickname}
-              />
-              {letter.replyImagePath && (
-                <PolaroidModal leftPosition={1.2} img={letter.replyImagePath}>
-                  <Button variant="secondary" size="sm">
-                    닫기
-                  </Button>
-                </PolaroidModal>
-              )}
-            </>
+        <LetterCard css={style.card}>
+          <TagList tags={getTagList(letter)} />
+          <LetterHeader nickname="낯선 누군가에게" />
+          <section css={style.content}>
+            <p>{letter.content}</p>
+          </section>
+          <div css={style.date}>
+            <span>{formatDate(new Date(letter.createdAt))}</span>
+          </div>
+          <LetterHeader
+            title="From"
+            titlePosition="right"
+            nickname={letter.senderNickname}
+          />
+          {letter.sendImagePath && (
+            <PolaroidModal leftPosition={1.2} img={letter.sendImagePath}>
+              <Button variant="secondary" size="sm">
+                닫기
+              </Button>
+            </PolaroidModal>
           )}
         </LetterCard>
       </div>
@@ -141,7 +104,7 @@ const LetterModal = ({ value, off, letter }: LetterModalProps) => {
   );
 };
 
-export default LetterModal;
+export default SentLetterModal;
 
 const style = {
   header: css`
@@ -173,9 +136,9 @@ const style = {
     max-height: calc(100svh - 60px);
     padding: 0 1rem;
   `,
-  card: (type: string | null) => css`
+  card: css`
     min-height: 26.6rem;
-    margin-bottom: ${type === 'Onboarding' ? '2.5rem' : '1.8rem'};
+    margin-bottom: 1.8rem;
   `,
   content: css`
     ${textStyles.l1m}

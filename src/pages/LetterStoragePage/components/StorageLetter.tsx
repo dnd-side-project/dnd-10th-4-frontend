@@ -1,23 +1,33 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import { Reply } from '@/types/letter';
+import { type Reply, type SendLetter } from '@/types/letter';
 import DrowerImage from '@/assets/storageDrawer.png';
 import BottleImage from '@/assets/images/bottleStorage.png';
 import useBoolean from '@/hooks/useBoolean';
-import LetterModal from './LetterModal';
+import SentLetterModal from './SentLetterModal';
 import StorageContent from './StorageContent';
+import ReplyLetterModal from './ReplyLetterModal';
 
 interface StorageLetterProps {
-  letters: Reply[];
+  letters: Reply[] | SendLetter[];
+  type?: 'reply' | 'sent';
 }
 
-const StorageLetter = ({ letters }: StorageLetterProps) => {
-  const [clickLetter, setClickLetter] = useState<Reply | null>(null);
-  const letterModalProps = useBoolean(false);
+const StorageLetter = ({ letters, type = 'sent' }: StorageLetterProps) => {
+  const [clickLetter, setClickLetter] = useState<Reply | SendLetter | null>(
+    null,
+  );
+  const replyletterModalProps = useBoolean(false);
+  const sentletterModalProps = useBoolean(false);
 
-  const handleBottleClick = (item: Reply) => {
+  const handleBottleClick = (item: Reply | SendLetter) => {
     setClickLetter(item);
-    letterModalProps.on();
+    console.log(item);
+    if (type === 'reply') {
+      replyletterModalProps.on();
+    } else {
+      sentletterModalProps.on();
+    }
   };
 
   return (
@@ -48,8 +58,17 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
           );
         })}
       </ol>
-      {clickLetter && (
-        <LetterModal {...letterModalProps} letter={clickLetter} />
+      {clickLetter && type === 'reply' && (
+        <ReplyLetterModal
+          {...replyletterModalProps}
+          letter={clickLetter as Reply}
+        />
+      )}
+      {clickLetter && type === 'sent' && (
+        <SentLetterModal
+          {...sentletterModalProps}
+          letter={clickLetter as SendLetter}
+        />
       )}
     </StorageContent>
   );
@@ -73,7 +92,8 @@ const style = {
     display: flex;
     gap: 4vh;
     justify-content: space-around;
-    margin-bottom: 13svh;
+    height: 11vh;
+    margin-bottom: 13.2svh;
   `,
   bottle: css`
     width: 3.4vh;
