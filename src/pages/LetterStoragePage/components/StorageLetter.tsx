@@ -4,9 +4,9 @@ import { type Reply, type SendLetter } from '@/types/letter';
 import DrowerImage from '@/assets/storageDrawer.png';
 import BottleImage from '@/assets/images/bottleStorage.png';
 import useBoolean from '@/hooks/useBoolean';
-import SentLetterModal from './SentLetterModal';
+import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
+import SentLetterModal from '../SentStorage/SentLetterModal';
 import StorageContent from './StorageContent';
-import ReplyLetterModal from './ReplyLetterModal';
 
 interface StorageLetterProps {
   letters: Reply[] | SendLetter[];
@@ -22,7 +22,6 @@ const StorageLetter = ({ letters, type = 'sent' }: StorageLetterProps) => {
 
   const handleBottleClick = (item: Reply | SendLetter) => {
     setClickLetter(item);
-    console.log(item);
     if (type === 'reply') {
       replyletterModalProps.on();
     } else {

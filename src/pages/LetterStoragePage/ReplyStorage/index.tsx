@@ -5,11 +5,11 @@ import { ROUTER_PATHS } from '@/constants/routerPaths';
 import PaginationBar from '@/components/PaginationBar';
 import StorageEmpty from '../components/StorageEmpty';
 import StorageLetter from '../components/StorageLetter';
-import useLetterStorage from '../hooks/useLetterStorage';
+import useLetterReply from '../hooks/useLetterReply';
 
-const ArchiveLetters = () => {
+const ReplyStorage = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const data = useLetterStorage(currentPage);
+  const data = useLetterReply(currentPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page - 1);
@@ -47,7 +47,7 @@ const ArchiveLetters = () => {
   );
 };
 
-export default ArchiveLetters;
+export default ReplyStorage;
 
 const style = {
   container: css`

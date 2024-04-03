@@ -10,8 +10,8 @@ import useBoolean from '@/hooks/useBoolean';
 
 interface DeleteBottomSheetProsp extends ReturnType<typeof useBoolean> {
   letterId: number;
-  modalOff?: () => void;
-  type?: 'Letter' | 'Send';
+  modalOff: () => void;
+  type: 'reply' | 'sent';
 }
 
 const DeleteBottomSheet = ({
@@ -20,7 +20,7 @@ const DeleteBottomSheet = ({
   off,
   letterId,
   modalOff,
-  type = 'Letter',
+  type,
 }: DeleteBottomSheetProsp) => {
   const queryClient = useQueryClient();
 
@@ -33,8 +33,9 @@ const DeleteBottomSheet = ({
   });
 
   const handleDeleteLetter = async (letterId: number) => {
+    console.log(type);
     try {
-      if (type === 'Letter') {
+      if (type === 'reply') {
         await patchDeleteLetter(letterId);
       } else {
         await patchDeleteSend(letterId);

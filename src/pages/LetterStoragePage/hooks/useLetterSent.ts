@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import letterOptions from '@/api/letter/queryOptions';
 
-const useLetterSend = (page: number) => {
+const useLetterSent = (page: number) => {
   const { data } = useSuspenseQuery({
     ...letterOptions.send(page.toString()),
   });
@@ -9,4 +9,4 @@ const useLetterSend = (page: number) => {
   return data;
 };
 
-export default useLetterSend;
+export default useLetterSent;

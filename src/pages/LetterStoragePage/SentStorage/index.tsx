@@ -4,12 +4,12 @@ import { ROUTER_PATHS } from '@/constants/routerPaths';
 import { PencilLine } from '@/assets/icons';
 import PaginationBar from '@/components/PaginationBar';
 import StorageEmpty from '../components/StorageEmpty';
-import useLetterSend from '../hooks/useLetterSend';
+import useLetterSent from '../hooks/useLetterSent';
 import StorageLetter from '../components/StorageLetter';
 
-const MySentLetters = () => {
+const SentStorage = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const data = useLetterSend(currentPage);
+  const data = useLetterSent(currentPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page - 1);
@@ -46,7 +46,7 @@ const MySentLetters = () => {
   );
 };
 
-export default MySentLetters;
+export default SentStorage;
 
 const style = {
   container: css`
