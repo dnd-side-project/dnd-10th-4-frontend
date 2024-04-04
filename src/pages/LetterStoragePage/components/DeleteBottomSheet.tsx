@@ -1,12 +1,11 @@
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 import BottomSheet from '@/components/BottomSheet';
 import Button from '@/components/Button';
 import letterAPI from '@/api/letter/apis';
 import letterOptions from '@/api/letter/queryOptions';
-import ERROR_RESPONSES from '@/constants/errorMessages';
 import useBoolean from '@/hooks/useBoolean';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 interface DeleteBottomSheetProsp extends ReturnType<typeof useBoolean> {
   letterId: number;
@@ -24,39 +23,39 @@ const DeleteBottomSheet = ({
 }: DeleteBottomSheetProsp) => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync: patchDeleteLetter } = useMutation({
+  const invalidateAllLetters = () => {
+    queryClient.invalidateQueries({ queryKey: letterOptions.all });
+  };
+
+  const { mutate: mutateReply, isPending: isPendingReply } = useMutation({
     mutationFn: letterAPI.patchDeleteLetter,
+    onSuccess: invalidateAllLetters,
   });
 
-  const { mutateAsync: patchDeleteSend } = useMutation({
+  const { mutate: mutateSent, isPending: isPendingSent } = useMutation({
     mutationFn: letterAPI.patchDeleteSend,
+    onSuccess: invalidateAllLetters,
   });
 
-  const handleDeleteLetter = async (letterId: number) => {
-    console.log(type);
-    try {
-      if (type === 'reply') {
-        await patchDeleteLetter(letterId);
-      } else {
-        await patchDeleteSend(letterId);
-      }
-      queryClient.invalidateQueries({ queryKey: letterOptions.all });
-      off();
-      modalOff();
-      toast.error('편지가 삭제됐어요', {
+  const handleDeleteLetter = async () => {
+    const handleSuccess = () => {
+      toast.success('편지가 삭제됐어요', {
         autoClose: 1500,
         position: 'bottom-center',
       });
-    } catch (error) {
-      if (
-        isAxiosError(error) &&
-        error.response?.data === ERROR_RESPONSES.accessDeniedLetter
-      ) {
-        console.error(error.response.data);
-      } else {
-        throw error;
-      }
-    }
+    };
+
+    const handleSettled = () => {
+      off();
+      modalOff();
+    };
+
+    const mutateLetter = type === 'reply' ? mutateReply : mutateSent;
+
+    mutateLetter(letterId, {
+      onSuccess: handleSuccess,
+      onSettled: handleSettled,
+    });
   };
 
   return (
@@ -74,11 +73,15 @@ const DeleteBottomSheet = ({
         <Button
           variant="danger"
           onClick={() => {
-            handleDeleteLetter(letterId);
-            off();
+            handleDeleteLetter();
           }}
+          disabled={isPendingReply || isPendingSent}
         >
-          편지 버리기
+          {isPendingReply || isPendingSent ? (
+            <LoadingSpinner />
+          ) : (
+            <>편지 버리기</>
+          )}
         </Button>
       </BottomSheet.ButtonSection>
     </BottomSheet>

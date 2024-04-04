@@ -4,8 +4,8 @@ import { type Reply, type SendLetter } from '@/types/letter';
 import DrowerImage from '@/assets/storageDrawer.png';
 import BottleImage from '@/assets/images/bottleStorage.png';
 import useBoolean from '@/hooks/useBoolean';
-import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
 import SentLetterModal from '../SentStorage/SentLetterModal';
+import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
