@@ -10,8 +10,8 @@ import COLORS from '@/constants/colors';
 import { formatDate } from '@/utils/dateUtils';
 import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
-import LetterModalHeader from '../components/LetterModalHeader';
 import { getTagList } from '../utils/tagUtills';
+import LetterModalHeader from '../components/LetterModalHeader';
 
 interface SentLetterModalProps extends ReturnType<typeof useBoolean> {
   letter: SendLetter;
@@ -42,7 +42,7 @@ const SentLetterModal = ({ value, off, letter }: SentLetterModalProps) => {
             nickname={letter.senderNickname}
           />
           {letter.sendImagePath && (
-            <PolaroidModal leftPosition={1.2} img={letter.sendImagePath}>
+            <PolaroidModal img={letter.sendImagePath}>
               <Button variant="secondary" size="sm">
                 닫기
               </Button>
