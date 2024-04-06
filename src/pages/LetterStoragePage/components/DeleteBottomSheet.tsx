@@ -9,7 +9,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 
 interface DeleteBottomSheetProps extends ReturnType<typeof useBoolean> {
   letterId: number;
-  modalOff: () => void;
+  offModal: () => void;
   type: 'reply' | 'sent';
 }
 
@@ -18,7 +18,7 @@ const DeleteBottomSheet = ({
   on,
   off,
   letterId,
-  modalOff,
+  offModal,
   type,
 }: DeleteBottomSheetProps) => {
   const queryClient = useQueryClient();
@@ -47,7 +47,7 @@ const DeleteBottomSheet = ({
 
     const handleSettled = () => {
       off();
-      modalOff();
+      offModal();
     };
 
     const mutateLetter = type === 'reply' ? mutateReply : mutateSent;

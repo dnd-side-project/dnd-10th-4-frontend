@@ -72,7 +72,7 @@ const LetterModalHeader = ({
       </Header>
       <DeleteBottomSheet
         letterId={letterId}
-        modalOff={off}
+        offModal={off}
         {...deleteBottomSheetProps}
         type={type}
       />
