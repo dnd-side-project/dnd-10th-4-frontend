@@ -4,8 +4,13 @@ import { type Reply, type SendLetter } from '@/types/letter';
 import DrowerImage from '@/assets/storageDrawer.png';
 import BottleImage from '@/assets/images/bottleStorage.png';
 import useBoolean from '@/hooks/useBoolean';
-import SentLetterModal from '../SentStorage/SentLetterModal';
+import {
+  startIndexList,
+  LINE_BOTTLES,
+  MIDDLE_LINE_BOTTLES,
+} from '@/constants/letterStorage';
 import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
+import SentLetterModal from '../SentStorage/SentLetterModal';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
@@ -33,8 +38,8 @@ const StorageLetter = ({ letters, type = 'sent' }: StorageLetterProps) => {
     <StorageContent>
       <img css={style.drower} src={DrowerImage} />
       <ol css={style.bottleStorage}>
-        {[0, 3, 7].map((startIndex, index) => {
-          const bottleCount = index === 1 ? 4 : 3;
+        {startIndexList.map((startIndex, line) => {
+          const bottleCount = line === 1 ? MIDDLE_LINE_BOTTLES : LINE_BOTTLES;
           const lettersSlice = letters.slice(
             startIndex,
             startIndex + bottleCount,
@@ -42,14 +47,14 @@ const StorageLetter = ({ letters, type = 'sent' }: StorageLetterProps) => {
           const emptyCount = bottleCount - lettersSlice.length;
 
           return (
-            <div css={style.bottles} key={`line-${index}`}>
+            <div css={style.bottles} key={`line-${line}`}>
               {lettersSlice.map((item) => (
                 <li key={item.letterId} onClick={() => handleBottleClick(item)}>
                   <img src={BottleImage} css={style.bottle} />
                 </li>
               ))}
               {[...Array(emptyCount)].map((_, idx) => (
-                <li key={`empty-${index}-${idx}`}>
+                <li key={`empty-${line}-${idx}`}>
                   <div css={style.empty} />
                 </li>
               ))}
