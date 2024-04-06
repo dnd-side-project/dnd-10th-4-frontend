@@ -7,7 +7,7 @@ import letterOptions from '@/api/letter/queryOptions';
 import useBoolean from '@/hooks/useBoolean';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-interface DeleteBottomSheetProsp extends ReturnType<typeof useBoolean> {
+interface DeleteBottomSheetProps extends ReturnType<typeof useBoolean> {
   letterId: number;
   modalOff: () => void;
   type: 'reply' | 'sent';
@@ -20,7 +20,7 @@ const DeleteBottomSheet = ({
   letterId,
   modalOff,
   type,
-}: DeleteBottomSheetProsp) => {
+}: DeleteBottomSheetProps) => {
   const queryClient = useQueryClient();
 
   const invalidateAllLetters = () => {
