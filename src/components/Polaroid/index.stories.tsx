@@ -46,12 +46,9 @@ export const 편지지_폴라로이드: StoryObj = {
 
       return (
         <>
-          <p>폴라로이드 사진 누르고 위로 스크롤하면 폴라로이드 모달창 보임</p>
           <LetterCard isOpen={true}>
             <Polaroid
               onClick={open}
-              bottomPosition={-1}
-              leftPosition={2}
               imgUrl="https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg"
             />
           </LetterCard>
@@ -73,13 +70,13 @@ export const 편지지_폴라로이드: StoryObj = {
   },
 };
 
-export const 사진_없음: StoryObj = {
+export const 사진_추가_폴라로이드: StoryObj = {
   render: () => {
     const PolaroidImage = () => {
       return (
         <>
           <LetterCard isOpen={true}>
-            <Polaroid bottomPosition={-1} leftPosition={2} />
+            <Polaroid />
           </LetterCard>
         </>
       );
