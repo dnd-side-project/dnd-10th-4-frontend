@@ -9,7 +9,7 @@ interface PolaroidModalProps {
   /** 폴라로이드 이미지 입니다. */
   img: string;
   /** 폴라로이드 top 위치 입니다. */
-  topPosition?: number;
+  bottomPosition?: number;
   /** 폴라로이드 left 위치 입니다. */
   leftPosition?: number;
   /** 폴라로이드 헤더의 오른쪽 내용 입니다. */
@@ -20,7 +20,7 @@ interface PolaroidModalProps {
 
 const PolaroidModal = ({
   img,
-  topPosition,
+  bottomPosition,
   leftPosition,
   headerRightContent,
   children,
@@ -31,7 +31,7 @@ const PolaroidModal = ({
     <>
       <Polaroid
         onClick={open}
-        topPosition={topPosition}
+        bottomPosition={bottomPosition}
         leftPosition={leftPosition}
         imgUrl={img}
       />

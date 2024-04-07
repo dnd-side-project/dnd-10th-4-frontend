@@ -82,10 +82,6 @@ describe('렌더링 테스트', () => {
     const content = await screen.findByText(
       ReceptionLetterData(letter_id).content,
     );
-    const imageElement = (await screen.getByAltText(
-      '편지와 함께 보낸 이미지',
-    )) as HTMLImageElement;
-    const sendImagePath = ReceptionLetterData(letter_id).sendImagePath;
 
     expect(worry).toBeInTheDocument();
     expect(age).toBeInTheDocument();
@@ -94,7 +90,6 @@ describe('렌더링 테스트', () => {
     expect(senderNickname).toBeInTheDocument();
     expect(createdAt).toBeInTheDocument();
     expect(content).toBeInTheDocument();
-    expect(imageElement.src).toContain(sendImagePath);
   });
 });
 

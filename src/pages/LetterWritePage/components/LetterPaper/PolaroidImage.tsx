@@ -27,7 +27,6 @@ const PolaroidImage = () => {
     <>
       <PolaroidModal
         img={imgUrl}
-        topPosition={5.2}
         leftPosition={1}
         headerRightContent={
           <IconButton onClick={on}>

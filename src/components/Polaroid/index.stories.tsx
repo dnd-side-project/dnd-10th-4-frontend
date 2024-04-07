@@ -50,7 +50,7 @@ export const 편지지_폴라로이드: StoryObj = {
           <LetterCard isOpen={true}>
             <Polaroid
               onClick={open}
-              topPosition={5.5}
+              bottomPosition={-1}
               leftPosition={2}
               imgUrl="https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg"
             />
@@ -79,7 +79,7 @@ export const 사진_없음: StoryObj = {
       return (
         <>
           <LetterCard isOpen={true}>
-            <Polaroid topPosition={5.5} leftPosition={2} />
+            <Polaroid bottomPosition={-1} leftPosition={2} />
           </LetterCard>
         </>
       );

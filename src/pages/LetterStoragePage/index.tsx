@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import Tabs from '@/components/Tabs';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import StorageHeader from './components/StorageHeader';
-import ArchiveLetters from './archiveLetters';
-import MySentLetters from './mySentLetters';
+import ReplyStorage from './ReplyStorage';
+import SentStorage from './SentStorage';
 
 const LetterStoragePage = () => {
   return (
@@ -25,7 +25,7 @@ const LetterStoragePage = () => {
                 </div>
               }
             >
-              <ArchiveLetters />
+              <ReplyStorage />
             </Suspense>
           </Tabs.Content>
           <Tabs.Content value="2">
@@ -37,7 +37,7 @@ const LetterStoragePage = () => {
                 </div>
               }
             >
-              <MySentLetters />
+              <SentStorage />
             </Suspense>
           </Tabs.Content>
         </Tabs>
@@ -53,8 +53,7 @@ const style = {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100svh;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
   `,
   content: css`
     margin-top: 4.5rem;
@@ -65,7 +64,7 @@ const style = {
     flex-direction: column;
     gap: 2rem;
     align-items: center;
-    min-height: calc(100svh - 72px - 50px);
+    height: calc(100svh - 15rem);
     margin-top: 7rem;
   `,
 };

@@ -1,131 +1,79 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { css } from '@emotion/react';
-import LetterAccordion from '@/components/LetterAccordion';
-import LetterCard from '@/components/LetterCard';
-import LetterHeader from '@/components/LetterHeader';
-import TagList from '@/components/TagList';
-import { MoreHorizontal, Copy, TrashCan } from '@/assets/icons';
-import Dropdown from '@/components/Dropdown';
-import COLORS from '@/constants/colors';
-import PolaroidModal from '@/components/PolaroidModal';
-import { Reply } from '@/types/letter';
+import { type Reply, type SendLetter } from '@/types/letter';
+import DrowerImage from '@/assets/storageDrawer.png';
+import BottleImage from '@/assets/images/bottleStorage.png';
 import useBoolean from '@/hooks/useBoolean';
-import { getTagList } from '../utils/tagUtills';
+import {
+  startIndexList,
+  LINE_BOTTLES,
+  MIDDLE_LINE_BOTTLES,
+} from '@/constants/letterStorage';
+import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
+import SentLetterModal from '../SentStorage/SentLetterModal';
 import StorageContent from './StorageContent';
-import DeleteBottomSheet from './DeleteBottomSheet';
 
 interface StorageLetterProps {
-  letters: Reply[];
+  letters: Reply[] | SendLetter[];
+  type?: 'reply' | 'sent';
 }
 
-const StorageLetter = ({ letters }: StorageLetterProps) => {
-  const { value, on, off } = useBoolean(false);
+const StorageLetter = ({ letters, type = 'sent' }: StorageLetterProps) => {
+  const [clickLetter, setClickLetter] = useState<Reply | SendLetter | null>(
+    null,
+  );
+  const replyletterModalProps = useBoolean(false);
+  const sentletterModalProps = useBoolean(false);
 
-  const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
-  const [deleteId, setDeleteId] = useState<number | null>(null);
-
-  const handleAccordionToggle = (id: string) => {
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
-  };
-
-  const handleContentCopy = (content: string) => {
-    navigator.clipboard
-      .writeText(content)
-      .then(() => {
-        toast.success('편지가 복사되었어요.', {
-          autoClose: 1500,
-          position: 'bottom-center',
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error('편지 복사를 실패했어요', {
-          autoClose: 1500,
-          position: 'bottom-center',
-        });
-      });
-  };
-
-  const openBottomSheet = (letterId: number) => {
-    on();
-    setDeleteId(letterId);
+  const handleBottleClick = (item: Reply | SendLetter) => {
+    setClickLetter(item);
+    if (type === 'reply') {
+      replyletterModalProps.on();
+    } else {
+      sentletterModalProps.on();
+    }
   };
 
   return (
     <StorageContent>
-      {letters.map((item) => (
-        <LetterCard key={item.letterId} isOpen={isOpen[item.letterId]}>
-          <div css={style.tags}>
-            {item.letterType !== 'Onboarding' ? (
-              <TagList tags={getTagList(item)} />
-            ) : (
-              <div />
-            )}
-            <Dropdown
-              triggerComponent={<MoreHorizontal />}
-              options={[
-                {
-                  icon: <Copy width={20} height={20} />,
-                  label: '복사하기',
-                  onClick: () => {
-                    // TODO: 온보딩 편지는 임시로 content를 보여주도록 했습니다. 추후 수정 필요
-                    handleContentCopy(
-                      item.letterType !== 'Onboarding'
-                        ? item.repliedContent
-                        : item.content,
-                    );
-                  },
-                  color: COLORS.gray2,
-                },
-                {
-                  icon: <TrashCan width={20} height={20} />,
-                  label: '편지 버리기',
-                  onClick: () => {
-                    openBottomSheet(item.letterId);
-                  },
-                  color: COLORS.danger,
-                },
-              ]}
-            />
-          </div>
-          <LetterHeader
-            nickname={
-              item.letterType !== 'Onboarding'
-                ? item.senderNickname
-                : '처음 방문한 너에게'
-            }
-          />
-          <LetterAccordion
-            id={item.letterId.toString()}
-            text={
-              item.letterType !== 'Onboarding'
-                ? item.repliedContent
-                : item.content
-            }
-            date={new Date(item.createdAt)}
-            nickname={
-              item.letterType !== 'Onboarding'
-                ? item.receiverNickname
-                : item.senderNickname
-            }
-            isOpen={isOpen[item.letterId]}
-            onToggle={() => handleAccordionToggle(item.letterId.toString())}
-            line={2}
-          />
-          {isOpen[item.letterId] && item.replyImagePath && (
-            <PolaroidModal
-              topPosition={2.5}
-              leftPosition={1}
-              img={item.replyImagePath}
-            />
-          )}
-        </LetterCard>
-      ))}
-      <DeleteBottomSheet value={value} on={on} off={off} letterId={deleteId!} />
+      <img css={style.drower} src={DrowerImage} />
+      <ol css={style.bottleStorage}>
+        {startIndexList.map((startIndex, line) => {
+          const bottleCount = line === 1 ? MIDDLE_LINE_BOTTLES : LINE_BOTTLES;
+          const lettersSlice = letters.slice(
+            startIndex,
+            startIndex + bottleCount,
+          );
+          const emptyCount = bottleCount - lettersSlice.length;
+
+          return (
+            <div css={style.bottles} key={`line-${line}`}>
+              {lettersSlice.map((item) => (
+                <li key={item.letterId} onClick={() => handleBottleClick(item)}>
+                  <img src={BottleImage} css={style.bottle} />
+                </li>
+              ))}
+              {[...Array(emptyCount)].map((_, idx) => (
+                <li key={`empty-${line}-${idx}`}>
+                  <div css={style.empty} />
+                </li>
+              ))}
+            </div>
+          );
+        })}
+      </ol>
+      {clickLetter && type === 'reply' && (
+        <ReplyLetterModal
+          {...replyletterModalProps}
+          letter={clickLetter as Reply}
+        />
+      )}
+      {clickLetter && type === 'sent' && (
+        <SentLetterModal
+          {...sentletterModalProps}
+          letter={clickLetter as SendLetter}
+        />
+      )}
     </StorageContent>
   );
 };
@@ -133,8 +81,35 @@ const StorageLetter = ({ letters }: StorageLetterProps) => {
 export default StorageLetter;
 
 const style = {
-  tags: css`
+  drower: css`
+    position: relative;
+    height: 70svh;
+    margin: auto;
+  `,
+  bottleStorage: css`
+    position: absolute;
+    left: 50%;
+    margin-top: 1.5svh;
+    transform: translate(-50%);
+  `,
+  bottles: css`
     display: flex;
-    justify-content: space-between;
+    gap: 4vh;
+    justify-content: space-around;
+    height: 11vh;
+    margin-bottom: 13.2svh;
+  `,
+  bottle: css`
+    width: 3.4vh;
+    height: 11vh;
+    cursor: pointer;
+  `,
+  empty: css`
+    width: 3.4vh;
+    height: 11vh;
+    margin-inline: -0.8vh;
+    padding-inline: 0.8vh;
+    border-radius: 8px;
+    background-color: rgb(255 255 255 / 0.4);
   `,
 };
