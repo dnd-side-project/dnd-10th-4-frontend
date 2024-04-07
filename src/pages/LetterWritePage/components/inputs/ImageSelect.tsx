@@ -11,9 +11,7 @@ const ImageSelect = () => {
     setValue('image', file);
   };
 
-  return (
-    <ImageUploadButton onChangeImage={handleFileChange} leftPosition={1} />
-  );
+  return <ImageUploadButton onChangeImage={handleFileChange} />;
 };
 
 export default ImageSelect;

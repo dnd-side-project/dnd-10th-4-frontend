@@ -8,7 +8,7 @@ import style from './styles';
 interface PolaroidModalProps {
   /** 폴라로이드 이미지 입니다. */
   img: string;
-  /** 폴라로이드 top 위치 입니다. */
+  /** 폴라로이드 bottom 위치 입니다. */
   bottomPosition?: number;
   /** 폴라로이드 left 위치 입니다. */
   leftPosition?: number;
