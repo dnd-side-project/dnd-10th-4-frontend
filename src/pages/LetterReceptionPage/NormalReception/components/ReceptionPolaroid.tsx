@@ -36,6 +36,7 @@ const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
     <PolaroidModal
       img={img}
       bottomPosition={bottomPosition}
+      leftPosition={1.2}
       headerRightContent={
         <IconButton onClick={handleDownload}>
           <Download color="white" height={20} width={20} />

@@ -7,16 +7,16 @@ const style = {
   empty: (bottomPosition: number, leftPosition: number) => css`
     position: absolute;
     bottom: ${bottomPosition}rem;
-    left: ${leftPosition}rem;
+    left: ${leftPosition + 1}rem;
     display: flex;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    width: 4.25rem;
-    height: 6.25rem;
-    padding: 0.25rem;
+    width: 68px;
+    height: 100px;
+    padding: 4px;
     border: 1px dashed var(--Letter-chips-letter-chip2, #6f6b63);
-    border-radius: 0.125rem;
+    border-radius: 2px;
     background: var(--Letter-chips-letter-chip-bg, rgb(204 199 190 / 0.3));
     cursor: pointer;
     transform: rotate(-15deg);
@@ -30,7 +30,7 @@ const style = {
     ${size === 'sm' &&
     `
       bottom: ${bottomPosition}rem;
-      left: ${leftPosition}rem;
+      left: ${leftPosition + 1}rem;
     `}
     ${sizeStyle[size]}
   `,

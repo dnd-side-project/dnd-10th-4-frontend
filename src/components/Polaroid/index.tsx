@@ -1,13 +1,12 @@
 import { AddImage } from '@/assets/icons';
 import Tooltip from '../Tooltip';
 import style, { PolaroidSize } from './styles';
-
 interface PolaroidProps {
   /** Polaroid 컴포넌트 사진입니다.  */
   imgUrl?: string;
-  /** Polaroid Bottom 위치입니다. 입력한 수 만큼 변경됩니다. (rem 단위, 기본값 -1rem) */
+  /** Polaroid Top 위치입니다. 기본 15rem 에서 입력한 수 만큼 변경됩니다. */
   bottomPosition?: number;
-  /** Polaroid Left 위치입니다. 입력한 수 만큼 변경됩니다. (rem 단위, 기본값 2rem) */
+  /** Polaroid Left 위치입니다. 기본 1rem 에서 입력한 수 만큼 변경됩니다. */
   leftPosition?: number;
   /** Polaroid 클릭 이벤트 입니다. */
   onClick?: () => void;
@@ -18,7 +17,7 @@ interface PolaroidProps {
 const Polaroid = ({
   imgUrl,
   bottomPosition = -1,
-  leftPosition = 2,
+  leftPosition = 0,
   size = 'sm',
   ...props
 }: PolaroidProps) => {
