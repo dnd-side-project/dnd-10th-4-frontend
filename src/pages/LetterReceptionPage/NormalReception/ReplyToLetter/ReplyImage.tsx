@@ -31,7 +31,6 @@ const ReplyImage = () => {
     <>
       {watch('image') ? (
         <PolaroidModal
-          leftPosition={1.2}
           img={URL.createObjectURL(watch('image')[0])}
           headerRightContent={
             <IconButton onClick={on}>
@@ -44,10 +43,7 @@ const ReplyImage = () => {
           </Button>
         </PolaroidModal>
       ) : (
-        <ImageUploadButton
-          leftPosition={1.2}
-          onChangeImage={handleFileChange}
-        />
+        <ImageUploadButton onChangeImage={handleFileChange} />
       )}
       <BottomSheet open={value} onOpen={on} onClose={off}>
         <BottomSheet.Title>사진을 삭제할까요?</BottomSheet.Title>

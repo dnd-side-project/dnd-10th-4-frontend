@@ -3,8 +3,8 @@ import LetterAccordion from '@/components/LetterAccordion';
 import useBoolean from '@/hooks/useBoolean';
 import TagList from '@/components/TagList';
 import LetterHeader from '@/components/LetterHeader';
-import { ReceptionLetterType } from '../hooks/useLetterWithTags';
 import ReceptionPolaroid from '../components/ReceptionPolaroid';
+import { ReceptionLetterType } from '../hooks/useLetterWithTags';
 
 interface ReceivedAccordionLetterProps {
   receptionLetter: ReceptionLetterType;
