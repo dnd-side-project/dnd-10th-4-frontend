@@ -3,8 +3,11 @@ import Polaroid from '../Polaroid';
 import style from './styles';
 
 interface ImageUploadButtonProps {
+  /** 폴라로이드 이미지 업로드 이벤트입니다. */
   onChangeImage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** 폴라로이드 bottom 위치 입니다. */
   bottomPosition?: number;
+  /** 폴라로이드 left 위치 입니다. */
   leftPosition?: number;
 }
 
