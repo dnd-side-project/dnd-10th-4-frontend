@@ -8,6 +8,11 @@ import Button from '@/components/Button';
 import { CaretRight } from '@/assets/icons';
 import { Inputs } from '../../hooks/useOnboardingForm';
 
+const SERVICE_TERMS_LINK =
+  'https://longhaired-second-898.notion.site/892771674fa744d9ace3a9d578cdd0ad';
+const PRIVACY_POLICY_LINK =
+  'https://longhaired-second-898.notion.site/9a8d8cbc5de946ffb8a8772f9ffb1f41';
+
 interface TermsBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
 const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
@@ -62,7 +67,9 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
           <label css={textStyles.b5R} htmlFor="required-term">
             [필수] 서비스 이용 약관
           </label>
-          <CaretRight color="#BDBDBD" />
+          <a href={SERVICE_TERMS_LINK} target="_blank" rel="noreferrer">
+            <CaretRight color="#BDBDBD" />
+          </a>
         </div>
         <div css={styles.inputLine}>
           <input
@@ -76,7 +83,9 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
           <label css={textStyles.b5R} htmlFor="optional-term">
             [선택] 개인정보 처리방침
           </label>
-          <CaretRight color="#BDBDBD" />
+          <a href={PRIVACY_POLICY_LINK} target="_blank" rel="noreferrer">
+            <CaretRight color="#BDBDBD" />
+          </a>
         </div>
       </BottomSheet.Content>
       <BottomSheet.Divider />
