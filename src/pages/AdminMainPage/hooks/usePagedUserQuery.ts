@@ -11,8 +11,8 @@ const usePagedUserQuery = (email?: string) => {
 
   const query = useSuspenseQuery(
     adminOptions.member({
-      page,
-      email,
+      page: `${Number(page) - 1}`,
+      email: email !== '' ? email : undefined,
     }),
   );
 
