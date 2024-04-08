@@ -19,12 +19,12 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
   const { register, getValues, setValue } = useFormContext<Inputs>();
 
   const handleChangeAllAgree = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue('terms.optionalTerm', e.target.checked);
-    setValue('terms.requiredTerm', e.target.checked);
+    setValue('terms.serviceTerm', e.target.checked);
+    setValue('terms.privacyPolicy', e.target.checked);
   };
 
   const handleChangeCheckbox = () => {
-    if (getValues('terms.optionalTerm') && getValues('terms.requiredTerm')) {
+    if (getValues('terms.serviceTerm') && getValues('terms.privacyPolicy')) {
       setValue('terms.allAgree', true);
     } else {
       setValue('terms.allAgree', false);
@@ -60,7 +60,7 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
             css={styles.checkbox}
             id="required-term"
             type="checkbox"
-            {...register('terms.requiredTerm', {
+            {...register('terms.serviceTerm', {
               onChange: handleChangeCheckbox,
             })}
           />
@@ -76,7 +76,7 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
             css={styles.checkbox}
             id="optional-term"
             type="checkbox"
-            {...register('terms.optionalTerm', {
+            {...register('terms.privacyPolicy', {
               onChange: handleChangeCheckbox,
             })}
           />

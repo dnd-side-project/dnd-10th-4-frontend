@@ -13,7 +13,7 @@ const FirstStep = () => {
   const termsBottomSheetProps = useBoolean(true);
 
   const handleClickNextButton = () => {
-    if (terms?.requiredTerm) {
+    if (terms?.serviceTerm) {
       toNext();
     } else {
       termsBottomSheetProps.on();

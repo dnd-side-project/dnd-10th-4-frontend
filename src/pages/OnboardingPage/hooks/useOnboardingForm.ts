@@ -50,8 +50,8 @@ export const formSchema = z.object({
     .max(L.worries.max),
   terms: z.object({
     allAgree: z.boolean(),
-    requiredTerm: z.boolean(),
-    optionalTerm: z.boolean(),
+    serviceTerm: z.boolean(),
+    privacyPolicy: z.boolean(),
   }),
 });
 
