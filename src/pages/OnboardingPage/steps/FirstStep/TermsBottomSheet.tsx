@@ -9,9 +9,9 @@ import { CaretRight } from '@/assets/icons';
 import { Inputs } from '../../hooks/useOnboardingForm';
 
 const SERVICE_TERMS_LINK =
-  'https://longhaired-second-898.notion.site/892771674fa744d9ace3a9d578cdd0ad';
+  'https://oceanletter.notion.site/c3db75b8f0b44042b9fb832b78361f40?pvs=4';
 const PRIVACY_POLICY_LINK =
-  'https://longhaired-second-898.notion.site/9a8d8cbc5de946ffb8a8772f9ffb1f41';
+  'https://oceanletter.notion.site/c8b8addef1874ce383df61f88c5b0260?pvs=4';
 
 interface TermsBottomSheetProps extends ReturnType<typeof useBoolean> {}
 
