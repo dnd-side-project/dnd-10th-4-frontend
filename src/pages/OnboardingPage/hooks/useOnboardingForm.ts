@@ -48,6 +48,11 @@ export const formSchema = z.object({
     .array(z.enum([worry, ...otherWorries]))
     .min(L.worries.min)
     .max(L.worries.max),
+  terms: z.object({
+    allAgree: z.boolean(),
+    serviceTerm: z.boolean(),
+    privacyPolicy: z.boolean(),
+  }),
 });
 
 export const initialSchema = formSchema.omit({ birthday: true }).extend({

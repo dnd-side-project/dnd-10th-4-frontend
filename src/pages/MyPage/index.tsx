@@ -152,6 +152,10 @@ const MyPage = () => {
       >
         <SuspendedPage />
       </Suspense>
+      <footer css={styles.footer}>
+        <p>Copyright ©seeofmyheart.</p>
+        <p>All rights reserved</p>
+      </footer>
     </div>
   );
 };
