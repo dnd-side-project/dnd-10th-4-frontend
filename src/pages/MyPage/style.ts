@@ -5,6 +5,8 @@ import textStyles from '@/styles/textStyles';
 const styles = {
   page: css`
     position: relative;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     width: 100%;
     min-height: 100svh;
@@ -15,7 +17,14 @@ const styles = {
     flex-grow: 1;
     flex-direction: column;
     gap: 0.25rem;
+    box-sizing: border-box;
     margin-top: 2rem;
+  `,
+  footer: css`
+    margin-bottom: 1rem;
+    color: ${COLORS.gray3};
+    text-align: center;
+    ${textStyles.b5m};
   `,
   list: css`
     display: flex;
