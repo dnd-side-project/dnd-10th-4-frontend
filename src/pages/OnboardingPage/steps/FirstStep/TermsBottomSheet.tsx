@@ -31,6 +31,13 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
     }
   };
 
+  const handleClickCancel = () => {
+    setValue('terms.serviceTerm', false);
+    setValue('terms.privacyPolicy', false);
+    setValue('terms.allAgree', false);
+    off();
+  };
+
   return (
     <BottomSheet open={value} onOpen={on} onClose={off}>
       <BottomSheet.Title css={styles.title}>
@@ -90,7 +97,7 @@ const TermsBottomSheet = ({ off, on, value }: TermsBottomSheetProps) => {
       </BottomSheet.Content>
       <BottomSheet.Divider />
       <BottomSheet.ButtonSection>
-        <Button variant="cancel" size="sm" onClick={off}>
+        <Button variant="cancel" size="sm" onClick={handleClickCancel}>
           취소
         </Button>
         <Button variant="primary" size="sm" onClick={off}>
