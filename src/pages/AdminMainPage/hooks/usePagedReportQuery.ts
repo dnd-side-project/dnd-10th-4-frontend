@@ -11,8 +11,8 @@ const usePagedReportQuery = (email?: string) => {
 
   const query = useSuspenseQuery(
     adminOptions.report({
-      page,
-      reportedEmail: email,
+      page: `${Number(page) - 1}`,
+      reportedEmail: email !== '' ? email : undefined,
     }),
   );
 
