@@ -7,6 +7,9 @@
 🖥️ 서비스 배포 주소 - https://oceanletter.site/  
 🎨 Storybook 주소 - https://main--65a6c73d536a3c43b7c5c9bb.chromatic.com/
 
+> 카카오 로그인 없이 화면을 둘러보시려면, Mock 데이터가 적용된 배포 주소를 이용해주세요!  
+> ➡️ Mock 배포 주소: https://oceanletter-mock.vercel.app/
+
 ## 로컬 실행 커맨드
 
 ```sh
