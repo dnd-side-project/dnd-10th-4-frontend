@@ -1,33 +1,6 @@
-<section align="center">
-    <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/fca65f80-0c00-41d1-b39e-b15a0e1ab2ae" width="150" height="150" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/55b7dc98-3977-43a2-9eaa-c828b5e9d845" height="150" />
-</section>
-
-<br/>
-
 ## 내 마음 속 바다
 
-언제나 힐링이 필요한 순간, 바다의 풍경이 감정적인 안정을 가져다주는 영감에서 출발한 서비스에요.
-혹시 마음 속 고민이 있지만 주변 지인에게 부담을 줄까봐 쉽게 털어놓지 못했던 경험이 있지는 않으셨나요?
-
-**🌊 내 마음 속의 바다**에서는 남들에게 털어놓지 못하는 이야기를 물병에 담아 바다에 띄워 보낼 수 있어요.
-바다를 건너 물병을 받은 상대방은 당신이 누구인지 알 수 없고, 비슷한 고민을 했을지도 모르는 상대방으로부터 위로의 답장을 주고 받을 수 있어요.
-
-<br/>
-
-## 목차
-
-- [핵심 기능](#핵심-기능)
-  - [1. 편지 작성](#1-편지-작성)
-  - [2. 답장 하기](#2-답장-하기)
-  - [3. 보관 하기](#3-보관-하기)
-- [배포 주소](#배포-주소)
-- [로컬 실행 커맨드](#로컬-실행-커맨드)
-- [시연 영상](#시연-영상)
-- [기술 스택](#기술-스택)
-- [팀 소개](#팀-소개)
-
-<br/>
+![표지](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/41166b21-42ba-46d4-b826-a9f81cb7709a)
 
 ## 핵심 기능
 
@@ -54,14 +27,10 @@
 > 나에게 큰 위로가 되었던, 혹은 마음에 와닿았던 편지는 내 보관함에 저장하고 언제든지 다시 읽을 수 있어요.  
 > 마음에 들지 않거나 불편한 편지는 신고할 수 있어요. 내 마음 속 바다에서는 힐링과 따뜻함만을 느낄 수 있도록 도와드려요.
 
-<br/>
-
 ## 배포 주소
 
 🖥️ 서비스 배포 주소 - https://oceanletter.site/  
 🎨 Storybook 주소 - https://main--65a6c73d536a3c43b7c5c9bb.chromatic.com/
-
-<br/>
 
 ## 로컬 실행 커맨드
 
@@ -72,13 +41,9 @@ npm run dev # 로컬에서 개발 서버 실행
 npm run storybook # 로컬에서 스토리북 실행
 ```
 
-<br/>
-
 ## 시연 영상
 
 https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9-2ee6-44c0-b44c-f922d0e3bf00
-
-<br/>
 
 ## 기술 스택
 
@@ -86,7 +51,20 @@ https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/c40ebba9
     <img width=800" src="https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/98106371/6cd41355-c863-4212-a5cb-1c20735052eb" />
 </p>
 
-<br/>
+## 주제 및 배경 소개
+![04_백그라운드](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/ef1cca56-099d-4515-8dc2-3b487d2e9a24)
+
+![05_유저 인터뷰](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/8317c1a6-bbc7-418a-a4a4-1f6e7886fc1d)
+
+![09_프로젝트 골](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/17321614-352b-4ab5-ae41-c292891e6e69)
+
+![기능1](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/d0f9fbef-5bee-424e-bc36-fcd9932acbec)
+
+![기능2](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/93b599b2-4691-45fc-b31b-ef9ba643a6a2)
+
+![기능3](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/f5a04961-adf4-4961-bc5b-2a2aac86e8c3)
+
+![기능4](https://github.com/dnd-side-project/dnd-10th-4-frontend/assets/50488780/9d714e48-1b1b-49d1-aa3e-4c65f2ff9392)
 
 ## 팀 소개
 
