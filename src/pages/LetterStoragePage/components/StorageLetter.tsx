@@ -9,8 +9,8 @@ import {
   LINE_BOTTLES,
   MIDDLE_LINE_BOTTLES,
 } from '@/constants/letterStorage';
-import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
 import SentLetterModal from '../SentStorage/SentLetterModal';
+import ReplyLetterModal from '../ReplyStorage/ReplyLetterModal';
 import StorageContent from './StorageContent';
 
 interface StorageLetterProps {
@@ -94,21 +94,21 @@ const style = {
   `,
   bottles: css`
     display: flex;
-    gap: 4vh;
+    gap: 4svh;
     justify-content: space-around;
-    height: 11vh;
+    height: 11svh;
     margin-bottom: 13.2svh;
   `,
   bottle: css`
-    width: 3.4vh;
-    height: 11vh;
+    width: 3.4svh;
+    height: 11svh;
     cursor: pointer;
   `,
   empty: css`
-    width: 3.4vh;
-    height: 11vh;
-    margin-inline: -0.8vh;
-    padding-inline: 0.8vh;
+    width: 3.4svh;
+    height: 11svh;
+    margin-inline: -0.8svh;
+    padding-inline: 0.8svh;
     border-radius: 8px;
     background-color: rgb(255 255 255 / 0.4);
   `,
