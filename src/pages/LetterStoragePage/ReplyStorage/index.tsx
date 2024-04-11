@@ -21,13 +21,15 @@ const ReplyStorage = () => {
       {data.letters.length > 0 ? (
         <div css={style.container}>
           <StorageLetter letters={data.letters} type="reply" />
-          {data.totalPage > 1 && (
-            <PaginationBar
-              count={data.totalPage}
-              defaultPage={1}
-              onChange={handlePageChange}
-            />
-          )}
+          <div css={style.pagination}>
+            {data.totalPage > 1 && (
+              <PaginationBar
+                count={data.totalPage}
+                defaultPage={1}
+                onChange={handlePageChange}
+              />
+            )}
+          </div>
         </div>
       ) : (
         <StorageEmpty
@@ -53,7 +55,10 @@ const style = {
   container: css`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    height: calc(100svh - 8rem);
+    justify-content: space-between;
+    height: calc(100svh - 10rem);
+  `,
+  pagination: css`
+    flex-wrap: 1;
   `,
 };

@@ -45,7 +45,7 @@ const style = {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100vh - 68px - 47.5px);
+    height: calc(100svh - 8rem);
   `,
   text: css`
     display: flex;
