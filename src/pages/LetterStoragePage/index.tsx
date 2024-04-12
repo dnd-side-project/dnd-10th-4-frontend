@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import Tabs from '@/components/Tabs';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import Tabs from '@/components/Tabs';
 import StorageHeader from './components/StorageHeader';
 import ReplyStorage from './ReplyStorage';
 import SentStorage from './SentStorage';
