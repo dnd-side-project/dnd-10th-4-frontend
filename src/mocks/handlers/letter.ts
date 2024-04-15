@@ -82,6 +82,12 @@ const letterHandler = [
     baseURL(API_PATHS.LETTER_SEND_DETAIL(':letterId')),
     withAuth(letterResolvers.patchLetterSendDetail.success),
   ),
+
+  /** 답장 받은 편지 삭제 */
+  http.delete(
+    baseURL(API_PATHS.LETTER_REPLY_DETAIL(':letterId')),
+    withAuth(letterResolvers.deleteLetterReply.success),
+  ),
 ];
 
 export default letterHandler;

@@ -239,4 +239,18 @@ export const letterResolvers = {
       });
     },
   },
+
+  deleteLetterReply: {
+    success: async () => {
+      await delay();
+      return HttpResponse.json();
+    },
+
+    accessDenied: async () => {
+      await delay();
+      return new HttpResponse(ERROR_RESPONSES.accessDeniedLetter, {
+        status: 400,
+      });
+    },
+  },
 } satisfies MSWResolvers;
