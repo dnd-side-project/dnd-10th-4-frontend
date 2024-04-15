@@ -1,4 +1,5 @@
 import {
+  FormProvider,
   SubmitErrorHandler,
   SubmitHandler,
   useForm,
@@ -26,6 +27,7 @@ import Navbar from '@/components/Navbar';
 import adminAPI from '@/api/admin/apis';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import letterOptions from '@/api/letter/queryOptions';
+import ReplyImage from '@/pages/LetterReceptionPage/NormalReception/ReplyToLetter/ReplyImage';
 
 interface LetterWriterModalProps extends ReturnType<typeof useBoolean> {
   targetEmail: string;
@@ -36,12 +38,14 @@ const LetterWriterModal = ({
   off,
   value: isOpen,
 }: LetterWriterModalProps) => {
-  const { register, control, handleSubmit, reset } = useForm<ReplyInputs>({
+  const form = useForm<ReplyInputs>({
     resolver: zodResolver(replySchema),
     defaultValues: {
       replyContent: '',
     },
   });
+
+  const { register, control, handleSubmit, reset } = form;
 
   const { replyContent } = useWatch({
     control,
@@ -78,7 +82,15 @@ const LetterWriterModal = ({
   };
 
   const onError: SubmitErrorHandler<ReplyInputs> = (errors) => {
-    console.log(errors);
+    const errorMessages = Object.values(errors).map((error) => error.message);
+
+    if (typeof errorMessages[0] === 'string') {
+      toast.warn(errorMessages[0], {
+        position: 'bottom-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    }
   };
 
   return (
@@ -91,33 +103,36 @@ const LetterWriterModal = ({
         </Header.Right>
       </Header>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <LetterCard isOpen>
-          <LetterHeader title="To" nickname={targetEmail} />
-          <LetterTextarea
-            {...register('replyContent')}
-            name="replyContent"
-            placeholder="하고싶은 이야기를 편지로 적어보세요. (10자 이상)"
-          />
-          <LetterLengthDate letterLength={replyContent?.length || 0} />
-          <LetterHeader
-            title="From"
-            titlePosition="right"
-            nickname="낯선 바다"
-          />
-        </LetterCard>
-        <Navbar css={styles.navbar}>
-          <Button
-            type="submit"
-            variant="primary"
-            size="sm"
-            disabled={isPending}
-          >
-            {isPending ? <LoadingSpinner /> : '편지 보내기'}
-          </Button>
-          <Button type="button" variant="cancel" size="sm" onClick={off}>
-            취소
-          </Button>
-        </Navbar>
+        <FormProvider {...form}>
+          <LetterCard isOpen>
+            <LetterHeader title="To" nickname={targetEmail} />
+            <LetterTextarea
+              {...register('replyContent')}
+              name="replyContent"
+              placeholder="하고싶은 이야기를 편지로 적어보세요. (10자 이상)"
+            />
+            <LetterLengthDate letterLength={replyContent?.length || 0} />
+            <LetterHeader
+              title="From"
+              titlePosition="right"
+              nickname="낯선 바다"
+            />
+            <ReplyImage />
+          </LetterCard>
+          <Navbar css={styles.navbar}>
+            <Button
+              type="submit"
+              variant="primary"
+              size="sm"
+              disabled={isPending}
+            >
+              {isPending ? <LoadingSpinner /> : '편지 보내기'}
+            </Button>
+            <Button type="button" variant="cancel" size="sm" onClick={off}>
+              취소
+            </Button>
+          </Navbar>
+        </FormProvider>
       </form>
     </Modal>
   );
