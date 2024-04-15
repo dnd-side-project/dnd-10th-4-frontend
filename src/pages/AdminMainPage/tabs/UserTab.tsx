@@ -17,6 +17,7 @@ import { debounce } from '@/utils/timerUtils';
 import usePagedUserQuery from '../hooks/usePagedUserQuery';
 import styles from '../style';
 import UserExpelBottomSheet from '../components/UserExpelBottomSheet';
+import LetterWriterModal from '../components/LetterWriterModal';
 
 interface SuspensedUserTabProps {
   searchEmail: string;
@@ -25,11 +26,18 @@ interface SuspensedUserTabProps {
 const SuspensedUserTab = ({ searchEmail }: SuspensedUserTabProps) => {
   const { data } = usePagedUserQuery(searchEmail);
   const [expelEmail, setExpelEmail] = useState('');
+  const [writerTargetEmail, setWriterTargetEmail] = useState('');
   const userExpelBottomSheetProps = useBoolean(false);
+  const letterWriterModalProps = useBoolean(false);
 
   const handleOpenExpelModal = (email: string) => {
     setExpelEmail(email);
     userExpelBottomSheetProps.on();
+  };
+
+  const handleOpenWriterModal = (email: string) => {
+    setWriterTargetEmail(email);
+    letterWriterModalProps.on();
   };
 
   return (
@@ -37,6 +45,10 @@ const SuspensedUserTab = ({ searchEmail }: SuspensedUserTabProps) => {
       <UserExpelBottomSheet
         expelEmail={expelEmail}
         {...userExpelBottomSheetProps}
+      />
+      <LetterWriterModal
+        targetEmail={writerTargetEmail}
+        {...letterWriterModalProps}
       />
       <TableContainer component={Paper}>
         <Table>
@@ -59,9 +71,7 @@ const SuspensedUserTab = ({ searchEmail }: SuspensedUserTabProps) => {
                       {
                         icon: <Copy width={20} height={20} />,
                         label: '편지 보내기',
-                        onClick: () => {
-                          alert('TODO: 편지 보내기는 준비중인 기능이에요');
-                        },
+                        onClick: () => handleOpenWriterModal(member.email),
                         color: COLORS.gray2,
                       },
                       {
