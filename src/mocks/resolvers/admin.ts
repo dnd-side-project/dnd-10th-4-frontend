@@ -64,4 +64,11 @@ export const adminResolvers = {
       return HttpResponse.json();
     },
   },
+
+  postLetterSpecial: {
+    success: async () => {
+      await delay();
+      return HttpResponse.json();
+    },
+  },
 } satisfies MSWResolvers;
