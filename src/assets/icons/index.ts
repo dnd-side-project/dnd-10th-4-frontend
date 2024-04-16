@@ -1,3 +1,4 @@
+export { default as Siren } from './Siren';
 export { default as AddImage } from './AddImage';
 export { default as ArrowClockWise } from './ArrowClockWise';
 export { default as CaretDown } from './CaretDown';
@@ -19,7 +20,6 @@ export { default as PencilLine } from './PencilLine';
 export { default as ScrolLetter } from './ScrolLetter';
 export { default as Setting } from './Setting';
 export { default as Shuffle } from './Shuffle';
-export { default as Siren } from './Siren';
 export { default as SoundOff } from './SoundOff';
 export { default as SoundOn } from './SoundOn';
 export { default as TrashCan } from './TrashCan';

@@ -105,6 +105,14 @@ const letterAPI = {
     return data;
   },
 
+  /** 답장 받은 편지 삭제하기 */
+  deleteReply: async (letterId: number) => {
+    const { data } = await authInstance.delete(
+      API_PATHS.LETTER_REPLY_DETAIL(`${letterId}`),
+    );
+    return data;
+  },
+
   /** 온보딩 편지 보관함에 보관 */
   patchOnboardingStorage: async (letterId: number) => {
     const { data } = await authInstance.patch(
