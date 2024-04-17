@@ -37,6 +37,7 @@ export type WriteInputs = z.infer<typeof writeSchema>;
 const LetterWritePage = () => {
   const methods = useForm<WriteInputs>({
     resolver: zodResolver(writeSchema),
+    shouldFocusError: false,
     defaultValues: {
       age: [],
       content: '',
