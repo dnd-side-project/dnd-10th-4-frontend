@@ -21,7 +21,7 @@ const ReplyImage = () => {
   const handleDeleteImage = () => {
     off();
     setValue('image', undefined);
-    toast.error('사진이 삭제됐어요', {
+    toast.success('사진이 삭제됐어요', {
       position: 'bottom-center',
     });
   };
