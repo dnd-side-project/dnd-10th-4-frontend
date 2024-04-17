@@ -34,7 +34,6 @@ const LetterWriteContainer = () => {
   const showToast = (message: string | undefined) => {
     toast.warn(message, {
       position: 'bottom-center',
-      autoClose: 1500,
       hideProgressBar: true,
     });
   };

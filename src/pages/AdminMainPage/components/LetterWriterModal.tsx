@@ -71,7 +71,6 @@ const LetterWriterModal = ({
         onSuccess: () => {
           toast.success('편지를 보냈어요', {
             position: 'bottom-center',
-            autoClose: 1500,
             hideProgressBar: true,
           });
           off();
@@ -87,7 +86,6 @@ const LetterWriterModal = ({
     if (typeof errorMessages[0] === 'string') {
       toast.warn(errorMessages[0], {
         position: 'bottom-center',
-        autoClose: 1500,
         hideProgressBar: true,
       });
     }

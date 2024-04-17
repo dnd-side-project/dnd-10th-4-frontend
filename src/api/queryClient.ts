@@ -9,7 +9,6 @@ export const mutationDefaultErrorHandler = (err: Error) => {
 
   console.error(err);
   toast.error(message, {
-    autoClose: 1500,
     position: 'bottom-center',
   });
 };

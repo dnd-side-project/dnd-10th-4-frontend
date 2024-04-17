@@ -28,7 +28,6 @@ const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
 
     toast.success('사진이 저장됐어요', {
       position: 'bottom-center',
-      autoClose: 1500,
     });
   };
 

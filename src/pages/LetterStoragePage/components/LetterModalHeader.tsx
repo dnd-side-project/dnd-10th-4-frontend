@@ -28,14 +28,12 @@ const LetterModalHeader = ({
       .writeText(content)
       .then(() => {
         toast.success('편지가 복사되었어요.', {
-          autoClose: 1500,
           position: 'bottom-center',
         });
       })
       .catch((error) => {
         console.error(error);
         toast.error('편지 복사를 실패했어요', {
-          autoClose: 1500,
           position: 'bottom-center',
         });
       });

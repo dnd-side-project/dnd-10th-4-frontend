@@ -35,7 +35,6 @@ const TossBottomSheet = ({
     mutate(letterId, {
       onSuccess: () => {
         toast.success('편지를 다시 바다에 흘러보냈어요', {
-          autoClose: 1500,
           position: 'bottom-center',
         });
         navigate(ROUTER_PATHS.ROOT);

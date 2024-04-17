@@ -35,7 +35,6 @@ const StorageBottomSheet = ({
     mutate(letterId, {
       onSuccess: () => {
         toast.success('편지를 보관함에 넣었어요', {
-          autoClose: 1500,
           position: 'bottom-center',
         });
         navigate(ROUTER_PATHS.ROOT);
