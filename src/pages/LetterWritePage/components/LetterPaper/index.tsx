@@ -4,13 +4,13 @@ import LetterLengthDate from '@/components/LetterLengthDate';
 import LetterCard from '@/components/LetterCard';
 import memberOptions from '@/api/member/queryOptions';
 import LetterHeader from '@/components/LetterHeader';
-import { type WriteInputs } from '../..';
 import {
   LetterReceiverContainer,
   LetterContent,
   PolaroidImage,
   ImageSelect,
 } from '..';
+import { type WriteInputs } from '../..';
 
 const LetterPaper = () => {
   const { watch } = useFormContext<WriteInputs>();
