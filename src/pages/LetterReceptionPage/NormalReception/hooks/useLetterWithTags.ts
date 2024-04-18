@@ -12,13 +12,20 @@ const useLetterWithTags = (letterId: number) => {
     ...letterOptions.singleReception(letterId),
   });
 
-  const tagList = data
-    ? [
-        WORRY_DICT[data.worryType as keyof typeof WORRY_DICT],
-        `${data.letterTag?.ageRangeStart}~${data.letterTag?.ageRangeEnd}세`,
-        data.letterTag?.equalGender ? '동성에게' : '모두에게',
-      ]
-    : [];
+  const tagList = [];
+
+  if (data.worryType) {
+    tagList.push(WORRY_DICT[data.worryType]);
+  }
+
+  if (data.letterTag) {
+    tagList.push(
+      `${data.letterTag.ageRangeStart}~${data.letterTag.ageRangeEnd}세`,
+    );
+
+    tagList.push(data.letterTag.equalGender ? '동성에게' : '모두에게');
+  }
+
   const receptionLetter: ReceptionLetterType = { ...data, tagList };
 
   return { receptionLetter };
