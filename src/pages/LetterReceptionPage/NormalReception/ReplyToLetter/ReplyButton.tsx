@@ -69,8 +69,8 @@ const style = {
   navbar: css`
     position: fixed;
     bottom: 0;
-    width: 96vw;
-    max-width: 580px;
+    width: calc(100vw - 2rem);
+    max-width: calc(600px - 2rem);
     padding-inline: 0;
   `,
 };

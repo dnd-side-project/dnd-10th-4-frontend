@@ -1,11 +1,11 @@
 import { useFormContext } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import LetterCard from '@/components/LetterCard';
-import LetterTextarea from '@/components/LetterTextarea';
-import LetterLengthDate from '@/components/LetterLengthDate';
-import LetterHeader from '@/components/LetterHeader';
 import useBoolean from '@/hooks/useBoolean';
+import LetterHeader from '@/components/LetterHeader';
+import LetterLengthDate from '@/components/LetterLengthDate';
+import LetterTextarea from '@/components/LetterTextarea';
+import LetterCard from '@/components/LetterCard';
 import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 import { ReplyInputs } from '..';
@@ -47,7 +47,7 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
         hideProgressBar: true,
       });
     }
-  }, [errors]);
+  }, [errors, watch]);
 
   return (
     <LetterContent isBlock={true}>

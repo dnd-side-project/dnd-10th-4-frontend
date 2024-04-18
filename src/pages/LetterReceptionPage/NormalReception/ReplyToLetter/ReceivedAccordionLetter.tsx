@@ -1,10 +1,11 @@
+import { motion } from 'framer-motion';
 import LetterCard from '@/components/LetterCard';
 import LetterAccordion from '@/components/LetterAccordion';
 import useBoolean from '@/hooks/useBoolean';
 import TagList from '@/components/TagList';
 import LetterHeader from '@/components/LetterHeader';
-import ReceptionPolaroid from '../components/ReceptionPolaroid';
 import { ReceptionLetterType } from '../hooks/useLetterWithTags';
+import ReceptionPolaroid from '../components/ReceptionPolaroid';
 
 interface ReceivedAccordionLetterProps {
   receptionLetter: ReceptionLetterType;
@@ -30,10 +31,16 @@ const ReceivedAccordionLetter = ({
         type="send"
       />
       {receptionLetter.sendImagePath !== null && isOpen === true && (
-        <ReceptionPolaroid
-          bottomPosition={1}
-          img={receptionLetter.sendImagePath}
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+        >
+          <ReceptionPolaroid
+            bottomPosition={1}
+            img={receptionLetter.sendImagePath}
+          />
+        </motion.div>
       )}
     </LetterCard>
   );
