@@ -7,8 +7,8 @@ import BackgroundImg from '@/assets/background.png';
 import Audio from '@/components/Audio';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import ApiErrorBoundary from '@/components/ErrorBoundary/ApiErrorBoundary';
-import RootApiFallback from './components/ErrorBoundary/fallback/RootApiFallback';
 import RootUnknownFallback from './components/ErrorBoundary/fallback/RootUnknownFallback';
+import RootApiFallback from './components/ErrorBoundary/fallback/RootApiFallback';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
@@ -22,6 +22,7 @@ const App = () => {
         </UnknownErrorBoundary>
         <Audio src={BackgroundMusic} />
         <ToastContainer
+          autoClose={1500}
           css={css({
             margin: '4rem 0 5rem 0',
             padding: '0 1rem',

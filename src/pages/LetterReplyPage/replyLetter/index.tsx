@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
@@ -30,11 +29,6 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
     link.click();
 
     window.URL.revokeObjectURL(url);
-
-    toast.success('사진이 저장됐어요', {
-      position: 'bottom-center',
-      autoClose: 1500,
-    });
   };
 
   return (

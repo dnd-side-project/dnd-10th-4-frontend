@@ -4,11 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import ERROR_RESPONSES from '@/constants/errorMessages';
-import { ROUTER_PATHS } from '@/constants/routerPaths';
-import reportAPI from '@/api/report/api';
-import useBoolean from '@/hooks/useBoolean';
 import letterOptions from '@/api/letter/queryOptions';
+import useBoolean from '@/hooks/useBoolean';
+import reportAPI from '@/api/report/api';
+import { ROUTER_PATHS } from '@/constants/routerPaths';
+import ERROR_RESPONSES from '@/constants/errorMessages';
 import BottomSheet from '../BottomSheet';
 import Button from '../Button';
 import LoadingSpinner from '../LoadingSpinner';
@@ -48,7 +48,6 @@ const ReportBottomSheet = ({
         onSuccess: () => {
           toast.success('신고가 접수되었어요.', {
             position: 'bottom-center',
-            autoClose: 1500,
           });
           navigate(ROUTER_PATHS.ROOT);
         },
@@ -72,7 +71,6 @@ const ReportBottomSheet = ({
     if (errors.reportType) {
       toast.warn(errors.reportType.message, {
         position: 'bottom-center',
-        autoClose: 1500,
       });
     }
   }, [errors]);

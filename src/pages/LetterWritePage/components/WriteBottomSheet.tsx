@@ -32,7 +32,6 @@ const WriteBottomSheet = ({ value, on, off }: LetterWriteBottomSheetProps) => {
       onSuccess: () => {
         toast.success('편지를 바다에 띄어보냈어요', {
           position: 'bottom-center',
-          autoClose: 1500,
         });
 
         navigate(ROUTER_PATHS.ROOT);

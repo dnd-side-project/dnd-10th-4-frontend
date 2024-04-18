@@ -1,11 +1,11 @@
 import { useFormContext } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import useBoolean from '@/hooks/useBoolean';
-import LetterHeader from '@/components/LetterHeader';
-import LetterLengthDate from '@/components/LetterLengthDate';
-import LetterTextarea from '@/components/LetterTextarea';
 import LetterCard from '@/components/LetterCard';
+import LetterTextarea from '@/components/LetterTextarea';
+import LetterLengthDate from '@/components/LetterLengthDate';
+import LetterHeader from '@/components/LetterHeader';
+import useBoolean from '@/hooks/useBoolean';
 import LetterContent from '../components/LetterContent';
 import useLetterWithTags from '../hooks/useLetterWithTags';
 import { ReplyInputs } from '..';
@@ -39,13 +39,11 @@ const ReplyToLetter = ({ letterId, onPrev }: ReplyToLetterProps) => {
           : errors.replyContent.message;
       toast.warn(message, {
         position: 'bottom-center',
-        autoClose: 1500,
         hideProgressBar: true,
       });
     } else if (errors.image) {
       toast.warn(errors.image.message?.toString(), {
         position: 'bottom-center',
-        autoClose: 1500,
         hideProgressBar: true,
       });
     }

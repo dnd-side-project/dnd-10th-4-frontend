@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import Button from '@/components/Button';
 import PolaroidModal from '@/components/PolaroidModal';
@@ -25,11 +24,6 @@ const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
     link.click();
 
     window.URL.revokeObjectURL(url);
-
-    toast.success('사진이 저장됐어요', {
-      position: 'bottom-center',
-      autoClose: 1500,
-    });
   };
 
   return (

@@ -40,7 +40,6 @@ const DeleteBottomSheet = ({
   const handleDeleteLetter = async () => {
     const handleSuccess = () => {
       toast.success('편지가 삭제됐어요', {
-        autoClose: 1500,
         position: 'bottom-center',
       });
     };
