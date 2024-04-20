@@ -13,18 +13,23 @@ const TitleMelmet = () => {
     }
 
     if (typeof value === 'function') {
-      return matchPath(value(':a'), location.pathname);
+      const params = Array.from(
+        { length: value.length },
+        (_, i) => `:param${i}`,
+      );
+
+      // @ts-expect-error NOTE: 현재 순회중인 함수의 인자를 그대로 전달할 뿐이지만, 튜플이 아니기에 발생하는 타입 에러를 무시합니다.
+      return matchPath(value(...params), location.pathname);
     }
 
     return false;
   });
 
-  const pageTitle = current
-    ? ROUTER_TITLES[current[0] as keyof typeof ROUTER_TITLES]
-    : null;
+  const currentPageTitle =
+    ROUTER_TITLES[current?.[0] as keyof typeof ROUTER_TITLES];
 
-  const title = pageTitle
-    ? `내 마음 속 바다 | ${pageTitle}`
+  const title = currentPageTitle
+    ? `내 마음 속 바다 | ${currentPageTitle}`
     : '내 마음 속 바다';
 
   return (
