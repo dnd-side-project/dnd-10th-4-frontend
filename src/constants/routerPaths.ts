@@ -50,8 +50,20 @@ export const ROUTER_PATHS = {
   ONBOARDING: '/onboarding',
   LETTER_WRITE: '/write',
   LETTER_RECEPTION: (letterId: string) => `/reception/${letterId}` as const,
-  MYPAGE: '/mypage',
   LETTER_REPLY: (letterId: string) => `/reply/${letterId}` as const,
   LETTER_STORAGE: `/storage`,
+  MYPAGE: '/mypage',
   ADMIN: '/admin',
 } as const;
+
+export const ROUTER_TITLES = {
+  SIGNIN: '로그인',
+  SIGNIN_REDIRECT_KAKAO: '로그인 중...',
+  ONBOARDING: '환영해요',
+  LETTER_WRITE: '편지 쓰기',
+  LETTER_RECEPTION: '내게 온 편지',
+  LETTER_REPLY: '내게 온 답장',
+  LETTER_STORAGE: '보관함',
+  MYPAGE: '내 정보',
+  ADMIN: '관리자',
+} satisfies Partial<Record<keyof typeof ROUTER_PATHS, string>>;
