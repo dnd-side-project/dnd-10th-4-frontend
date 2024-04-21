@@ -9,10 +9,9 @@ import TagList from '@/components/TagList';
 import textStyles from '@/styles/textStyles';
 import COLORS from '@/constants/colors';
 import { formatDate } from '@/utils/dateUtils';
-import PolaroidModal from '@/components/PolaroidModal';
-import Button from '@/components/Button';
 import { getTagList } from '../utils/tagUtills';
 import LetterModalHeader from '../components/LetterModalHeader';
+import ReplyPolaroidModal from './ReplyPolaroidModal';
 
 interface ReplyLetterModalProps extends ReturnType<typeof useBoolean> {
   letter: Reply;
@@ -55,11 +54,7 @@ const ReplyLetterModal = ({ value, off, letter }: ReplyLetterModalProps) => {
                 nickname={letter.senderNickname}
               />
               {letter.sendImagePath && (
-                <PolaroidModal img={letter.sendImagePath}>
-                  <Button variant="secondary" size="sm">
-                    닫기
-                  </Button>
-                </PolaroidModal>
+                <ReplyPolaroidModal imagePath={letter.sendImagePath} />
               )}
             </>
           ) : (
@@ -78,11 +73,7 @@ const ReplyLetterModal = ({ value, off, letter }: ReplyLetterModalProps) => {
                 nickname={letter.receiverNickname}
               />
               {letter.replyImagePath && (
-                <PolaroidModal img={letter.replyImagePath}>
-                  <Button variant="secondary" size="sm">
-                    닫기
-                  </Button>
-                </PolaroidModal>
+                <ReplyPolaroidModal imagePath={letter.replyImagePath} />
               )}
             </>
           )}
