@@ -7,30 +7,34 @@ import BackgroundImg from '@/assets/background.png';
 import Audio from '@/components/Audio';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import ApiErrorBoundary from '@/components/ErrorBoundary/ApiErrorBoundary';
+import TitleMelmet from '@/components/TitleMelmet';
 import RootUnknownFallback from './components/ErrorBoundary/fallback/RootUnknownFallback';
 import RootApiFallback from './components/ErrorBoundary/fallback/RootApiFallback';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
-    <Background imageUrl={BackgroundImg}>
-      <div css={styles.root}>
-        <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
-          <ApiErrorBoundary FallbackComponent={RootApiFallback}>
-            <Outlet />
-          </ApiErrorBoundary>
-        </UnknownErrorBoundary>
-        <Audio src={BackgroundMusic} />
-        <ToastContainer
-          autoClose={1500}
-          css={css({
-            margin: '4rem 0 5rem 0',
-            padding: '0 1rem',
-            boxSizing: 'border-box',
-          })}
-        />
-      </div>
-    </Background>
+    <>
+      <TitleMelmet />
+      <Background imageUrl={BackgroundImg}>
+        <div css={styles.root}>
+          <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
+            <ApiErrorBoundary FallbackComponent={RootApiFallback}>
+              <Outlet />
+            </ApiErrorBoundary>
+          </UnknownErrorBoundary>
+          <Audio src={BackgroundMusic} />
+          <ToastContainer
+            autoClose={1500}
+            css={css({
+              margin: '4rem 0 5rem 0',
+              padding: '0 1rem',
+              boxSizing: 'border-box',
+            })}
+          />
+        </div>
+      </Background>
+    </>
   );
 };
 
