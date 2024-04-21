@@ -1,21 +1,23 @@
-import Button from '@/components/Button';
+import { css } from '@emotion/react';
 import PolaroidModal from '@/components/PolaroidModal';
+import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
 import { downloadImage } from '@/utils/downloadUtils';
 
-interface ReceptionPolaroidProps {
-  img: string;
-  bottomPosition?: number;
+interface ReplyPolaroidModalProps {
+  imagePath: string;
 }
 
-const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
+const ReplyPolaroidModal = ({ imagePath }: ReplyPolaroidModalProps) => {
   return (
     <PolaroidModal
-      img={img}
-      bottomPosition={bottomPosition}
+      img={imagePath}
       headerRightContent={
-        <IconButton onClick={() => downloadImage(img)}>
+        <IconButton
+          css={style.download}
+          onClick={() => downloadImage(imagePath)}
+        >
           <Download color="white" height={20} width={20} />
         </IconButton>
       }
@@ -27,4 +29,10 @@ const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
   );
 };
 
-export default ReceptionPolaroid;
+export default ReplyPolaroidModal;
+
+const style = {
+  download: css`
+    margin-right: 2px;
+  `,
+};
