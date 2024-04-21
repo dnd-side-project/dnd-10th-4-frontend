@@ -4,7 +4,7 @@ import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
-import { imageDownload } from '@/utils/downloadUtils';
+import { downloadImage } from '@/utils/downloadUtils';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 import LetterContent from '../components/LetterContent';
 
@@ -29,7 +29,7 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
           headerRightContent={
             <IconButton
               id="download-button"
-              onClick={() => imageDownload(replyLetter.replyImagePath!)}
+              onClick={() => downloadImage(replyLetter.replyImagePath!)}
             >
               <Download color="white" height={20} width={20} />
             </IconButton>

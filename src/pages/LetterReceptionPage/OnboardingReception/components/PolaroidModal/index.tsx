@@ -4,7 +4,7 @@ import IconButton from '@/components/IconButton';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
-import { imageDownload } from '@/utils/downloadUtils';
+import { downloadImage } from '@/utils/downloadUtils';
 import pageStyles from '../../styles';
 import styles from './style';
 
@@ -21,7 +21,7 @@ const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
           </Header.Left>
           <Header.Right>
-            <IconButton onClick={() => imageDownload(imagePath!)}>
+            <IconButton onClick={() => downloadImage(imagePath!)}>
               <Download css={styles.icon} />
             </IconButton>
           </Header.Right>

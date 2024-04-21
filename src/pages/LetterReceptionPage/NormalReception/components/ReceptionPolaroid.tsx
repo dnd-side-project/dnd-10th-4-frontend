@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
-import { imageDownload } from '@/utils/downloadUtils';
+import { downloadImage } from '@/utils/downloadUtils';
 
 interface ReceptionPolaroidProps {
   img: string;
@@ -15,7 +15,7 @@ const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
       img={img}
       bottomPosition={bottomPosition}
       headerRightContent={
-        <IconButton onClick={() => imageDownload(img)}>
+        <IconButton onClick={() => downloadImage(img)}>
           <Download color="white" height={20} width={20} />
         </IconButton>
       }

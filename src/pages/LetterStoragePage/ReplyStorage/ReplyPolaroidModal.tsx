@@ -3,7 +3,7 @@ import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
-import { imageDownload } from '@/utils/downloadUtils';
+import { downloadImage } from '@/utils/downloadUtils';
 
 interface ReplyPolaroidModalProps {
   imagePath: string;
@@ -16,7 +16,7 @@ const ReplyPolaroidModal = ({ imagePath }: ReplyPolaroidModalProps) => {
       headerRightContent={
         <IconButton
           css={style.download}
-          onClick={() => imageDownload(imagePath)}
+          onClick={() => downloadImage(imagePath)}
         >
           <Download color="white" height={20} width={20} />
         </IconButton>

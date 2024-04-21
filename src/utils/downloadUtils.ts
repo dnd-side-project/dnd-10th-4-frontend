@@ -5,7 +5,7 @@ import axios from 'axios';
  * @param imagePath 이미지 경로
  * @returns
  */
-export const imageDownload = async (imagePath: string) => {
+export const downloadImage = async (imagePath: string) => {
   if (!imagePath) {
     return;
   }
