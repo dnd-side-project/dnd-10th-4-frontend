@@ -1,10 +1,10 @@
-import axios from 'axios';
 import LetterCard from '@/components/LetterCard';
 import { formatDate } from '@/utils/dateUtils';
 import PolaroidModal from '@/components/PolaroidModal';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
+import { imageDownload } from '@/utils/downloadUtils';
 import useLetterReplyWithTag from '../hooks/useLetterReplyWithTag';
 import LetterContent from '../components/LetterContent';
 
@@ -14,22 +14,6 @@ interface ReplyLetterProps {
 
 const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
   const { replyLetter } = useLetterReplyWithTag(letterId);
-
-  const handleDownload = async () => {
-    const response = await axios.get(replyLetter.replyImagePath!, {
-      responseType: 'blob',
-    });
-
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'image.jpg';
-    document.body.appendChild(link);
-    link.click();
-
-    window.URL.revokeObjectURL(url);
-  };
 
   return (
     <LetterCard isOpen={true}>
@@ -43,7 +27,10 @@ const ReplyLetter = ({ letterId }: ReplyLetterProps) => {
         <PolaroidModal
           img={replyLetter.replyImagePath}
           headerRightContent={
-            <IconButton id="download-button" onClick={handleDownload}>
+            <IconButton
+              id="download-button"
+              onClick={() => imageDownload(replyLetter.replyImagePath!)}
+            >
               <Download color="white" height={20} width={20} />
             </IconButton>
           }

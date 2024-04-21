@@ -1,8 +1,8 @@
-import axios from 'axios';
 import Button from '@/components/Button';
 import PolaroidModal from '@/components/PolaroidModal';
 import IconButton from '@/components/IconButton';
 import { Download } from '@/assets/icons';
+import { imageDownload } from '@/utils/downloadUtils';
 
 interface ReceptionPolaroidProps {
   img: string;
@@ -10,28 +10,12 @@ interface ReceptionPolaroidProps {
 }
 
 const ReceptionPolaroid = ({ img, bottomPosition }: ReceptionPolaroidProps) => {
-  const handleDownload = async () => {
-    const response = await axios.get(img, {
-      responseType: 'blob',
-    });
-
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'image.jpg';
-    document.body.appendChild(link);
-    link.click();
-
-    window.URL.revokeObjectURL(url);
-  };
-
   return (
     <PolaroidModal
       img={img}
       bottomPosition={bottomPosition}
       headerRightContent={
-        <IconButton onClick={handleDownload}>
+        <IconButton onClick={() => imageDownload(img)}>
           <Download color="white" height={20} width={20} />
         </IconButton>
       }
