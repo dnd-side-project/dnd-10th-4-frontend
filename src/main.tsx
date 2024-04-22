@@ -56,20 +56,21 @@ const enableMocking = async () => {
   });
 };
 
-const redirectIfInAppBrowser = new Promise((resolve, reject) => {
-  const userAgent = navigator.userAgent.toLowerCase();
-  const target_url = window.location.href;
+const redirectIfInAppBrowser = () =>
+  new Promise((resolve, reject) => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const target_url = window.location.href;
 
-  if (userAgent.match(/kakaotalk/i)) {
-    location.href =
-      'kakaotalk://web/openExternal?url=' + encodeURIComponent(target_url);
-    reject('외부 브라우저로 연결');
-  }
+    if (userAgent.match(/kakaotalk/i)) {
+      location.href =
+        'kakaotalk://web/openExternal?url=' + encodeURIComponent(target_url);
+      reject('외부 브라우저로 연결');
+    }
 
-  resolve(true);
-});
+    resolve(true);
+  });
 
-Promise.all([enableMocking, redirectIfInAppBrowser]).then(() =>
+Promise.allSettled([enableMocking(), redirectIfInAppBrowser()]).then(() =>
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <HelmetProvider>
