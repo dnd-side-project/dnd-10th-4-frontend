@@ -1,6 +1,7 @@
 *,
 body {
   font-family: 'SUIT', sans-serif;
+  font-display: swap;
 }
 
 a {
@@ -14,4 +15,5 @@ a {
   font-family: 'Jalnan OTF';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
     format('woff');
+  font-display: swap;
 }
