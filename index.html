@@ -34,19 +34,6 @@
       content="말 못한 고민을 공유하고, 서로 공감하며 위로를 주고받는 서비스"
     />
     <meta name="twitter:image" content="https://i.ibb.co/7SSvJzc/2.png" />
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-TQM5BHZD');
-    </script>
     <title>내 마음 속 바다</title>
     <meta
       name="description"
@@ -54,15 +41,20 @@
     />
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-TQM5BHZD"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-75REEP3X0L"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-75REEP3X0L');
+    </script>
+    <!-- End of Google tag (gtag.js) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
