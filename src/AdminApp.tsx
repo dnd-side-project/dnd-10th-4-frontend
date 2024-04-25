@@ -12,6 +12,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const AdminApp = () => {
   return (
     <Background imageUrl={BackgroundImg}>
+      <button
+        onClick={() => {
+          throw new Error('Sentry 테스트');
+        }}
+      >
+        Sentry 수집 테스트
+      </button>
       <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
         <ApiErrorBoundary FallbackComponent={RootApiFallback}>
           <Outlet />
