@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { getCurrentPageTitle } from '@/utils/routeUtils';
 
-const TitleMelmet = () => {
+const TitleHelmet = () => {
   const location = useLocation();
   const currentPageTitle = getCurrentPageTitle(location.pathname);
 
@@ -17,4 +17,4 @@ const TitleMelmet = () => {
   );
 };
 
-export default TitleMelmet;
+export default TitleHelmet;
