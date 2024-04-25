@@ -7,7 +7,7 @@ import BackgroundImg from '@/assets/background.png';
 import Audio from '@/components/Audio';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import ApiErrorBoundary from '@/components/ErrorBoundary/ApiErrorBoundary';
-import TitleMelmet from '@/components/TitleMelmet';
+import TitleHelmet from '@/components/TitleHelmet';
 import RootUnknownFallback from './components/ErrorBoundary/fallback/RootUnknownFallback';
 import RootApiFallback from './components/ErrorBoundary/fallback/RootApiFallback';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <>
-      <TitleMelmet />
+      <TitleHelmet />
       <Background imageUrl={BackgroundImg}>
         <div css={styles.root}>
           <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
