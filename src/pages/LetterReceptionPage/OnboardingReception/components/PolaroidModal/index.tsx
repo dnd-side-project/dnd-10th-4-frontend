@@ -1,10 +1,10 @@
-import axios from 'axios';
 import { CaretLeft, Download } from '@/assets/icons';
 import Header from '@/components/Header';
 import IconButton from '@/components/IconButton';
 import Modal from '@/components/Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Button from '@/components/Button';
+import { downloadImage } from '@/utils/downloadUtils';
 import pageStyles from '../../styles';
 import styles from './style';
 
@@ -13,26 +13,6 @@ interface PolaroidModalProps extends ReturnType<typeof useBoolean> {
 }
 
 const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
-  const handleDownload = async () => {
-    if (!imagePath) {
-      return;
-    }
-
-    const response = await axios.get(imagePath, {
-      responseType: 'blob',
-    });
-
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'image.jpg';
-    document.body.appendChild(link);
-    link.click();
-
-    window.URL.revokeObjectURL(url);
-  };
-
   return (
     <Modal isOpen={value} close={off}>
       <div css={styles.container}>
@@ -41,7 +21,7 @@ const PolaroidModal = ({ imagePath, value, off }: PolaroidModalProps) => {
             <CaretLeft css={styles.icon} strokeWidth={2.5} onClick={off} />
           </Header.Left>
           <Header.Right>
-            <IconButton onClick={handleDownload}>
+            <IconButton onClick={() => downloadImage(imagePath!)}>
               <Download css={styles.icon} />
             </IconButton>
           </Header.Right>
