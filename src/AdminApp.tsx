@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { css } from '@emotion/react';
 import Background from '@/components/Background';
-import BackgroundImg from '@/assets/background.png';
+import BackgroundImg from '@/assets/background.webp';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import ApiErrorBoundary from '@/components/ErrorBoundary/ApiErrorBoundary';
 import TitleHelmet from '@/components/TitleHelmet';
