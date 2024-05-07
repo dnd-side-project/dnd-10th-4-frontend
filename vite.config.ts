@@ -23,6 +23,18 @@ export default defineConfig(({ mode }) => {
 
     build: {
       sourcemap: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            react: ['react', 'react-dom'],
+            emotion: ['@emotion/react'],
+            state: ['@tanstack/react-query', 'zustand'],
+            form: ['react-hook-form'],
+            mui: ['@mui/material'],
+            sentry: ['@sentry/react'],
+          },
+        },
+      },
     },
 
     plugins: [
@@ -35,6 +47,13 @@ export default defineConfig(({ mode }) => {
         authToken: env.SENTRY_AUTH_TOKEN,
         sourcemaps: {
           filesToDeleteAfterUpload: ['**/*.js.map'],
+        },
+        bundleSizeOptimizations: {
+          excludePerformanceMonitoring: true,
+          excludeDebugStatements: true,
+          excludeReplayIframe: true,
+          excludeReplayShadowDom: true,
+          excludeReplayWorker: true,
         },
       }),
     ],
