@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import Background from '@/components/Background';
 import BackgroundMusic from '@/assets/background.mp3';
@@ -10,6 +11,7 @@ import ApiErrorBoundary from '@/components/ErrorBoundary/ApiErrorBoundary';
 import TitleHelmet from '@/components/TitleHelmet';
 import RootUnknownFallback from './components/ErrorBoundary/fallback/RootUnknownFallback';
 import RootApiFallback from './components/ErrorBoundary/fallback/RootApiFallback';
+import LoadingScreen from './components/LoadingScreen';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
@@ -20,7 +22,9 @@ const App = () => {
         <div css={styles.root}>
           <UnknownErrorBoundary FallbackComponent={RootUnknownFallback}>
             <ApiErrorBoundary FallbackComponent={RootApiFallback}>
-              <Outlet />
+              <Suspense fallback={<LoadingScreen />}>
+                <Outlet />
+              </Suspense>
             </ApiErrorBoundary>
           </UnknownErrorBoundary>
           <Audio src={BackgroundMusic} />

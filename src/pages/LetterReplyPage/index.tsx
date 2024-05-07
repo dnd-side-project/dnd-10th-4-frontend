@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnknownErrorBoundary';
 import LetterAccessFallback from '@/components/ErrorBoundary/fallback/LetterAccessFallback';
 import ReplyHeader from './components/ReplyHeader';
@@ -14,25 +12,16 @@ const LetterReplyPage = () => {
 
   return (
     <UnknownErrorBoundary FallbackComponent={LetterAccessFallback}>
-      <Suspense
-        fallback={
-          <div css={style.loadingSpinner}>
-            <LoadingSpinner size="4rem" />
-            <p>답장 받은 편지 가져오는 중...</p>
+      <div css={style.container}>
+        <ReplyHeader letterId={Number(letterId)} />
+        <div css={style.content}>
+          <div css={style.letter}>
+            <SentLetter letterId={Number(letterId)} />
+            <ReplyLetter letterId={Number(letterId)} />
           </div>
-        }
-      >
-        <div css={style.container}>
-          <ReplyHeader letterId={Number(letterId)} />
-          <div css={style.content}>
-            <div css={style.letter}>
-              <SentLetter letterId={Number(letterId)} />
-              <ReplyLetter letterId={Number(letterId)} />
-            </div>
-            <BottomButton letterId={Number(letterId)} />
-          </div>
+          <BottomButton letterId={Number(letterId)} />
         </div>
-      </Suspense>
+      </div>
     </UnknownErrorBoundary>
   );
 };

@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import {
   Table,
@@ -9,7 +9,6 @@ import {
   TableRow,
 } from '@mui/material';
 import Dropdown from '@/components/Dropdown';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import { MoreHorizontal, TrashCan } from '@/assets/icons';
 import COLORS from '@/constants/colors';
 import { REPORT_TYPE_DICT } from '@/constants/report';
@@ -99,9 +98,7 @@ const ReportTab = () => {
         placeholder="검색할 이메일을 입력하세요"
       />
 
-      <Suspense fallback={<LoadingSpinner />}>
-        <SuspensedReportTab email={email} />
-      </Suspense>
+      <SuspensedReportTab email={email} />
     </div>
   );
 };

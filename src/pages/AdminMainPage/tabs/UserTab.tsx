@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import {
   Table,
@@ -11,7 +11,6 @@ import {
 import Dropdown from '@/components/Dropdown';
 import { Copy, MoreHorizontal, TrashCan } from '@/assets/icons';
 import COLORS from '@/constants/colors';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import useBoolean from '@/hooks/useBoolean';
 import { debounce } from '@/utils/timerUtils';
 import usePagedUserQuery from '../hooks/usePagedUserQuery';
@@ -111,9 +110,7 @@ const UserTab = () => {
         placeholder="검색할 이메일을 입력하세요"
       />
 
-      <Suspense fallback={<LoadingSpinner />}>
-        <SuspensedUserTab searchEmail={email} />
-      </Suspense>
+      <SuspensedUserTab searchEmail={email} />
     </div>
   );
 };

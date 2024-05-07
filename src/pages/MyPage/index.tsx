@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import { Switch } from '@mui/material';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -10,7 +9,6 @@ import COLORS from '@/constants/colors';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
 import useBoolean from '@/hooks/useBoolean';
 import memberOptions from '@/api/member/queryOptions';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import { GENDER_DICT, WORRY_DICT } from '@/constants/users';
 import useMusicStore from '@/stores/useMusicStore';
 import NicknameBottomSheet from './components/NicknameBottomSheet';
@@ -143,15 +141,7 @@ const MyPage = () => {
           <h1 css={textStyles.b4m}>마이페이지</h1>
         </Header.Center>
       </Header>
-      <Suspense
-        fallback={
-          <section css={styles.loadingSection}>
-            <LoadingSpinner size="4rem" />
-          </section>
-        }
-      >
-        <SuspendedPage />
-      </Suspense>
+      <SuspendedPage />
       <footer css={styles.footer}>
         <p>Copyright ©seeofmyheart.</p>
         <p>All rights reserved</p>
