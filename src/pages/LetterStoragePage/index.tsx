@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
 import { css } from '@emotion/react';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import Tabs from '@/components/Tabs';
 import StorageHeader from './components/StorageHeader';
 import ReplyStorage from './ReplyStorage';
@@ -17,28 +15,10 @@ const LetterStoragePage = () => {
             <Tabs.Trigger value="2">내가 보낸 편지</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="1">
-            <Suspense
-              fallback={
-                <div css={style.loadingSpinner}>
-                  <LoadingSpinner size="4rem" />
-                  <p>보관한 편지 가져오는 중...</p>
-                </div>
-              }
-            >
-              <ReplyStorage />
-            </Suspense>
+            <ReplyStorage />
           </Tabs.Content>
           <Tabs.Content value="2">
-            <Suspense
-              fallback={
-                <div css={style.loadingSpinner}>
-                  <LoadingSpinner size="4rem" />
-                  <p>내가 쓴 편지 가져오는 중...</p>
-                </div>
-              }
-            >
-              <SentStorage />
-            </Suspense>
+            <SentStorage />
           </Tabs.Content>
         </Tabs>
       </div>

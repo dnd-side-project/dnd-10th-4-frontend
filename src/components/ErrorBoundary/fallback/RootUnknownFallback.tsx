@@ -2,7 +2,10 @@ import { type FallbackProps } from 'react-error-boundary';
 import { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
-import * as Sentry from '@sentry/react';
+import {
+  getCurrentScope as SentryGetCurrentScope,
+  captureException as SentryCaptureException,
+} from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import ErrorImage from '@/assets/images/error.svg';
 import { ROUTER_PATHS } from '@/constants/routerPaths';
@@ -23,10 +26,10 @@ const RootUnknownFallback = ({ error }: FallbackProps) => {
       return;
     }
 
-    const scope = Sentry.getCurrentScope();
+    const scope = SentryGetCurrentScope();
     scope.setTag('type', 'unknown');
 
-    Sentry.captureException(error);
+    SentryCaptureException(error);
   }, []);
 
   if (shouldSkip) {

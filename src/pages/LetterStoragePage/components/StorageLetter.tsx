@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import { type Reply, type SendLetter } from '@/types/letter';
-import DrowerImage from '@/assets/storageDrawer.png';
-import BottleImage from '@/assets/images/bottleStorage.png';
+import DrowerImage from '@/assets/storageDrawer.webp';
+import BottleImage from '@/assets/images/bottleStorage.webp';
 import useBoolean from '@/hooks/useBoolean';
 import {
   startIndexList,

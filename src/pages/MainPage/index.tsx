@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { Suspense } from 'react';
 import { css } from '@emotion/react';
 import IconButton from '@/components/IconButton';
 import Header from '@/components/Header';
@@ -19,9 +18,7 @@ const MainPage = () => {
     <div css={styles.page}>
       <Header variant="primary">
         <Header.Left>
-          <Suspense fallback={<></>}>
-            <LetterCountIconButton />
-          </Suspense>
+          <LetterCountIconButton />
         </Header.Left>
         <Header.Right css={css({ gap: '0.5rem' })}>
           <MusicButton
@@ -59,16 +56,11 @@ const MainPage = () => {
       </Header>
 
       <main css={styles.main}>
-        {/* TODO: 로딩 처리 필요 */}
-        <Suspense fallback={<></>}>
-          <CarouselArea />
-        </Suspense>
+        <CarouselArea />
       </main>
 
       <section css={styles.buttonSection}>
-        <Suspense fallback={<></>}>
-          <WritingBottomButton />
-        </Suspense>
+        <WritingBottomButton />
       </section>
     </div>
   );

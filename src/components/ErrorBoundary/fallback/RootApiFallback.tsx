@@ -1,7 +1,11 @@
 import { type FallbackProps } from 'react-error-boundary';
 import { useEffect } from 'react';
 import { isAxiosError } from 'axios';
-import * as Sentry from '@sentry/react';
+import {
+  getCurrentScope as SentryGetCurrentScope,
+  setContext as SentrySetContext,
+  captureException as SentryCaptureException,
+} from '@sentry/react';
 import ERROR_RESPONSES from '@/constants/errorMessages';
 import ErrorImage from '@/assets/images/error.svg';
 import Button from '../../Button';
@@ -20,7 +24,7 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       return;
     }
 
-    const scope = Sentry.getCurrentScope();
+    const scope = SentryGetCurrentScope();
     scope.setTag('type', 'api');
 
     scope.setContext('API Request Detail', {
@@ -31,12 +35,12 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       headers: error.config?.headers,
     });
 
-    Sentry.setContext('API Response Detail', {
+    SentrySetContext('API Response Detail', {
       status: error.response?.status,
       data: error.response?.data,
     });
 
-    Sentry.captureException(error);
+    SentryCaptureException(error);
   }, []);
 
   if (shouldSkip) {

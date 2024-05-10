@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import LetterBackground from '@/assets/letterBackground.png';
+import LetterBackground from '@/assets/letterBackground.webp';
 
 export type Backgroundtype = 'primary' | 'white';
 

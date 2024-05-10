@@ -1,12 +1,12 @@
 import { css } from '@emotion/react';
-import BottleReception1 from '@/assets/images/bottleReception1.png';
-import BottleReception2 from '@/assets/images/bottleReception2.png';
-import BottleReception3 from '@/assets/images/bottleReception3.png';
-import BottleReception4 from '@/assets/images/bottleReception4.png';
-import BottleReply1 from '@/assets/images/bottleReply1.png';
-import BottleReply2 from '@/assets/images/bottleReply2.png';
-import SparkleBig from '@/assets/images/sparkleBig.png';
-import SparkleSmall from '@/assets/images/sparkleSmall.png';
+import BottleReception1 from '@/assets/images/bottleReception1.webp';
+import BottleReception2 from '@/assets/images/bottleReception2.webp';
+import BottleReception3 from '@/assets/images/bottleReception3.webp';
+import BottleReception4 from '@/assets/images/bottleReception4.webp';
+import BottleReply1 from '@/assets/images/bottleReply1.webp';
+import BottleReply2 from '@/assets/images/bottleReply2.webp';
+import SparkleBig from '@/assets/images/sparkleBig.webp';
+import SparkleSmall from '@/assets/images/sparkleSmall.webp';
 
 export const RECEPTION_BOTTLES = [
   {

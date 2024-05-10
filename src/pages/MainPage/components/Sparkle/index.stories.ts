@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import SparkleBig from '@/assets/images/sparkleBig.png';
+import SparkleBig from '@/assets/images/sparkleBig.webp';
 import Sparkle from './';
 
 const meta = {
